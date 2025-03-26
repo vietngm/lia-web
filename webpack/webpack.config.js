@@ -116,31 +116,31 @@ module.exports = {
 	plugins: [
 		new BrowserSyncPlugin(
 			{
-				host: "localhost",
+				host: "http://liaspeed:8888/",
 				port: 3002,
 				proxy: "http://liaspeed:8888/",
 				open: false,
-				ui: false,
-				files: [
-					{
-						match: ["dist/*.css", "dist/*.js", "../dist/**/*.php"],
-						fn: (event, file) => {
-							if (event == "change") {
-								const bs = require("browser-sync").get("bs-webpack-plugin");
-								if (
-									file.split(".").pop() == "js" ||
-									file.split(".").pop() == "php"
-								) {
-									bs.reload();
-								} else {
-									bs.reload("*.css");
-								}
-							}
-						},
-					},
-				],
-				injectChanges: true,
-				notify: true,
+				// ui: false,
+				// files: [
+				// 	{
+				// 		match: ["dist/*.css", "dist/*.js", "../dist/**/*.php"],
+				// 		fn: (event, file) => {
+				// 			if (event == "change") {
+				// 				const bs = require("browser-sync").get("bs-webpack-plugin");
+				// 				if (
+				// 					file.split(".").pop() == "js" ||
+				// 					file.split(".").pop() == "php"
+				// 				) {
+				// 					bs.reload();
+				// 				} else {
+				// 					bs.reload("*.css");
+				// 				}
+				// 			}
+				// 		},
+				// 	},
+				// ],
+				// injectChanges: true,
+				// notify: true,
 			},
 			{
 				reload: true,
