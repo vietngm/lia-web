@@ -14,7 +14,7 @@ module.exports = {
 	mode: "production",
 	output: {
 		path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
-		filename: "js/main.js",
+		filename: "js/sync-data.js",
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],

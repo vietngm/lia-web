@@ -65,7 +65,7 @@ jQuery(function ($) {
 
 	async function getListDoctor(endpoint, token, envStatus) {
 		try {
-			const response = await fetch(`${endpoint}/doctor`, {
+			const response = await fetch(`${endpoint}/practitioner`, {
 				method: "GET",
 				headers: {
 					Authorization: `Bearer ${token}`,
