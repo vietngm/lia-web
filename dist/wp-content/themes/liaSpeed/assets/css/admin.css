@@ -1,0 +1,9 @@
+#menu-comments,
+#menu-posts,
+#menu-appearance,
+#menu-tools,
+#service-toppingdiv,
+.acf-postbox .acf-hndle-cog,
+.misc-pub-section.rank-math-seo-score {
+	display: none !important;
+}

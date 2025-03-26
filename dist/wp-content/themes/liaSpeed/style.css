@@ -1,0 +1,109 @@
+.slick-slide img {
+  display: block;
+  margin-top: 65px;
+}
+
+@media (min-width: 1024px) {
+  .slick-slide img {
+    display: block;
+    margin-top: 130px;
+  }
+  html,
+  body {
+    margin: 0; /* Xóa khoảng trống mặc định */
+    padding: 0;
+    height: 100%; /* Chiều cao full viewport */
+  }
+  input.focus-input:focus-visible {
+    outline: none;
+  }
+  .home-banner {
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .home-banner img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+  }
+
+  .why-choose-us .container {
+    padding: 40px 20px;
+  }
+
+  .why-choose-item {
+    text-align: center;
+  }
+
+  .services-list {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .service-item {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+  }
+
+  .clinic-slider {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+  }
+  .section-home-contact {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contact-options {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .contact-item {
+    text-align: center;
+    width: 30%;
+  }
+
+  .icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .icon-phone:before {
+    content: "📞";
+  }
+  .icon-calendar:before {
+    content: "📅";
+  }
+  .icon-doctor:before {
+    content: "👨‍⚕️";
+  }
+
+  h2 {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 0.9em;
+    color: #555;
+  }
+}
+.content-editor img {
+  width: 100%;
+}

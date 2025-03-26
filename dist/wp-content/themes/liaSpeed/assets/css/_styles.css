@@ -1,0 +1,468 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		font-size: 16px;
+	}
+	body {
+		@apply leading-normal text-14 text-text font-normal;
+		font-family: "Inter", sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	.content-editor {
+		&.large {
+			@apply text-16;
+		}
+		p {
+			@apply mb-2;
+		}
+		a {
+			@apply text-primary transition-all;
+			&:hover {
+				@apply text-primary-dark underline;
+			}
+		}
+		h1 {
+			@apply text-24 mb-2 mt-4 font-semibold;
+		}
+		h2 {
+			@apply text-22 mb-2 mt-4 font-semibold;
+		}
+		h3 {
+			@apply text-18 mb-2 mt-4 font-semibold;
+		}
+		h4 {
+			@apply text-16 mb-2 mt-4 font-semibold;
+		}
+		h5 {
+			@apply text-14 mb-1.5 mt-3 font-semibold;
+		}
+		ul {
+			@apply mb-2;
+			li {
+				@apply pl-[1em] mb-1 relative before:w-1.5 before:h-1.5 before:absolute before:left-0 before:top-[0.5em] before:bg-text before:rounded-full;
+			}
+		}
+		img {
+			@apply w-full block;
+		}
+	}
+}
+
+@layer components {
+	.section {
+		@apply py-4;
+	}
+	.section-bg-light {
+		@apply section bg-primary-light;
+	}
+	.section-title {
+		@apply md:text-22 text-20 font-bold mb-3 leading-tight;
+	}
+	.section-title-underline {
+		@apply section-title relative pb-2;
+		&::after {
+			content: "";
+			@apply absolute bottom-0 left-0 w-[60px] h-1 bg-primary;
+		}
+	}
+	.form-title {
+		@apply relative text-16 font-bold pl-2.5 before:w-1 before:h-3.5  before:absolute before:left-0 before:top-1.25 before:bg-[#6fbc9f];
+	}
+
+	.btn {
+		@apply px-3.5 py-1.5 bg-primary text-white rounded-2 inline-flex cursor-pointer;
+	}
+	.btn-outline {
+		@apply btn text-text bg-white rounded-8 border-primary border-1 cursor-pointer;
+	}
+
+	.dropdown-select-ui {
+		@apply cursor-pointer md:text-14 text-12 md:px-3 md:py-1 px-2 py-0.5 bg-gray-200 rounded-1 inline-flex gap-1.5 justify-between min-w-[100px] md:min-w-[130px];
+		.icon-arrow {
+			@apply w-4.5 h-4.5;
+		}
+		&.active {
+			@apply text-blue-600;
+		}
+	}
+
+	.input-btn-group {
+		.option-list {
+			@apply flex flex-wrap gap-2;
+			.option-item {
+				@apply px-3 py-1 text-14 border-1 border-[#ccc] rounded-full cursor-pointer transition-all;
+				&.active,
+				&:hover {
+					@apply bg-primary text-white border-primary;
+				}
+			}
+		}
+	}
+
+	.dropdown-select-modal {
+		z-index: 100;
+		@apply transition-all opacity-0 pointer-events-none translate-y-3 bg-white md:min-w-[300px] min-w-[220px] px-2 py-2 shadow-2xl rounded-1 mt-2;
+		&.open {
+			@apply opacity-100 pointer-events-auto translate-y-0;
+		}
+		.title {
+			@apply text-12 md:text-14 font-semibold mb-1;
+		}
+		.options {
+			@apply grid grid-cols-2 gap-x-2 gap-y-1;
+		}
+		.options-1 .option {
+			@apply col-span-2;
+		}
+		.options-2 .option {
+			@apply col-span-1;
+		}
+		.option {
+			@apply flex cursor-pointer items-center gap-2 text-12 md:text-14;
+			.check {
+				@apply w-4 h-4 border-2 border-gray-700 rounded-8 flex items-center justify-center transition-all;
+				&::before {
+					content: "";
+					@apply w-2 h-2 bg-blue-600 block opacity-0 transition-all rounded-8;
+				}
+			}
+			&.selected {
+				@apply text-blue-600;
+				.check {
+					@apply border-blue-600;
+					&::before {
+						@apply opacity-100;
+					}
+				}
+			}
+		}
+
+		&.multiple {
+			.option .check {
+				@apply rounded-0.5;
+				&::before {
+					@apply rounded-none;
+				}
+			}
+		}
+
+		.dropdown-footer {
+			@apply flex gap-2 mt-3;
+		}
+		.btn-confirm,
+		.btn-reset {
+			@apply px-3.5 py-0.5 rounded-1 text-12 md:text-14;
+		}
+	}
+	.promotion-filter {
+		.tab-item.active {
+			@apply text-primary;
+		}
+		.tab-content {
+			@apply hidden;
+			&.active {
+				@apply flex;
+			}
+		}
+	}
+	.home-share-slider {
+		.slick-list,
+		.slick-track {
+			height: 100%;
+		}
+	}
+	.input-group {
+		@apply mb-4 relative;
+		.icon {
+			@apply w-6 h-6 absolute left-2 top-2;
+		}
+		.input {
+			@apply px-3 bg-gray-50 rounded-2 h-[40px] w-full border-black border-opacity-20 border-1;
+		}
+		&.input-group-left-icon {
+			.input {
+				@apply pl-10;
+			}
+		}
+		textarea.input {
+			@apply h-auto py-3;
+		}
+	}
+
+	.input-radio,
+	.input-checkbox {
+		input {
+			@apply hidden;
+		}
+		.icon {
+			@apply transition-all rounded-1 border-2 border-gray-500 w-5 h-5 relative;
+			&::before {
+				content: "";
+				@apply transition-all absolute top-0.5 left-0.5 w-3 h-3 bg-blue-500 rounded-0.5 opacity-0;
+			}
+		}
+		input:checked + .icon {
+			@apply border-blue-500;
+			&::before {
+				@apply opacity-100;
+			}
+		}
+	}
+	.input-radio {
+		.icon {
+			@apply rounded-4;
+			&::before {
+				@apply rounded-4;
+			}
+		}
+	}
+	.input-select {
+		display: block;
+		.select2 {
+			@apply !w-full;
+		}
+		.select2-selection {
+			@apply rounded-2 h-10 !bg-gray-50;
+		}
+		.select2-selection__rendered {
+			@apply !leading-10 !pl-3 !pr-6;
+		}
+		.select2-selection__arrow {
+			@apply !h-10 !w-6;
+		}
+		.select2-selection__clear {
+			@apply !h-9 !w-6;
+		}
+	}
+
+	.booking-form {
+		.booking-date-picker {
+			@apply flex gap-2;
+			.item {
+				@apply flex-1;
+				.inner {
+					@apply min-h-[62px] cursor-pointer font-semibold transition-all p-2 flex flex-col gap-1 text-text items-center justify-center text-center rounded-2 bg-[#eee];
+				}
+				.text {
+					@apply text-center text-[#989898] font-semibold mt-2 md:text-14 text-12;
+				}
+				.plus-icon {
+					@apply w-[12px] h-[12px] relative;
+					&::after {
+						content: "";
+						@apply absolute h-full w-[2px] bg-[#989898] top-0 left-[5px] transition-all;
+					}
+					&::before {
+						content: "";
+						@apply absolute w-full h-[2px] bg-[#989898] left-0 top-[5px] transition-all;
+					}
+				}
+			}
+			.item:hover,
+			.item.active {
+				.inner {
+					@apply bg-primary text-white;
+				}
+				.text {
+					@apply text-primary;
+				}
+				.plus-icon {
+					&::after {
+						@apply bg-white;
+					}
+					&::before {
+						@apply bg-white;
+					}
+				}
+			}
+			.item.disabled {
+				.inner {
+					@apply cursor-not-allowed !bg-[#ccc] !text-text;
+				}
+				.text {
+					@apply !text-[#989898];
+				}
+			}
+		}
+		.booking-time-picker {
+			.time-input {
+				@apply shrink-0;
+				&.disabled .time-input-content {
+					@apply cursor-not-allowed !bg-[#ccc] !text-text;
+				}
+				input {
+					@apply hidden;
+				}
+				.time-input-content {
+					@apply min-w-[70px] text-center py-1.5 rounded-2 border-gray-700 border-1 cursor-pointer transition-all font-semibold;
+				}
+				input:checked + .time-input-content,
+				.time-input-content:hover {
+					@apply bg-primary border-primary text-white;
+				}
+			}
+		}
+	}
+
+	.indicator-tabs {
+		.tabs {
+			@apply flex gap-4 overflow-x-auto no-scrollbar relative;
+			.tab {
+				@apply flex-shrink-0 text-nowrap h-10 flex items-center justify-center cursor-pointer;
+				&.active {
+					@apply font-semibold;
+				}
+			}
+		}
+		.indicator-wrapper {
+			@apply absolute left-0 bottom-1 right-0 h-[3px];
+			.indicator {
+				@apply absolute w-8 rounded-1 bg-[#333] h-full transition-all -translate-x-1/2;
+			}
+		}
+		.tab-contents .tab-content {
+			@apply hidden;
+			&.active {
+				@apply block;
+			}
+		}
+	}
+}
+
+@layer utilities {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	.highlight-filter {
+		@apply flex gap-2 overflow-x-auto no-scrollbar;
+		.item {
+			@apply flex flex-col items-center flex-shrink-0 w-[50px] rounded-2 border-1 border-[#7B2A8F1A];
+			img {
+				@apply w-7.5 h-7.5 mt-1;
+			}
+			.text {
+				@apply font-semibold text-10 px-0 flex-1 flex items-center justify-center text-center mb-0.5 mt-0.5;
+			}
+		}
+		.item-active {
+			@apply bg-primary bg-opacity-15;
+		}
+	}
+
+	.product-section {
+		.adv-filter {
+			@apply py-3 flex gap-3;
+		}
+	}
+
+	.section-pricing {
+		.highlight-filter {
+			.item {
+				@apply max-w-none min-w-min h-7 px-3 rounded-8 flex-none;
+				.text {
+					@apply p-0;
+				}
+			}
+		}
+	}
+	.main-menu {
+		@apply -translate-x-full;
+		&.active {
+			@apply translate-x-0;
+		}
+		.menu-cat-item {
+			@apply flex flex-col items-center justify-center p-2 min-h-[70px] transition-all cursor-pointer;
+			.img {
+				@apply w-10 h-10 hidden;
+			}
+			.text {
+				@apply text-center text-12 font-semibold transition-all;
+			}
+			&.active {
+				@apply bg-white;
+				.img {
+					@apply block;
+				}
+				.text {
+					@apply text-primary;
+				}
+			}
+		}
+	}
+	.check-button {
+		input {
+			@apply hidden;
+		}
+		.label {
+			@apply px-2 py-1.5 border-1 border-[#ccc] rounded-1.5 text-12 transition-all inline-block;
+		}
+		input:checked + .label {
+			@apply bg-primary text-white;
+		}
+		&.rounded .label {
+			@apply rounded-full;
+		}
+		&.small .label {
+			@apply py-0.5;
+		}
+	}
+}
+
+.xdsoft_datetimepicker {
+	@apply border-none shadow-2xl;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today {
+	@apply text-primary;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div.xdsoft_current {
+	@apply bg-primary shadow-none text-white;
+}
+
+.xdsoft_datetimepicker .xdsoft_label {
+	@apply font-medium;
+}
+
+.mount-slider > * {
+	display: none;
+}
+.mount-slider > :nth-of-type(1) {
+	display: block;
+}
+.fake-inputs {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	gap: 8px;
+}
+.otp-fake-input {
+	width: 46px !important;
+	height: 46px !important;
+	border-radius: 8px;
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #dee2e6;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

@@ -1,0 +1,2 @@
+# trang-beauty-web
+# Init
