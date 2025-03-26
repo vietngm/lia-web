@@ -391,7 +391,7 @@ function updateSelected() {
           <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="">
         </div>
         <div>
-          <div class=" font-semibold">Trang Beauty Center</div>
+          <div class=" font-semibold">LiA Beauty Center</div>
           <div class="text-10">Số 434, Đường Cao Thắng ( nối dài ), Phường 12, Quận 10, TP.HCM</div>
         </div>
       </div>
@@ -591,7 +591,7 @@ function updateSelected() {
                                         bottom: -6px;"></div>
           </div>
           <div style="margin-top:24px;text-align:center">
-            *Lưu ý: Tổng đài viên Phòng khám Trang Beauty sẽ gọi lại
+            *Lưu ý: Tổng đài viên Phòng khám LiA Beauty sẽ gọi lại
             cho Quý khách để xác nhận thông tin lịch hẹn dựa theo
             đăng ký. Cảm ơn Quý khách hàng đã sử dụng dịch vụ của
             chúng tôi

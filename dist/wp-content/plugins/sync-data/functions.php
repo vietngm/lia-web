@@ -66,4 +66,33 @@ $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
 		remove_post_type_support('page', 'editor');
 	}
 }
+
+// Auto refresh token
+function autoRefresh(){
+	$refreshToken = get_option('refreshToken');
+	$curl = curl_init();
+
+	if($refreshToken!=''){
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "$api_url/auth/refresh-token",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "POST",
+		CURLOPT_HTTPHEADER => array("Authorization: Bearer $refreshToken"),));
+
+		$response = curl_exec($curl);
+		$data = json_decode($response, true);
+
+		if($data['data']){
+				$newToken = $data['data']['token'];
+				$newRefreshToken=$data['data']['refreshToken'];
+				update_option('token',$newToken);
+				update_option('refreshToken',$newRefreshToken);
+		}
+	}
+}
+add_action('admin_init', 'autoRefresh');
 ?>

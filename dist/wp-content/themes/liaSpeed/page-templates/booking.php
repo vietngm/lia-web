@@ -374,7 +374,7 @@ const BOOKING_DATA = {
 							bottom: -6px;"></div>
           </div>
           <div style="margin-top:24px;text-align:center">
-            *Lưu ý: Tổng đài viên Phòng khám Trang Beauty sẽ gọi lại
+            *Lưu ý: Tổng đài viên Phòng khám LiA Beauty sẽ gọi lại
             cho Quý khách để xác nhận thông tin lịch hẹn dựa theo
             đăng ký. Cảm ơn Quý khách hàng đã sử dụng dịch vụ của
             chúng tôi

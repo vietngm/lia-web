@@ -726,7 +726,7 @@ window.addEventListener('scroll', function() {
 						<div class="flex items-center gap-2">
 							<img style="width:46px;height:46px" src="<?= get_theme_file_uri("assets/images/logoF.png") ?>" alt="Avatar" class="w-12 h-12 rounded-full mr-3 border-1">
 							<div>
-								<h3 class="text-12 font-bold">Phòng khám Trang Beauty Center</h3>
+								<h3 class="text-12 font-bold">Phòng khám LiA Beauty Center</h3>
 								<h3 class="text-12">434 Cao thắng, Phường 12, Quận 10</h3>
 							</div>
 						</div>

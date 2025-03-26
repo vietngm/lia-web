@@ -72,7 +72,7 @@ function send_sms_booking_success($phone, $date) {
 	$smses[] = array(
 		'from' => 'TrangBeauty', 
 		'to' => $phone,
-		'text' => "PK Trang Beauty da nhan duoc lich hen cua quy khach vào ngày $date, chung toi se lien he lai cho quy khach de xac nhan lich hen. Moi thong tin chi tiet vui long lien he Hotline: 0986690666 de duoc ho tro.",	
+		'text' => "PK LiA Beauty da nhan duoc lich hen cua quy khach vào ngày $date, chung toi se lien he lai cho quy khach de xac nhan lich hen. Moi thong tin chi tiet vui long lien he Hotline: 0986690666 de duoc ho tro.",	
 	);
 	$data = array(
 		'sms' => $smses,
