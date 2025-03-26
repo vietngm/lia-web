@@ -71,6 +71,18 @@ $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
 function autoRefresh(){
 	$refreshToken = get_option('refreshToken');
 	$curl = curl_init();
+	$env_post_id= "";
+	$query = new WP_Query(
+		array('post_type'=> 'page','title'=> 'Environments')
+	);
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			$env_post_id = trim(get_the_ID(),' ');
+		}
+	}
+
+	$api_url = get_field('booking_environment',$env_post_id);
 
 	if($refreshToken!=''){
 		curl_setopt_array($curl, array(
