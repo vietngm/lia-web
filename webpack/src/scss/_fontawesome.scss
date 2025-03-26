@@ -1,0 +1,16 @@
+@charset "utf-8";
+// ==================================================
+// Fontawesome
+// ==================================================
+// $fa-font-path: "/assets/webfonts";
+// @import "_fontawesome/scss/fontawesome.scss";
+// @import "_fontawesome/scss/solid.scss";
+// @import "_fontawesome/scss/icons.scss";
+// @import "_fontawesome/scss/regular.scss";
+// @import "_fontawesome/scss/brands.scss";
+
+$fa-font-path: "../fonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
