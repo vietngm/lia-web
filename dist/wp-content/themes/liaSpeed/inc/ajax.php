@@ -73,11 +73,11 @@ function verify_booking_form() {
 	$service = get_post($serviceId);
 	$topping = get_term($toppingId, "service-topping");
 
-	if (!$doctor || $doctor->post_type != "doctor") {
+	if (!$doctor || $doctor->post_type != "practitioner") {
 		echo json_encode(
 			array(
 				'success'=>false,
-				"message" => "Bác sĩ không tồn tại"
+				"message" => "Chuyên viên không tồn tại"
 			)
 		);
 		die();
@@ -322,11 +322,11 @@ function ajax_doctor_contact_form(){
 	// Check doctor
 	$doctor = get_post($doctorId);
 
-	if (!$doctor || $doctor->post_type != "doctor") {
+	if (!$doctor || $doctor->post_type != "practitioner") {
 		echo json_encode(
 			array(
 				'success'=>false,
-				"message" => "Bác sĩ không tồn tại"
+				"message" => "Chuyên viên không tồn tại"
 			)
 		);
 		die();

@@ -20,10 +20,10 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'local');
+define('DB_NAME', 'liaspeed');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'localhost:8889');
 
 /**#@+
  * Authentication unique keys and salts.
@@ -46,8 +46,8 @@ define( 'LOGGED_IN_SALT',   'hM-d/2Oah&|p?s!*oxsa*^xr^y)JC(c{}6yrr3xRUjP!78-YJ/O
 define( 'NONCE_SALT',       '9|L:[{dt~#sAsYx~5jyF7Hc8ssuG48zn9#)rO=a0U-lj@3&%spoyt<OcvRX=C[T7' );
 
 /**#@-*/
-define( 'WP_HOME', 'http://localhost:10009/' );
-define( 'WP_SITEURL', 'http://localhost:10009/' );
+// define( 'WP_HOME', 'http://localhost:10009/' );
+// define( 'WP_SITEURL', 'http://localhost:10009/' );
 /**
  * WordPress database table prefix.
  *

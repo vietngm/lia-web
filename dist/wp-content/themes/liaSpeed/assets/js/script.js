@@ -389,8 +389,8 @@ $(document).ready(function () {
       }
       if (!formState.doctorId) {
         hasError = true;
-        errorMessages.push("Vui lòng chọn bác sĩ");
-        $errorDoctor.text("Vui lòng chọn bác sĩ");
+        errorMessages.push("Vui lòng chọn chuyên viên");
+        $errorDoctor.text("Vui lòng chọn chuyên viên");
       }
       if (!formState.serviceId) {
         hasError = true;
