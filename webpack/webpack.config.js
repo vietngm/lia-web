@@ -116,7 +116,7 @@ module.exports = {
 	plugins: [
 		new BrowserSyncPlugin(
 			{
-				host: "http://liaspeed:8888/",
+				host: "localhost",
 				port: 3002,
 				proxy: "http://liaspeed:8888/",
 				open: false,

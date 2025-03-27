@@ -36,19 +36,19 @@
 	}
 
 	// Doctors
-	$post_doctors = get_posts(array(
-		"post_type" => "practitioner",
-		"posts_per_page" => -1,
-	));
-	$doctors = [];
-	foreach ($post_doctors as $post_doctor) {
-		$workingTimes = get_field("working-time", $post_doctor->ID);
-		array_push($doctors, [
-			"id" => $post_doctor->ID,
-			"title" => $post_doctor->post_title,
-			"workingTimes" => $workingTimes,
-		]);
-	}
+	// $post_doctors = get_posts(array(
+	// 	"post_type" => "practitioner",
+	// 	"posts_per_page" => -1,
+	// ));
+	// $doctors = [];
+	// foreach ($post_doctors as $post_doctor) {
+	// 	$workingTimes = get_field("working-time", $post_doctor->ID);
+	// 	array_push($doctors, [
+	// 		"id" => $post_doctor->ID,
+	// 		"title" => $post_doctor->post_title,
+	// 		"workingTimes" => $workingTimes,
+	// 	]);
+	// }
 
 	// Doctors
 	$post_doctors = get_posts(array(

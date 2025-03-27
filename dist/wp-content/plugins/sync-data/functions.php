@@ -98,5 +98,5 @@ function autoRefresh(){
 		}
 	}
 }
-add_action('admin_init', 'autoRefresh');
+add_action('admin_bar_init', 'autoRefresh');
 ?>
