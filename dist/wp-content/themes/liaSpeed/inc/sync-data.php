@@ -53,6 +53,7 @@ $data_booking = array(
 	'apiUrl'=> $api_url,
 	'token'=> $token,
 	'platformType'=> 'WEB',
+	'source'=>'LiA',
 	'status'=> 'WAIT_CONFIRM',
 	'serviceId'=> $service_id,
 	'employeeId'=> $employee_id,

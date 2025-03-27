@@ -216,7 +216,7 @@ function verify_booking_form_otp() {
 
 function ajax_booking_form(){
 	verify_booking_form();
-	verify_booking_form_otp();
+	// verify_booking_form_otp();
 
 	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
 	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
@@ -255,12 +255,16 @@ function ajax_booking_form(){
 	);
 
 	$date_formatted = date( "d/m/Y", strtotime($date) );
-	send_sms_booking_success($phone, $date_formatted);
+	// send_sms_booking_success($phone, $date_formatted);
+
+	include('sync-data.php');
 	
 	echo json_encode(
 		array(
 			'success' => true,	
-			"message" => "Đăng ký thành công, vui lòng kiểm tra SMS."
+			"message" => "Đăng ký thành công, vui lòng kiểm tra SMS.",
+			"data" => $data_booking,
+			"doctorId"=>$doctorId
 		)
 	);
 	die();
