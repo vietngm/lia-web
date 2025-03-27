@@ -1,0 +1,49 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.modal {
+	&-body {
+		display: grid;
+		grid-gap: 8px;
+	}
+	&-detail {
+		text-align: center;
+	}
+	&-success {
+		.title-success {
+			font-weight: 700;
+			font-size: 20px;
+		}
+
+		.booking {
+			display: grid;
+			grid-gap: 8px;
+			&-header,
+			&-name,
+			&-phone {
+				color: $color-black;
+			}
+		}
+		.service {
+			display: grid;
+			grid-gap: 8px;
+			&-header {
+				font-weight: bold;
+				color: $color-main;
+			}
+			&-list {
+				display: grid;
+			}
+			&-item {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				.name,
+				.value {
+					color: $color-black;
+				}
+			}
+		}
+	}
+}

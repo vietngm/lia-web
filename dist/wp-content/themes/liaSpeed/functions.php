@@ -44,6 +44,7 @@ function load_scripts(){
 	wp_enqueue_style( 'styles', get_theme_file_uri( '/assets/css/styles.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'custom-style', get_theme_file_uri( '/style.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'custom-style', get_theme_file_uri( '/assets/css/custom.css' ), array(), $ASSETS_VERSION );
+	wp_enqueue_style( 'common-style', get_theme_file_uri( '/assets/css/common.css' ), array(), $ASSETS_VERSION );
 
 	wp_enqueue_script( 'lazyload', get_theme_file_uri( '/assets/js/jquery.lazyload.min.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'slick', get_theme_file_uri( '/assets/js/slick.min.js' ), array(), $ASSETS_VERSION, true );

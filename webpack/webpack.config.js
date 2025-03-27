@@ -7,14 +7,14 @@ const FileManagerPlugin = require("filemanager-webpack-plugin");
 module.exports = {
 	// mode: process.env.NODE_ENV === "production" ? "production" : "development",
 	entry: [
-		path.resolve("./src/scripts/main.js"),
+		path.resolve("./src/scripts/common.js"),
 		path.resolve("./src/scss/common.scss"),
 	],
 	devtool: false,
 	mode: "production",
 	output: {
 		path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
-		filename: "js/sync-data.js",
+		filename: "js/common.js",
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],
@@ -121,26 +121,26 @@ module.exports = {
 				proxy: "http://liaspeed:8888/",
 				open: false,
 				// ui: false,
-				// files: [
-				// 	{
-				// 		match: ["dist/*.css", "dist/*.js", "../dist/**/*.php"],
-				// 		fn: (event, file) => {
-				// 			if (event == "change") {
-				// 				const bs = require("browser-sync").get("bs-webpack-plugin");
-				// 				if (
-				// 					file.split(".").pop() == "js" ||
-				// 					file.split(".").pop() == "php"
-				// 				) {
-				// 					bs.reload();
-				// 				} else {
-				// 					bs.reload("*.css");
-				// 				}
-				// 			}
-				// 		},
-				// 	},
-				// ],
-				// injectChanges: true,
-				// notify: true,
+				files: [
+					{
+						match: ["dist/*.css", "dist/*.js", "../dist/**/*.php"],
+						fn: (event, file) => {
+							if (event == "change") {
+								const bs = require("browser-sync").get("bs-webpack-plugin");
+								if (
+									file.split(".").pop() == "js" ||
+									file.split(".").pop() == "php"
+								) {
+									bs.reload();
+								} else {
+									bs.reload("*.css");
+								}
+							}
+						},
+					},
+				],
+				injectChanges: true,
+				notify: true,
 			},
 			{
 				reload: true,
