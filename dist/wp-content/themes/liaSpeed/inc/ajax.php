@@ -219,7 +219,7 @@ function ajax_booking_form(){
 	// verify_booking_form_otp();
 
 	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
-	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
+	$fullname = isset($_POST["note"]) ? $_POST["note"] : "";
 	$referralCode = isset($_POST["referralCode"]) ? $_POST["referralCode"] : "";
 	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 	$foreigner = isset($_POST["foreigner"]) ? $_POST["foreigner"] : false;

@@ -662,29 +662,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-
-<?php
-
-// $token = get_option('refreshToken');
-// $curl = curl_init();
-
-// curl_setopt_array($curl, array(
-// CURLOPT_URL => "http://localhost:7301/api/v1/auth/refresh-token",
-// CURLOPT_RETURNTRANSFER => true,
-// CURLOPT_MAXREDIRS => 10,
-// CURLOPT_TIMEOUT => 0,
-// CURLOPT_FOLLOWLOCATION => true,
-// CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-// CURLOPT_CUSTOMREQUEST => "POST",
-// CURLOPT_HTTPHEADER => array("Authorization: Bearer $token"),));
-
-// $response = curl_exec($curl);
-// $data = json_decode($response, true);
-
-// if($data['data']){
-//     $token = $data['data']['token'];
-//     $refreshToken=$data['data']['refreshToken'];
-//     update_option('token',$token);
-//     update_option('refreshToken',$refreshToken);
-// }
-?>

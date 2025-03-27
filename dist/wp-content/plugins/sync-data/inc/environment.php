@@ -2,19 +2,8 @@
   <h3 class="box-header"><span>Environments</span></h3>
   <div class="inside">
     <input type="hidden" name="endpoint" value="" />
-		<input type="hidden" name="environment" value="" />
-    <?php
-		$post_id = "";
-		$query = new WP_Query(
-			array('post_type'=> 'page','title'=> 'Environments')
-		);
-		if ($query->have_posts()) {
-			while ($query->have_posts()) {
-				$query->the_post();
-				$post_id = trim(get_the_ID(),' ');
-			}
-		}
-		?>
+    <input type="hidden" name="environment" value="" />
+    <?php $post_id = check_pages_existed(); ?>
     <select id="op_env" name="op_env">
       <option value="">Select a environment</option>
       <?php
