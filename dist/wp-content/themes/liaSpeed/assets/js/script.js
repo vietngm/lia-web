@@ -433,8 +433,8 @@ $(document).ready(function () {
 			//thêm mới
 			submit();
 			// sendOtp(function () {
-			//   $otpModel.removeClass("hidden").addClass("flex");
-			//   $otp.otpdesigner("clear");
+			// 	$otpModel.removeClass("hidden").addClass("flex");
+			// 	$otp.otpdesigner("clear");
 			// });
 		});
 

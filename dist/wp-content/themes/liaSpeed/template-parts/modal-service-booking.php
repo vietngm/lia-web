@@ -10,12 +10,15 @@
 		"posts_per_page" => -1,
 	));
 	$services = [];
+  
+
 	foreach ($post_services as $post_service) {
 		$doctorIds = get_field("doctors", $post_service->ID);
 		$price = get_field("price", $post_service->ID) ?? 0;
 		$post_prices = get_field("prices", $post_service->ID) ?? [];
 		$prices = [];
 	
+  
 		if ($post_prices) {
 			foreach ($post_prices as $post_price) {
 				array_push($prices, array(
@@ -154,7 +157,7 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/HichemTab-tech/OTP-designer-jquery@2.3.1/dist/otpdesigner.min.js"></script>
 
 <head>
-  <style>
+  <!-- <style>
   .title_otp_xt {
     font-size: 18px;
     font-weight: 700;
@@ -260,7 +263,7 @@ $(document).ready(function() {
     margin-bottom: 4px;
   }
   </style>
-  </style>
+  </style> -->
 </head>
 
 <script>
