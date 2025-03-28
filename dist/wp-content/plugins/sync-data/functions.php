@@ -53,7 +53,7 @@ function create_page($pageName) {
 }
 add_action('init','check_pages_existed');
 
-// include ajax sync datas
+// Include ajax sync datas
 include('inc/service.php');
 include('inc/doctor.php');
 
@@ -99,4 +99,7 @@ function autoRefresh(){
 	}
 }
 add_action('admin_bar_init', 'autoRefresh');
+
+// Include booking status
+include('inc/status.php');
 ?>

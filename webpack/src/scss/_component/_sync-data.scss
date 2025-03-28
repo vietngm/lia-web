@@ -76,3 +76,26 @@
 	display: flex;
 	grid-gap: 8px;
 }
+
+.column-booking_status {
+	display: flex;
+	justify-content: center;
+}
+.sync-icon {
+	display: flex;
+	justify-content: center;
+	.dashicons {
+		transition: all 0.4s ease;
+		font-size: 24px;
+		&-success {
+			color: $color-green;
+		}
+		&-faile {
+			color: $color-red;
+			cursor: pointer;
+			&:hover {
+				opacity: 0.6;
+			}
+		}
+	}
+}
