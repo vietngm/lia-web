@@ -92,7 +92,7 @@ jQuery(function ($) {
 		html +=
 			'<input type="button" name="service" class="button btn-service" value="Service Sync"/>';
 		html +=
-			'<input type="button" name="doctor" class="button btn-doctor" value="Doctor Sync"/>';
+			'<input type="button" name="doctor" class="button btn-doctor" value="Practitioner Sync"/>';
 		html += "</div></div>";
 		return html;
 	}
