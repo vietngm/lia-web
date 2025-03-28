@@ -57,6 +57,7 @@ function verify_booking_form() {
 	$note = isset($_POST["note"]) ? $_POST["note"] : "";
 	$noteTopping = isset($_POST["noteTopping"]) ? $_POST["noteTopping"] : "";
 	$selectedGift = isset($_POST["selectedGift"]) ? $_POST["selectedGift"] : "";
+	$noteForLiA = isset($_POST["noteForLiA"]) ? $_POST["noteForLiA"] : "";
 
 	// Check format date time
 	if (DateTime::createFromFormat('Y-m-d H:i', "$date $time") === false) {
@@ -216,7 +217,7 @@ function verify_booking_form_otp() {
 
 function ajax_booking_form(){
 	verify_booking_form();
-	// verify_booking_form_otp();
+	verify_booking_form_otp();
 
 	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
 	$fullname = isset($_POST["note"]) ? $_POST["note"] : "";
@@ -231,6 +232,7 @@ function ajax_booking_form(){
 	$note = isset($_POST["note"]) ? $_POST["note"] : "";
 	$noteTopping = isset($_POST["noteTopping"]) ? $_POST["noteTopping"] : "";
 	$selectedGift = isset($_POST["selectedGift"]) ? $_POST["selectedGift"] : "";
+	$noteForLiA = isset($_POST["noteForLiA"]) ? $_POST["noteForLiA"] : "";
 
 	$data_id = wp_insert_post( 
 		array(
@@ -246,7 +248,7 @@ function ajax_booking_form(){
 				"topping" => $toppingId,
 				"date" => $date,
 				"time" => $time,
-				"note" => $note,
+				"note" => $noteForLiA,
 				"noteTopping"=> $noteTopping,
 				"selectedGift" => $selectedGift,
 				"referralCode" => $referralCode,
@@ -255,7 +257,7 @@ function ajax_booking_form(){
 	);
 
 	$date_formatted = date( "d/m/Y", strtotime($date) );
-	// send_sms_booking_success($phone, $date_formatted);
+	send_sms_booking_success($phone, $date_formatted);
 
 	include('sync-data.php');
 	

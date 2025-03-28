@@ -696,7 +696,7 @@ window.addEventListener('scroll', function() {
       <div class="section-luuy mt-2">
         <h3 style="font-weight:500">Thêm lưu ý <span class="text-12" style="font-weight:300"> ( Không bắt buộc ) </span>
         </h3>
-        <textarea placeholder="Bạn có lưu ý gì dành cho LiA không?"></textarea>
+        <textarea name="noteForLiA" placeholder="Bạn có lưu ý gì dành cho LiA không?"></textarea>
       </div>
       <?php if (!empty($fields['bh']) || !empty($fields['material']) || !empty($fields['desire'])): ?>
       <p id="selectedInfo"></p>

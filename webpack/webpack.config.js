@@ -117,10 +117,10 @@ module.exports = {
 			},
 		],
 	},
-	devServer: {
-		static: "../dist",
-		hot: true,
-	},
+	// devServer: {
+	// 	static: "../dist",
+	// 	hot: true,
+	// },
 	plugins: [
 		new BrowserSyncPlugin(
 			{

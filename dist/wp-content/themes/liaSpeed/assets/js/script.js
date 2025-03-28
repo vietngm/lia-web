@@ -304,11 +304,11 @@ $(document).ready(function () {
 		const $bookingTimeWrapper = $root.find(".booking-time-picker");
 		const $inputNote = $root.find(`[name="note"]`);
 		const $inputNoteTopping = $root.find(`[name="noteTopping"]`);
-
+		const $inputNoteLiA = $root.find(`[name="noteForLiA"]`);
 		const $inputTimesMorning = $root.find(".input-times-morning");
 		const $inputTimesAfternoon = $root.find(".input-times-afternoon");
-		// const $otp = $root.find(".otp_target");
-		// const $otpModel = $root.find(".otp-modal");
+		const $otp = $root.find(".otp_target");
+		const $otpModel = $root.find(".otp-modal");
 		const $modelSuccess = $root.find(".modal-success");
 
 		const $errorFullname = $root.find(".error-fullname");
@@ -333,20 +333,11 @@ $(document).ready(function () {
 			date: $bookingDateItems.filter(".active").data("date"),
 			time: null,
 			note: null,
+			noteForLiA: null,
 			postId: parseInt($root.find("[name=postId]").val()),
 			noteTopping: null,
-			selectedGift: localStorage.getItem("selectedGift") || "",
 		};
 		console.log("Initial formState:", formState);
-
-		const $inputGift = $('input[name="gift"]');
-
-		$inputGift.on("change", function () {
-			const selectedGift = $(this).val();
-			localStorage.setItem("selectedGift", selectedGift);
-			formState.selectedGift = selectedGift;
-			console.log("Updated selectedGift:", formState.selectedGift);
-		});
 
 		$inputService.on("change", function () {
 			const selectedServiceId = $(this).val();
@@ -387,8 +378,8 @@ $(document).ready(function () {
 			}
 			if (!formState.doctorId) {
 				hasError = true;
-				errorMessages.push("Vui lòng chọn chuyên viên");
-				$errorDoctor.text("Vui lòng chọn chuyên viên");
+				errorMessages.push("Vui lòng chọn bác sĩ");
+				$errorDoctor.text("Vui lòng chọn bác sĩ");
 			}
 			if (!formState.serviceId) {
 				hasError = true;
@@ -430,12 +421,10 @@ $(document).ready(function () {
 				return;
 			}
 
-			//thêm mới
-			submit();
-			// sendOtp(function () {
-			// 	$otpModel.removeClass("hidden").addClass("flex");
-			// 	$otp.otpdesigner("clear");
-			// });
+			sendOtp(function () {
+				$otpModel.removeClass("hidden").addClass("flex");
+				$otp.otpdesigner("clear");
+			});
 		});
 
 		function sendOtp(success, error) {
@@ -515,9 +504,11 @@ $(document).ready(function () {
 					_wpnonce: $root.find('[name="_wpnonce"]').val(),
 					_wp_http_referer: $root.find('[name="_wp_http_referer"]').val(),
 				},
-				formState
+				formState,
+				{
+					otp: $otp.otpdesigner("code").code,
+				}
 			);
-
 			submitting = true;
 			const loadingToastify = Toastify({
 				text: "Đang gửi thông tin...",
@@ -541,26 +532,15 @@ $(document).ready(function () {
 				data: data,
 				success: function (result) {
 					loadingToastify.hideToast();
-
-					console.log(result);
-
-					console.log("Ket qua booking tra ve cho nay ne...");
-
 					submitting = false;
 					if (result.success) {
-						if (
-							result.data &&
-							result.data.token != "" &&
-							result.data.sync == 1
-						) {
-							createBooking(result.data);
-						}
-						// reset();
+						if (result.data.sync == 1) createBooking(result.data);
+						reset();
 						$modelSuccess.removeClass("hidden").addClass("flex");
-						// setTimeout(function () {
-						// 	$modelSuccess.addClass("hidden").removeClass("flex");
-						// 	window.location.href = "/";
-						// }, 3000);
+						setTimeout(function () {
+							$modelSuccess.addClass("hidden").removeClass("flex");
+							window.location.href = "/";
+						}, 3000);
 						// Toastify({
 						//   text: result.message || "Đăng ký thành công",
 						//   duration: 3000,
@@ -881,14 +861,6 @@ $(document).ready(function () {
 			triggerRender(prevFormState, nextFormState);
 		});
 
-		$inputGift.change(function () {
-			const nextFormState = Object.assign({}, formState);
-			nextFormState.selectedGift = parseIntSafe($inputGift.val());
-			const prevFormState = formState;
-			formState = nextFormState;
-			triggerRender(prevFormState, nextFormState);
-		});
-
 		$inputTopping.change(function () {
 			const nextFormState = Object.assign({}, formState);
 			nextFormState.toppingId = parseIntSafe($inputTopping.val());
@@ -946,16 +918,25 @@ $(document).ready(function () {
 			triggerRender(prevFormState, nextFormState);
 		});
 
-		// $otpModel.find(".close-modal").click(function () {
-		//   $otpModel.addClass("hidden").removeClass("flex");
-		// });
-		// $otpModel.find(".submit-otp").click(function () {
-		//   if ($otp.otpdesigner("code").done) {
-		//     submit(function () {
-		//       $otpModel.addClass("hidden").removeClass("flex");
-		//     });
-		//   }
-		// });
+		$inputNoteLiA.change(function () {
+			const nextFormState = Object.assign({}, formState);
+			nextFormState.noteForLiA = $inputNoteLiA.val();
+			const prevFormState = formState;
+			formState = nextFormState;
+			triggerRender(prevFormState, nextFormState);
+		});
+
+		$otpModel.find(".close-modal").click(function () {
+			$otpModel.addClass("hidden").removeClass("flex");
+		});
+
+		$otpModel.find(".submit-otp").click(function () {
+			if ($otp.otpdesigner("code").done) {
+				submit(function () {
+					$otpModel.addClass("hidden").removeClass("flex");
+				});
+			}
+		});
 
 		$otp.otpdesigner({
 			typingDone: function (code) {
