@@ -1,4 +1,4 @@
-import $ from "jquery";
-window.jQuery = $;
-window.$ = $;
-import "./gmap.js";
+// import $ from "jquery";
+// window.jQuery = $;
+// window.$ = $;
+// import "./gmap.js";

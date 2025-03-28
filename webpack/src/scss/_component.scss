@@ -1,6 +1,10 @@
 @charset "utf-8";
 // --------------------------------------------------
-// ○○○
+// For plugins
 // --------------------------------------------------
+// @import "_component/sync-data";
+// --------------------------------------------------
+// For UI
+// --------------------------------------------------
+// @import "_component/gmap-embed";
 @import "_component/modal-success";
-@import "_component/gmap-embed";

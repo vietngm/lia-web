@@ -9,6 +9,7 @@ module.exports = {
 	// mode: process.env.NODE_ENV === "production" ? "production" : "development",
 	entry: [
 		path.resolve("./src/scripts/common.js"),
+		// path.resolve("./src/scripts/sync-data.js"),
 		path.resolve("./src/scss/common.scss"),
 	],
 	devtool: false,
@@ -16,6 +17,8 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
 		filename: "js/common.js",
+		// path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
+		// filename: "js/sync-data.js",
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],
@@ -121,9 +124,9 @@ module.exports = {
 	plugins: [
 		new BrowserSyncPlugin(
 			{
-				host: "localhost",
+				host: "http://liaspeed:8888",
 				port: 3002,
-				proxy: "http://liaspeed:8888/",
+				proxy: "http://liaspeed:8888",
 				open: false,
 				files: [
 					{
@@ -142,16 +145,16 @@ module.exports = {
 							}
 						},
 					},
-					{
-						proxy: "http://liaspeed:8888/",
-					},
+					// {
+					// 	proxy: "http://liaspeed:8888/",
+					// },
 				],
 				// injectChanges: true,
 				// notify: true,
 			},
 			{
 				reload: true,
-				name: "bs-webpack-plugin",
+				// name: "bs-webpack-plugin",
 			}
 		),
 		// new HtmlWebpackPlugin({
