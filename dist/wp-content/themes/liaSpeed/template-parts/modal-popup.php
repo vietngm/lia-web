@@ -10,8 +10,7 @@
     </div>
 
     <div class="modal-detail">
-      *Lưu ý: Tổng đài viên Phòng khám LiA Beauty sẽ gọi lại cho Quý khách để xác nhận thông tin
-      lịch hẹn
+      *Lưu ý: Tổng đài viên Phòng khám LiA Beauty sẽ gọi lại cho Quý khách để xác nhận thông tin lịch hẹn
       dựa theo đăng ký. Cảm ơn Quý khách hàng đã sử dụng dịch vụ của chúng tôi
     </div>
 
