@@ -11,20 +11,56 @@ function my_manage_booking_columns( $column_name, $post_id){
     $htmlSuccess = '<span class="dashicons dashicons-yes-alt dashicons-success"></span>';
     ?>
 <ul class="sync-status">
-  <link data-rel="<?php echo $post_id ?>" class="sync-status-item">
-  <?php  echo $status ? $htmlSuccess:$htmlFaile; ?>
-  </diliv>
+  <li data-rel="<?php echo $post_id ?>" class="sync-status-item">
+    <?php  echo $status ? $htmlSuccess:$htmlFaile; ?>
+  </li>
 </ul>
 <?php
   }
 }
+
 add_filter( 'manage_booking_posts_columns', 'my_edit_booking_columns' ) ;
 add_action( 'manage_booking_posts_custom_column', 'my_manage_booking_columns', 10, 2 );
 
-function sync_booking(){
-  $bookingId= isset($_POST['bookingId']) ? $_POST['bookingId'] : '';
+function ajax_sync_booking(){
+
+  autoRefresh();
+  $env_post_id= check_pages_existed();
+	$api_url = get_field('booking_environment',$env_post_id);
+
+  // Map data for sync to App
+  
+  $bookingId= isset($_REQUEST['bookingId']) ? $_REQUEST['bookingId'] : '';
   $post = get_post($bookingId);
-  $doctorId = get_post_meta($post->ID,'doctor_id',true);
+  $doctorId = get_post_meta($bookingId,'doctor_id',true);
+  $fullname = get_field('fullname',$bookingId);
+  $serviceId  = get_field('service',$bookingId);
+
+
+  $token = get_option('token');
+  $service_id = get_field('id_sync',$serviceId);
+// $employee_id = get_field('id_sync',$doctorId);
+// $topping_id = get_field('id_sync',$toppingId);
+// $sync = get_field('booking_sync',$env_post_id);
+
+// update_post_meta($data_id, 'booking_status', 1);
+
+$data_booking = array(
+	"sync" => $sync,
+	'phoneNumber'=> $phone,
+	'fullName' => $fullname =='' ? 'TBU':$fullname,
+	'branchId'=> '',
+	'appointmentDateTime'=> $date.' '.$time,
+	'note'=> $noteTopping,
+	'apiUrl'=> $api_url,
+	'token'=> $token,
+	'platformType'=> 'WEB',
+	'source'=>'LiA',
+	'status'=> 'WAIT_CONFIRM',
+	'serviceId'=> $service_id,
+	'employeeId'=> $employee_id,
+	'toppingId'=>''
+);
 
   if (!$bookingId) {
 		echo json_encode(
@@ -35,50 +71,16 @@ function sync_booking(){
 		);
 		die();
 	}
-
-// $token = get_option('token') ?? $newToken;
-// $service_id = get_field('id_sync',$postId);
-// $employee_id = get_field('id_sync',$doctorId);
-// $topping_id = get_field('id_sync',$toppingId);
-// $sync = get_field('booking_sync',$env_post_id);
-
-// $data_booking = array(
-// 	"sync" => $sync,
-// 	'phoneNumber'=> $phone,
-// 	'fullName' => $note =='' ? 'TBU':$note,
-// 	'branchId'=> '',
-// 	'appointmentDateTime'=> $date.' '.$time,
-// 	'note'=> $noteTopping,
-// 	'apiUrl'=> $api_url,
-// 	'token'=> $token,
-// 	'platformType'=> 'WEB',
-// 	'source'=>'LiA',
-// 	'status'=> 'WAIT_CONFIRM',
-// 	'serviceId'=> $service_id,
-// 	'employeeId'=> $employee_id,
-// 	'toppingId'=>''
-// );
-}
-
-function htmlTemplate($post_id){
-  $htmlFaile = '<span class="dashicons dashicons-update dashicons-faile js-dashicons-failure"></span>';
-  $htmlSuccess = '<span class="dashicons dashicons-yes-alt dashicons-success"></span>';
-  $html = ob_get_clean();
-?>
-<div class="sync-status">
-  <div>
-    <?php
-      // $post = get_post($post_id);
-      // $doctorId = get_post_meta($post->ID,'doctor_id',true);
-      // print_r($post);
-    ?>
-  </div>
-  <div data-rel="<?php echo $post_id ?>" class="sync-status-item">
-    <?php  echo $status ? $htmlSuccess:$htmlFaile; ?>
-  </div>
-</div>
-<?php
-// return $html;
+  
+	echo json_encode(
+    array(
+      'success'=>true,
+      "message" => "Đồng bộ booking thành công",
+      "data"=> $data_booking,
+      "doctor"=>$doctorId
+    )
+  );
+  die();
 }
 
 add_action( 'wp_ajax_sync_booking', 'ajax_sync_booking');
