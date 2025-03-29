@@ -2,8 +2,7 @@
 const path = require("path");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const FileManagerPlugin = require("filemanager-webpack-plugin");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const FileManagerPlugin = require("filemanager-webpack-plugin");
 
 module.exports = {
 	// mode: process.env.NODE_ENV === "production" ? "production" : "development",
@@ -117,16 +116,12 @@ module.exports = {
 			},
 		],
 	},
-	// devServer: {
-	// 	static: "../dist",
-	// 	hot: true,
-	// },
 	plugins: [
 		new BrowserSyncPlugin(
 			{
-				host: "http://liaspeed:8888",
+				host: "localhost",
 				port: 3002,
-				proxy: "http://liaspeed:8888",
+				proxy: "liaspeed:8888",
 				open: false,
 				files: [
 					{
@@ -145,20 +140,11 @@ module.exports = {
 							}
 						},
 					},
-					// {
-					// 	proxy: "http://liaspeed:8888/",
-					// },
 				],
-				// injectChanges: true,
-				// notify: true,
 			},
 			{
 				reload: true,
-				// name: "bs-webpack-plugin",
 			}
 		),
-		// new HtmlWebpackPlugin({
-		// 	title: "Hot Module Replacement",
-		// }),
 	],
 };
