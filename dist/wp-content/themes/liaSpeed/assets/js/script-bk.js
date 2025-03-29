@@ -73,10 +73,6 @@ $(document).ready(function () {
 	$(".product-section").each(function () {
 		const $root = $(this);
 		const $list = $root.find(".product-list");
-
-		console.log($list);
-		console.log("List productiion...");
-
 		const $sortInput = $root.find('[name="sort"]');
 		const $categoryChildrenInput = $root.find('[name="category"]');
 		const $categoryChildrenModal = $(".category-modal");
@@ -308,7 +304,8 @@ $(document).ready(function () {
 		const $bookingTimeWrapper = $root.find(".booking-time-picker");
 		const $inputNote = $root.find(`[name="note"]`);
 		const $inputNoteTopping = $root.find(`[name="noteTopping"]`);
-		const $inputNoteLiA = $(document).find(`[name="noteForLiA"]`);
+		const $inputNoteLiA = $root.find(`[name="noteForLiA"]`);
+
 		const $inputTimesMorning = $root.find(".input-times-morning");
 		const $inputTimesAfternoon = $root.find(".input-times-afternoon");
 		const $otp = $root.find(".otp_target");
@@ -337,7 +334,7 @@ $(document).ready(function () {
 			date: $bookingDateItems.filter(".active").data("date"),
 			time: null,
 			note: null,
-			noteForLiA: $inputNoteLiA.val() ?? null,
+			noteForLiA: null,
 			postId: parseInt($root.find("[name=postId]").val()),
 			noteTopping: null,
 			selectedGift: localStorage.getItem("selectedGift") || "",
@@ -368,7 +365,6 @@ $(document).ready(function () {
 			$inputDoctor.val(null).trigger("change");
 			$inputNote.val("").trigger("change");
 			$inputNoteTopping.val("").trigger("change");
-			$inputNoteLiA.val("").trigger("change");
 		}
 
 		let submitting = false;
@@ -393,8 +389,8 @@ $(document).ready(function () {
 			}
 			if (!formState.doctorId) {
 				hasError = true;
-				errorMessages.push("Vui lòng chọn bác sĩ");
-				$errorDoctor.text("Vui lòng chọn bác sĩ");
+				errorMessages.push("Vui lòng chọn chuyên viên");
+				$errorDoctor.text("Vui lòng chọn chuyên viên");
 			}
 			if (!formState.serviceId) {
 				hasError = true;
@@ -436,11 +432,12 @@ $(document).ready(function () {
 				return;
 			}
 
-			submit();
-			// sendOtp(function () {
-			// 	$otpModel.removeClass("hidden").addClass("flex");
-			// 	$otp.otpdesigner("clear");
-			// });
+			//thêm mới
+			// submit();
+			sendOtp(function () {
+				$otpModel.removeClass("hidden").addClass("flex");
+				$otp.otpdesigner("clear");
+			});
 		});
 
 		function sendOtp(success, error) {
@@ -475,6 +472,10 @@ $(document).ready(function () {
 				success: function (result) {
 					loadingToastify.hideToast();
 					submitting = false;
+
+					console.log(result);
+					console.log("Loi cho nay ...01");
+
 					if (result.success) {
 						if (success) success();
 					} else {
@@ -520,11 +521,9 @@ $(document).ready(function () {
 					_wpnonce: $root.find('[name="_wpnonce"]').val(),
 					_wp_http_referer: $root.find('[name="_wp_http_referer"]').val(),
 				},
-				formState,
-				{
-					otp: $otp.otpdesigner("code").code,
-				}
+				formState
 			);
+
 			submitting = true;
 			const loadingToastify = Toastify({
 				text: "Đang gửi thông tin...",
@@ -548,10 +547,13 @@ $(document).ready(function () {
 				data: data,
 				success: function (result) {
 					loadingToastify.hideToast();
+
+					console.log(result);
+
+					console.log("Ket qua booking tra ve cho nay ne...");
+
 					submitting = false;
 					if (result.success) {
-						console.log(result);
-						console.log("Ket qua ne...");
 						if (
 							result.data &&
 							result.data.token != "" &&

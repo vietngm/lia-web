@@ -18,7 +18,6 @@
 }
 </style>
 <a href="<?= the_permalink() ?>" class="overflow-hidden h-full flex flex-col rounded-1.5">
-  123
   <img class="img aspect-square lazy" data-src="<?= $image ?>" />
   <div class="flex-1 flex flex-col border-1 border-t-0 border-gray-300 rounded-b-1.5 p-2">
     <div class="flex justify-between items-center mb-1.5"

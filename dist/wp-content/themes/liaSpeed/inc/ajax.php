@@ -265,13 +265,9 @@ function ajax_booking_form(){
 		array(
 			'success' => true,	
 			"message" => "Đăng ký thành công, vui lòng kiểm tra SMS.",
-			"data" => $data_booking,
-			"data_id"=>$data_id
+			"data" => $data_booking
 		)
 	);
-
-	// print_r($data_id);
-	update_post_meta($data_id, 'booking_status', 1);
 
 	die();
 }
