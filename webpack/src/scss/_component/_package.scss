@@ -1,0 +1,43 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.package {
+	display: grid;
+	margin-top: -20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	background-color: rgba($color-gray, 0.4);
+	padding: 20px;
+	grid-gap: 12px;
+	&-info {
+		display: grid;
+		margin-left: -20px;
+		margin-right: -20px;
+		background-color: rgba($color-gray, 0.4);
+		padding: 20px;
+		grid-gap: 12px;
+	}
+	&-title {
+		font-weight: bold;
+		font-size: 16px;
+		text-transform: uppercase;
+	}
+	&-list {
+		display: flex;
+		justify-content: space-between;
+	}
+	&-item {
+		display: grid;
+	}
+	&-label {
+		display: flex;
+		grid-gap: 8px;
+		align-items: center;
+	}
+	&-value {
+		display: flex;
+		font-weight: bold;
+		grid-gap: 8px;
+	}
+}

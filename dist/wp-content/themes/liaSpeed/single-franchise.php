@@ -1481,37 +1481,7 @@ body {
 
 <!-- Modal for Registration -->
 <div id="registration-modal" class="modal">
-  <?= wp_nonce_field( 'consultation_form' ); ?>
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Đăng ký tư vấn</h2>
-      <span class="close-modal">&times;</span>
-    </div>
-    <div class="modal-body">
-      <!-- <form id="registration-form"> -->
-      <div class="form-group">
-        <label for="fullname">Họ và tên</label>
-        <input type="text" id="fullname" name="fullname" required placeholder="Nhập họ và tên của bạn">
-        <div class="has-error error-fullname"></div>
-      </div>
-      <div class="form-group">
-        <label for="phone">Số điện thoại</label>
-        <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại của bạn">
-        <div class="has-error error-phone"></div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="Nhập email của bạn">
-        <div class="has-error error-email"></div>
-      </div>
-      <div class="form-group">
-        <label for="message">Nội dung</label>
-        <textarea id="message" name="message" rows="4" placeholder="Nhập yêu cầu tư vấn của bạn"></textarea>
-      </div>
-      <button type="button" class="submit-button js-submit-consultation">Gửi yêu cầu</button>
-      <!-- </form> -->
-    </div>
-  </div>
+  <?php include get_template_directory() . "/template-parts/modal-consultation-register.php"; ?>
 </div>
 
 <!-- Modal for Deposit -->

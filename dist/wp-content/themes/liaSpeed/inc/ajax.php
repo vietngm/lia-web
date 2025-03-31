@@ -554,6 +554,16 @@ function ajax_consultation_form(){
 	$email = isset($_POST["email"]) ? $_POST["email"] : "";
 	$message = isset($_POST["message"]) ? $_POST["message"] : "";
 
+	$packageName = isset($_POST["packageName"]) ? $_POST["packageName"] : "";
+	$packageMetric = isset($_POST["packageMetric"]) ? $_POST["packageMetric"] : "";
+	$packageBed = isset($_POST["packageBed"]) ? $_POST["packageBed"] : "";
+	$packagePrice = isset($_POST["packagePrice"]) ? $_POST["packagePrice"] : "";
+
+	$packageCapital = isset($_POST["packageCapital"]) ? $_POST["packageCapital"] : "";
+	$packageInvestment = isset($_POST["packageInvestment"]) ? $_POST["packageInvestment"] : "";
+	$paymentPolicy = isset($_POST["paymentPolicy"]) ? $_POST["paymentPolicy"] : "";
+
+
 	if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'consultation_form' ) ) {
 		echo json_encode(
 			array(
@@ -573,7 +583,14 @@ function ajax_consultation_form(){
 				"fullname" => $fullname,
 				"phone" => $phone,
 				"email" => $email,
-				"message" => $message
+				"message" => $message,
+				"package_name"=>$packageName,
+				"package_metric"=>$packageMetric,
+				"package_bed"=>$packageBed,
+				"package_price"=>$packagePrice,
+				"package_capital" =>$packageCapital,
+				"package_investment" =>$packageInvestment,
+				"payment_policy" =>$paymentPolicy
 			),
 		)
 	);

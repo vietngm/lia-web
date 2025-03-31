@@ -1,5 +1,24 @@
 jQuery(function ($) {
 	const $root = $(this);
+
+	$(document).ready(function () {
+		const packageCapital = $("#investment-capital .selected-option").text();
+		const packageInvestment = $("#investment-package .selected-option").text();
+		const paymentPolicy = $("#payment-policy .selected-option").text();
+		$(this).find('[name="packageCapital"]').val(packageCapital);
+		$(this).find(".package-info .package-capital").text(packageCapital);
+
+		$(this).find('[name="packageInvestment"]').val(packageInvestment);
+		$(this).find(".package-info .package-investment").text(packageInvestment);
+
+		$(this).find('[name="packagePolicy"]').val(paymentPolicy);
+		$(this).find(".package-info .package-policy").text(paymentPolicy);
+	});
+
+	// const selectedCapital = capitalDropdown
+	// 	.querySelector(".selected-option")
+	// 	.textContent.replace("%", "");
+
 	const $modelConsultationSuccess = $(document).find(
 		".modal-consultation-success"
 	);
@@ -13,6 +32,15 @@ jQuery(function ($) {
 		const email = $root.find('[name="email"]').val();
 		const message = $root.find('[name="message"]').val();
 
+		const packagePrice = $root.find('[name="packagePrice"]').val();
+		const packageBed = $root.find('[name="packageBed"]').val();
+		const packageMetric = $root.find('[name="packageMetric"]').val();
+		const packageName = $root.find('[name="packageName"]').val();
+
+		const packageCapital = $root.find('[name="packageCapital"]').val();
+		const packageInvestment = $root.find('[name="packageInvestment"]').val();
+		const paymentPolicy = $root.find('[name="paymentPolicy"]').val();
+
 		const errorFullname = $root.find(".error-fullname");
 		const errorPhone = $root.find(".error-phone");
 		const errorEmail = $root.find(".error-email");
@@ -22,6 +50,13 @@ jQuery(function ($) {
 			phone: phone,
 			email: email,
 			message: message,
+			packagePrice: packagePrice + " Triệu",
+			packageBed: packageBed + " giường",
+			packageMetric: packageMetric,
+			packageName: packageName,
+			packageCapital: packageCapital,
+			packageInvestment: packageInvestment,
+			paymentPolicy: paymentPolicy,
 		};
 
 		if (!fullname) {
