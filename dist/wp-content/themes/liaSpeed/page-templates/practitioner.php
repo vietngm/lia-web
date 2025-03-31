@@ -140,5 +140,4 @@
     </section>
 </main>
 
-<?php get_template_part( 'template-parts/practitioner', 'contact-modal' ); ?>
 <?php get_footer(); ?>

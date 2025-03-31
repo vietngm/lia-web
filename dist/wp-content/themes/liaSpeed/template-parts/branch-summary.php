@@ -67,7 +67,7 @@
         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     }
 </style>
-    <a href="<?= get_permalink() ?>" class="flex relative w-full gap-3  mt-4" >
+    <div  class="flex relative w-full gap-3  mt-4" >
         <div class=" image-containers" >
             <img src='<?= esc_url($doctor_avatar) ?>' alt="practitioner" class="w-32 h-32" style="width: 120px; height: auto;  object-fit: cover;">
         </div>
@@ -98,4 +98,4 @@
             <h3 style="font-weight:300">8:00 - 18:00</h3>
             </div>
         </div>
-    </a>
+    </div>

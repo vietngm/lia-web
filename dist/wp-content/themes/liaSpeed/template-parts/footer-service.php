@@ -15,7 +15,7 @@
         }
         .consultant-zalo-bottom-v1 {
             border-radius: 8px;
-            padding: 6px 8px;
+            padding: 6px 18px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="col-span-1">
                 <a href="<?= get_permalink(get_field('page_doctor', 'option')) ?>" class="consultant-zalo-bottom-v1">
                     <div class="border-zalo-bottom">
-                        <div style="font-weight:700">Chuyên viên</div>
+                        <div style="font-weight:700">Tìm bác sĩ</div>
                     </div>
                     <div style="font-size:10px">Tư vấn 1-1</div>
                 </a>

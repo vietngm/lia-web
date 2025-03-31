@@ -33,7 +33,7 @@
 			<img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/redo.svg") ?>" />
 			<div style="font-size:12px"><?php if ($services && count($services)) : ?> <?php   $service = $services[0]; ?>
 					<a href="<?= get_permalink($service) ?>" class="flex-shrink-0  ">
-						<div>Đã chia sẻ nhật ký làm đẹp dịch vụ <b class="text-12 font-bold"><?= get_the_title($service) ?></b> được <b><?= get_the_title($fields["doctor"]) ?> </b> phụ trách điều trị tại <b>PK LiA Beauty Center</b> </div>
+						<div>Đã chia sẻ nhật ký làm đẹp dịch vụ <b class="text-12 font-bold"><?= get_the_title($service) ?></b> được <b><?= get_the_title($fields["doctor"]) ?> </b> phụ trách điều trị tại <b>PK Trang Beauty Center</b> </div>
 					</a>
 				<?php endif; ?>
 			</div>

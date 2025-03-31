@@ -29,19 +29,6 @@
 			crossorigin="anonymous"
 		></script>
 
-		<!-- Meta Pixel Code -->
-		<script>
-		!function(f,b,e,v,n,t,s)
-		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-		n.queue=[];t=b.createElement(e);t.async=!0;
-		t.src=v;s=b.getElementsByTagName(e)[0];
-		s.parentNode.insertBefore(t,s)}(window, document,'script',
-		'https://connect.facebook.net/en_US/fbevents.js');
-		fbq('init', '913120683690781');
-		fbq('track', 'PageView');
-		</script>
 		<noscript><img height="1" width="1" style="display:none"
 		src="https://www.facebook.com/tr?id=913120683690781&ev=PageView&noscript=1"
 		/></noscript>
@@ -67,7 +54,7 @@
 							<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
 					</button>
 
-					<img class="h-10.5" src="<?= get_theme_file_uri("assets/images/logoF.png") ?>" 
+					<img class="h-10.5" src="<?= get_theme_file_uri("assets/images/logo.png") ?>" 
 						class="w-10 h-10 rounded-md ml-5">
 					<div class="ml-3 flex-1">
 						<div class="text-sm font-semibold text-gray-900">LiA - Kết nối & Chia sẻ</div>
@@ -87,7 +74,7 @@
 					<!-- Toggle menu for mobile -->
 					<!-- Logo -->
 					<a href="<?= get_home_url() ?>" class="flex items-center space-x-4">
-						<img  style="height:32px" src="<?= get_theme_file_uri("assets/images/logo.png") ?>" />
+						<img  style="height:48px" src="<?= get_theme_file_uri("assets/images/logo.png") ?>" />
 					</a>
 
 					<button class=" lg:hidden w-7.5 h-7.5 rounded-8 bg-primary flex items-center justify-center cursor-pointer" tbc-toggle-target="#chat-modal">
@@ -114,8 +101,8 @@
             		</div>
 				</div>
 			</div>
-	
 		</header>
+
 		<div
 			id="chat-modal"
 			data-open="false"

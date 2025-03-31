@@ -492,6 +492,13 @@ foreach ($buffets as $buffet) {
     margin-bottom: 10px;
 }
 
+/* Percentage styles */
+.discount-percentage {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    color: #000;
+}
 
 /* Number of people styles */
 .discount-people {

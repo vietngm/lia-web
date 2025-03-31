@@ -314,12 +314,12 @@ add_action('init', 'register_booking_post_type');
 // function register_doctor_contact_data_post_type(){
 // 	$label = array(
 // 		'name' => 'Liên hệ chuyên viên',
-// 		'singular_name' => 'Liên hệ chuyên viên',
+// 		'singular_name' => 'Liên hệ bác sĩ',
 // 		'add_new' => 'Thêm mới'
 // 	);
 // 	$args = array(
 // 		'labels' => $label,
-// 		'description' => 'Liên hệ chuyên viên',
+// 		'description' => 'Liên hệ bác sĩ',
 // 		'supports' => array(
 // 			'title',
 // 			'thumbnail',

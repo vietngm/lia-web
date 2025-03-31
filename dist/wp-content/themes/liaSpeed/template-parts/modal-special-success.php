@@ -68,7 +68,7 @@
                             <input  placeholder="Số diện thoại" type="tel" id="phone" name="phone" required pattern="[0-9]{10}"/>
                         </div>
                         <div class="name-voucher"  style="position: relative;">
-                            Nhận 10% giảm giá cho lần đầu tiên sử dụng dịch vụ tại LiA Beauty Center
+                            Nhận 10% giảm giá cho lần đầu tiên sử dụng dịch vụ tại Trang Beauty Center
                         </div>
                     </div>
                 </div>

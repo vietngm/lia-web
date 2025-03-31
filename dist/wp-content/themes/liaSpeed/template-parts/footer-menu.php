@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <style>
 .logo {
+	width: 96px;
     overflow: hidden;
+	margin-left:-16px;
 }
 
 .address {
@@ -122,7 +123,7 @@ footer {
                 <div class="accordion-content"></div>
             </div>
         </div>
-		<p style="margin:16px 0px;text-align:center">© 2022 Viện Thẩm Mỹ LIA Beauty. Mã số thuế: 0317197387. Chịu trách nhiệm bởi Võ Mạnh Tân. Designed by LIA MEDIA</p>
+		<p style="margin:16px 0px;text-align:center">© 2022 Viện Thẩm Mỹ LIA Beauty. Mã số thuế: 0317197387. Chịu trách nhiệm bởi Vũ Mạnh Tân. Designed by LIA MEDIA</p>
 		<!-- <h2 class="md:text-20 text-18 font-bold text-center mb-6"><?= $fields["footer"]["title"] ?></h2>
 		<div class="grid grid-cols-10 gap-4">
 			<div class="md:col-span-4 col-span-10">
