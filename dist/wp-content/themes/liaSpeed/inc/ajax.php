@@ -546,6 +546,46 @@ function ajax_buffet_form_people() {
 
 add_action('wp_ajax_buffet_form_people', 'ajax_buffet_form_people');
 add_action('wp_ajax_nopriv_buffet_form_people', 'ajax_buffet_form_people');
-
-
 // Truyền URL AJAX đến file JavaScript
+/********************************************* Consultation **********************************************/
+function ajax_consultation_form(){
+	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
+	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
+	$email = isset($_POST["email"]) ? $_POST["email"] : "";
+	$message = isset($_POST["message"]) ? $_POST["message"] : "";
+
+	if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'consultation_form' ) ) {
+		echo json_encode(
+			array(
+				'success'=>false,
+				"message" => "Yêu cầu không hợp lệ."
+			)
+		);
+		die();
+	}
+
+	$data_id = wp_insert_post( 
+		array(
+			'post_title'	=> "$fullname - $phone",
+			"post_type" => "dk-tu-van",
+			"post_status" => "publish",
+			"meta_input" => array(
+				"fullname" => $fullname,
+				"phone" => $phone,
+				"email" => $email,
+				"message" => $message
+			),
+		)
+	);
+	
+	echo json_encode(
+		array(
+			'success' => true,	
+			"message" => "Đăng ký tư vấn thành công."
+		)
+	);
+	die();
+}
+
+add_action( 'wp_ajax_consultation_form', 'ajax_consultation_form');
+add_action( 'wp_ajax_nopriv_consultation_form', 'ajax_consultation_form');

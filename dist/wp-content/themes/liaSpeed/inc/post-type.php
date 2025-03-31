@@ -420,3 +420,5 @@ function register_price_contact_data_post_type(){
 	register_post_type('price-data', $args);
 }
 add_action('init', 'register_price_contact_data_post_type');
+/********************************************* Consultation **********************************************/
+include get_template_directory() . "/inc/consultation.php";

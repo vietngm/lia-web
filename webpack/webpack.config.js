@@ -7,17 +7,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
 	// mode: process.env.NODE_ENV === "production" ? "production" : "development",
 	entry: [
-		// path.resolve("./src/scripts/common.js"),
-		path.resolve("./src/scripts/sync-data.js"),
+		path.resolve("./src/scripts/common.js"),
+		// path.resolve("./src/scripts/sync-data.js"),
 		path.resolve("./src/scss/common.scss"),
 	],
 	devtool: false,
 	mode: "production",
 	output: {
-		// path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
-		// filename: "js/common.js",
-		path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
-		filename: "js/sync-data.js",
+		path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
+		filename: "js/common.js",
+		// path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
+		// filename: "js/sync-data.js",
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],
@@ -28,8 +28,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/, // include .js files
-				exclude: /node_modules/, // exclude any and all files in the node_modules folder
+				test: /\.js$/,
+				exclude: /node_modules/,
 				use: [
 					{
 						loader: "babel-loader",

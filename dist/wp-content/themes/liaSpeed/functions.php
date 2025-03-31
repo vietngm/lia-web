@@ -44,6 +44,7 @@ function load_scripts(){
 	wp_enqueue_style( 'styles', get_theme_file_uri( '/assets/css/styles.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'custom-style', get_theme_file_uri( '/style.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'custom-style', get_theme_file_uri( '/assets/css/custom.css' ), array(), $ASSETS_VERSION );
+	wp_enqueue_style( 'common-style', get_theme_file_uri( '/assets/css/common.css' ), array(), $ASSETS_VERSION );
 
 	wp_enqueue_script( 'lazyload', get_theme_file_uri( '/assets/js/jquery.lazyload.min.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'slick', get_theme_file_uri( '/assets/js/slick.min.js' ), array(), $ASSETS_VERSION, true );
@@ -53,6 +54,7 @@ function load_scripts(){
 	wp_enqueue_script( 'floating-ui-core', get_theme_file_uri( '/assets/js/floating-ui.core.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'floating-ui-dome', get_theme_file_uri( '/assets/js/floating-ui.dom.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'toastify', get_theme_file_uri( '/assets/js/toastify-js.js' ), array(), $ASSETS_VERSION, true );
+	wp_enqueue_script( 'common-customize', get_theme_file_uri( '/assets/js/common.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'script', get_theme_file_uri( '/assets/js/script.js' ), array(), $ASSETS_VERSION, true );
 
 }
