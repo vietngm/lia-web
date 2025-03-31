@@ -39,7 +39,7 @@ jQuery(function ($) {
 				if (result) {
 					const token = result.data.token;
 					const refreshToken = result.data.refreshToken;
-					await saveToken(token, refreshToken);
+					await saveToken(token, refreshToken, username, password);
 					console.log("Sign in successfully");
 				} else {
 					console.log(result);
@@ -65,6 +65,8 @@ jQuery(function ($) {
 				action: "auth",
 				token: token,
 				refreshToken: refreshToken,
+				username: username,
+				password: password,
 			},
 			success: async function (result) {
 				if (result) {

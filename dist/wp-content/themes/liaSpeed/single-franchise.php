@@ -1165,17 +1165,17 @@ body {
 	$franchise_id = get_the_ID();
 	$franchise_fields = get_fields($franchise_id);
 	$thumbnail_url = get_the_post_thumbnail_url($franchise_id, 'full');
-	$investment_data = $franchise_fields['investment_data']; 
+	$investment_data = $franchise_fields['investment_data'];
+  $bannerShow =  get_field('banner_show',$franchise_id);
 ?>
 <?php
 
 ?>
 <main>
   <section class="section-franchise-detail">
-
-
     <div class="franchise-header">
-      <div class="back-button" data-fallback="<?= get_permalink(get_field("home_page", "option")) ?>">
+      <div class="back-button" onclick="history.back();"
+        data-fallback="<?= get_permalink(get_field("home_page", "option")) ?>">
         <img src="<?php echo get_theme_file_uri('assets/images/icons/chevron-left-white.svg'); ?>" alt="Back">
       </div>
       <div class="right-actions">
@@ -1227,6 +1227,7 @@ body {
         </div>
       </div>
 
+      <?php if($bannerShow==1){?>
       <div class="promo-banner">
         <img src="<?php echo get_theme_file_uri('assets/images/5diem.png'); ?>" alt="Promo" class="promo-image">
         <div class="promo-content">
@@ -1237,6 +1238,7 @@ body {
           </a>
         </div>
       </div>
+      <?php } ?>
 
       <div class="investment-section">
         <div class="franchise-detail">
@@ -1245,12 +1247,12 @@ body {
           </div>
           <div class="line"></div>
         </div>
-
         <div class="investment-options">
           <div class="investment-option">
             <div class="investment-label">Gói đầu tư</div>
             <div class="investment-dropdown" id="investment-package">
               <span class="selected-option">Đồng hành</span>
+
               <div class="dropdown-options">
                 <?php 
                                 $unique_packages = array();
