@@ -1,23 +1,21 @@
 jQuery(function ($) {
 	const $root = $(this);
 
-	$(document).ready(function () {
+	$(document).on("click", ".register-button", function () {
 		const packageCapital = $("#investment-capital .selected-option").text();
 		const packageInvestment = $("#investment-package .selected-option").text();
 		const paymentPolicy = $("#payment-policy .selected-option").text();
-		$(this).find('[name="packageCapital"]').val(packageCapital);
-		$(this).find(".package-info .package-capital").text(packageCapital);
+		$(document).find('[name="packageCapital"]').val(packageCapital);
+		$(document).find(".package-info .package-capital").text(packageCapital);
 
-		$(this).find('[name="packageInvestment"]').val(packageInvestment);
-		$(this).find(".package-info .package-investment").text(packageInvestment);
+		$(document).find('[name="packageInvestment"]').val(packageInvestment);
+		$(document)
+			.find(".package-info .package-investment")
+			.text(packageInvestment);
 
-		$(this).find('[name="packagePolicy"]').val(paymentPolicy);
-		$(this).find(".package-info .package-policy").text(paymentPolicy);
+		$(document).find('[name="paymentPolicy"]').val(paymentPolicy);
+		$(document).find(".package-info .package-policy").text(paymentPolicy);
 	});
-
-	// const selectedCapital = capitalDropdown
-	// 	.querySelector(".selected-option")
-	// 	.textContent.replace("%", "");
 
 	const $modelConsultationSuccess = $(document).find(
 		".modal-consultation-success"
