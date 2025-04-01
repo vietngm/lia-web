@@ -81,10 +81,10 @@
 
         <?php
         $data = array(
-            'price'=>$franchiseFields['price'].' triệu',
+            'price'=>$franchiseFields['price'].' Triệu',
             'name'=>get_the_title($franchiseId),
             'metric'=>esc_attr($franchiseFields['m2']),
-            'bed'=>$franchiseFields['phong'].' phòng',
+            'bed'=>$franchiseFields['phong'].' Phòng',
 		);
         ?>
         <div class="franchise-image">

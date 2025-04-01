@@ -10,6 +10,12 @@
 	background-color: rgba($color-gray, 0.4);
 	padding: 20px;
 	grid-gap: 12px;
+	&.home {
+		margin-left: -2rem;
+		margin-right: -2rem;
+		margin-top: 0;
+		padding: 20px 32px;
+	}
 	&-info {
 		display: grid;
 		margin-left: -20px;

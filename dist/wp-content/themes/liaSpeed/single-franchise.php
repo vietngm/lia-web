@@ -1751,5 +1751,4 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
-<?php get_template_part('template-parts/modal','consultation-success'); ?>
 <?php get_footer("empty"); ?>

@@ -6,13 +6,13 @@
   </div>
   <div class="modal-body">
     <div class="modal-scroll">
-      <input type="hidden" name="packageName" readonly value="<?php the_title(); ?>">
-      <input type="hidden" name="packageMetric" readonly value="<?=$franchise_fields['m2']; ?>">
-      <input type="hidden" name="packageBed" readonly value="<?=$franchise_fields['phong']; ?>">
-      <input type="hidden" name="packagePrice" readonly value="<?=$franchise_fields['price']; ?>">
-      <input type="hidden" name="packageCapital" readonly value="">
-      <input type="hidden" name="packageInvestment" readonly value="">
-      <input type="hidden" name="paymentPolicy" readonly value="">
+      <input type="hidden" name="packageName" value="<?php the_title(); ?>">
+      <input type="hidden" name="packageMetric" value="<?=$franchise_fields['m2']; ?>">
+      <input type="hidden" name="packageBed" value="<?=$franchise_fields['phong']; ?>">
+      <input type="hidden" name="packagePrice" value="<?=$franchise_fields['price']; ?>">
+      <input type="hidden" name="packageCapital" value="">
+      <input type="hidden" name="packageInvestment" value="">
+      <input type="hidden" name="paymentPolicy" value="">
 
       <div class="package">
         <div class="package-title"><?php the_title(); ?></div>

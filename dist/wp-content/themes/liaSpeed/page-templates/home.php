@@ -539,9 +539,41 @@ p {
       <h2 class="modal-title">Đăng ký tư vấn</h2>
       <!-- <form class="modal-form" id="register-form"> -->
       <div class="modal-body">
+        <input type="hidden" name="packageName" value="">
+        <input type="hidden" name="packageMetric" value="">
+        <input type="hidden" name="packageBed" value="">
+        <input type="hidden" name="packagePrice" value="">
+
+        <div class="package home">
+          <div class="package-title"></div>
+          <div class="package-list">
+            <div class="package-item">
+              <div class="package-label">
+                <img src="<?php echo get_theme_file_uri('assets/images/icons/dt.svg'); ?>" alt="Investment">
+                Đầu tư
+              </div>
+              <div class="package-value price"></div>
+            </div>
+            <div class="package-item">
+              <div class="package-label">
+                <img src="<?php echo get_theme_file_uri('assets/images/icons/vr-gray.svg'); ?>" alt="Area">
+                Diện tích
+              </div>
+              <div class="package-value metric"></div>
+            </div>
+            <div class="package-item">
+              <div class="package-label">
+                <img src="<?php echo get_theme_file_uri('assets/images/icons/user-gray.svg'); ?>" alt="Beds">
+                Công suất
+              </div>
+              <div class="package-value bed"></div>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label" for="name">Họ tên</label>
-          <input type="text" id="name" name="name" class="form-input" placeholder="Nhập họ tên của bạn" required>
+          <input type="text" id="name" name="fullname" class="form-input" placeholder="Nhập họ tên của bạn" required>
           <div class="has-error error-fullname"></div>
         </div>
         <div class="form-group">

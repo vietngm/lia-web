@@ -19,7 +19,16 @@ jQuery(function ($) {
 
 	$(document).on("click", ".franchise-btn", function () {
 		const data = $(this).attr("rel");
-		console.log(JSON.parse(data));
+		const jsonPare = JSON.parse(data);
+		$(document).find(".package .package-title").text(jsonPare.name);
+		$(document).find(".package .package-item .price").text(jsonPare.price);
+		$(document).find(".package .package-item .metric").text(jsonPare.metric);
+		$(document).find(".package .package-item .bed").text(jsonPare.bed);
+
+		$(document).find('[name="packageName"]').val(jsonPare.name);
+		$(document).find('[name="packageMetric"]').val(jsonPare.metric);
+		$(document).find('[name="packageBed"]').val(jsonPare.bed);
+		$(document).find('[name="packagePrice"]').val(jsonPare.price);
 	});
 
 	const $modelConsultationSuccess = $(document).find(
@@ -139,8 +148,8 @@ jQuery(function ($) {
 			phone: phone,
 			email: email,
 			message: message,
-			packagePrice: packagePrice + " Triệu",
-			packageBed: packageBed + " giường",
+			packagePrice: packagePrice,
+			packageBed: packageBed,
 			packageMetric: packageMetric,
 			packageName: packageName,
 		};
@@ -195,6 +204,8 @@ jQuery(function ($) {
 			}).showToast();
 			return;
 		}
+
+		submitForm(dataConsultation);
 	});
 
 	function submitForm(dataConsultation, success, error) {
@@ -230,7 +241,9 @@ jQuery(function ($) {
 				loadingToastify.hideToast();
 
 				if (result.success) {
-					$("#registration-modal .close-modal").click();
+					$(document).find(".close-modal").click();
+					$(document).find(".modal-close").click();
+
 					$modelConsultationSuccess.removeClass("hidden").addClass("flex");
 
 					reset();
