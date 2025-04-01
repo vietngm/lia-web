@@ -1305,7 +1305,7 @@ body {
 </main>
 
 <!-- Modal for Registration -->
-<div id="registration-modal" class="modal">
+<div id="registration-modal" class="modal modal-registration">
   <?php include get_template_directory() . "/template-parts/modal-consultation-register.php"; ?>
 </div>
 
