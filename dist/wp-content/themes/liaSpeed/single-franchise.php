@@ -1167,7 +1167,9 @@ body {
 	$thumbnail_url = get_the_post_thumbnail_url($franchise_id, 'full');
 	$investment_data = $franchise_fields['investment_package'];
   $investment_capital = $franchise_fields['investment_capital'];
+  $payment_policy = $franchise_fields['payment_policy'];
   $bannerShow =  get_field('banner_show',$franchise_id);
+  
 ?>
 <?php
 
@@ -1301,28 +1303,7 @@ body {
 
           <div class="investment-option">
             <div class="investment-label">Chính sách thanh toán</div>
-            <div class="investment-dropdown" id="payment-policy">
-              <span class="selected-option">Thanh toán một lần</span>
-              <div class="dropdown-options">
-                <?php 
-                                $unique_policies = array();
-                                if ($investment_data && is_array($investment_data)) {
-                                    foreach ($investment_data as $item) {
-                                        if (isset($item['payment_policy']) && !in_array($item['payment_policy'], $unique_policies)) {
-                                            $unique_policies[] = $item['payment_policy'];
-                                            echo '<div class="dropdown-option" data-value="' . esc_attr($item['payment_policy']) . '">' . esc_html($item['payment_policy']) . '</div>';
-                                        }
-                                    }
-                                }
-                                if (empty($unique_policies)) {
-                                    // Fallback options if no data is available
-                                    echo '<div class="dropdown-option" data-value="one-time">Thanh toán một lần</div>';
-                                    echo '<div class="dropdown-option" data-value="installment">Trả góp</div>';
-                                    echo '<div class="dropdown-option" data-value="monthly">Thanh toán hàng tháng</div>';
-                                }
-                                ?>
-              </div>
-            </div>
+            <?php include get_template_directory() . "/template-parts/payment-type.php"; ?>
           </div>
         </div>
         <div class="grid-container">
