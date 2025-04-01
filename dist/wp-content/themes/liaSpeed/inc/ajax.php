@@ -73,11 +73,11 @@ function verify_booking_form() {
 	$service = get_post($serviceId);
 	$topping = get_term($toppingId, "service-topping");
 
-	if (!$doctor || $doctor->post_type != "doctor") {
+	if (!$doctor || $doctor->post_type != "practitioner") {
 		echo json_encode(
 			array(
 				'success'=>false,
-				"message" => "Bác sĩ không tồn tại"
+				"message" => "Chuyên viên không tồn tại"
 			)
 		);
 		die();
@@ -219,7 +219,7 @@ function ajax_booking_form(){
 	// verify_booking_form_otp();
 
 	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
-	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
+	$fullname = isset($_POST["note"]) ? $_POST["note"] : "";
 	$referralCode = isset($_POST["referralCode"]) ? $_POST["referralCode"] : "";
 	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 	$foreigner = isset($_POST["foreigner"]) ? $_POST["foreigner"] : false;
@@ -231,6 +231,7 @@ function ajax_booking_form(){
 	$note = isset($_POST["note"]) ? $_POST["note"] : "";
 	$noteTopping = isset($_POST["noteTopping"]) ? $_POST["noteTopping"] : "";
 	$selectedGift = isset($_POST["selectedGift"]) ? $_POST["selectedGift"] : "";
+	$noteForLiA = isset($_POST["noteForLiA"]) ? $_POST["noteForLiA"] : "";
 
 	$data_id = wp_insert_post( 
 		array(
@@ -246,7 +247,7 @@ function ajax_booking_form(){
 				"topping" => $toppingId,
 				"date" => $date,
 				"time" => $time,
-				"note" => $note,
+				"note" => $noteForLiA,
 				"noteTopping"=> $noteTopping,
 				"selectedGift" => $selectedGift,
 				"referralCode" => $referralCode,
@@ -325,11 +326,11 @@ function ajax_doctor_contact_form(){
 	// Check doctor
 	$doctor = get_post($doctorId);
 
-	if (!$doctor || $doctor->post_type != "doctor") {
+	if (!$doctor || $doctor->post_type != "practitioner") {
 		echo json_encode(
 			array(
 				'success'=>false,
-				"message" => "Bác sĩ không tồn tại"
+				"message" => "Chuyên viên không tồn tại"
 			)
 		);
 		die();

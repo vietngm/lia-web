@@ -58,7 +58,8 @@
       </div>
       <div class="form-group">
         <label for="message">Nội dung</label>
-        <textarea id="message" name="message" rows="4" placeholder="Nhập yêu cầu tư vấn của bạn"></textarea>
+        <textarea id="message" name="message" class="form-input" rows="4"
+          placeholder="Nhập yêu cầu tư vấn của bạn"></textarea>
       </div>
 
       <div class="package-info">

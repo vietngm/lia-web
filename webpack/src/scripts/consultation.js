@@ -17,6 +17,11 @@ jQuery(function ($) {
 		$(document).find(".package-info .package-policy").text(paymentPolicy);
 	});
 
+	$(document).on("click", ".franchise-btn", function () {
+		const data = $(this).attr("rel");
+		console.log(JSON.parse(data));
+	});
+
 	const $modelConsultationSuccess = $(document).find(
 		".modal-consultation-success"
 	);
@@ -109,6 +114,87 @@ jQuery(function ($) {
 		}
 
 		submitForm(dataConsultation);
+	});
+
+	$(document).on("click", ".js-home-consultation", function () {
+		let hasError = false;
+		let errorMessages = [];
+
+		const fullname = $root.find('[name="fullname"]').val();
+		const phone = $root.find('[name="phone"]').val();
+		const email = $root.find('[name="email"]').val();
+		const message = $root.find('[name="message"]').val();
+
+		const packagePrice = $root.find('[name="packagePrice"]').val();
+		const packageBed = $root.find('[name="packageBed"]').val();
+		const packageMetric = $root.find('[name="packageMetric"]').val();
+		const packageName = $root.find('[name="packageName"]').val();
+
+		const errorFullname = $root.find(".error-fullname");
+		const errorPhone = $root.find(".error-phone");
+		const errorEmail = $root.find(".error-email");
+
+		let dataConsultation = {
+			fullname: fullname,
+			phone: phone,
+			email: email,
+			message: message,
+			packagePrice: packagePrice + " Triệu",
+			packageBed: packageBed + " giường",
+			packageMetric: packageMetric,
+			packageName: packageName,
+		};
+
+		if (!fullname) {
+			hasError = true;
+			errorMessages.push("Vui lòng cho biết họ tên.");
+		}
+
+		hasError |= validateField(
+			fullname,
+			errorFullname,
+			"Vui lòng cho biết họ tên."
+		);
+
+		if (!phone) {
+			hasError = true;
+			errorMessages.push("Vui lòng nhập số điện thoại.");
+		}
+		hasError |= validateField(
+			phone,
+			errorPhone,
+			"Vui lòng nhập số điện thoại."
+		);
+
+		if (!email) {
+			hasError = true;
+			errorMessages.push("Vui lòng cho biết địa chỉ mail.");
+		}
+
+		hasError |= validateField(
+			phone,
+			errorEmail,
+			"Vui lòng cho biết địa chỉ mail."
+		);
+
+		if (hasError) {
+			Toastify({
+				text:
+					errorMessages.length === 3
+						? "Vui lòng nhập đầy đủ thông tin."
+						: errorMessages.join("\n"),
+				duration: 3000,
+				newWindow: true,
+				close: true,
+				gravity: "top",
+				position: "center",
+				stopOnFocus: true,
+				style: {
+					background: "#ef4444",
+				},
+			}).showToast();
+			return;
+		}
 	});
 
 	function submitForm(dataConsultation, success, error) {

@@ -55,6 +55,7 @@ function load_scripts(){
 	wp_enqueue_script( 'floating-ui-dome', get_theme_file_uri( '/assets/js/floating-ui.dom.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'toastify', get_theme_file_uri( '/assets/js/toastify-js.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'common-customize', get_theme_file_uri( '/assets/js/common.js' ), array(), $ASSETS_VERSION, true );
+	wp_enqueue_script( 'booking', get_theme_file_uri( '/assets/js/booking.js' ), array(), $ASSETS_VERSION, true );
 	wp_enqueue_script( 'script', get_theme_file_uri( '/assets/js/script.js' ), array(), $ASSETS_VERSION, true );
 
 }

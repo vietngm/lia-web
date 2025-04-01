@@ -5,6 +5,8 @@ function autoRefresh(){
 	$env_post_id= check_pages_existed();
 	$api_url = get_field('booking_environment',$env_post_id);
 
+	// echo $refreshToken;
+
 	if($refreshToken!=''){
 		curl_setopt_array($curl, array(
 		CURLOPT_URL => "$api_url/auth/refresh-token",
@@ -26,6 +28,8 @@ function autoRefresh(){
 			update_option('refreshToken',$newRefreshToken);
 		}
 	}
+
+	return 'abc';
 }
 add_action('admin_bar_init', 'autoRefresh');
 ?>
