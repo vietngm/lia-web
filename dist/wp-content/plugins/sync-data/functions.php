@@ -3,12 +3,12 @@
 function ajax_auth(){
 	$token = isset($_REQUEST["token"]) ? $_REQUEST["token"] : null;
 	$refreshToken = isset($_REQUEST["refreshToken"]) ? $_REQUEST["refreshToken"] : null;
-	$username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : null;
-	$password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : null;
+	// $username = isset($_REQUEST["username"]) ? $_REQUEST["username"] : null;
+	// $password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : null;
 	update_option('token',$token);
 	update_option('refreshToken',$refreshToken);
-	update_option('username',$username);
-	update_option('password',$password);
+	// update_option('username',$username);
+	// update_option('password',$password);
 	echo json_encode(
 		array(
 			'success' => true,	
@@ -25,8 +25,8 @@ add_action( 'wp_ajax_nopriv_auth', 'ajax_auth');
 function logout(){
 	update_option('token','');
 	update_option('refreshToken','');
-	update_option('username','');
-	update_option('password','');
+	// update_option('username','');
+	// update_option('password','');
 }
 if(array_key_exists('logout',$_POST)){
    logout();

@@ -1368,37 +1368,7 @@ body {
       </div>
 
       <div class="policy-section">
-        <div class="franchise-detail">
-          <div class="title-box">
-            <span>Chính sách nhượng quyền</span>
-          </div>
-          <div class="line"></div>
-        </div>
-
-        <div class="policy-item">
-          <div class="policy-check">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/shield-check.svg'); ?>" alt="Warranty">
-          </div>
-          <div class="policy-title">Chính sách bảo hành</div>
-          <a href="#warranty-modal" class="policy-more">Chi tiết →</a>
-        </div>
-
-        <div class="warranty-timeline">
-          <img src="<?php echo get_theme_file_uri('assets/images/csbh.png'); ?>" alt="Warranty">
-        </div>
-
-        <div class="refund-policy">
-          <div class="policy-item">
-            <div class="policy-check">
-              <img src="<?php echo get_theme_file_uri('assets/images/icons/shield-check.svg'); ?>" alt="Warranty">
-            </div>
-            <div class="policy-title">Chính sách hoàn tiền</div>
-            <a href="#refund-modal" class="policy-more">Chi tiết →</a>
-          </div>
-          <div class="refund-timeline">
-            <img src="<?php echo get_theme_file_uri('assets/images/csht.png'); ?>" alt="Warranty">
-          </div>
-        </div>
+        <?php include get_template_directory() . "/template-parts/content-policy.php"; ?>
       </div>
 
       <div class="franchise-process">
@@ -1625,112 +1595,12 @@ body {
 
 <!-- Modal for Warranty Policy Details -->
 <div id="warranty-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Chính sách bảo hành</h2>
-      <span class="close-modal">&times;</span>
-    </div>
-    <div class="modal-body">
-      <div class="policy-details">
-        <div class="policy-section">
-          <h3>Thời gian bảo hành</h3>
-          <p>LIA cam kết bảo hành cho tất cả thiết bị và cơ sở vật chất trong thời gian:</p>
-          <ul>
-            <li><strong>6 tháng</strong> cho thiết bị điện tử</li>
-            <li><strong>12 tháng</strong> cho nội thất và trang thiết bị</li>
-            <li><strong>24 tháng</strong> cho hệ thống điện, nước và kết cấu</li>
-          </ul>
-        </div>
-
-        <div class="policy-section">
-          <h3>Phạm vi bảo hành</h3>
-          <p>Chính sách bảo hành của chúng tôi bao gồm:</p>
-          <ul>
-            <li>Sửa chữa hoặc thay thế miễn phí các thiết bị bị lỗi do nhà sản xuất</li>
-            <li>Khắc phục các vấn đề kỹ thuật liên quan đến điện, nước và kết cấu</li>
-            <li>Hỗ trợ kỹ thuật 24/7 qua hotline</li>
-            <li>Cử kỹ thuật viên đến tận nơi trong vòng 24 giờ sau khi nhận được thông báo</li>
-          </ul>
-        </div>
-
-        <div class="policy-section">
-          <h3>Điều kiện bảo hành</h3>
-          <p>Để đảm bảo quyền lợi bảo hành, quý khách cần:</p>
-          <ul>
-            <li>Sử dụng thiết bị đúng mục đích và theo hướng dẫn</li>
-            <li>Không tự ý sửa chữa hoặc thay đổi kết cấu</li>
-            <li>Thông báo kịp thời khi phát hiện lỗi</li>
-            <li>Giữ đầy đủ hóa đơn, chứng từ mua hàng</li>
-          </ul>
-        </div>
-
-        <div class="policy-note">
-          <p><strong>Lưu ý:</strong> Chính sách bảo hành không áp dụng cho các trường hợp hư hỏng do sử dụng sai mục
-            đích, tác động của thiên nhiên, hoặc các yếu tố bên ngoài khác không thuộc về lỗi kỹ thuật.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php include get_template_directory() . "/template-parts/modal-warranty.php"; ?>
 </div>
 
 <!-- Modal for Refund Policy Details -->
 <div id="refund-modal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Chính sách hoàn tiền</h2>
-      <span class="close-modal">&times;</span>
-    </div>
-    <div class="modal-body">
-      <div class="policy-details">
-        <div class="policy-section">
-          <h3>Điều kiện hoàn tiền</h3>
-          <p>LIA cam kết hoàn tiền trong các trường hợp:</p>
-          <ul>
-            <li>Không thực hiện đúng cam kết về thời gian khai trương</li>
-            <li>Không cung cấp đủ thiết bị và dịch vụ như đã cam kết trong hợp đồng</li>
-            <li>Phát sinh lỗi nghiêm trọng không thể khắc phục trong quá trình vận hành</li>
-          </ul>
-        </div>
-
-        <div class="policy-section">
-          <h3>Tỷ lệ hoàn tiền</h3>
-          <div class="refund-rates">
-            <div class="refund-rate-item">
-              <div class="rate-circle">100%</div>
-              <p>Trước khi ký hợp đồng chính thức</p>
-            </div>
-            <div class="refund-rate-item">
-              <div class="rate-circle">80%</div>
-              <p>Sau khi ký hợp đồng, trước khi lên thiết kế</p>
-            </div>
-            <div class="refund-rate-item">
-              <div class="rate-circle">50%</div>
-              <p>Sau khi phê duyệt thiết kế, trước khi thi công</p>
-            </div>
-            <div class="refund-rate-item">
-              <div class="rate-circle">30%</div>
-              <p>Trong quá trình thi công, trước khi nghiệm thu</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="policy-section">
-          <h3>Quy trình hoàn tiền</h3>
-          <ol>
-            <li>Gửi yêu cầu hoàn tiền bằng văn bản chính thức đến bộ phận CSKH</li>
-            <li>LIA sẽ xác nhận và xem xét yêu cầu trong vòng 7 ngày làm việc</li>
-            <li>Nếu yêu cầu được chấp thuận, tiền sẽ được hoàn trả trong vòng 15 ngày làm việc</li>
-            <li>Số tiền hoàn trả sẽ được chuyển vào tài khoản ngân hàng của khách hàng</li>
-          </ol>
-        </div>
-
-        <div class="policy-note">
-          <p><strong>Lưu ý:</strong> Phí chuyển khoản và các chi phí liên quan đến việc hoàn tiền (nếu có) sẽ do khách
-            hàng chi trả. LIA cam kết minh bạch và công bằng trong việc xử lý các yêu cầu hoàn tiền.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php include get_template_directory() . "/template-parts/modal-refund.php"; ?>
 </div>
 
 <script>
@@ -1899,17 +1769,21 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Open warranty details modal
-  warrantyMoreButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    warrantyModal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  $(document).ready(function() {
+    $('a[href="#warranty-modal"]').click(function(e) {
+      e.preventDefault();
+      warrantyModal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
   });
 
   // Open refund details modal
-  refundMoreButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    refundModal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  $(document).ready(function() {
+    $('a[href="#refund-modal"]').click(function(e) {
+      e.preventDefault();
+      refundModal.style.display = 'block';
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
   });
 
   // Close modals when clicking close button
