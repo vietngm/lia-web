@@ -1165,7 +1165,8 @@ body {
 	$franchise_id = get_the_ID();
 	$franchise_fields = get_fields($franchise_id);
 	$thumbnail_url = get_the_post_thumbnail_url($franchise_id, 'full');
-	$investment_data = $franchise_fields['investment_data'];
+	$investment_data = $franchise_fields['investment_package'];
+  $investment_capital = $franchise_fields['investment_capital'];
   $bannerShow =  get_field('banner_show',$franchise_id);
 ?>
 <?php
@@ -1295,29 +1296,7 @@ body {
 
           <div class="investment-option">
             <div class="investment-label">Vốn đầu tư</div>
-            <div class="investment-dropdown" id="investment-capital">
-              <span class="selected-option">50%</span>
-              <div class="dropdown-options">
-                <?php 
-                                $unique_capitals = array();
-                                if ($investment_data && is_array($investment_data)) {
-                                    foreach ($investment_data as $item) {
-                                        if (isset($item['capital']) && !in_array($item['capital'], $unique_capitals)) {
-                                            $unique_capitals[] = $item['capital'];
-                                            echo '<div class="dropdown-option" data-value="' . esc_attr($item['capital']) . '">' . esc_html($item['capital']) . '%</div>';
-                                        }
-                                    }
-                                }
-                                if (empty($unique_capitals)) {
-                                    // Fallback options if no data is available
-                                    echo '<div class="dropdown-option" data-value="30">30%</div>';
-                                    echo '<div class="dropdown-option" data-value="50">50%</div>';
-                                    echo '<div class="dropdown-option" data-value="70">70%</div>';
-                                    echo '<div class="dropdown-option" data-value="100">100%</div>';
-                                }
-                                ?>
-              </div>
-            </div>
+            <?php include get_template_directory() . "/template-parts/investment-capital.php"; ?>
           </div>
 
           <div class="investment-option">
@@ -1372,73 +1351,7 @@ body {
       </div>
 
       <div class="franchise-process">
-        <div class="franchise-detail">
-          <div class="title-box">
-            <span>Quy trình nhượng quyền</span>
-          </div>
-          <div class="line"></div>
-        </div>
-        <div class="timeline">
-          <!-- Bước 1 -->
-          <div class="timeline-item right">
-            <div class="timeline-left">
-              <div class="timeline-date">Ngày <br><span>01</span></div>
-              <div class="timeline-circle"></div>
-            </div>
-            <div class="timeline-content">
-              <h3>GIAI ĐOẠN 1</h3>
-              <p>Tham khảo thông tin</p>
-            </div>
-          </div>
-
-          <!-- Bước 2 -->
-          <div class="timeline-item right">
-            <div class="timeline-left">
-              <div class="timeline-date">NGÀY <br><span>02</span></div>
-              <div class="timeline-circle"></div>
-            </div>
-            <div class="timeline-content">
-              <h3>GIAI ĐOẠN 2</h3>
-              <p>Nhận đặt cọc</p>
-            </div>
-          </div>
-
-          <!-- Bước 3 -->
-          <div class="timeline-item left">
-            <div class="timeline-left">
-              <div class="timeline-date">NGÀY <br><span>07</span></div>
-              <div class="timeline-circle"></div>
-            </div>
-            <div class="timeline-content">
-              <h3>GIAI ĐOẠN 3</h3>
-              <p>Lên bản vẽ 3D, mô phỏng cửa hàng theo đúng kích thước thực tế.</p>
-            </div>
-          </div>
-
-          <!-- Bước 4 -->
-          <div class="timeline-item right">
-            <div class="timeline-left">
-              <div class="timeline-date">NGÀY <br><span>15</span></div>
-              <div class="timeline-circle"></div>
-            </div>
-            <div class="timeline-content">
-              <h3>GIAI ĐOẠN 4</h3>
-              <p>Ký hợp đồng</p>
-            </div>
-          </div>
-          <div class="timeline-item left">
-            <div class="timeline-left">
-              <div class="timeline-date">NGÀY <br><span>20</span></div>
-              <div class="timeline-circle"></div>
-            </div>
-            <div class="timeline-content">
-              <h3>GIAI ĐOẠN 5</h3>
-              <p>Khai trương</p>
-            </div>
-          </div>
-        </div>
-
-        <div style="height: 80px;"></div>
+        <?php include get_template_directory() . "/template-parts/franchise-process.php"; ?>
       </div>
 
       <div class="footer-actions">
