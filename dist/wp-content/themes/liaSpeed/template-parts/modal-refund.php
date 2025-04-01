@@ -1,11 +1,15 @@
   <div class="modal-content">
     <div class="modal-header">
-      <h2>Chính sách hoàn tiền</h2>
+      <h2><?php the_title();?></h2>
       <span class="close-modal">&times;</span>
     </div>
     <div class="modal-body">
       <div class="policy-details">
         <div class="policy-section">
+          <?php
+          $content = get_field('content',get_the_ID());
+          echo $content[0]['content'];
+          ?>
           <h3>Điều kiện hoàn tiền</h3>
           <p>LIA cam kết hoàn tiền trong các trường hợp:</p>
           <ul>

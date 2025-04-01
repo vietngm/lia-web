@@ -1593,16 +1593,6 @@ body {
   </div>
 </div>
 
-<!-- Modal for Warranty Policy Details -->
-<div id="warranty-modal" class="modal">
-  <?php include get_template_directory() . "/template-parts/modal-warranty.php"; ?>
-</div>
-
-<!-- Modal for Refund Policy Details -->
-<div id="refund-modal" class="modal">
-  <?php include get_template_directory() . "/template-parts/modal-refund.php"; ?>
-</div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Get all dropdowns

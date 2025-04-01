@@ -1,11 +1,15 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h2>Chính sách bảo hành</h2>
+    <h2><?php the_title();?></h2>
     <span class="close-modal">&times;</span>
   </div>
   <div class="modal-body">
     <div class="policy-details">
       <div class="policy-section">
+        <?php
+        $content = get_field('content',get_the_ID());
+        echo $content[0]['content'];
+        ?>
         <h3>Thời gian bảo hành</h3>
         <p>LIA cam kết bảo hành cho tất cả thiết bị và cơ sở vật chất trong thời gian:</p>
         <ul>
@@ -14,7 +18,6 @@
           <li><strong>24 tháng</strong> cho hệ thống điện, nước và kết cấu</li>
         </ul>
       </div>
-
       <div class="policy-section">
         <h3>Phạm vi bảo hành</h3>
         <p>Chính sách bảo hành của chúng tôi bao gồm:</p>
