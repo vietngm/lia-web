@@ -1169,7 +1169,6 @@ body {
   $investment_capital = $franchise_fields['investment_capital'];
   $payment_policy = $franchise_fields['payment_policy'];
   $bannerShow =  get_field('banner_show',$franchise_id);
-  
 ?>
 <?php
 
@@ -1253,47 +1252,7 @@ body {
         <div class="investment-options">
           <div class="investment-option">
             <div class="investment-label">Gói đầu tư</div>
-            <div class="investment-dropdown" id="investment-package">
-              <span class="selected-option">Đồng hành</span>
-
-              <div class="dropdown-options">
-                <?php 
-                                $unique_packages = array();
-                                if ($investment_data && is_array($investment_data)) {
-                                    foreach ($investment_data as $item) {
-                                        if (isset($item['package']) && !in_array($item['package'], $unique_packages)) {
-                                            $unique_packages[] = $item['package'];
-                                            $selected = ($item['package'] === 'Đồng hành') ? ' selected' : '';
-                                            echo '<div class="dropdown-option' . $selected . '" data-value="' . esc_attr($item['package']) . '" 
-                                                data-days="' . esc_attr($item['process_days']) . '"
-                                                data-revenue="' . esc_attr($item['expected_revenue']) . '"
-                                                data-profit="' . esc_attr($item['expected_profit']) . '"
-                                                data-roi="' . esc_attr($item['roi_period']) . '">' 
-                                                . esc_html($item['package']) . '</div>';
-                                        }
-                                    }
-                                }
-                                if (empty($unique_packages)) {
-                                    // Fallback options if no data is available
-                                    echo '<div class="dropdown-option selected" data-value="dong-hanh" 
-                                        data-days="30"
-                                        data-revenue="126"
-                                        data-profit="25.2"
-                                        data-roi="14">Đồng hành</div>';
-                                    echo '<div class="dropdown-option" data-value="co-ban"
-                                        data-days="25"
-                                        data-revenue="150"
-                                        data-profit="30"
-                                        data-roi="12">Cơ bản</div>';
-                                    echo '<div class="dropdown-option" data-value="nang-cao"
-                                        data-days="20"
-                                        data-revenue="180"
-                                        data-profit="36"
-                                        data-roi="10">Nâng cao</div>';
-                                }
-                                ?>
-              </div>
-            </div>
+            <?php include get_template_directory() . "/template-parts/investment-package.php"; ?>
           </div>
 
           <div class="investment-option">
@@ -1596,19 +1555,19 @@ document.addEventListener("DOMContentLoaded", function() {
     if (matchingData) {
       gridContainer.innerHTML = `
                 <div class="grid-item green">
-                    <h3>${matchingData.process_days} Ngày</h3>
+                    <h3>${matchingData.process_days}</h3>
                     <p>Quy trình nhượng quyền</p>
                 </div>
                 <div class="grid-item yellow">
-                    <h3>${matchingData.expected_revenue} Triệu/tháng</h3>
+                    <h3>${matchingData.expected_revenue}</h3>
                     <p>Doanh thu dự kiến</p>
                 </div>
                 <div class="grid-item blue">
-                    <h3>${matchingData.expected_profit} Triệu/tháng</h3>
+                    <h3>${matchingData.expected_profit}</h3>
                     <p>Lợi nhuận dự kiến</p>
                 </div>
                 <div class="grid-item red">
-                    <h3>${matchingData.roi_period} Tháng</h3>
+                    <h3>${matchingData.roi_period}</h3>
                     <p>Thời gian hoàn vốn</p>
                 </div>
             `;
