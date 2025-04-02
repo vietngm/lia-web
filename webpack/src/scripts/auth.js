@@ -57,7 +57,7 @@ jQuery(function ($) {
 		return false;
 	});
 
-	async function saveToken(token, refreshToken) {
+	async function saveToken(token, refreshToken, username, password) {
 		$.ajax({
 			url: AJAX_URL,
 			type: "POST",
@@ -95,6 +95,8 @@ jQuery(function ($) {
 			'<input type="button" name="service" class="button btn-service" value="Service Sync"/>';
 		html +=
 			'<input type="button" name="doctor" class="button btn-doctor" value="Practitioner Sync"/>';
+		html +=
+			'<input type="button" name="testConnect" class="button btn-test-connent" value="Test Connect"/>';
 		html += "</div></div>";
 		return html;
 	}

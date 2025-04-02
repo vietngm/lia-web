@@ -102,10 +102,17 @@
 			color: $color-green;
 		}
 		&-faile {
-			color: $color-red;
-			cursor: pointer;
-			&:hover {
-				opacity: 0.6;
+			display: grid;
+			align-items: center;
+			&.red {
+				color: $color-red;
+				cursor: pointer;
+				&:hover {
+					opacity: 0.6;
+				}
+			}
+			&.gray {
+				color: $color-gray;
 			}
 		}
 	}
