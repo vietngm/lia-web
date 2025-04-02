@@ -945,6 +945,14 @@ $(document).ready(function () {
 			triggerRender(prevFormState, nextFormState);
 		});
 
+		$inputNoteLiA.change(function () {
+			const nextFormState = Object.assign({}, formState);
+			nextFormState.noteForLiA = $inputNoteLiA.val();
+			const prevFormState = formState;
+			formState = nextFormState;
+			triggerRender(prevFormState, nextFormState);
+		});
+
 		// $otpModel.find(".close-modal").click(function () {
 		//   $otpModel.addClass("hidden").removeClass("flex");
 		// });

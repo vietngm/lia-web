@@ -1,5 +1,32 @@
 <?php
 function my_edit_booking_columns( $columns ){
+  ?>
+<div id="modal-success" class="modal modal-success">
+  <div class="modal-wrap">
+    <div class="modal-header">
+      <div class="modal-title">Thành công</div>
+      <div class="modal-nav">
+        <div class="modal-close">&#x2715;</div>
+      </div>
+    </div>
+    <div class="modal-inside">
+      <div class="modal-message">
+        <div class="modal-label">Dữ liệu đã được đồng bộ <span>&#x2713;</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal-process" class="modal modal-process">
+  <div class="modal-wrap">
+    <div class="modal-inside">
+      <div class="modal-message">
+        <div class="modal-label">Đang đồng bộ...</div>
+        <img src="<?php echo plugins_url('../images/ajaxloader.gif', __FILE__) ?>" />
+      </div>
+    </div>
+  </div>
+</div>
+<?php
 	if( is_array( $columns ) && ! isset( $columns['booking_status'] ) )
     $columns['booking_status'] = __( 'Trạng thái' );
     return $columns;
@@ -79,7 +106,7 @@ function ajax_sync_booking(){
     )
   );
   
-  // update_post_meta($bookingId, 'booking_status', 1);
+  update_post_meta($bookingId, 'booking_status', 1);
   die();
 }
 

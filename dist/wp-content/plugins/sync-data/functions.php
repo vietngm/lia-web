@@ -12,9 +12,7 @@ function ajax_auth(){
 	echo json_encode(
 		array(
 			'success' => true,	
-			'message' => "Sign in successfully.",
-			'username' => $username,
-			'password' => $password,
+			'message' => "Sign in successfully."
 		)
 	);
 	die();

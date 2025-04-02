@@ -2,6 +2,10 @@ jQuery(function ($) {
 	root = $(this);
 	$(document).on("click", ".js-dashicons-failure", function () {
 		const bookingId = $(this).parent("li").attr("data-rel");
+		$.fancybox("#modal-process", {
+			modal: true,
+			showCloseButton: false,
+		});
 		getData(bookingId);
 	});
 
@@ -58,10 +62,10 @@ jQuery(function ($) {
 
 			const result = await response.json();
 			if (result && result.data) {
-				// $.fancybox.open("#modal-success", {
-				// 	modal: true,
-				// 	showCloseButton: false,
-				// });
+				$.fancybox.open("#modal-success", {
+					modal: true,
+					showCloseButton: false,
+				});
 				console.log("LiA APP:", data);
 			} else {
 				console.warn("Không có dữ liệu hợp lệ:", result);

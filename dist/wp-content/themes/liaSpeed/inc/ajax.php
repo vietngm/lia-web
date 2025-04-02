@@ -57,6 +57,7 @@ function verify_booking_form() {
 	$note = isset($_POST["note"]) ? $_POST["note"] : "";
 	$noteTopping = isset($_POST["noteTopping"]) ? $_POST["noteTopping"] : "";
 	$selectedGift = isset($_POST["selectedGift"]) ? $_POST["selectedGift"] : "";
+	$noteForLiA = isset($_POST["noteForLiA"]) ? $_POST["noteForLiA"] : "";
 
 	// Check format date time
 	if (DateTime::createFromFormat('Y-m-d H:i', "$date $time") === false) {
