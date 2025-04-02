@@ -78,9 +78,6 @@ jQuery(function ($) {
 			}
 
 			const result = await response.json();
-
-			// $.fancybox({ closeExisting: true });
-
 			if (result && result.data) {
 				const data = await processData(result.data);
 				saveDoctorData(data, envStatus);
@@ -120,9 +117,6 @@ jQuery(function ($) {
 			}
 
 			const result = await response.json();
-
-			// $.fancybox({ closeExisting: true });
-
 			if (result && result.data) {
 				const data = await processData(result.data);
 				saveServiceData(data, envStatus);
