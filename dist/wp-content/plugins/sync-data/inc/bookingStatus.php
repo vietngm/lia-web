@@ -14,7 +14,7 @@ function my_manage_booking_columns( $column_name, $post_id){
     $htmlSuccess = '<span class="dashicons dashicons-yes-alt dashicons-success"></span>';
     ?>
 <ul class="sync-status">
-  <li data-rel="<?php echo $post_id ?>" class="sync-status-item status-item-<?=$post_id?>">
+  <li data-rel="<?php echo $post_id ?>" class="sync-status-item status-item-<?=$post_id?>" title="Đồng bộ">
     <?php  echo $status ? $htmlSuccess:$htmlFaile; ?>
   </li>
 </ul>
