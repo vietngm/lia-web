@@ -1,9 +1,9 @@
 <?php
-$aaaa= autoRefresh();
+$token= autoRefresh();
 $env_post_id= "";
-$newToken = "";
+// $newToken = "";
 // $refreshToken = get_option('refreshToken');
-$curl = curl_init();
+// $curl = curl_init();
 $query = new WP_Query(
 	array('post_type'=> 'page','title'=> 'Environments')
 );
@@ -38,12 +38,12 @@ $api_url = get_field('booking_environment',$env_post_id);
 // 	}
 // }
 
-$token = get_option('token');
+// $token = get_option('token');
 $service_id = get_field('id_sync',$postId);
 $employee_id = get_field('id_sync',$doctorId);
 $topping_id = get_field('id_sync',$toppingId);
 $sync = get_field('booking_sync',$env_post_id);
-// update_post_meta($data_id, 'booking_status', 1);
+update_post_meta($data_id, 'booking_status', 1);
 
 $data_booking = array(
 	"sync" => $sync,
@@ -59,7 +59,6 @@ $data_booking = array(
 	'status'=> 'WAIT_CONFIRM',
 	'serviceId'=> $service_id,
 	'employeeId'=> $employee_id,
-	'toppingId'=>'',
-	'aaaa'=>$aaaa
+	'toppingId'=>''
 );
 ?>

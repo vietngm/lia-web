@@ -304,6 +304,7 @@ $(document).ready(function () {
 		const $bookingTimeWrapper = $root.find(".booking-time-picker");
 		const $inputNote = $root.find(`[name="note"]`);
 		const $inputNoteTopping = $root.find(`[name="noteTopping"]`);
+		const $inputNoteLiA = $(document).find(`[name="noteForLiA"]`);
 
 		const $inputTimesMorning = $root.find(".input-times-morning");
 		const $inputTimesAfternoon = $root.find(".input-times-afternoon");
@@ -333,6 +334,7 @@ $(document).ready(function () {
 			date: $bookingDateItems.filter(".active").data("date"),
 			time: null,
 			note: null,
+			noteForLiA: $inputNoteLiA.val() ?? null,
 			postId: parseInt($root.find("[name=postId]").val()),
 			noteTopping: null,
 			selectedGift: localStorage.getItem("selectedGift") || "",
@@ -543,11 +545,16 @@ $(document).ready(function () {
 					loadingToastify.hideToast();
 					submitting = false;
 					if (result.success) {
-						// reset();
 						console.log(result);
-
+						if (
+							result.data &&
+							result.data.token != "" &&
+							result.data.sync == 1
+						) {
+							createBooking(result.data);
+						}
 						console.log("Ket qua tra ve ne");
-
+						// reset();
 						$modelSuccess.removeClass("hidden").addClass("flex");
 						// setTimeout(function () {
 						//   $modelSuccess.addClass("hidden").removeClass("flex");
