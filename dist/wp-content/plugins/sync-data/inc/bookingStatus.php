@@ -1,32 +1,5 @@
 <?php
 function my_edit_booking_columns( $columns ){
-  ?>
-<div id="modal-success" class="modal modal-success">
-  <div class="modal-wrap">
-    <div class="modal-header">
-      <div class="modal-title">Thành công</div>
-      <div class="modal-nav">
-        <div class="modal-close">&#x2715;</div>
-      </div>
-    </div>
-    <div class="modal-inside">
-      <div class="modal-message">
-        <div class="modal-label">Dữ liệu đã được đồng bộ <span>&#x2713;</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="modal-process" class="modal modal-process">
-  <div class="modal-wrap">
-    <div class="modal-inside">
-      <div class="modal-message">
-        <div class="modal-label">Đang đồng bộ...</div>
-        <img src="<?php echo plugins_url('../images/ajaxloader.gif', __FILE__) ?>" />
-      </div>
-    </div>
-  </div>
-</div>
-<?php
 	if( is_array( $columns ) && ! isset( $columns['booking_status'] ) )
     $columns['booking_status'] = __( 'Trạng thái' );
     return $columns;
@@ -35,6 +8,7 @@ function my_manage_booking_columns( $column_name, $post_id){
   $status = get_post_meta($post_id,'booking_status',true);
   $serviceId  = get_field('service',$post_id);
   $idSync = get_field('id_sync',$serviceId);
+
 	if ( $column_name == 'booking_status'){
     $htmlFaile = $idSync!="" ? '<span class="dashicons dashicons-update dashicons-faile js-dashicons-failure red"></span>':'<span class="dashicons dashicons-update dashicons-faile gray"></span>';
     $htmlSuccess = '<span class="dashicons dashicons-yes-alt dashicons-success"></span>';
@@ -116,4 +90,33 @@ add_action( 'wp_ajax_nopriv_sync_booking', 'ajax_sync_booking');
 // wp_localize_script('my_booking_script', 'bookingData', array(
 //   'serviceBooking' => $serviceBooking
 // ));
+
+function modalTemplate(){ ?>
+<div id="modal-success" class="modal modal-success">
+  <div class="modal-wrap">
+    <div class="modal-header">
+      <div class="modal-title">Thành công</div>
+      <div class="modal-nav">
+        <div class="modal-close">&#x2715;</div>
+      </div>
+    </div>
+    <div class="modal-inside">
+      <div class="modal-message">
+        <div class="modal-label">Dữ liệu đã được đồng bộ <span>&#x2713;</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal-process" class="modal modal-process">
+  <div class="modal-wrap">
+    <div class="modal-inside">
+      <div class="modal-message">
+        <div class="modal-label">Đang đồng bộ...</div>
+        <img src="<?php echo plugins_url('../images/ajaxloader.gif', __FILE__) ?>" />
+      </div>
+    </div>
+  </div>
+</div>
+<?php }
+add_action('admin_footer','modalTemplate');
 ?>
