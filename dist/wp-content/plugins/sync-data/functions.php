@@ -66,7 +66,7 @@ include('inc/doctor.php');
 add_action('admin_init', 'hide_editor');
 
 function hide_editor() {    
-$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
+	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
 	if (!isset($post_id))
 		return;
 	$hide_page = get_the_title($post_id);
