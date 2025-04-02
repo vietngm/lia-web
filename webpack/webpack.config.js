@@ -14,10 +14,10 @@ module.exports = {
 	devtool: false,
 	mode: "production",
 	output: {
-		// path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
-		// filename: "js/common.js",
-		path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
-		filename: "js/sync-data.js",
+		path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
+		filename: "js/common.js",
+		// path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
+		// filename: "js/sync-data.js",
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],

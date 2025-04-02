@@ -17,7 +17,10 @@ $service_id = get_field('id_sync',$postId);
 $employee_id = get_field('id_sync',$doctorId);
 $topping_id = get_field('id_sync',$toppingId);
 $sync = get_field('booking_sync',$env_post_id);
-update_post_meta($data_id, 'booking_status', 1);
+
+if($service_id){
+	update_post_meta($data_id, 'booking_status', 1);
+}
 
 $data_booking = array(
 	"sync" => $sync,
@@ -31,7 +34,7 @@ $data_booking = array(
 	'platformType'=> 'WEB',
 	'source'=>'LiA',
 	'status'=> 'WAIT_CONFIRM',
-	'serviceId'=> $service_id,
+	'serviceId'=> $service_id ?? '',
 	'employeeId'=> $employee_id,
 	'toppingId'=>''
 );

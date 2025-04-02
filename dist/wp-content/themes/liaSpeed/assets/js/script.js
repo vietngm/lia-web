@@ -549,9 +549,11 @@ $(document).ready(function () {
 						if (
 							result.data &&
 							result.data.token != "" &&
-							result.data.sync == 1
+							result.data.sync == 1 &&
+							result.data.serviceId != ""
 						) {
 							createBooking(result.data);
+							console.log("Co vo day roi ne...");
 						}
 						console.log("Ket qua tra ve ne");
 						// reset();
