@@ -6,19 +6,41 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	// mode: process.env.NODE_ENV === "production" ? "production" : "development",
-	entry: [
-		// path.resolve("./src/scripts/common.js"),
-		path.resolve("./src/scripts/sync-data.js"),
-		path.resolve("./src/scss/common.scss"),
-	],
+	entry:
+		process.env.NODE_ENV === "plugin"
+			? [
+					path.resolve("./src/scripts/sync-data.js"),
+					path.resolve("./src/scss/common.scss"),
+			  ]
+			: [
+					path.resolve("./src/scripts/common.js"),
+					path.resolve("./src/scss/common.scss"),
+			  ],
 	devtool: false,
 	mode: "production",
-	output: {
-		path: path.resolve(__dirname, "../dist/wp-content/themes/liaSpeed/assets/"),
-		filename: "js/common.js",
-		// path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
-		// filename: "js/sync-data.js",
-	},
+	output:
+		process.env.NODE_ENV === "plugin"
+			? {
+					// path: path.resolve(
+					// 	__dirname,
+					// 	"../dist/wp-content/themes/liaSpeed/assets/"
+					// ),
+					// filename: "js/common.js",
+					path: path.resolve(
+						__dirname,
+						"../dist/wp-content/plugins/sync-data/"
+					),
+					filename: "js/sync-data.js",
+			  }
+			: {
+					path: path.resolve(
+						__dirname,
+						"../dist/wp-content/themes/liaSpeed/assets/"
+					),
+					filename: "js/common.js",
+					// path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
+					// filename: "js/sync-data.js",
+			  },
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],
 		alias: {

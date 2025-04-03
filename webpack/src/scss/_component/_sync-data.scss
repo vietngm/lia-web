@@ -15,8 +15,10 @@
 .modal.modal-wait {
 	min-width: 220px;
 }
-.modal-header {
-	position: relative;
+.modal {
+	&-header {
+		position: relative;
+	}
 }
 .modal-nav {
 	position: absolute;
