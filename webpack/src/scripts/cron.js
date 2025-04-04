@@ -1,5 +1,13 @@
-const schedule = require("node-schedule");
+import { scheduleJob } from "node-schedule";
 
-const job = schedule.scheduleJob("*/2 * * * *", function () {
-	console.log("The answer to life, the universe, and everything!");
+jQuery(function ($) {
+	const job = scheduleJob("*/2 * * * *", function () {
+		console.log("The answer to life, the universe, and everything!");
+		$(document)
+			.find(`.sync-status-item`)
+			.empty()
+			.append(
+				'<span class="dashicons dashicons-yes-alt dashicons-success"></span>'
+			);
+	});
 });
