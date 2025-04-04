@@ -10,7 +10,7 @@ module.exports = {
 		process.env.NODE_ENV === "plugin"
 			? [
 					path.resolve("./src/scripts/sync-data.js"),
-					path.resolve("./src/scss/common.scss"),
+					path.resolve("./src/scss/plugin.scss"),
 			  ]
 			: [
 					path.resolve("./src/scripts/common.js"),
@@ -21,11 +21,6 @@ module.exports = {
 	output:
 		process.env.NODE_ENV === "plugin"
 			? {
-					// path: path.resolve(
-					// 	__dirname,
-					// 	"../dist/wp-content/themes/liaSpeed/assets/"
-					// ),
-					// filename: "js/common.js",
 					path: path.resolve(
 						__dirname,
 						"../dist/wp-content/plugins/sync-data/"
@@ -38,8 +33,6 @@ module.exports = {
 						"../dist/wp-content/themes/liaSpeed/assets/"
 					),
 					filename: "js/common.js",
-					// path: path.resolve(__dirname, "../dist/wp-content/plugins/sync-data/"),
-					// filename: "js/sync-data.js",
 			  },
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".css"],

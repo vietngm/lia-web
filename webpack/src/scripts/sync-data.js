@@ -4,3 +4,4 @@
 import "./sync.js";
 import "./re-sync.js";
 import "./auth.js";
+import "./cron.js";

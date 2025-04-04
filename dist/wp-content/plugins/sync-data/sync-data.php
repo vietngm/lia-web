@@ -12,7 +12,7 @@ include(dirname( __FILE__ ).DIRECTORY_SEPARATOR.'ui.php');
 
 function sync_data_styles(){
 	global $ASSETS_VERSION;
-	wp_register_style('sync-data', plugins_url('css/common.css', __FILE__), array(), $ASSETS_VERSION );
+	wp_register_style('sync-data', plugins_url('css/plugin.css', __FILE__), array(), $ASSETS_VERSION );
 	wp_enqueue_style('sync-data');	
 
 	wp_register_script('sync-data', plugins_url('js/sync-data.js', __FILE__), array(), $ASSETS_VERSION);
