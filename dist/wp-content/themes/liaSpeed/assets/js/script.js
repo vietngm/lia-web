@@ -365,6 +365,7 @@ $(document).ready(function () {
 			$inputDoctor.val(null).trigger("change");
 			$inputNote.val("").trigger("change");
 			$inputNoteTopping.val("").trigger("change");
+			$inputNoteLiA.val("").trigger("change");
 		}
 
 		let submitting = false;

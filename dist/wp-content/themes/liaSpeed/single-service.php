@@ -770,47 +770,6 @@ window.addEventListener('scroll', function() {
         <?php get_template_part( 'template-parts/content', 'review' ); ?>
       </div>
 
-      <!-- <div class="reviews-container">
-        <div class="header-review">
-          <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/review.svg") ?>" alt="" />
-          <h3 style="    color: #1a5477;font-weight: 500;">4.9 · 243 đánh giá</h3>
-        </div>
-        <div class="reviews flex overflow-x-auto no-scrollbar gap-3">
-          <div class="review-card">
-            <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
-            <div class="review-meta">
-              <div class="flex items-center">
-                <?php for ($i = 0; $i < 5; $i++): ?>
-                <img class="w-2 h-2" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>"
-                  alt="star" />
-                <?php endfor; ?>
-              </div>
-              <span class="date">25/02/2025</span>
-              <span>•</span>
-              <span class="author">Nguyễn Văn A</span>
-            </div>
-            <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
-              nisl...</p>
-          </div>
-
-          <div class="review-card">
-            <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
-            <div class="review-meta">
-              <div class="flex items-center">
-                <?php for ($i = 0; $i < 5; $i++): ?>
-                <img class="w-2 h-2" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>"
-                  alt="star" />
-                <?php endfor; ?>
-              </div>
-              <span class="date">25/02/2025</span>
-              <span>•</span>
-              <span class="author">Nguyễn Văn A</span>
-            </div>
-            <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
-              nisl...</p>
-          </div>
-        </div>
-      </div> -->
     </div>
   </section>
   <secrion>
