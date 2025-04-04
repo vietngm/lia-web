@@ -8,9 +8,11 @@ function my_manage_booking_columns( $column_name, $post_id){
   $status = get_post_meta($post_id,'booking_status',true);
   $serviceId  = get_field('service',$post_id);
   $idSync = get_field('id_sync',$serviceId);
+  $env_post_id= check_pages_existed();
+	$sync = get_field('booking_sync',$env_post_id);
 
 	if ( $column_name == 'booking_status'){
-    $htmlFaile = $idSync!="" ? '<span class="dashicons dashicons-update dashicons-faile js-dashicons-failure red"></span>':'<span class="dashicons dashicons-update dashicons-faile gray"></span>';
+    $htmlFaile = ($idSync!="" && $sync==1) ? '<span class="dashicons dashicons-update dashicons-faile js-dashicons-failure red"></span>':'<span class="dashicons dashicons-update dashicons-faile gray"></span>';
     $htmlSuccess = '<span class="dashicons dashicons-yes-alt dashicons-success"></span>';
     ?>
 <ul class="sync-status">

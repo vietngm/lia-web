@@ -44,17 +44,22 @@ function autoRefresh(){
 			);
 
 			if($data['message']=='Unauthorized'){
-				$response = curl_exec($curl);
-				$data = json_decode($response, true);
-				if($data['data']){
-					$newToken = $data['data']['token'];
-					$newRefreshToken=$data['data']['refreshToken'];
-					update_option('token',$newToken);
-					update_option('refreshToken',$newRefreshToken);
+				try {
+					$response = curl_exec($curl);
+					$data = json_decode($response, true);
+					if($data['data']){
+						$newToken = $data['data']['token'];
+						$newRefreshToken=$data['data']['refreshToken'];
+						update_option('token',$newToken);
+						update_option('refreshToken',$newRefreshToken);
+					}
+				}
+				catch(Exception $e) {
+					return '';
 				}
 			}
 		}
-	}	
+	}
 
 	return get_option('token');
 }

@@ -545,7 +545,6 @@ $(document).ready(function () {
 					loadingToastify.hideToast();
 					submitting = false;
 					if (result.success) {
-						console.log(result);
 						if (
 							result.data &&
 							result.data.token != "" &&
@@ -553,15 +552,13 @@ $(document).ready(function () {
 							result.data.serviceId != ""
 						) {
 							createBooking(result.data);
-							console.log("Co vo day roi ne...");
 						}
-						console.log("Ket qua tra ve ne");
-						// reset();
+						reset();
 						$modelSuccess.removeClass("hidden").addClass("flex");
-						// setTimeout(function () {
-						//   $modelSuccess.addClass("hidden").removeClass("flex");
-						//   window.location.href = "/";
-						// }, 3000);
+						setTimeout(function () {
+							$modelSuccess.addClass("hidden").removeClass("flex");
+							window.location.href = "/";
+						}, 3000);
 						// Toastify({
 						//   text: result.message || "Đăng ký thành công",
 						//   duration: 3000,
