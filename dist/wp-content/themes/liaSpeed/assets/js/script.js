@@ -308,8 +308,8 @@ $(document).ready(function () {
 
 		const $inputTimesMorning = $root.find(".input-times-morning");
 		const $inputTimesAfternoon = $root.find(".input-times-afternoon");
-		// const $otp = $root.find(".otp_target");
-		// const $otpModel = $root.find(".otp-modal");
+		const $otp = $root.find(".otp_target");
+		const $otpModel = $root.find(".otp-modal");
 		const $modelSuccess = $root.find(".modal-success");
 
 		const $errorFullname = $root.find(".error-fullname");
@@ -434,11 +434,11 @@ $(document).ready(function () {
 			}
 
 			//thêm mới
-			submit();
-			// sendOtp(function () {
-			//   $otpModel.removeClass("hidden").addClass("flex");
-			//   $otp.otpdesigner("clear");
-			// });
+			// submit();
+			sendOtp(function () {
+				$otpModel.removeClass("hidden").addClass("flex");
+				$otp.otpdesigner("clear");
+			});
 		});
 
 		function sendOtp(success, error) {
@@ -518,7 +518,10 @@ $(document).ready(function () {
 					_wpnonce: $root.find('[name="_wpnonce"]').val(),
 					_wp_http_referer: $root.find('[name="_wp_http_referer"]').val(),
 				},
-				formState
+				formState,
+				{
+					otp: $otp.otpdesigner("code").code,
+				}
 			);
 
 			submitting = true;
@@ -953,16 +956,16 @@ $(document).ready(function () {
 			triggerRender(prevFormState, nextFormState);
 		});
 
-		// $otpModel.find(".close-modal").click(function () {
-		//   $otpModel.addClass("hidden").removeClass("flex");
-		// });
-		// $otpModel.find(".submit-otp").click(function () {
-		//   if ($otp.otpdesigner("code").done) {
-		//     submit(function () {
-		//       $otpModel.addClass("hidden").removeClass("flex");
-		//     });
-		//   }
-		// });
+		$otpModel.find(".close-modal").click(function () {
+			$otpModel.addClass("hidden").removeClass("flex");
+		});
+		$otpModel.find(".submit-otp").click(function () {
+			if ($otp.otpdesigner("code").done) {
+				submit(function () {
+					$otpModel.addClass("hidden").removeClass("flex");
+				});
+			}
+		});
 
 		$otp.otpdesigner({
 			typingDone: function (code) {

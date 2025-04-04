@@ -568,23 +568,9 @@ function updateSelected() {
       <div class="modal-success fixed hidden top-0 left-0 right-0 bottom-0 z-[100] p-4" style="z-index: 1200;">
         <?php get_template_part( 'template-parts/modal', 'popup' ); ?>
       </div>
-      <div class="h-[80px] flex items-center  fixed bottom-0 left-0 right-0 bg-white bottom-action "
-        style=" z-index:10">
-        <div class="container">
-          <div style="display:flex;align-items:center;gap:12px;justify-content:end">
-            <button class="submit btn flex justify-end items-center " style=" background: #009688;
-                                        padding: 8px 16px;
-                                        border-radius: 24px;
-                                        color: #FFF;
-                                        font-weight: 700;">
-              Xác nhận đặt hẹn : <span id="totalPriceBooking" class=" font-bold"
-                style="padding-left:2px;font-size:14px">
-                <?php echo number_format($totalPrice, 0, ',', '.') ?> đ
-              </span>
-            </button>
-          </div>
-        </div>
 
+      <div class="h-[80px] flex items-center  fixed bottom-0 left-0 right-0 bg-white bottom-action" style=" z-index:10">
+        <?php get_template_part( 'template-parts/modal', 'booking-confirm' ); ?>
       </div>
     </section>
   </div>

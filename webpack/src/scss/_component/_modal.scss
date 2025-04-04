@@ -63,6 +63,11 @@
 			}
 		}
 	}
+	.submit-otp {
+		&.btn {
+			background-color: $color-main;
+		}
+	}
 }
 
 .title_otp_xt {
