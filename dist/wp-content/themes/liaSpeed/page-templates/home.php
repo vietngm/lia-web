@@ -10,7 +10,7 @@
 	$fields = get_fields();
 ?>
 <style>
-.section-home-contact {
+/* .section-home-contact {
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
@@ -66,12 +66,12 @@ p {
 @keyframes slideOverlay {
   0% {
     left: -100%;
-    /* Bắt đầu từ ngoài bên trái */
+  
   }
 
   100% {
     left: 100%;
-    /* Trượt hết sang bên phải */
+  
   }
 }
 
@@ -135,7 +135,6 @@ p {
   font-size: 12px;
 }
 
-/* Franchise Navigation */
 .franchise-nav {
   display: flex;
   justify-content: space-between;
@@ -176,7 +175,6 @@ p {
   border-radius: 3px 3px 0 0;
 }
 
-/* Franchise Slider */
 .franchise-slider {
   background: #fff;
   position: relative;
@@ -307,7 +305,6 @@ p {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Franchise Tab Content */
 .franchise-tab-content {
   display: none;
 }
@@ -316,7 +313,6 @@ p {
   display: block;
 }
 
-/* Franchise Slides */
 .franchise-slides {
   position: relative;
 }
@@ -329,7 +325,6 @@ p {
   display: block;
 }
 
-/* Modal Styles */
 .franchise-modal {
   position: fixed;
   top: 0;
@@ -451,15 +446,12 @@ p {
   right: 16px;
 }
 
-/* Khi hover hoặc focus vào nút thì rõ lên */
 .custom-prev:hover,
 .custom-next:hover,
 .custom-prev:focus,
 .custom-next:focus {
   opacity: 1;
-  /* Hiển thị rõ */
-  background-color: #00000021;
-  /* Màu nền đậm hơn */
+background-color: #00000021;
 }
 
 .slick-dots {
@@ -480,9 +472,10 @@ p {
   border-radius: 8px;
   padding: 12px;
 }
+*/
 </style>
 
-<main>
+<main>111
   <section class="section-home-banner" style="position:relative">
     <div class="home-banner mount-slider ">
       <?php foreach ($fields["banner"]["images"] as $image) : ?>
@@ -522,6 +515,14 @@ p {
       <?php get_template_part( 'template-parts/service', 'list', array("max_items" => -1) ); ?>
     </div>
   </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Sản phẩm</h2>
+      <?php get_template_part( 'template-parts/product', 'list' ); ?>
+    </div>
+  </section>
+
 
 
   <!-- Add the detailed franchise section that matches the image -->

@@ -4,6 +4,7 @@ require "inc/BFI_Thumb.php";
 require "inc/sms/send_sms.php";
 require "inc/post-type.php";
 require "inc/ajax.php";
+require 'login/login.php';
 
 setlocale(LC_ALL, 'vi_VN');
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -117,3 +118,14 @@ $service_summary = file_get_contents(get_template_directory() . '/template-parts
 wp_localize_script('my_script', 'serviceData', array(
   'serviceSummary' => $service_summary // Dữ liệu sẽ được truyền sang JavaScript
 ));
+
+/*-----------------------------------------------------------------------*/
+
+function getExcerptLimit($count,$excerpt){  
+  $excerpt = str_replace(']]>', ']]&gt;', $excerpt);
+  $excerpt = strip_tags($excerpt);
+  $excerpt = substr($excerpt, 0, $count);
+  $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+  $excerpt = $excerpt.'...';
+  return $excerpt;
+}

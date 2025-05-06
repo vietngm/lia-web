@@ -422,3 +422,70 @@ function register_price_contact_data_post_type(){
 add_action('init', 'register_price_contact_data_post_type');
 /********************************************* Consultation **********************************************/
 include get_template_directory() . "/inc/consultation.php";
+
+
+
+
+
+
+function register_product_post_type(){
+	$label = array(
+		'name' => 'Sản phẩm',
+		'singular_name' => 'Sản phẩm',
+		'add_new' => 'Thêm mới'
+	);
+	$args = array(
+		'labels' => $label,
+		'description' => 'Sản phẩm',
+		'supports' => array(
+			'title',
+			'thumbnail',
+			'revisions',
+		),
+		'hierarchical' => true,
+		'taxonomies' => array('product-category'),	
+		'show_ui' => true,
+		'public' => true,
+		'publicly_queryable' => true,
+		'exclude_from_search' => false,
+		'show_in_admin_bar' => true,
+		'show_in_nav_menus' => true,
+		'query_var' => true,
+		'capability_type' => 'post',
+		'show_in_menu' => true,
+		'menu_position' => 20,
+		'menu_icon' => 'dashicons-admin-site',
+		'can_export' => true,
+		'has_archive' => false,
+		'rewrite' => array('slug' => 'san-pham', 'with_front' => false)
+	);
+	register_post_type('san-pham', $args);
+}
+add_action('init', 'register_product_post_type');
+
+function register_product_category_taxonomy() {
+
+	$labels = array(
+		'name' => 'Danh mục sản phẩm',
+		'singular' => 'Danh mục sản phẩm',
+		'menu_name' => 'Danh mục sản phẩm',
+		'add_new_item' => 'Thêm mới danh mục sản phẩm',
+		'most_used' => 'Gần đây',
+	);
+
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'public'			=> false,
+		'rewrite'			=> true,
+		'query_var'         => true,
+		'publicly_queryable' => true,
+		'rewrite'           => array( 'slug' => '', 'with_front' => false ),
+	);
+
+	register_taxonomy('product-category', 'post-type', $args);
+}
+
+add_action( 'init', 'register_product_category_taxonomy', 0 );

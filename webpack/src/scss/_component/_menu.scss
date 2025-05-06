@@ -1,0 +1,99 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.menu {
+	background: #fff;
+}
+.submenu {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out;
+}
+
+.menu-item.active .submenu {
+	max-height: 500px; /* Đặt giá trị lớn hơn nội dung submenu */
+}
+
+.material-icons {
+	transition: transform 0.3s ease-in-out;
+}
+
+.menu-item.active .material-icons {
+	transform: rotate(180deg);
+}
+
+h3 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.menu-list {
+	list-style: none;
+}
+
+.menu-list li {
+	border-bottom: 1px solid #eee;
+}
+
+.menu-list li:last-child {
+	border-bottom: none; /* Xóa gạch dưới của phần tử cuối */
+}
+
+.menu-list li a {
+	text-decoration: none;
+	display: flex;
+	justify-content: space-between;
+	padding: 4px 12px;
+	color: #333;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.menu-header {
+	text-decoration: none;
+	display: flex;
+	justify-content: space-between;
+	padding: 6px 12px;
+	color: #333;
+	font-size: 14px;
+	cursor: pointer;
+}
+.menu-header i {
+	transition: transform 0.3s ease;
+}
+
+.submenu li {
+	padding: 4px 10px;
+	font-size: 13px;
+}
+
+.contact {
+	margin-top: 20px;
+	font-size: 13px;
+}
+
+.contact h4 {
+	font-size: 14px;
+	margin-top: 15px;
+}
+.section-menu {
+	padding: 12px;
+	width: 100%;
+}
+
+.back-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 24px;
+	color: #333;
+}
+
+.back-button:hover {
+	color: #007bff;
+}
