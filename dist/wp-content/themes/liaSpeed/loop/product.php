@@ -28,20 +28,18 @@
     <?php the_title(); ?>
   </div>
   <div class="product-discount">
-    <?php
-      echo '-'.$discount.'%';
-    ?>
+    <?php echo '-'.$discount.'%';?>
   </div>
   <div classs="product-price">
     <span><?= number_format($price, 0, ",", ".") ?></span>
     <small>đ</small>
   </div>
-  <div classs="product-km">
-    <div>
+  <div class="product-km">
+    <div class="price-discount">
       <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
       <small>đ</small>
     </div>
-    <div>
+    <div class="price-through">
       <span><?= number_format($price, 0, ",", ".") ?></span>
       <small>đ</small>
     </div>

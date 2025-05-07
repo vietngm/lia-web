@@ -47,4 +47,16 @@
 		color: $color-blue;
 		align-items: center;
 	}
+	&-km {
+		display: flex;
+		grid-gap: 16px;
+	}
+}
+.price {
+	&-through {
+		text-decoration: line-through;
+	}
+	&-discount {
+		color: $color-blue;
+	}
 }
