@@ -10,4 +10,10 @@ function add_site_favicon() {
 
 add_action('login_head', 'add_site_favicon');
 add_action('admin_head', 'add_site_favicon');
+
+function my_login_logo_url() {
+	return get_bloginfo( 'url' );
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
 ?>

@@ -422,12 +422,7 @@ function register_price_contact_data_post_type(){
 add_action('init', 'register_price_contact_data_post_type');
 /********************************************* Consultation **********************************************/
 include get_template_directory() . "/inc/consultation.php";
-
-
-
-
-
-
+/********************************************* Production **********************************************/
 function register_product_post_type(){
 	$label = array(
 		'name' => 'Sản phẩm',

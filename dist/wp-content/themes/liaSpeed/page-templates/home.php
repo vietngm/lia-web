@@ -475,7 +475,7 @@ background-color: #00000021;
 */
 </style>
 
-<main>111
+<main>
   <section class="section-home-banner" style="position:relative">
     <div class="home-banner mount-slider ">
       <?php foreach ($fields["banner"]["images"] as $image) : ?>

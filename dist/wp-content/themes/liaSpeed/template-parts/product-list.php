@@ -9,9 +9,13 @@
 		);
 		$the_query = new WP_Query($arg);
 		while ($the_query->have_posts()) : $the_query->the_post();
-	?>
+		for($i=0; $i<16; $i++){ 
+			?>
    <li class="product-item">
      <?php include get_template_directory() . '/loop/product.php'; ?>
    </li>
+   <?php
+		}
+	?>
    <?php endwhile;wp_reset_query();?>
  </ul>

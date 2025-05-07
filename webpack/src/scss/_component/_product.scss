@@ -13,8 +13,38 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-gap: 16px;
 	}
 	&-item {
 		display: grid;
+	}
+	&-title {
+		font-size: 0.8rem;
+	}
+	&-link {
+		position: relative;
+		transition: all 0.4s ease;
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+	&-thumb {
+		background-color: $color-background;
+		display: grid;
+	}
+	&-review {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+	}
+	&-discount {
+		background-color: $color-light-blue;
+		padding: 0 4px;
+		width: fit-content;
+		font-size: 0.8rem;
+		color: $color-blue;
+		align-items: center;
 	}
 }
