@@ -7,12 +7,20 @@
   //   ? round((($price - $discountPrice) / $price) * 100) 
   //   : 0;
 
-  $unitPrice = get_field('unit_price', $post->ID);
+  // $unitPrice = get_field('unit_price', $post->ID);
+  // $ratingCount = get_field('sl_dg', $post->ID);
+  // $firstPrice = $unitPrice ? $unitPrice[0] : [];
+  // $price = $firstPrice['gia_sp'] ?? 0;
+  // $discount = $firstPrice['gia_km'] ?? 0;
+  // $discountPercentage = $price-($price * ($discount / 100));
+
+
+   $unitPrice = get_field('unit_price', $post->ID);
   $ratingCount = get_field('sl_dg', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
   $price = $firstPrice['gia_sp'] ?? 0;
   $discount = $firstPrice['gia_km'] ?? 0;
-  $discountPercentage = $price-($price * ($discount / 100));
+  $discountPrice = $price-($price * ($discount / 100));
 
 
   $thumb = get_field('anh_dai_dien', $post->ID);
@@ -525,28 +533,35 @@ window.addEventListener('scroll', function() {
           <?php endforeach; ?>
         </div>
         <div class="lg:col-span-1 col-span-2 flex flex-col">
-          <h1 class="text-18 font-semibold"><?= get_the_title(); ?></h1>
-          <div class="mt-2">
-            <p class="text-14"><?= $fields["note"] ?></p>
+          <div class="product-detail-title">
+            <h1 class="text-16 font-semibold"><?= get_the_title(); ?></h1>
+            <div class="product-review">
+              <span class="scale">8.0</span>
+              <span class="total">(<?php echo $ratingCount;?>)</span>
+            </div>
           </div>
+
           <div class="flex gap-2 items-center mt-2 " style="justify-content: space-between;">
-            <div class="text-16 text-red-500 flex items-center gap-2 justify-between w-full">
-              <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
-              <div class="flex items-center gap-2 font-semibold">
-                <span class="text-red-500 ml-2" style="font-weight:700">
-                  <?= number_format($discountPrice, 0, ",", ".") ?> <small>đ</small>
-                </span>
-                <span class="text-gray-400 line-through opacity-70" style="color:#ccc;font-size:13px">
-                  <?= number_format($price, 0, ",", ".") ?> <small>đ</small>
-                </span>
+            <div class="text-16 flex items-center gap-2 justify-between w-full">
+
+              <?php if($discount==0) {?>
+              <div class="product-price">
+                <span><?= number_format($price, 0, ",", ".") ?></span>
+                <small>đ</small>
               </div>
-              <div class="discount-percentages flex items-center gap-1">
-                <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/discount.svg") ?>" alt="" />
-                <span>-<?= $discountPercentage ?>%</span>
+              <?php } else{ ?>
+
+              <div class="product-km">
+                <div class="price-discount">
+                  <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
+                  <small>đ</small>
+                </div>-
+                <div class="price-discount">
+                  <span><?= number_format($price, 0, ",", ".") ?></span>
+                  <small>đ</small>
+                </div>
               </div>
-              <?php else : ?>
-              <span class="font-semibold"><?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small></span>
-              <?php endif; ?>
+              <?php } ?>
             </div>
           </div>
         </div>
@@ -556,10 +571,44 @@ window.addEventListener('scroll', function() {
   <div class="block lg:hidden w-full h-[3px] bg-gray-200 mb-2"></div>
   <section>
     <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
-
       <ul class="product-expand">
-        <li class="expand-item">Đối tượng phù hợp</li>
-        <li class="expand-item">Hướng dẫn sử dụng</li>
+        <li class="expand-item">
+          <div class="expand-title">
+            <span class="expand-label">Đối tượng phù hợp</span>
+            <span class="material-icons">expand_more</span>
+          </div>
+          <div class="expand-content">
+            <div class="expand-desc">1 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G cải thiện tóc gãy rụng Dầu Gội
+              Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G cải thiện tóc gãy rụng</div>
+          </div>
+        </li>
+        <li class="expand-item">
+          <div class="expand-title">
+            <span class="expand-label">Hướng dẫn sử dụng</span>
+            <span class="material-icons">expand_more</span>
+          </div>
+          <div class="expand-content">
+            <div class="expand-desc">2 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G cải thiện tóc gãy rụng</div>
+          </div>
+        </li>
+        <li class="expand-item">
+          <div class="expand-title">
+            <span class="expand-label">Thành phần sản phẩm</span>
+            <span class="material-icons">expand_more</span>
+          </div>
+          <div class="expand-content">
+            <div class="expand-desc">3 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G</div>
+          </div>
+        </li>
+        <li class="expand-item">
+          <div class="expand-title">
+            <span class="expand-label">Mô tả chi tiết</span>
+            <span class="material-icons">expand_more</span>
+          </div>
+          <div class="expand-content">
+            <div class="expand-desc">4 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1</div>
+          </div>
+        </li>
       </ul>
 
       <?php if (!empty($fields['desire'])): ?>
@@ -702,91 +751,6 @@ window.addEventListener('scroll', function() {
 
     </div>
   </section>
-  <div class="block lg:hidden w-full h-[2px] bg-gray-200  mb-2"></div>
-  <section>
-    <div class="max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md" style="padding-top:0px">
-      <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
-        style="font-size:16px;color:#1A5477">Chuyên viên</h2>
-      <div class="flex overflow-x-auto no-scrollbar gap-3 mt-2">
-        <?php foreach ($fields["doctors"] as $doctorId) : ?>
-        <?php $doctorFields = get_fields($doctorId); ?>
-        <a href="<?= get_permalink($doctorId) ?>" style="background:#F6F6F6"
-          class="flex flex-shrink-0 gap-3 px-3 py-2 rounded-2">
-          <img class="w-10 h-10 rounded-full  border-text" src="<?= get_the_post_thumbnail_url($doctorId) ?>" />
-          <div class="flex-1">
-            <h3 style="font-weight:500 ;font-size:12px"><?= get_the_title($doctorId) ?></h3>
-            <div class="flex gap-2 items-center">
-              <div class="text-12 flex items-center gap-1">
-                <div class="flex items-center gap-1">
-                  <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="" />
-                  <h2 style="font-weight:500"><?= $doctorFields["rating"] ?></h2>
-                </div>
-                <div style="color:#ccc">
-                  |
-                </div>
-                <div class="flex items-center gap-1">
-                  <h2 style="font-weight:500 text-12"><?= $doctorFields["client_number"] ?>K+</h2>
-                  <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/users.svg") ?>" alt="" />
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </a>
-        <?php endforeach; ?>
-      </div>
-
-
-
-    </div>
-  </section>
-  <secrion>
-    <div class="container">
-      <div>
-        <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
-          style="font-size:16px;color:#1A5477">Cam kết chính sách</h2>
-        <?php if (!empty($fields['tt_ht']) || !empty($fields['bh_cs']) ): ?>
-        <div class=" flex overflow-x-auto no-scrollbar gap-2 mt-2">
-          <div class="border-1 rounded-2 p-2 bg-gray-50" style="border-color:#F6F6F6;background:#F6F6F6">
-            <div style="width:220px">
-              <?= $fields["tt_ht"] ?>
-            </div>
-          </div>
-          <div class="border-1 rounded-2 p-2 bg-gray-50" style="border-color:#F6F6F6;background:#F6F6F6">
-            <div style="width:220px">
-              <?= $fields["bh_cs"] ?>
-            </div>
-          </div>
-        </div>
-        <?php endif; ?>
-      </div>
-      <div class="mt-4">
-        <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
-          style="font-size:16px;color:#1A5477">Mô tả chi tiết</h2>
-        <div class="max-w-2xl  shadow-lg rounded-lg overflow-hidden mt-2 ">
-          <div id="contentBox" class="relative collapsed">
-            <div class="contentBox inset-0 flex flex-col justify-center items-center bg-opacity-40">
-              <?php if ($fields["description"]) : ?>
-              <?= $fields["description"] ?>
-              <?php endif; ?>
-            </div>
-            <div class="overlay"></div>
-          </div>
-        </div>
-        <div class="text-center p-4 z-10">
-          <button id="toggleButton" class="text-purple-600 font-semibold hover:underline">
-            Xem tất cả ▼
-          </button>
-        </div>
-      </div>
-    </div>
-  </secrion>
-  <div class="block lg:hidden w-full h-[3px] bg-gray-200  mb-2"></div>
-
-  <div id="modal-booking" class=" modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
-    <?php get_template_part( 'template-parts/modal', 'service-booking' ); ?>
-  </div>
-
   <section>
     <div class="container">
       <?php if ($the_query_related->have_posts()) : ?>

@@ -81,6 +81,19 @@
 	&-price {
 		color: $color-blue;
 	}
+	&-detail-title {
+		position: relative;
+		display: grid;
+		grid-template-columns: auto auto;
+		grid-gap: 8px;
+		.product-review {
+			position: relative;
+		}
+	}
+	&-expand {
+		display: grid;
+		grid-gap: 4px;
+	}
 }
 .price {
 	&-through {
@@ -98,5 +111,29 @@
 		border-radius: 24px;
 		border: 1px solid $color-gray;
 		padding: 4px 8px;
+	}
+}
+
+.expand {
+	&-item {
+		display: grid;
+		font-weight: bold;
+		font-size: 0.9rem;
+	}
+	&-title {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 4px 0;
+	}
+	&-label {
+		line-height: normal;
+	}
+	&-content {
+		height: 0;
+		overflow: hidden;
+	}
+	&-desc {
+		font-weight: normal;
 	}
 }
