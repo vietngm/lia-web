@@ -452,7 +452,7 @@ function register_product_post_type(){
 		'menu_icon' => 'dashicons-admin-site',
 		'can_export' => true,
 		'has_archive' => false,
-		'rewrite' => array('slug' => 'product', 'with_front' => false)
+		'rewrite' => array('slug' => 'san-pham', 'with_front' => false)
 	);
 	register_post_type('san-pham', $args);
 }
