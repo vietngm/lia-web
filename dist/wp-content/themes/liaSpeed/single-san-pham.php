@@ -14,8 +14,9 @@
   // $discount = $firstPrice['gia_km'] ?? 0;
   // $discountPercentage = $price-($price * ($discount / 100));
 
-
-   $unitPrice = get_field('unit_price', $post->ID);
+  $description = get_field('description', $post->ID);
+  $hdsd = get_field('hd_sd', $post->ID);
+  $unitPrice = get_field('unit_price', $post->ID);
   $ratingCount = get_field('sl_dg', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
   $price = $firstPrice['gia_sp'] ?? 0;
@@ -572,7 +573,7 @@ window.addEventListener('scroll', function() {
   <section>
     <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
       <ul class="product-expand">
-        <li class="expand-item">
+        <li class="expand-item active">
           <div class="expand-title">
             <span class="expand-label">Đối tượng phù hợp</span>
             <span class="material-icons">expand_more</span>
@@ -588,7 +589,7 @@ window.addEventListener('scroll', function() {
             <span class="material-icons">expand_more</span>
           </div>
           <div class="expand-content">
-            <div class="expand-desc">2 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G cải thiện tóc gãy rụng</div>
+            <div class="expand-desc"><?php echo $hdsd;?></div>
           </div>
         </li>
         <li class="expand-item">
@@ -606,7 +607,7 @@ window.addEventListener('scroll', function() {
             <span class="material-icons">expand_more</span>
           </div>
           <div class="expand-content">
-            <div class="expand-desc">4 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1</div>
+            <div class="expand-desc"><?php echo $description;?></div>
           </div>
         </li>
       </ul>

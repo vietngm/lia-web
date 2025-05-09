@@ -76,7 +76,7 @@
 	}
 	&-detail {
 		display: grid;
-		grid-gap: 4px;
+		grid-gap: 8px;
 	}
 	&-price {
 		color: $color-blue;
@@ -93,6 +93,8 @@
 	&-expand {
 		display: grid;
 		grid-gap: 4px;
+		margin: 16px auto;
+		transition: all 0.4s ease;
 	}
 }
 .price {
@@ -132,8 +134,15 @@
 	&-content {
 		height: 0;
 		overflow: hidden;
+		transition: all 0.4s ease;
+		opacity: 0;
+		&.active {
+			height: auto;
+			opacity: 1;
+		}
 	}
 	&-desc {
 		font-weight: normal;
+		padding-bottom: 8px;
 	}
 }

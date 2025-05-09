@@ -452,7 +452,7 @@ function register_product_post_type(){
 		'menu_icon' => 'dashicons-admin-site',
 		'can_export' => true,
 		'has_archive' => false,
-		'rewrite' => array('slug' => 'san-pham', 'with_front' => false)
+		'rewrite' => array('slug' => 'product', 'with_front' => false)
 	);
 	register_post_type('san-pham', $args);
 }
@@ -477,7 +477,7 @@ function register_product_category_taxonomy() {
 		'rewrite'			=> true,
 		'query_var'         => true,
 		'publicly_queryable' => true,
-		'rewrite'           => array( 'slug' => '', 'with_front' => false ),
+		'rewrite'=> array( 'slug' => '', 'with_front' => false ),
 	);
 
 	register_taxonomy('product-category', 'post-type', $args);
