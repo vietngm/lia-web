@@ -1,11 +1,21 @@
 <?php get_header("empty"); ?>
 <?php
 	$fields = get_fields();
-	$price = $fields["price"] ? $fields["price"] : 0;
-	$discountPrice = $fields["discountPrice"] ? $fields["discountPrice"] : 0;
-	$discountPercentage = ($price > 0 && $discountPrice < $price) 
-    ? round((($price - $discountPrice) / $price) * 100) 
-    : 0;
+	// $price = $fields["price"] ? $fields["price"] : 0;
+	// $discountPrice = $fields["discountPrice"] ? $fields["discountPrice"] : 0;
+	// $discountPercentage = ($price > 0 && $discountPrice < $price)
+  //   ? round((($price - $discountPrice) / $price) * 100) 
+  //   : 0;
+
+  $unitPrice = get_field('unit_price', $post->ID);
+  $ratingCount = get_field('sl_dg', $post->ID);
+  $firstPrice = $unitPrice ? $unitPrice[0] : [];
+  $price = $firstPrice['gia_sp'] ?? 0;
+  $discount = $firstPrice['gia_km'] ?? 0;
+  $discountPercentage = $price-($price * ($discount / 100));
+
+
+  $thumb = get_field('anh_dai_dien', $post->ID);
 	$args = array(
 		"post_type" => "san-pham",
 		"posts_per_page" => 8,
@@ -507,19 +517,15 @@ window.addEventListener('scroll', function() {
     <div class="container">
       <div class="grid grid-cols-2 gap-4 relative">
         <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0  -mx-4">
-          <?php foreach ($fields["gallery"] as $item) : ?>
+          <?php foreach ($fields["product_gallery"] as $item) : ?>
           <div>
             <img class="w-full" style="margin-top:0px"
-              src="<?= bfi_thumb($item , array("width"=>800, 'crop'=>false)) ?>" />
+              src="<?= bfi_thumb($item['url'] , array("width"=>800, 'crop'=>false)) ?>" />
           </div>
           <?php endforeach; ?>
         </div>
         <div class="lg:col-span-1 col-span-2 flex flex-col">
           <h1 class="text-18 font-semibold"><?= get_the_title(); ?></h1>
-          <div class=" flex items-center gap-1">
-            <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/tgian.svg") ?>" alt="" />
-            <span class="text-12"><?= $fields["time"] ?> phút</span>
-          </div>
           <div class="mt-2">
             <p class="text-14"><?= $fields["note"] ?></p>
           </div>
@@ -550,8 +556,12 @@ window.addEventListener('scroll', function() {
   <div class="block lg:hidden w-full h-[3px] bg-gray-200 mb-2"></div>
   <section>
     <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
-      <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
-        style="font-size:16px;color:#1A5477">Chọn topping</h2>
+
+      <ul class="product-expand">
+        <li class="expand-item">Đối tượng phù hợp</li>
+        <li class="expand-item">Hướng dẫn sử dụng</li>
+      </ul>
+
       <?php if (!empty($fields['desire'])): ?>
       <div class="mt-2">
         <div id="priceData"
@@ -690,48 +700,11 @@ window.addEventListener('scroll', function() {
       <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
       <?php endif; ?>
 
-      <div class="section-luuy mt-2">
-        <h3 style="font-weight:500">Thêm lưu ý <span class="text-12" style="font-weight:300"> ( Không bắt buộc ) </span>
-        </h3>
-        <textarea name="noteForLiA" placeholder="Bạn có lưu ý gì dành cho LiA không?"></textarea>
-      </div>
-      <?php if (!empty($fields['bh']) || !empty($fields['material']) || !empty($fields['desire'])): ?>
-      <p id="selectedInfo"></p>
-      <p id="totalPrice"></p>
-      <!-- Nút xem tất cả topping -->
-      <div class="mt-4 text-center">
-        <!-- <button id="topping" style=" background:#00AB83;color:#FFF;padding:4px 12px;font-size:14px" class="submit bg-green-500  rounded-2 text-sm  shadow-md hover:bg-green-600 transition">
-					Xem tất cả topping &gt;&gt;
-				</button> -->
-        <div id="modal-topping" class=" modal-topping fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup"
-          style="z-index: 1000">
-          <?php 
-						set_query_var('field', $fields);
-						get_template_part( 'template-parts/modal', 'service-topping' ); 
-					?>
-        </div>
-      </div>
-      <?php endif; ?>
     </div>
   </section>
   <div class="block lg:hidden w-full h-[2px] bg-gray-200  mb-2"></div>
   <section>
     <div class="max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md" style="padding-top:0px">
-      <!-- <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg ">
-				<div class="bg-gray-50  rounded-lg  mb-2" style="border-radius:8px">
-					<div class="flex justify-between items-center"  >
-						<div class="flex items-center gap-2">
-							<img style="width:46px;height:46px" src="<?= get_theme_file_uri("assets/images/logoF.png") ?>" alt="Avatar" class="w-12 h-12 rounded-full mr-3 border-1">
-							<div>
-								<h3 class="text-12 font-bold">Phòng khám Trang Beauty Center</h3>
-								<h3 class="text-12">434 Cao thắng, Phường 12, Quận 10</h3>
-								
-							</div>
-						</div>
-						<a href="https://phongkhamtrangbeauty.com/phong-kham-va-trung-tam-cua-toi/" class="text-yellow-500 text-12" style="padding:2px 12px;border-radius:6px;background:#523870;color:#FFF">Chi tiết</a>
-					</div>
-				</div>
-			</div> -->
       <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
         style="font-size:16px;color:#1A5477">Chuyên viên</h2>
       <div class="flex overflow-x-auto no-scrollbar gap-3 mt-2">
@@ -763,9 +736,7 @@ window.addEventListener('scroll', function() {
         <?php endforeach; ?>
       </div>
 
-      <div class="reviews-container">
-        <?php get_template_part( 'template-parts/content', 'review' ); ?>
-      </div>
+
 
     </div>
   </section>

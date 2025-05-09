@@ -14,8 +14,11 @@
 		padding: 0;
 		margin: 0;
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		grid-gap: 16px;
+		@media (min-width: $screen-md-min) {
+			grid-template-columns: repeat(4, 1fr);
+		}
 	}
 	&-item {
 		display: grid;
@@ -26,6 +29,8 @@
 	&-link {
 		position: relative;
 		transition: all 0.4s ease;
+		display: grid;
+		grid-gap: 4px;
 		&:hover {
 			opacity: 0.8;
 		}
@@ -33,11 +38,21 @@
 	&-thumb {
 		background-color: $color-background;
 		display: grid;
+		justify-content: center;
+	}
+	&-noimage {
+		display: grid;
+		justify-content: center;
 	}
 	&-review {
 		position: absolute;
-		top: 16px;
-		right: 16px;
+		top: 8px;
+		right: 0;
+		color: $color-blue;
+		background-color: white;
+		padding: 0 4px;
+		border-radius: 4px;
+		font-size: 0.75rem;
 	}
 	&-discount {
 		background-color: $color-light-blue;
@@ -51,6 +66,21 @@
 		display: flex;
 		grid-gap: 16px;
 	}
+	&-category {
+		display: flex;
+		grid-gap: 8px;
+		list-style: none;
+		border-bottom: 3px solid $color-gray;
+		margin-bottom: 12px;
+		padding-bottom: 12px;
+	}
+	&-detail {
+		display: grid;
+		grid-gap: 4px;
+	}
+	&-price {
+		color: $color-blue;
+	}
 }
 .price {
 	&-through {
@@ -58,5 +88,15 @@
 	}
 	&-discount {
 		color: $color-blue;
+	}
+}
+.category {
+	&-item {
+		display: grid;
+		align-items: center;
+		text-align: center;
+		border-radius: 24px;
+		border: 1px solid $color-gray;
+		padding: 4px 8px;
 	}
 }

@@ -20,28 +20,33 @@
   </div>
   <?php } else { ?>
   <div class='product-noimage'>
-    <img class="img aspect-square lazy" src="<?php echo get_site_url(); ?>/assets/images/noimg64.png" width="64"
+    <img class="img aspect-square lazy" src="<?php echo get_theme_file_uri('assets/images/noimg64.png'); ?>" width="64"
       height="64" alt="<?php echo $post->post_title; ?>">
   </div>
   <?php } ?>
-  <div class="product-title">
-    <?php the_title(); ?>
-  </div>
-  <div class="product-discount">
-    <?php echo '-'.$discount.'%';?>
-  </div>
-  <div classs="product-price">
-    <span><?= number_format($price, 0, ",", ".") ?></span>
-    <small>đ</small>
-  </div>
-  <div class="product-km">
-    <div class="price-discount">
-      <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
-      <small>đ</small>
+  <div class="product-detail">
+    <div class="product-title">
+      <?php the_title(); ?>
     </div>
-    <div class="price-through">
+    <?php if($discount==0) {?>
+    <div class="product-price">
       <span><?= number_format($price, 0, ",", ".") ?></span>
       <small>đ</small>
     </div>
+    <?php } else{ ?>
+    <div class="product-discount">
+      <?php echo '-'.$discount.'%';?>
+    </div>
+    <div class="product-km">
+      <div class="price-discount">
+        <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
+        <small>đ</small>
+      </div>
+      <div class="price-through">
+        <span><?= number_format($price, 0, ",", ".") ?></span>
+        <small>đ</small>
+      </div>
+    </div>
+    <?php } ?>
   </div>
 </a>
