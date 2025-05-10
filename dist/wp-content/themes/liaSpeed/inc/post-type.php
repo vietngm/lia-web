@@ -422,7 +422,7 @@ function register_price_contact_data_post_type(){
 add_action('init', 'register_price_contact_data_post_type');
 /********************************************* Consultation **********************************************/
 include get_template_directory() . "/inc/consultation.php";
-/********************************************* Production **********************************************/
+/********************************************* Product Data **********************************************/
 function register_product_post_type(){
 	$label = array(
 		'name' => 'Sản phẩm',
@@ -434,7 +434,6 @@ function register_product_post_type(){
 		'description' => 'Sản phẩm',
 		'supports' => array(
 			'title',
-			'thumbnail',
 			'revisions',
 		),
 		'hierarchical' => true,
@@ -477,7 +476,7 @@ function register_product_category_taxonomy() {
 		'rewrite'			=> true,
 		'query_var'         => true,
 		'publicly_queryable' => true,
-		'rewrite'=> array( 'slug' => '', 'with_front' => false ),
+		'rewrite'=> array( 'slug' => 'product-category', 'with_front' => false ),
 	);
 
 	register_taxonomy('product-category', 'post-type', $args);

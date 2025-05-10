@@ -5,10 +5,7 @@ jQuery(function ($) {
 		$(".expand-item").find(".expand-content").removeAttr("style");
 
 		$(this).toggleClass("active");
-
-		console.log("item");
 		height = $(this).find(".expand-content .expand-desc").height() + 8;
-		console.log(height);
 
 		if ($(this).hasClass("active")) {
 			$(this).find(".expand-content").toggleClass("active");

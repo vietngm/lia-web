@@ -16,6 +16,8 @@
 
   $description = get_field('description', $post->ID);
   $hdsd = get_field('hd_sd', $post->ID);
+  $tpsp = get_field('tp_sp', $post->ID);
+  $dtph = get_field('dt_ph', $post->ID);
   $unitPrice = get_field('unit_price', $post->ID);
   $ratingCount = get_field('sl_dg', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
@@ -579,8 +581,7 @@ window.addEventListener('scroll', function() {
             <span class="material-icons">expand_more</span>
           </div>
           <div class="expand-content">
-            <div class="expand-desc">1 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G cải thiện tóc gãy rụng Dầu Gội
-              Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G cải thiện tóc gãy rụng</div>
+            <div class="expand-desc"><?php echo $dtph;?></div>
           </div>
         </li>
         <li class="expand-item">
@@ -598,7 +599,7 @@ window.addEventListener('scroll', function() {
             <span class="material-icons">expand_more</span>
           </div>
           <div class="expand-content">
-            <div class="expand-desc">3 Dầu Gội Thảo Dược Hà Thủ Ô 2IN1 Cỏ Cây Hoa Lá 450G</div>
+            <div class="expand-desc"><?php echo $tpsp;?></div>
           </div>
         </li>
         <li class="expand-item">

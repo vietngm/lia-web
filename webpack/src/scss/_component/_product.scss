@@ -31,18 +31,29 @@
 		transition: all 0.4s ease;
 		display: grid;
 		grid-gap: 4px;
+		align-content: baseline;
+		cursor: pointer;
 		&:hover {
 			opacity: 0.8;
 		}
 	}
 	&-thumb {
-		// background-color: $color-background;
 		display: grid;
-		justify-content: center;
 	}
 	&-noimage {
 		display: grid;
+		// justify-content: center;
+	}
+	&-thumb,
+	&-noimage {
 		justify-content: center;
+		align-items: center;
+		max-height: 171px;
+		height: 171px;
+		@media (min-width: $screen-md-min) {
+			max-height: 236px;
+			height: 236px;
+		}
 	}
 	&-review {
 		position: absolute;
@@ -76,7 +87,10 @@
 	}
 	&-detail {
 		display: grid;
-		grid-gap: 8px;
+		// grid-gap: 8px;
+		@media (min-width: $screen-md-min) {
+			grid-gap: 8px;
+		}
 	}
 	&-price {
 		color: $color-blue;
@@ -121,6 +135,7 @@
 		display: grid;
 		font-weight: bold;
 		font-size: 0.9rem;
+		cursor: pointer;
 	}
 	&-title {
 		display: flex;
