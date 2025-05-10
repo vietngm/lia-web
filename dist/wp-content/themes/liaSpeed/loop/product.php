@@ -26,12 +26,12 @@
   <?php } ?>
   <div class="product-detail">
     <div class="product-title">
-      <?php the_title(); ?>
+      <p><?php the_title(); ?></p>
     </div>
     <?php if($discount==0) {?>
     <div class="product-price">
       <span><?= number_format($price, 0, ",", ".") ?></span>
-      <small>đ</small>
+      <small><u>đ</u></small>
     </div>
     <?php } else{ ?>
     <div class="product-discount">
@@ -40,11 +40,11 @@
     <div class="product-km">
       <div class="price-discount">
         <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
-        <small>đ</small>
+        <small><u>đ</u></small>
       </div>
       <div class="price-through">
         <span><?= number_format($price, 0, ",", ".") ?></span>
-        <small>đ</small>
+        <small><u>đ</u></small>
       </div>
     </div>
     <?php } ?>

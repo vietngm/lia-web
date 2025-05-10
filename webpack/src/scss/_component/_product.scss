@@ -25,6 +25,11 @@
 	}
 	&-title {
 		font-size: 0.8rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	&-link {
 		position: relative;
@@ -119,6 +124,7 @@
 	}
 	&-discount {
 		color: $color-blue;
+		font-weight: bold;
 	}
 }
 .category {
