@@ -60,10 +60,11 @@
 		top: 8px;
 		right: 0;
 		color: $color-blue;
-		background-color: rgba(white, 0.6);
+		background-color: rgba(#f4f4f4, 0.6);
 		padding: 0 4px;
 		border-radius: 4px;
 		font-size: 0.75rem;
+		height: fit-content;
 	}
 	&-discount {
 		background-color: $color-light-blue;
@@ -94,6 +95,7 @@
 	}
 	&-price {
 		color: $color-blue;
+		font-weight: bold;
 	}
 	&-detail-title {
 		position: relative;
