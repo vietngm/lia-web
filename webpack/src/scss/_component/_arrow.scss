@@ -1,0 +1,115 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.arrow {
+	transition: all 0.4s ease;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	display: grid;
+	align-items: center;
+	justify-content: center;
+
+	&-go {
+		width: 11px;
+		height: 11px;
+		border-right: solid 1px $color-main;
+		border-top: solid 1px $color-main;
+		transform: (rotate(45deg) translate3d(0, 0, 0));
+		left: -2px;
+		position: relative;
+	}
+
+	&-plus {
+		width: 40px;
+		height: 40px;
+		position: relative;
+		display: grid;
+		align-items: center;
+		justify-items: center;
+		&:before,
+		&:after {
+			content: "";
+			background-color: $color-main;
+			position: absolute;
+			transition: all 0.4s;
+		}
+
+		&:before {
+			height: 1px;
+			width: 15px;
+		}
+
+		&:after {
+			height: 15px;
+			width: 1px;
+		}
+
+		&.active {
+			&:before {
+				transform: (rotate(180deg) translate3d(0, 0, 0));
+			}
+
+			&:after {
+				transform: (rotate(90deg) translate3d(0, 0, 0));
+			}
+		}
+	}
+	&-up {
+		width: 17px;
+		height: 17px;
+		position: relative;
+		&:before,
+		&:after {
+			content: "";
+			background-color: black;
+			display: block;
+			position: absolute;
+			transition: all 0.4s;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		&:before {
+			transform: rotate(45deg);
+			width: 10px;
+			height: 1px;
+			left: 0;
+		}
+		&:after {
+			transform: rotate(-45deg);
+			width: 10px;
+			height: 1px;
+			right: 0;
+		}
+		&.active {
+			&:before {
+				transform: rotate(-45deg);
+			}
+			&:after {
+				transform: rotate(45deg);
+			}
+		}
+	}
+}
+
+// .up,
+// .down {
+// 	content: "";
+// 	width: 10px;
+// 	height: 10px;
+// 	border: solid black;
+// 	border-width: 1px 1px 0 0;
+// 	transition: all 0.4s;
+// }
+
+// .up {
+// 	transform: rotate(-45deg);
+// 	&.active {
+// 		transform: rotate(135deg);
+// 	}
+// }
+
+// .down {
+// 	transform: rotate(135deg);
+// }

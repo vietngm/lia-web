@@ -519,6 +519,32 @@ background-color: #00000021;
   <section class="section">
     <div class="container">
       <h2 class="section-title">Sản phẩm</h2>
+      <ul class="product-category">
+        <?php
+          $taxonomy = 'product-category';
+          $terms = get_terms(
+            $taxonomy, array(
+              'hide_empty' => 0,
+              'parent' => 0,
+              'orderby' => 'menu_order',
+              'order' => 'ASC',
+            )
+          );
+        foreach($terms as $term){
+          $args = array(
+            "orderby" => "slug",
+            'hide_empty'    => false, 
+            'hierarchical'  => true, 
+            'parent'        => $term->term_id
+          ); 
+        ?>
+        <li class="category-item">
+          <a href="<?php echo get_term_link($term->slug,$taxonomy);?>" class="category-link">
+            <span><?php echo $term->name; ?></span>
+          </a>
+        </li>
+        <?php } ?>
+      </ul>
       <?php get_template_part( 'template-parts/product', 'list' ); ?>
     </div>
   </section>

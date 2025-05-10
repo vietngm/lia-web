@@ -1,29 +1,3 @@
- <ul class="product-category">
-   <?php
-	$taxonomy = 'product-category';
-	$terms = get_terms(
-		$taxonomy, array(
-			'hide_empty' => 0,
-			'parent' => 0,
-			'orderby' => 'menu_order',
-			'order' => 'ASC',
-		)
-	);
-foreach($terms as $term){
-	$args = array(
-		"orderby" => "slug",
-		'hide_empty'    => false, 
-		'hierarchical'  => true, 
-		'parent'        => $term->term_id
-	); 
-?>
-   <li class="category-item">
-     <a href="<?php echo get_term_link($term->slug,$taxonomy);?>" class="category-link">
-       <span><?php echo $term->name; ?></span>
-     </a>
-   </li>
-   <?php } ?>
- </ul>
  <ul class="product-list">
    <?php
 		$arg = array(

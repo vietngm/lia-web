@@ -60,7 +60,7 @@
 		top: 8px;
 		right: 0;
 		color: $color-blue;
-		background-color: white;
+		background-color: rgba(white, 0.6);
 		padding: 0 4px;
 		border-radius: 4px;
 		font-size: 0.75rem;
@@ -127,6 +127,12 @@
 		border-radius: 24px;
 		border: 1px solid $color-gray;
 		padding: 4px 8px;
+		transition: all 0.4s ease;
+		&:hover {
+			background-color: $color-light-green;
+			color: $color-green;
+			border-color: $color-green;
+		}
 	}
 }
 
@@ -152,7 +158,7 @@
 		transition: all 0.4s ease;
 		opacity: 0;
 		&.active {
-			height: auto;
+			// height: auto;
 			opacity: 1;
 		}
 	}

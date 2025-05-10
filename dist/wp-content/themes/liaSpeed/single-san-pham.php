@@ -25,7 +25,6 @@
   $discount = $firstPrice['gia_km'] ?? 0;
   $discountPrice = $price-($price * ($discount / 100));
 
-
   $thumb = get_field('anh_dai_dien', $post->ID);
 	$args = array(
 		"post_type" => "san-pham",
@@ -34,9 +33,9 @@
 		"tax_query" => array(
 			'relation' => 'OR',
 			array(
-				'taxonomy' => 'service-category',
+				'taxonomy' => 'product-category',
 				'field' => 'id',
-				'terms' => wp_get_post_terms(get_the_ID(), 'service-category', array('fields' => 'ids')),
+				'terms' => wp_get_post_terms(get_the_ID(), 'product-category', array('fields' => 'ids')),
 				'include_children' => true,
 				'operator' => 'IN'
 			),
@@ -403,6 +402,7 @@ textarea {
   gap: 8px;
 }
 
+/* 
 .reviews-container {
   margin-top: 16px;
 }
@@ -440,7 +440,7 @@ textarea {
 
 .stars {
   color: #f4b400;
-}
+} */
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -575,10 +575,10 @@ window.addEventListener('scroll', function() {
   <section>
     <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
       <ul class="product-expand">
-        <li class="expand-item active">
+        <li class="expand-item">
           <div class="expand-title">
             <span class="expand-label">Đối tượng phù hợp</span>
-            <span class="material-icons">expand_more</span>
+            <div class="arrow-up"></div>
           </div>
           <div class="expand-content">
             <div class="expand-desc"><?php echo $dtph;?></div>
@@ -587,7 +587,7 @@ window.addEventListener('scroll', function() {
         <li class="expand-item">
           <div class="expand-title">
             <span class="expand-label">Hướng dẫn sử dụng</span>
-            <span class="material-icons">expand_more</span>
+            <div class="arrow-up"></div>
           </div>
           <div class="expand-content">
             <div class="expand-desc"><?php echo $hdsd;?></div>
@@ -596,7 +596,7 @@ window.addEventListener('scroll', function() {
         <li class="expand-item">
           <div class="expand-title">
             <span class="expand-label">Thành phần sản phẩm</span>
-            <span class="material-icons">expand_more</span>
+            <div class="arrow-up"></div>
           </div>
           <div class="expand-content">
             <div class="expand-desc"><?php echo $tpsp;?></div>
@@ -605,152 +605,14 @@ window.addEventListener('scroll', function() {
         <li class="expand-item">
           <div class="expand-title">
             <span class="expand-label">Mô tả chi tiết</span>
-            <span class="material-icons">expand_more</span>
+            <div class="arrow-up"></div>
           </div>
           <div class="expand-content">
             <div class="expand-desc"><?php echo $description;?></div>
           </div>
         </li>
       </ul>
-
-      <?php if (!empty($fields['desire'])): ?>
-      <div class="mt-2">
-        <div id="priceData"
-          data-price="<?= isset($fields['discountPrice']) && $fields['discountPrice'] > 0 && $fields['discountPrice'] < $fields['price'] ? $fields['discountPrice'] : (isset($fields['price']) ? $fields['price'] : 0); ?>">
-        </div>
-        <div class="flex justify-between items-center">
-          <h3 class="font-medium">
-            <?= !empty($fields['name_desire']) ? $fields['name_desire'] : "Hình thức gội đầu" ?> <span class="text-12"
-              style="font-weight:300"> ( Chọn 1 ) </span>
-          </h3>
-          <button id="desire" class="submit text-sm text-gray-500 cursor-pointer"
-            style="font-size:12px;color:#646464;font-style:italic"><img class="w-3 h-3"
-              src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
-        </div>
-        <div class="grid grid-cols-2 gap-3 mt-2 options-container overflow-x-auto no-scrollbar">
-          <?php
-						$desire_toppings = $fields['desire'];
-						if (isset($desire_toppings) && is_array($desire_toppings)) {
-							$visible_toppings = array_slice($desire_toppings, 0, 2);
-						} else {
-							$visible_toppings = []; 
-						}
-					?>
-          <?php foreach ($visible_toppings as $desire_topping) : ?>
-          <?php 
-						$term = get_term($desire_topping["topping"], 'service-topping'); 
-						?>
-          <div id="mainPageDesire" data-name="<?= $term->name ?>" data-price="<?= $desire_topping["origin"] ?>"
-            style="flex-direction:row" class="option-desire flex items-center relative cursor-pointer gap-2"
-            onclick="selectOptionDesire(this)">
-            <div style="overflow:hidden">
-              <label class="radio">
-                <input type="radio" name="desire">
-                <?= $term->name ?>
-              </label>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-        <div id="modal-desire" class=" modal-desire fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
-          <?php 
-						set_query_var('field', $fields);
-						get_template_part( 'template-parts/modal', "service-desire"); 
-					?>
-        </div>
-      </div>
-      <?php endif; ?>
-      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
-      <?php if (!empty($fields['material'])): ?>
-      <!-- Vật liệu -->
-      <div class="mt-2">
-        <div class="flex justify-between items-center">
-          <h3 class="font-medium">
-            <?= !empty($fields['name_material']) ? $fields['name_material'] : "Topping A" ?><span class="text-12"
-              style="font-weight:300"> ( Chọn 1 ) </span>
-          </h3>
-          <button id="material" class="submit text-sm text-gray-500 cursor-pointer"
-            style="font-size:12px;color:#646464;font-style:italic"><img class="w-3 h-3"
-              src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
-        </div>
-        <div class="gap-2 mt-2 flex flex-col overflow-x-auto no-scrollbar options-container w-full">
-          <?php
-						$material_toppings = $fields['material'];
-						if (isset($material_toppings) && is_array($material_toppings)) {
-							$visible_toppings_material = array_slice($material_toppings, 0, 3);
-						} else {
-							$visible_toppings_material = []; 
-						}
-					?>
-          <?php foreach ($visible_toppings_material as $material_topping) : ?>
-          <?php 
-							$term = get_term($material_topping["topping"], 'service-topping'); 
-						?>
-          <div data-name="<?= $term->name ?>" data-price="<?= $material_topping["origin"] ?>"
-            class="option-material  flex-col flex text-sm cursor-pointer " onclick="selectOptionMaterial(this)">
-            <div style="overflow:hidden">
-              <label class="radio">
-                <input type="radio" name="material">
-                <?= $term->name ?>
-              </label>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
-        <div id="modal-material" class="modal-material fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
-          <?php 
-						set_query_var('field', $fields);
-						get_template_part( 'template-parts/modal', "service-material"); 
-					?>
-        </div>
-      </div>
-      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
-      <?php endif; ?>
-
-      <!-- Bảo hành -->
-      <?php if (!empty($fields['bh'])): ?>
-      <div class="mt-2">
-        <div class="flex justify-between items-center">
-          <h3 class="font-medium">
-            <?= !empty($fields['name_bh']) ? $fields['name_bh'] : "Topping B" ?>
-          </h3>
-          <button id="bh" class="submit text-sm text-gray-500 cursor-pointer"
-            style="font-size:12px;color:#646464;font-style:italic"><img class="w-3 h-3"
-              src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
-        </div>
-        <div class="flex flex-col gap-2 mt-2 ">
-          <?php
-						$bh_toppings = $fields['bh'];
-
-						if (isset($bh_toppings) && is_array($bh_toppings)) {
-							$visible_toppings_bh = array_slice($bh_toppings, 0, 3);
-						} else {
-							$visible_toppings_bh = []; 
-						}
-					?>
-          <?php foreach ($visible_toppings_bh as $bh_topping) : ?>
-          <?php 
-							$term = get_term($bh_topping["topping"], 'service-topping'); 
-						?>
-          <div data-name="<?= $term->name ?>" data-price="<?= $bh_topping["origin"] ?>"
-            class="option-bh flex-col flex  text-sm cursor-pointer " onclick="selectOptionBh(this)">
-            <label class="checkbox">
-              <input type="checkbox">
-              <?= $term->name ?>
-            </label>
-          </div>
-          <?php endforeach; ?>
-        </div>
-        <div id="modal-bh" class=" modal-bh fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
-          <?php 
-						set_query_var('field', $fields);
-						get_template_part( 'template-parts/modal', "service-bh"); 
-					?>
-        </div>
-      </div>
-      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
-      <?php endif; ?>
-
+      <div class="w-full bg-gray-200" style="margin-top:8px"></div>
     </div>
   </section>
   <section>
@@ -758,16 +620,15 @@ window.addEventListener('scroll', function() {
       <?php if ($the_query_related->have_posts()) : ?>
       <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
         style="font-size:16px;color:#1A5477">Có thể bạn quan tâm</h2>
-      <div class="mb-10 mt-2">
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          <?php while ( $the_query_related->have_posts() ) : $the_query_related->the_post(); ?>
-          <div class="col-span-1 product-list-item">
-            <?php get_template_part( 'template-parts/service', 'summary' ); ?>
-          </div>
-          <?php endwhile; ?>
-        </div>
-      </div>
+      <ul class="product-list">
+        <?php while ( $the_query_related->have_posts() ) : $the_query_related->the_post(); ?>
+        <li class="product-item">
+          <?php include get_template_directory() . '/loop/product.php'; ?>
+        </li>
+        <?php endwhile; ?>
+      </ul>
       <?php endif; wp_reset_postdata(); ?>
+      <div class="w-full" style="margin-bottom:16px"></div>
     </div>
   </section>
 </main>
@@ -1150,7 +1011,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php get_template_part( 'template-parts/footer', "menu"); ?>
-<div style="padding-top:100px"></div>
 <?php 
 set_query_var('field', $fields);
 ?>
