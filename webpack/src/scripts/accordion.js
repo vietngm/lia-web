@@ -1,9 +1,5 @@
 jQuery(function ($) {
 	$(".expand-item").on("click", function () {
-		// $(".expand-item").removeClass("active");
-		// $(".expand-item").find(".expand-content").removeClass("active");
-		// $(".expand-item").find(".expand-content").removeAttr("style");
-
 		$(this).toggleClass("active");
 		$(this).find(".expand-content").toggleClass("active");
 		$(this).find(".arrow-up").toggleClass("active");
@@ -15,9 +11,6 @@ jQuery(function ($) {
 				overflow: "visible",
 			});
 		} else {
-			// $(".expand-content").removeAttr("style");
-			// $(".expand-item").removeClass("active");
-			// $(".expand-item").find(".expand-content").removeClass("active");
 			$(this).find(".expand-content").removeAttr("style");
 		}
 	});

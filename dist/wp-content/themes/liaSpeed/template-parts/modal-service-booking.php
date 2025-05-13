@@ -9,7 +9,14 @@
 		"post_type" => "service",
 		"posts_per_page" => -1,
 	));
+  
 	$services = [];
+  
+  $post_branchs = get_posts(array(
+		"post_type" => "branch",
+		"posts_per_page" => -1,
+	));
+
   
 
 	foreach ($post_services as $post_service) {
@@ -262,7 +269,6 @@ $(document).ready(function() {
     padding-bottom: 4px;
     margin-bottom: 4px;
   }
-  </style>
   </style> -->
 </head>
 
@@ -392,8 +398,19 @@ function updateSelected() {
           <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="">
         </div>
         <div>
-          <div class=" font-semibold">LiA Beauty Center</div>
-          <div class="text-10">Số 434, Đường Cao Thắng ( nối dài ), Phường 12, Quận 10, TP.HCM</div>
+          <div class="font-semibold branch-name">LiA Beauty Center</div>
+          <div class="text-10 branch-address">Số 434, Đường Cao Thắng ( nối dài ), Phường 12, Quận 10, TP.HCM</div>
+          <div class="input-select mb-4 input-branch">
+            <select placeholder="Chọn trung tâm" name="branch" class="js-branch">
+              <option></option>
+              <?php foreach ($post_branchs as $branch) : ?>
+              <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>">
+                <?= $branch->post_title ?></option>
+              <?php endforeach; ?>
+            </select>
+            <div class="text-12 italic text-red-500 error-branch"></div>
+          </div>
+
         </div>
       </div>
       <hr class="my-4" />
@@ -469,6 +486,7 @@ function updateSelected() {
               </div>
             </div>
           </div>
+
           <div class="input-select mb-4 input-doctor">
             <select placeholder="Chọn chuyên viên" name="practitioner">
               <option></option>
@@ -478,6 +496,8 @@ function updateSelected() {
             </select>
             <div class="text-12 italic text-red-500 error-doctor"></div>
           </div>
+
+
           <hr class="my-4" />
         </div>
         <div class="lg:col-span-1 col-span-2">
