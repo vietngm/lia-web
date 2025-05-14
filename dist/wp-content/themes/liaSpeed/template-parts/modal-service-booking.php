@@ -130,6 +130,8 @@ $(document).ready(function() {
   const doctors = BOOKING_DATA.doctors; // Danh sách tất cả chuyên viên
 
   console.log("Danh sách dịch vụ:", services);
+  console.log("Danh sách doctors:", doctors);
+
 
 
   if (storedServiceId) {
@@ -400,11 +402,13 @@ function updateSelected() {
         <div>
           <div class="font-semibold branch-name">LiA Beauty Center</div>
           <div class="text-10 branch-address">Số 434, Đường Cao Thắng ( nối dài ), Phường 12, Quận 10, TP.HCM</div>
+
           <div class="input-select mb-4 input-branch">
             <select placeholder="Chọn trung tâm" name="branch" class="js-branch">
               <option></option>
               <?php foreach ($post_branchs as $branch) : ?>
-              <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>">
+              <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>"
+                data-ids="<?php echo json_encode(get_field('chuyen_vien',$branch->ID));?>">
                 <?= $branch->post_title ?></option>
               <?php endforeach; ?>
             </select>
@@ -432,21 +436,21 @@ function updateSelected() {
           <div class="input-group input-group-left-icon mb-2">
             <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/person-gray.svg") ?>" />
             <?php
-                                        $placeholder = "Mã giới thiệu";
-                                        $referralRate = get_field("referralRate");
-                                        if ($referralRate) {
-                                            $placeholder = "Nhập mã cộng tác viên để giảm $referralRate%";
-                                        }
-                                    ?>
+                  $placeholder = "Mã giới thiệu";
+                  $referralRate = get_field("referralRate");
+                  if ($referralRate) {
+                      $placeholder = "Nhập mã cộng tác viên để giảm $referralRate%";
+                  }
+              ?>
             <input class="input" placeholder="<?= $placeholder ?>" name="referralCode" />
           </div>
-          <label class="flex gap-3 items-center cursor-pointer mb-4">
+          <div class="flex gap-3 items-center cursor-pointer mb-4 checkbox-relatives">
             <div class="input-checkbox">
               <input type="checkbox" name="foreigner" />
               <div class="icon"></div>
             </div>
             <div class="text-12">Đặt hẹn cho người thân/ bạn bè/ người nước ngoài</div>
-          </label>
+          </div>
           <hr class="my-4" />
           <h2 class="form-title mb-2 " style="font-size:14px">Thông tin đơn hàng</h2>
           <div class="input-select mb-4 input-service relative">
@@ -488,10 +492,12 @@ function updateSelected() {
           </div>
 
           <div class="input-select mb-4 input-doctor">
-            <select placeholder="Chọn chuyên viên" name="practitioner">
+            <select placeholder="Chọn chuyên viên" name="practitioner" id="practitioner">
               <option></option>
               <?php foreach ($doctors as $doctor) : ?>
-              <option value="<?= $doctor["id"] ?>"><?= $doctor["title"] ?></option>
+              <option value="<?= $doctor["id"] ?>">
+                <?= $doctor["title"] ?>
+              </option>
               <?php endforeach; ?>
             </select>
             <div class="text-12 italic text-red-500 error-doctor"></div>
