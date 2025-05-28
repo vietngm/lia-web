@@ -13,9 +13,12 @@
 						?>
  <div data-name="<?= $term->name ?>" data-price="<?= $bh_topping["origin"] ?>"
    class="option-bh flex-col flex  text-sm cursor-pointer " onclick="selectOptionBh(this)">
-   <label class="checkbox">
-     <input type="checkbox">
-     <?= $term->name ?>
+   <label class="checkbox" style="justify-content: space-between;cursor: pointer;">
+     <div class="flex items-center gap-2">
+       <input type="checkbox">
+       <?= $term->name ?>
+     </div>
+     <span><?= number_format($bh_topping["origin"], 0, ",", ".") ?> <small>đ</small></span>
    </label>
  </div>
  <?php endforeach; ?>
