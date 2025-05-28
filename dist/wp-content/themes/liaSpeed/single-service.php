@@ -163,7 +163,10 @@ body.modal-open {
   gap: 4px
 }
 
-.option-desire,
+.option-desire {
+  display: grid;
+}
+
 .option-material,
 .option-bh {
   display: flex;
@@ -569,30 +572,8 @@ window.addEventListener('scroll', function() {
             style="font-size:12px;color:#646464;font-style:italic"><img class="w-3 h-3"
               src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
         </div>
-        <div class="grid grid-cols-2 gap-3 mt-2 options-container overflow-x-auto no-scrollbar">
-          <?php
-						$desire_toppings = $fields['desire'];
-						if (isset($desire_toppings) && is_array($desire_toppings)) {
-							$visible_toppings = array_slice($desire_toppings, 0, 2);
-						} else {
-							$visible_toppings = []; 
-						}
-					?>
-          <?php foreach ($visible_toppings as $desire_topping) : ?>
-          <?php 
-						$term = get_term($desire_topping["topping"], 'service-topping'); 
-						?>
-          <div id="mainPageDesire" data-name="<?= $term->name ?>" data-price="<?= $desire_topping["origin"] ?>"
-            style="flex-direction:row" class="option-desire flex items-center relative cursor-pointer gap-2"
-            onclick="selectOptionDesire(this)">
-            <div style="overflow:hidden">
-              <label class="radio">
-                <input type="radio" name="desire">
-                <?= $term->name ?>
-              </label>
-            </div>
-          </div>
-          <?php endforeach; ?>
+        <div class="gap-2 mt-2 flex flex-col overflow-x-auto no-scrollbar options-container w-full">
+          <?php include get_template_directory()."/content/solution.php"; ?>
         </div>
         <div id="modal-desire" class=" modal-desire fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
           <?php 
@@ -616,28 +597,7 @@ window.addEventListener('scroll', function() {
               src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
         </div>
         <div class="gap-2 mt-2 flex flex-col overflow-x-auto no-scrollbar options-container w-full">
-          <?php
-						$material_toppings = $fields['material'];
-						if (isset($material_toppings) && is_array($material_toppings)) {
-							$visible_toppings_material = array_slice($material_toppings, 0, 3);
-						} else {
-							$visible_toppings_material = []; 
-						}
-					?>
-          <?php foreach ($visible_toppings_material as $material_topping) : ?>
-          <?php 
-							$term = get_term($material_topping["topping"], 'service-topping'); 
-						?>
-          <div data-name="<?= $term->name ?>" data-price="<?= $material_topping["origin"] ?>"
-            class="option-material  flex-col flex text-sm cursor-pointer " onclick="selectOptionMaterial(this)">
-            <div style="overflow:hidden">
-              <label class="radio">
-                <input type="radio" name="material">
-                <?= $term->name ?>
-              </label>
-            </div>
-          </div>
-          <?php endforeach; ?>
+          <?php include get_template_directory()."/content/timer.php"; ?>
         </div>
         <div id="modal-material" class="modal-material fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
           <?php 
@@ -767,7 +727,7 @@ window.addEventListener('scroll', function() {
       </div>
 
       <div class="reviews-container">
-        <?php get_template_part( 'template-parts/content', 'review' ); ?>
+        <?php include get_template_directory()."/template-parts/content-review.php"; ?>
       </div>
 
     </div>
