@@ -42,10 +42,26 @@
           </div>
 
           <div class="form-group">
+            <label class="form-label" for="experience">Kinh nghiệm</label>
+            <select id="experience" name="experience" class="form-input input-select">
+              <option value="0" selected>Dưới 1 năm</option>
+              <option value="1">Trên 1 năm</option>
+            </select>
+          </div>
+
+          <!-- <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select> -->
+
+          <!-- 
+          <div class="form-group">
             <label for="message">Nội dung</label>
             <textarea id="message" name="message" class="form-input" rows="4"
               placeholder="Nhập yêu cầu tư vấn của bạn"></textarea>
-          </div>
+          </div> -->
 
           <button type="button" class="form-submit js-home-consultation">Gửi thông tin</button>
         </div>
