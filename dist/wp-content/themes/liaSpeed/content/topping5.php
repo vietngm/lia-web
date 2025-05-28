@@ -16,7 +16,7 @@
    <div style="overflow:hidden" class="flex items-center gap-2">
      <label class="radio w-full" style="justify-content: space-between;cursor: pointer;">
        <div class="flex items-center gap-2">
-         <input type="radio" name="desire">
+         <input type="radio" name="optionTp5">
          <?= $term->name ?>
        </div>
        <span><?= number_format($desire_topping["origin"], 0, ",", ".") ?> <small>đ</small></span>

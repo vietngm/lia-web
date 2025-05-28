@@ -8,9 +8,8 @@
  <?php
         $field = get_query_var('field');
     ?>
-
  <script>
-document.querySelectorAll('.modal-option').forEach(option => {
+document.querySelectorAll('.modal-option ').forEach(option => {
   option.addEventListener('click', function() {
     const name = this.getAttribute('data-name');
     const price = this.getAttribute('data-price');
@@ -100,16 +99,6 @@ document.addEventListener("DOMContentLoaded", function() {
         if (selectedOptionBh) {
           selectOptionBh(selectedOptionBh);
         }
-        const selectedOptionTp4 = document.querySelector(
-          `.option-tp4[data-name="${this.getAttribute("data-name")}"]`);
-        if (selectedOptionTp4) {
-          selectOptionTp4(selectedOptionTp4);
-        }
-        const selectedOptionTp5 = document.querySelector(
-          `.option-tp5[data-name="${this.getAttribute("data-name")}"]`);
-        if (selectedOptionTp5) {
-          selectOptionTp5(selectedOptionTp5);
-        }
         // Cập nhật tổng tiền ngay lập tức
         updateTotalPrice();
         updateUI();
@@ -162,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function() {
   saveSelectedOption("selectedDesire", ".modal-option");
   saveSelectedOption("selectedMaterial", ".modal-option-material");
   saveSelectedOption("selectedBh", ".modal-option-bh");
-  saveSelectedOption("selectedBh", ".modal-option-tp4");
 
   // Cập nhật tổng tiền ban đầu
   updateTotalPrice();

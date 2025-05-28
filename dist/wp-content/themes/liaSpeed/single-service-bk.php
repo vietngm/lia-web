@@ -6,6 +6,9 @@
 	$discountPercentage = ($price > 0 && $discountPrice < $price) 
     ? round((($price - $discountPrice) / $price) * 100) 
     : 0;
+	
+
+	
 	$args = array(
 		"post_type" => "service",
 		"posts_per_page" => 8,
@@ -629,6 +632,7 @@ window.addEventListener('scroll', function() {
       </div>
       <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
       <?php endif; ?>
+
       <?php if (!empty($fields['topping_4'])): ?>
       <!-- Topping 4-->
       <div class="mt-2">
@@ -751,10 +755,103 @@ window.addEventListener('scroll', function() {
         </a>
         <?php endforeach; ?>
       </div>
-
       <div class="reviews-container">
-        <?php include get_template_directory()."/template-parts/content-review.php"; ?>
+
+
+
+
+
+
+        <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2" style="font-size:16px">Đánh giá
+        </h2>
+        <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
+          <div class="mt-2">
+            <div class="rating-container">
+              <div class="rating-summary">
+                <div class="rating-score"><?= $fields["rating"] ?> </div>
+              </div>
+              <div class="rating-details" class="flex gap-2 ">
+                <div>
+                  <div class="stars">★★★★★</div>
+                  <div class="stars">★★★★☆</div>
+                  <div class="stars">★★★☆☆</div>
+                  <div class="stars">★★☆☆☆</div>
+                  <div class="stars">★☆☆☆☆</div>
+                </div>
+                <div style="display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 7px;">
+                  <div class="progress-bar">
+                    <div class="fill" style="width: 80%;"></div>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="fill" style="width: 15%;"></div>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="fill" style="width: 10%;"></div>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="fill" style="width: 5%;"></div>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="fill" style="width: 2%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="overflow-x-auto no-scrollbar flex gap-2 mb-2 ">
+              <?php if ($fields["review_group"]["reviews"]) : foreach ($fields["review_group"]["reviews"] as $review) : ?>
+              <div class="bg-gray-50  rounded-lg shadow-sm mb-4" style="       
+              margin: 2px;
+              width: 300px;
+              box-shadow: rgb(247 247 247) 0px 0px 0px 1px, rgb(236 236 236) 0px 0px 0px 1px inset;
+              padding: 12px;
+              border-radius: 8px;
+              background: #ececec69;">
+                <div class="flex justify-between items-center" style="width:300px;">
+                  <div class="flex items-center gap-2">
+                    <img style="width:36px ; height:36px"
+                      src="<?= !empty($review["image"]) ? $review["image"] : get_theme_file_uri("assets/images/avatar.png") ?>"
+                      alt="Avatar" class="w-12 h-12 rounded-full mr-3">
+                    <div class=" flex align-start flex-col">
+                      <h3 class="text-lg font-medium"><?= $review["fullname"] ?></h3>
+                      <div class="flex items-center gap-1">
+                        <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>"
+                          alt="" />
+                        <p class="text-yellow-500 font-medium text-12"><?= $review["rating"] ?>/5</p>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-500 text-12" style="margin-right:24px"><?= $review["date"] ?></p>
+                </div>
+                <div class="mt-2" style="width: 280px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 19px;
+                -webkit-line-clamp: 2;
+                height: 40px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                font-size: 13px;">
+                  <?= $review["content"] ?>
+                </div>
+                <div class="mt-2 flex gap-2">
+                  <?php if ($review["gallery"]) : foreach ($review["gallery"] as $image) : ?>
+                  <img style="width:50px; height:auto; border-radius:6px" src="<?= $image ?>" alt="Image 1"
+                    class="w-24 h-24 rounded-lg mr-2">
+                  <?php endforeach; endif; ?>
+                </div>
+              </div>
+              <?php endforeach; endif; ?>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+
+
 
     </div>
   </section>
@@ -800,11 +897,9 @@ window.addEventListener('scroll', function() {
     </div>
   </secrion>
   <div class="block lg:hidden w-full h-[3px] bg-gray-200  mb-2"></div>
-
   <div id="modal-booking" class=" modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
     <?php get_template_part( 'template-parts/modal', 'service-booking' ); ?>
   </div>
-
   <section>
     <div class="container">
       <?php if ($the_query_related->have_posts()) : ?>
@@ -824,190 +919,6 @@ window.addEventListener('scroll', function() {
   </section>
 </main>
 
-<script>
-selectOptionDesire = (element) => {
-  const name = element.getAttribute('data-name');
-  const price = element.getAttribute('data-price') || "0"; // Đảm bảo không bị null
-
-  console.log("Data nhận vào:", {
-    name,
-    price
-  });
-
-  if (!name) {
-    console.warn("Lỗi: data-name không hợp lệ", name);
-    return;
-  }
-
-  let selectedDesires = JSON.parse(localStorage.getItem('selectedDesire') || "[]");
-  if (Array.isArray(selectedDesires)) {
-    const index = selectedDesires.findIndex(item => item.name === name);
-    // xử lý index...
-    selectedDesires.push({
-      name,
-      price
-    });
-  } else {
-    console.warn('selectedDesires is not an array', selectedDesires);
-    selectedDesires.splice(index, 1);
-  }
-
-  // const index = selectedDesires.findIndex(item => item.name === name);
-  // console.log("Index:", index);
-
-  // if (index !== -1) {
-  //   selectedDesires.splice(index, 1);
-  // } else {
-  //   selectedDesires.push({
-  //     name,
-  //     price
-  //   });
-  // }
-
-  console.log("Danh sách sau khi cập nhật:", selectedDesires);
-
-  localStorage.setItem('selectedDesire', JSON.stringify(selectedDesires));
-
-  setTimeout(() => {
-    updateTotalPrice(); // Đảm bảo giá tổng cập nhật đúng trước khi cập nhật footer
-    updateUI();
-    updateNoteTopping();
-    updateFooterPrice(); // Cập nhật giá footer sau khi updateTotalPrice hoàn thành
-    updateBookingInfo();
-  }, 50);
-
-  document.querySelectorAll('.modal-option').forEach(input => {
-    input.checked = selectedDesires.some(item => item.name === input.getAttribute('data-name'));
-  });
-};
-</script>
-<script>
-selectOptionMaterial = (element) => {
-  console.log(element);
-  const name = element.getAttribute('data-name');
-  const price = element.getAttribute('data-price');
-  console.log(name, price);
-
-  // Chỉ lưu một tùy chọn duy nhất
-  const selectedMaterials = {
-    name,
-    price
-  };
-
-  // Cập nhật lại localStorage
-  localStorage.setItem('selectedMaterials', JSON.stringify(selectedMaterials));
-
-  // Cập nhật giao diện
-  setTimeout(() => {
-    updateTotalPrice(); // Đảm bảo giá tổng cập nhật đúng trước khi cập nhật footer
-    updateUI();
-    updateNoteTopping();
-    updateFooterPrice(); // Cập nhật giá footer sau khi updateTotalPrice hoàn thành
-    updateBookingInfo();
-  }, 50);
-
-  // Cập nhật trạng thái checkbox: chỉ chọn 1
-  document.querySelectorAll('.modal-option-material').forEach(input => {
-    input.checked = input.getAttribute('data-name') === name;
-  });
-};
-</script>
-<script>
-selectOptionBh = (element) => {
-  console.log(element);
-  const name = element.getAttribute('data-name');
-  const price = element.getAttribute('data-price');
-  console.log(name, price);
-
-  // Chỉ lưu một tùy chọn duy nhất
-  const selectedBh = {
-    name,
-    price
-  };
-
-  // Cập nhật lại localStorage
-  localStorage.setItem('selectedBh', JSON.stringify(selectedBh));
-
-  // Cập nhật giao diện
-  setTimeout(() => {
-    updateTotalPrice(); // Đảm bảo giá tổng cập nhật đúng trước khi cập nhật footer
-    updateUI();
-    updateNoteTopping();
-    updateFooterPrice(); // Cập nhật giá footer sau khi updateTotalPrice hoàn thành
-    updateBookingInfo();
-  }, 50);
-
-  // Cập nhật trạng thái checkbox: chỉ chọn 1
-  document.querySelectorAll('.modal-option-bh').forEach(input => {
-    input.checked = input.getAttribute('data-name') === name;
-  });
-};
-</script>
-
-<script>
-selectOptionTp4 = (element) => {
-  console.log(element);
-  const name = element.getAttribute('data-name');
-  const price = element.getAttribute('data-price');
-  console.log(name, price);
-
-  // Chỉ lưu một tùy chọn duy nhất
-  const selectedTp4 = {
-    name,
-    price
-  };
-
-  // Cập nhật lại localStorage
-  localStorage.setItem('selectedTp4', JSON.stringify(selectedTp4));
-
-  // Cập nhật giao diện
-  setTimeout(() => {
-    updateTotalPrice(); // Đảm bảo giá tổng cập nhật đúng trước khi cập nhật footer
-    updateUI();
-    updateNoteTopping();
-    updateFooterPrice(); // Cập nhật giá footer sau khi updateTotalPrice hoàn thành
-    updateBookingInfo();
-  }, 50);
-
-  // Cập nhật trạng thái checkbox: chỉ chọn 1
-  // document.querySelectorAll('.modal-option-bh').forEach(input => {
-  //   input.checked = input.getAttribute('data-name') === name;
-  // });
-};
-</script>
-
-
-<script>
-selectOptionTp5 = (element) => {
-  console.log(element);
-  const name = element.getAttribute('data-name');
-  const price = element.getAttribute('data-price');
-  console.log(name, price);
-
-  // Chỉ lưu một tùy chọn duy nhất
-  const selectedTp5 = {
-    name,
-    price
-  };
-
-  // Cập nhật lại localStorage
-  localStorage.setItem('selectedTp5', JSON.stringify(selectedTp5));
-
-  // Cập nhật giao diện
-  setTimeout(() => {
-    updateTotalPrice(); // Đảm bảo giá tổng cập nhật đúng trước khi cập nhật footer
-    updateUI();
-    updateNoteTopping();
-    updateFooterPrice(); // Cập nhật giá footer sau khi updateTotalPrice hoàn thành
-    updateBookingInfo();
-  }, 50);
-
-  // Cập nhật trạng thái checkbox: chỉ chọn 1
-  // document.querySelectorAll('.modal-option-bh').forEach(input => {
-  //   input.checked = input.getAttribute('data-name') === name;
-  // });
-};
-</script>
 
 <script>
 const swiper = new Swiper('.swiper-container', {
@@ -1156,8 +1067,6 @@ document.addEventListener("DOMContentLoaded", () => {
   addOptionEvent(".option-desire", "selectedDesire");
   addOptionEvent(".option-material", "selectedMaterial");
   addOptionEvent(".option-bh", "selectedBh");
-  addOptionEvent(".option-tp4", "selectedTp4");
-  addOptionEvent(".option-tp5", "selectedTp5");
 
   updateTotalPrice();
 });
@@ -1198,16 +1107,7 @@ function updateTotalPrice() {
     price: 0
   };
 
-  const selectedTp4 = JSON.parse(localStorage.getItem("selectedTp4")) || {
-    price: 0
-  };
-
-  const selectedTp5 = JSON.parse(localStorage.getItem("selectedTp5")) || {
-    price: 0
-  };
-
-  const totalPrice = servicePrice + selectedDesire.price + selectedMaterial.price + selectedBh.price + selectedTp4
-    .price + selectedTp5.price;
+  const totalPrice = servicePrice + selectedDesire.price + selectedMaterial.price + selectedBh.price;
   localStorage.setItem("totalPrice", totalPrice);
 
   document.getElementById("footer-total-price").textContent =

@@ -1,11 +1,12 @@
 <?php
-        $field = get_query_var('field');
-        $price = $field["price"] ? $field["price"] : 0;
-        $discountPrice = $field["discountPrice"] ? $field["discountPrice"] : 0;
-        $discountPercentage = ($price > 0 && $discountPrice < $price) 
+    $field = get_query_var('field');
+    $price = !empty($field["price"]) ? $field["price"] : 0;
+    $discountPrice = isset($field["discountPrice"]) ? floatval($field["discountPrice"]) : 0;
+    $discountPercentage = ($price > 0 && $discountPrice > 0 && $discountPrice < $price) 
         ? round((($price - $discountPrice) / $price) * 100) 
         : 0;
-    ?>
+    $basePrice = $discountPrice ?: $price; // Nếu có giảm giá thì lấy giá giảm, không thì lấy giá gốc
+?>
 
 <head>
   <style>
@@ -194,6 +195,37 @@
   }
   </style>
 </head>
+
+<script>
+function updateFooterPrice() {
+  let savedPrice = localStorage.getItem("totalPrice") || <?= $basePrice ?>;
+  document.getElementById("footer-total-price").textContent =
+    new Intl.NumberFormat("vi-VN").format(savedPrice) + " đ";
+}
+updateFooterPrice();
+updateBookingInfo();
+window.addEventListener("storage", updateFooterPrice);
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const bottomAction = document.querySelector(".bottom-action");
+  let lastScrollTop = 0;
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+
+    if (scrollTop > lastScrollTop) {
+      bottomAction.style.transform = "translateY(100%)";
+    } else {
+      bottomAction.style.transform = "translateY(0)";
+    }
+
+    lastScrollTop = scrollTop;
+  });
+});
+</script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const totalPrice = localStorage.getItem("totalPrice") || 0;
@@ -230,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- <?php //if (!empty($discountPrice) && $discountPrice < $price) : ?>
         <div class="flex items-center gap-2">
           <span class="text-red-500 ml-2 new-price" style="font-weight:700;font-size:14px">
-            <?php //number_format($discountPrice, 0, ",", ".") ?><small><u>đ</u></small>
+            <? //number_format($discountPrice, 0, ",", ".") ?><small><u>đ</u></small>
           </span>
         </div>
         <span class="text-gray-400 line-through opacity-70 old-price" style="color:#ccc;font-size:12px">

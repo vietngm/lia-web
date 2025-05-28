@@ -275,42 +275,66 @@ $(document).ready(function() {
 </head>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+function updateBookingInfo() {
   const totalPrice = localStorage.getItem("totalPrice") || 0;
   const formattedPrice = new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
-  document.getElementById("totalPriceBooking").textContent = formattedPrice;
+  const totalPriceElement = document.getElementById("totalPriceBooking");
+  if (totalPriceElement) {
+    totalPriceElement.textContent = formattedPrice;
+  }
 
   const serviceName = localStorage.getItem("serviceName") || "Không có dịch vụ";
   const serviceNameElement = document.getElementById("serviceName");
   if (serviceNameElement) {
     serviceNameElement.textContent = serviceName;
   }
+
   const servicePrice = localStorage.getItem("servicePrice") || 0;
   const formattedPriceService = new Intl.NumberFormat("vi-VN").format(servicePrice) + " đ";
-  document.getElementById("servicePrice").textContent = formattedPriceService;
-
+  const servicePriceElement = document.getElementById("servicePrice");
+  if (servicePriceElement) {
+    servicePriceElement.textContent = formattedPriceService;
+  }
+}
+document.addEventListener("DOMContentLoaded", function() {
+  updateBookingInfo();
 });
-
+window.addEventListener("storage", function(event) {
+  if (["totalPrice", "serviceName", "servicePrice"].includes(event.key)) {
+    updateBookingInfo();
+  }
+});
+</script>
+<script>
 function updateUI() {
-  const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire"));
-  if (selectedDesire !== null) {
-    const desireName = selectedDesire.name;
-    const desirePrice = selectedDesire.price || 0;
-    const formattedPriceDesire = new Intl.NumberFormat("vi-VN").format(desirePrice) + " đ";
+  const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire")) || [];
+
+  if (Array.isArray(selectedDesire) && selectedDesire.length > 0) {
+    // Gộp tên các lựa chọn lại thành một chuỗi
+    const desireNames = selectedDesire.map(desire => desire.name).join(", ");
+    // Tính tổng giá của tất cả các lựa chọn
+    const totalDesirePrice = selectedDesire.reduce((sum, desire) => sum + (Number(desire.price) || 0), 0);
+    // Định dạng giá tiền
+    const formattedPriceDesire = new Intl.NumberFormat("vi-VN").format(totalDesirePrice) + " đ";
+
+    // Hiển thị tên các lựa chọn
     const desireNameElement = document.getElementById("desireName");
     if (desireNameElement) {
-      desireNameElement.textContent = desireName;
+      desireNameElement.textContent = desireNames;
     }
+
+    // Hiển thị tổng giá của các lựa chọn
     const desirePriceElement = document.getElementById("desirePrice");
     if (desirePriceElement) {
       desirePriceElement.textContent = formattedPriceDesire;
     }
   }
 
-  const selectedMaterial = JSON.parse(localStorage.getItem("selectedMaterial"));
-  if (selectedMaterial !== null) {
-    const materialName = selectedMaterial.name;
-    const materialPrice = selectedMaterial.price || 0;
+
+  const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
+  if (selectedMaterials !== null) {
+    const materialName = selectedMaterials.name;
+    const materialPrice = selectedMaterials.price || 0;
     const formattedPriceMaterial = new Intl.NumberFormat("vi-VN").format(materialPrice) + " đ";
     const materialNameElement = document.getElementById("materialName");
     if (materialNameElement) {
@@ -336,22 +360,25 @@ function updateUI() {
       bhPriceElement.textContent = formattedPriceBh;
     }
   }
-  if (selectedDesire !== null || selectedMaterial !== null || selectedBh !== null) {
+  if (selectedDesire !== null || selectedMaterials !== null || selectedBh !== null) {
     document.querySelector(".byHand").style.display = "block";
   }
 }
 
 function updateNoteTopping() {
   const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
-  const selectedMaterial = JSON.parse(localStorage.getItem("selectedMaterial"));
+  const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
   const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire"));
 
   const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price) + " đ";
 
+  const nameDesire = selectedDesire ? selectedDesire?.map(desire => desire.name).join(", ") : "";
+  const priceDesire = selectedDesire ? selectedDesire.reduce((sum, desire) => sum + desire.price, 0) : 0;
+
   const noteTopping = [
     selectedBh ? `Bảo hành: ${selectedBh.name} - ${formatPrice(selectedBh.price)}` : "",
-    selectedMaterial ? `Vật liệu: ${selectedMaterial.name} - ${formatPrice(selectedMaterial.price)}` : "",
-    selectedDesire ? `Mong muốn: ${selectedDesire.name} - ${formatPrice(selectedDesire.price)}` : ""
+    selectedMaterials ? `Vật liệu: ${selectedMaterials.name} - ${formatPrice(selectedMaterials.price)}` : "",
+    selectedDesire ? `Mong muốn: ${nameDesire} - ${formatPrice(priceDesire)}` : ""
   ].filter(Boolean).join(" | ");
 
   $("textarea[name='noteTopping']").val(noteTopping).trigger("change");
