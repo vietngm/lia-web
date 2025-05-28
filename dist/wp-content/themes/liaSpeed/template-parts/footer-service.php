@@ -227,19 +227,34 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="flex items-center p-2 justify-end text-12" style="padding-top:12px">
       Tổng cộng :
       <div class="text-12 font-semibold text-red-500 flex items-center gap-2 " style="margin-left:4px">
-        <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
+        <!-- <?php //if (!empty($discountPrice) && $discountPrice < $price) : ?>
         <div class="flex items-center gap-2">
           <span class="text-red-500 ml-2 new-price" style="font-weight:700;font-size:14px">
-            <?= number_format($discountPrice, 0, ",", ".") ?><small><u>đ</u></small>
+            <?php //number_format($discountPrice, 0, ",", ".") ?><small><u>đ</u></small>
           </span>
         </div>
         <span class="text-gray-400 line-through opacity-70 old-price" style="color:#ccc;font-size:12px">
-          <?= number_format($price, 0, ",", ".") ?><small><u>đ</u></small>
+          <?php //number_format($price, 0, ",", ".") ?><small><u>đ</u></small>
         </span>
 
-        <?php else : ?>
-        <?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
+        <?php //else : ?>
+        <?php //number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
+        <?php //endif; ?> -->
+
+
+        <!-- Giá hiển thị -->
+        <span id="footer-total-price" class="text-red-500 ml-2 new-price" style="font-weight:700;font-size:14px">
+          <?= number_format($basePrice, 0, ",", ".") ?><small><u>đ</u></small>
+        </span>
+
+        <!-- Giá gốc nếu có giảm giá -->
+        <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
+        <span class="text-gray-400 line-through opacity-70 old-price" style="color:#ccc;font-size:12px">
+          <?= number_format($price, 0, ",", ".") ?><small><u>đ</u></small>
+        </span>
         <?php endif; ?>
+
+
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:12px;justify-content:space-between;padding-bottom:20px">

@@ -827,7 +827,37 @@ window.addEventListener('scroll', function() {
   </section>
 </main>
 
+<script>
+selectOptionBh = (element) => {
+  console.log(element);
+  const name = element.getAttribute('data-name');
+  const price = element.getAttribute('data-price');
+  console.log(name, price);
 
+  // Chỉ lưu một tùy chọn duy nhất
+  const selectedBh = {
+    name,
+    price
+  };
+
+  // Cập nhật lại localStorage
+  localStorage.setItem('selectedBh', JSON.stringify(selectedBh));
+
+  // Cập nhật giao diện
+  setTimeout(() => {
+    updateTotalPrice(); // Đảm bảo giá tổng cập nhật đúng trước khi cập nhật footer
+    updateUI();
+    updateNoteTopping();
+    updateFooterPrice(); // Cập nhật giá footer sau khi updateTotalPrice hoàn thành
+    updateBookingInfo();
+  }, 50);
+
+  // Cập nhật trạng thái checkbox: chỉ chọn 1
+  document.querySelectorAll('.modal-option-bh').forEach(input => {
+    input.checked = input.getAttribute('data-name') === name;
+  });
+};
+</script>
 <script>
 const swiper = new Swiper('.swiper-container', {
   slidesPerView: 1.1,
