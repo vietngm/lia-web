@@ -621,32 +621,61 @@ window.addEventListener('scroll', function() {
               src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
         </div>
         <div class="flex flex-col gap-2 mt-2 ">
-          <?php
-						$bh_toppings = $fields['bh'];
-
-						if (isset($bh_toppings) && is_array($bh_toppings)) {
-							$visible_toppings_bh = array_slice($bh_toppings, 0, 3);
-						} else {
-							$visible_toppings_bh = []; 
-						}
-					?>
-          <?php foreach ($visible_toppings_bh as $bh_topping) : ?>
-          <?php 
-							$term = get_term($bh_topping["topping"], 'service-topping'); 
-						?>
-          <div data-name="<?= $term->name ?>" data-price="<?= $bh_topping["origin"] ?>"
-            class="option-bh flex-col flex  text-sm cursor-pointer " onclick="selectOptionBh(this)">
-            <label class="checkbox">
-              <input type="checkbox">
-              <?= $term->name ?>
-            </label>
-          </div>
-          <?php endforeach; ?>
+          <?php include get_template_directory()."/content/warranty.php"; ?>
         </div>
         <div id="modal-bh" class=" modal-bh fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
           <?php 
 						set_query_var('field', $fields);
 						get_template_part( 'template-parts/modal', "service-bh"); 
+					?>
+        </div>
+      </div>
+      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
+      <?php endif; ?>
+      <?php if (!empty($fields['topping_4'])): ?>
+      <!-- Topping 4-->
+      <div class="mt-2">
+        <div class="flex justify-between items-center">
+          <h3 class="font-medium">
+            <?= !empty($fields['ten_topping_4']) ? $fields['ten_topping_4'] : "Topping Option" ?> <span class="text-12"
+              style="font-weight:300"> ( Chọn 1 ) </span>
+          </h3>
+          <button id="material" class="submit text-sm text-gray-500 cursor-pointer"
+            style="font-size:12px;color:#646464;font-style:italic"><img class="w-3 h-3"
+              src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
+        </div>
+        <div class="gap-2 mt-2 flex flex-col overflow-x-auto no-scrollbar options-container w-full">
+          <?php include get_template_directory()."/content/topping4.php"; ?>
+        </div>
+        <div id="modal-material" class="modal-material fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
+          <?php 
+						//set_query_var('field', $fields);
+						//get_template_part( 'template-parts/modal', "service-material"); 
+					?>
+        </div>
+      </div>
+      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
+      <?php endif; ?>
+
+      <?php if (!empty($fields['topping_5'])): ?>
+      <!-- Topping 5-->
+      <div class="mt-2">
+        <div class="flex justify-between items-center">
+          <h3 class="font-medium">
+            <?= !empty($fields['ten_topping_5']) ? $fields['ten_topping_5'] : "Topping Option" ?> <span class="text-12"
+              style="font-weight:300"> ( Chọn 1 ) </span>
+          </h3>
+          <button id="material" class="submit text-sm text-gray-500 cursor-pointer"
+            style="font-size:12px;color:#646464;font-style:italic"><img class="w-3 h-3"
+              src="<?= get_theme_file_uri("assets/images/icons/chamthan.svg") ?>" alt="" /></button>
+        </div>
+        <div class="gap-2 mt-2 flex flex-col overflow-x-auto no-scrollbar options-container w-full">
+          <?php include get_template_directory()."/content/topping5.php"; ?>
+        </div>
+        <div id="modal-material" class="modal-material fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
+          <?php 
+						//set_query_var('field', $fields);
+						//get_template_part( 'template-parts/modal', "service-material"); 
 					?>
         </div>
       </div>
