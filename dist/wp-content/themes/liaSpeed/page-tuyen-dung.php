@@ -274,6 +274,7 @@ $recruitment_id = get_the_ID();
           </div>
 
           <div class="form-group">
+            <input type="hidden" name="location" value="">
             <label class="form-label" for="phone">Lựa chọn nơi làm việc trong tương lai</label>
             <div class="recruitment-dropdown" id="location">
               <span class="selected-option">Vui lòng chọn</span>
@@ -287,9 +288,11 @@ $recruitment_id = get_the_ID();
     ?>
               </div>
             </div>
+            <div class="has-error error-location"></div>
           </div>
 
           <div class="form-group">
+            <input type="hidden" name="experience" value="">
             <label class="form-label" for="phone">Bạn đã có kinh nghiệm nghề chưa?</label>
             <div class="recruitment-dropdown" id="experience">
               <span class="selected-option">Vui lòng chọn</span>
@@ -303,10 +306,12 @@ $recruitment_id = get_the_ID();
     ?>
               </div>
             </div>
+            <div class="has-error error-experience"></div>
           </div>
 
 
           <div class="form-group">
+            <input type="hidden" name="salary" value="">
             <label class="form-label" for="phone">Thu nhập mong muốn mỗi tháng</label>
             <div class="recruitment-dropdown" id="salary">
               <span class="selected-option">Vui lòng chọn</span>
@@ -320,6 +325,7 @@ $recruitment_id = get_the_ID();
     ?>
               </div>
             </div>
+            <div class="has-error error-salary"></div>
           </div>
 
           <button type="button" class="form-submit js-recruitment">ĐĂNG KÝ ỨNG TUYỂN NGAY</button>
