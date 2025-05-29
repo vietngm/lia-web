@@ -4,6 +4,235 @@
   <link href="style.css" rel="stylesheet" />
 </head>
 
+<style>
+:root {
+  --primary-color: #1A5477;
+  --accent-color: #94C347;
+  --text-dark: #333;
+  --text-medium: #2C2F40;
+  --text-light: #888;
+  --border-color: #E0E0E0;
+  --background-light: #1b54780f;
+  --background-mint: rgba(148, 195, 71, 0.1);
+}
+
+.dropdown-icon {
+  margin-left: 5px;
+  width: 16px;
+  height: 16px;
+}
+
+.recruitment-dropdown {
+  position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.recruitment-dropdown.active {
+  border-color: var(--primary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.selected-option::after {
+  content: '▼';
+  font-size: 10px;
+  color: var(--text-light);
+  transition: transform 0.3s ease;
+}
+
+.recruitment-dropdown.active .selected-option::after {
+  transform: rotate(180deg);
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: none;
+}
+
+.dropdown-option {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.dropdown-option:hover {
+  background-color: var(--background-light);
+}
+
+.dropdown-option.selected {
+  background-color: var(--background-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.dropdown-option:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.dropdown-option:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+
+/* Additional styles for dropdowns */
+.recruitment-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  margin-top: 5px;
+}
+
+.dropdown-option {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 12px;
+}
+
+.dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.dropdown-option:hover {
+  background-color: var(--background-light);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15px auto;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.close-modal {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: var(--text-medium);
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submit-button,
+.confirm-deposit {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+</style>
+<?php
+$recruitment_id = get_the_ID();
+	$recruitment_fields = get_fields($recruitment_id);
+	// $thumbnail_url = get_the_post_thumbnail_url($recruitment_id, 'full');
+	$location = $recruitment_fields['khu_vuc'];
+  $experience = $recruitment_fields['kinh_nghiem'];
+  $salary = $recruitment_fields['thu_nhap_mong_muon'];
+?>
 <main>
   <section class="section-booking-banner w-full h-[200px] relative px-4 flex items-center justify-center">
     <?php $image = get_the_post_thumbnail_url( ) ?>
@@ -24,6 +253,8 @@
         <?= wp_nonce_field( 'recruitment_form' ); ?>
         <div class="content-editor">
           <?= the_content(); ?>
+          FORM ĐĂNG KÝ<br>
+          ỨNG TUYỂN CHUYÊN VIÊN SPA<br>
           <div class="form-group">
             <label class="form-label" for="name">Họ tên</label>
             <input type="text" id="name" name="fullname" class="form-input" placeholder="Nhập họ tên của bạn" required>
@@ -35,6 +266,7 @@
               required>
             <div class="has-error error-phone"></div>
           </div>
+
           <div class="form-group">
             <label class="form-label" for="email">Email</label>
             <input type="email" id="email" name="email" class="form-input" placeholder="Nhập email của bạn">
@@ -42,28 +274,55 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="experience">Kinh nghiệm</label>
-            <select id="experience" name="experience" class="form-input input-select">
-              <option value="0" selected>Dưới 1 năm</option>
-              <option value="1">Trên 1 năm</option>
-            </select>
+            <label class="form-label" for="phone">Lựa chọn nơi làm việc trong tương lai</label>
+            <div class="recruitment-dropdown" id="location">
+              <span class="selected-option">Vui lòng chọn</span>
+              <div class="dropdown-options">
+                <?php 
+    if ($location) {
+      foreach ($location as $item) {
+        echo '<div class="dropdown-option" data-value="' . esc_attr($item['ten_kv']) . '">' . esc_html($item['ten_kv']) . '</div>';
+      }
+    }
+    ?>
+              </div>
+            </div>
           </div>
 
-          <!-- <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select> -->
-
-          <!-- 
           <div class="form-group">
-            <label for="message">Nội dung</label>
-            <textarea id="message" name="message" class="form-input" rows="4"
-              placeholder="Nhập yêu cầu tư vấn của bạn"></textarea>
-          </div> -->
+            <label class="form-label" for="phone">Bạn đã có kinh nghiệm nghề chưa?</label>
+            <div class="recruitment-dropdown" id="experience">
+              <span class="selected-option">Vui lòng chọn</span>
+              <div class="dropdown-options">
+                <?php 
+    if ($experience) {
+      foreach ($experience as $item) {
+        echo '<div class="dropdown-option" data-value="' . esc_attr($item['noi_dung']) . '">' . esc_html($item['noi_dung']) . '</div>';
+      }
+    }
+    ?>
+              </div>
+            </div>
+          </div>
 
-          <button type="button" class="form-submit js-home-consultation">Gửi thông tin</button>
+
+          <div class="form-group">
+            <label class="form-label" for="phone">Thu nhập mong muốn mỗi tháng</label>
+            <div class="recruitment-dropdown" id="salary">
+              <span class="selected-option">Vui lòng chọn</span>
+              <div class="dropdown-options">
+                <?php 
+    if ($salary) {
+      foreach ($salary as $item) {
+        echo '<div class="dropdown-option" data-value="' . esc_attr($item['tu_den_vnd']) . '">' . esc_html($item['tu_den_vnd']) . '</div>';
+      }
+    }
+    ?>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="form-submit js-recruitment">ĐĂNG KÝ ỨNG TUYỂN NGAY</button>
         </div>
       </div>
     </div>
