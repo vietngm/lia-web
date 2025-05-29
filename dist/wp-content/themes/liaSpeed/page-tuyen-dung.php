@@ -233,7 +233,7 @@ $recruitment_id = get_the_ID();
   $experience = $recruitment_fields['kinh_nghiem'];
   $salary = $recruitment_fields['thu_nhap_mong_muon'];
 ?>
-<main>
+<main class="is-recruitment">
   <section class="section-booking-banner w-full h-[200px] relative px-4 flex items-center justify-center">
     <?php $image = get_the_post_thumbnail_url( ) ?>
     <?php if ($image) : ?>
@@ -249,12 +249,18 @@ $recruitment_id = get_the_ID();
         <span>›</span>
         <a class="" href="<?= the_permalink() ?>"><?= get_the_title(); ?></a>
       </div>
-      <div id="register-recruitment">
-        <?= wp_nonce_field( 'recruitment_form' ); ?>
-        <div class="content-editor">
+      <div class="recruitment-content">
+        <div classs="recruitment-description">
           <?= the_content(); ?>
+        </div>
+        <div class="recruitment-heading">
           FORM ĐĂNG KÝ<br>
           ỨNG TUYỂN CHUYÊN VIÊN SPA<br>
+        </div>
+      </div>
+      <div id="register-recruitment">
+        <?= wp_nonce_field( 'recruitment_form' ); ?>
+        <div class="content-editor recruitment-form">
           <div class="form-group">
             <label class="form-label" for="name">Họ tên</label>
             <input type="text" id="name" name="fullname" class="form-input" placeholder="Nhập họ tên của bạn" required>
@@ -328,7 +334,10 @@ $recruitment_id = get_the_ID();
             <div class="has-error error-salary"></div>
           </div>
 
-          <button type="button" class="form-submit js-recruitment">ĐĂNG KÝ ỨNG TUYỂN NGAY</button>
+          <button type="button" class="button1 js-recruitment" title="ĐĂNG KÝ ỨNG TUYỂN NGAY">
+            <span>ĐĂNG KÝ ỨNG TUYỂN NGAY</span>
+          </button>
+
         </div>
       </div>
     </div>

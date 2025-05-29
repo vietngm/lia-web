@@ -15,7 +15,8 @@ justify-content: center;
 bottom: -6px;"></div>
     </div>
     <div style="margin-top:24px;text-align:center">
-      *Lưu ý: Bộ phận CSKH Phòng khám LiA Beauty sẽ gọi lại cho Quý khách để xác nhận thông tin đăng ký.
+      *Lưu ý: Bộ phận Tuyển dụng Phòng khám LiA Beauty sẽ gọi lại cho Quý khách để xác nhận thông tin đăng
+      ký.
       Cảm ơn Quý khách hàng đã sử dụng dịch vụ của chúng tôi.
     </div>
   </div>
