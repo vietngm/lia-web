@@ -611,3 +611,51 @@ function ajax_consultation_form(){
 
 add_action( 'wp_ajax_consultation_form', 'ajax_consultation_form');
 add_action( 'wp_ajax_nopriv_consultation_form', 'ajax_consultation_form');
+
+
+/********************************************* Recruitment **********************************************/
+function ajax_recruitment_form(){
+	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
+	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
+	$email = isset($_POST["email"]) ? $_POST["email"] : "";
+	$location = isset($_POST["location"]) ? $_POST["location"] : "";
+	$experience = isset($_POST["experience"]) ? $_POST["experience"] : "";
+	$salary = isset($_POST["salary"]) ? $_POST["salary"] : "";
+
+
+	if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'recruitment_form' ) ) {
+		echo json_encode(
+			array(
+				'success'=>false,
+				"message" => "Yêu cầu không hợp lệ."
+			)
+		);
+		die();
+	}
+
+	$data_id = wp_insert_post( 
+		array(
+			'post_title'	=> "$fullname - $phone",
+			"post_type" => "tuyen-dung",
+			"post_status" => "publish",
+			"meta_input" => array(
+				"ho_va_ten" => $fullname,
+				"dt" => $phone,
+				"nlv" => $location,
+				"mtnmm"=>$experience,
+				"kn"=>$salary,
+			),
+		)
+	);
+	
+	echo json_encode(
+		array(
+			'success' => true,	
+			"message" => "Đăng ký tuyển dụng thành công."
+		)
+	);
+	die();
+}
+
+add_action( 'wp_ajax_recruitment_form', 'ajax_recruitment_form');
+add_action( 'wp_ajax_nopriv_recruitment_form', 'ajax_recruitment_form');

@@ -333,6 +333,11 @@ $recruitment_id = get_the_ID();
       </div>
     </div>
   </section>
+
+  <!-- Modal for Registration -->
+  <div id="registration-modal" class="modal modal-recruitment-success">
+    <?php include get_template_directory() . "/template-parts/modal-recruitment-success.php"; ?>
+  </div>
 </main>
 
 <?php get_footer(); ?>

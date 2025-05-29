@@ -61,9 +61,11 @@ jQuery(function ($) {
 		});
 	});
 
-	// const $modelConsultationSuccess = $(document).find(
-	// 	".modal-consultation-success"
+	// const $modelRecruitmentSuccess = $(document).find(
+	// 	".modal-recruitment-success"
 	// );
+
+	const registrationModal = document.getElementById("registration-modal");
 
 	$(document).on("click", ".js-recruitment", function () {
 		let hasError = false;
@@ -100,8 +102,6 @@ jQuery(function ($) {
 		// const packageCapital = $root.find('[name="packageCapital"]').val();
 		// const packageInvestment = $root.find('[name="packageInvestment"]').val();
 		// const paymentPolicy = $root.find('[name="paymentPolicy"]').val();
-
-		console.log({ location });
 
 		const errorFullname = $root.find(".error-fullname");
 		const errorPhone = $root.find(".error-phone");
@@ -199,89 +199,89 @@ jQuery(function ($) {
 			return;
 		}
 
-		// submitForm(dataRecruitment);
+		submitForm(dataRecruitment);
 	});
 
-	// function submitForm(dataRecruitment, success, error) {
-	// 	const data = Object.assign(
-	// 		{
-	// 			action: "recruitment_form",
-	// 			_wpnonce: $root.find('[name="_wpnonce"]').val(),
-	// 		},
-	// 		dataRecruitment
-	// 	);
+	function submitForm(dataRecruitment, success, error) {
+		const data = Object.assign(
+			{
+				action: "recruitment_form",
+				_wpnonce: $root.find('[name="_wpnonce"]').val(),
+			},
+			dataRecruitment
+		);
 
-	// 	const loadingToastify = Toastify({
-	// 		text: "Đang gửi thông tin...",
-	// 		duration: -1,
-	// 		newWindow: true,
-	// 		close: true,
-	// 		gravity: "top",
-	// 		position: "center",
-	// 		stopOnFocus: true,
-	// 		style: {
-	// 			background: "#fff",
-	// 			color: "#333",
-	// 		},
-	// 	});
-	// 	loadingToastify.showToast();
+		const loadingToastify = Toastify({
+			text: "Đang gửi thông tin...",
+			duration: -1,
+			newWindow: true,
+			close: true,
+			gravity: "top",
+			position: "center",
+			stopOnFocus: true,
+			style: {
+				background: "#fff",
+				color: "#333",
+			},
+		});
+		loadingToastify.showToast();
 
-	// 	$.ajax({
-	// 		url: AJAX_URL,
-	// 		type: "POST",
-	// 		dataType: "JSON",
-	// 		data: data,
-	// 		success: function (result) {
-	// 			loadingToastify.hideToast();
+		$.ajax({
+			url: AJAX_URL,
+			type: "POST",
+			dataType: "JSON",
+			data: data,
+			success: function (result) {
+				loadingToastify.hideToast();
 
-	// 			if (result.success) {
-	// 				$(document).find(".close-modal").click();
-	// 				$(document).find(".modal-close").click();
+				if (result.success) {
+					$(document).find(".close-modal").click();
+					$(document).find(".modal-close").click();
 
-	// 				$modelRecruitmentSuccess.removeClass("hidden").addClass("flex");
+					// $modelRecruitmentSuccess.removeClass("hidden").addClass("flex");
+					registrationModal.style.display = "block";
+					reset();
+					setTimeout(function () {
+						// $modelRecruitmentSuccess.addClass("hidden").removeClass("flex");
+						window.location.href = "/";
+					}, 3000);
 
-	// 				reset();
-	// 				setTimeout(function () {
-	// 					$modelRecruitmentSuccess.addClass("hidden").removeClass("flex");
-	// 					window.location.href = "/";
-	// 				}, 3000);
-
-	// 				if (success) success();
-	// 			} else {
-	// 				Toastify({
-	// 					text: result.message || "Đã xảy ra lỗi",
-	// 					duration: 3000,
-	// 					newWindow: true,
-	// 					close: true,
-	// 					gravity: "top",
-	// 					position: "center",
-	// 					stopOnFocus: true,
-	// 					style: {
-	// 						background: "#ef4444",
-	// 					},
-	// 				}).showToast();
-	// 				if (error) error();
-	// 			}
-	// 		},
-	// 		error: function () {
-	// 			loadingToastify.hideToast();
-	// 			submitting = false;
-	// 			Toastify({
-	// 				text: "Đã xảy ra lỗi",
-	// 				duration: 3000,
-	// 				newWindow: true,
-	// 				close: true,
-	// 				gravity: "top",
-	// 				position: "center",
-	// 				stopOnFocus: true,
-	// 				style: {
-	// 					background: "#ef4444",
-	// 				},
-	// 			}).showToast();
-	// 			if (error) error();
-	// 		},
-	// 	});
-	// }
+					if (success) success();
+				} else {
+					Toastify({
+						text: result.message || "Đã xảy ra lỗi",
+						duration: 3000,
+						newWindow: true,
+						close: true,
+						gravity: "top",
+						position: "center",
+						stopOnFocus: true,
+						style: {
+							background: "#ef4444",
+						},
+					}).showToast();
+					if (error) error();
+				}
+			},
+			error: function () {
+				loadingToastify.hideToast();
+				submitting = false;
+				Toastify({
+					text: "Đã xảy ra lỗi",
+					duration: 3000,
+					newWindow: true,
+					close: true,
+					gravity: "top",
+					position: "center",
+					stopOnFocus: true,
+					style: {
+						background: "#ef4444",
+					},
+				}).showToast();
+				if (error) error();
+			},
+		});
+	}
 
 	function validateField(field, errorElement, errorMessage) {
 		if (!field) {
