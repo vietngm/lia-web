@@ -1,4 +1,3 @@
-
 <?php 
 /**
  * Template name: Danh sách chuyên viên
@@ -53,102 +52,111 @@
 	
 		return $categories;
 	}
-?> 
+?>
 
 <style>
-		.highlight-filter{
-            padding: 12px ;
-		}
-        .highlight-filter .item{
-            width: auto;
-            padding: 6px 12px;
-            border-radius: 24px;
-        }
-		.filter-doctor{
-			padding-top: 16px;
-			padding-bottom: 16px;
-		}
-		.dropdown-select-ui{
-			border-radius: 24px;
-		}
-		.search-container {
-			width: 100%;
-			max-width: 400px;
-		}
+.highlight-filter {
+  padding: 12px;
+}
 
-		.search-box {
-			display: flex;
-			align-items: center;
-			background: #f6f6f6;
-			border-radius: 20px;
-			padding: 10px;
-			width: 100%;
-		}
-		.search-box input {
-			font-size: 16px; /* Ngăn chặn zoom khi focus */
-		}
-		.search-box i {
-			color: #888;
-			margin-right: 8px;
-		}
+.highlight-filter .item {
+  width: auto;
+  padding: 6px 12px;
+  border-radius: 24px;
+}
 
-		.search-box input {
-			border: none;
-			outline: none;
-			background: transparent;
-			flex: 1;
-			font-size: 14px;
-			color: #333;
-		}
+.filter-doctor {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
 
-		.filter-sort {
-			display: flex;
-			justify-content: space-around;
-			width: 100%;
-			max-width: 400px;
-			margin-top: 15px;
-		}
+.dropdown-select-ui {
+  border-radius: 24px;
+}
 
-		.filter-btn, .sort-btn {
-			background: transparent;
-			border: none;
-			font-size: 14px;
-			color: #333;
-			cursor: pointer;
-			display: flex;
-			align-items: center;
-		}
+.search-container {
+  width: 100%;
+  max-width: 400px;
+}
 
-		.filter-btn i, .sort-btn i {
-			margin-left: 5px;
-		}
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f6f6f6;
+  border-radius: 20px;
+  padding: 10px;
+  width: 100%;
+}
 
+.search-box input {
+  font-size: 16px;
+  /* Ngăn chặn zoom khi focus */
+}
+
+.search-box i {
+  color: #888;
+  margin-right: 8px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+}
+
+.filter-sort {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 15px;
+}
+
+.filter-btn,
+.sort-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.filter-btn i,
+.sort-btn i {
+  margin-left: 5px;
+}
 </style>
+
 <head>
 
 </head>
 
-<main>  
-    <section class="section-doctor " style="padding-top:12px" >
-        <h2 style="font-weight:700;padding:0px 12px">Danh sách trung tâm </h2>
-		<div class="mt-1 p-3">
-			<div class="search-container">
-				<div class="search-box">
-					<img class="w-5 h-5" src="<?= get_theme_file_uri("assets/images/icons/search.svg") ?>" alt="" />
-					<input type="text" placeholder="Tìm địa điểm">
-				</div>
-			</div>
-			<div class="filter-sort">
-				<button class="filter-btn gap-1">
-					Bộ lọc <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/filter.svg") ?>" alt="" /> 
-				</button>
-				<button class="sort-btn gap-1">
-					Xếp theo 	<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/sort.svg") ?>" alt="" />
-				</button>
-			</div>
-		</div>
-        <div class="container gap-2 flex flex-col" >
-            <?php
+<main>
+  <section class="section-doctor " style="padding-top:12px">
+    <h2 style="font-weight:700;padding:0px 12px">Danh sách trung tâm</h2>
+    <div class="mt-1 p-3">
+      <div class="search-container">
+        <div class="search-box">
+          <img class="w-5 h-5" src="<?= get_theme_file_uri("assets/images/icons/search.svg") ?>" alt="" />
+          <input type="text" placeholder="Tìm địa điểm">
+        </div>
+      </div>
+      <div class="filter-sort">
+        <button class="filter-btn gap-1">
+          Bộ lọc <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/filter.svg") ?>" alt="" />
+        </button>
+        <button class="sort-btn gap-1">
+          Xếp theo <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/sort.svg") ?>" alt="" />
+        </button>
+      </div>
+    </div>
+    <div class="container gap-2 flex flex-col">
+      <?php
                 $args = array(
                     'post_status' => 'publish',
                     'posts_per_page' => -1,
@@ -156,9 +164,9 @@
                 );
                 $the_query = new WP_Query( $args );
             ?>
-		    <?php if ( $the_query->have_posts() ) : ?>
-                <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                    <?php 
+      <?php if ( $the_query->have_posts() ) : ?>
+      <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+      <?php 
                         $doctor_id = get_the_ID(); 
                         $service_categories = get_categories_by_doctor_id($doctor_id);
                         $services = get_posts(array(
@@ -177,20 +185,20 @@
                             return $value->term_id;
                         }, $service_categories);
                     ?>
-                    <div class="docker-item" style="" data-id="<?= implode(",", $_service_category_ids) ?>">
-                        <?php
+      <div class="docker-item" style="" data-id="<?= implode(",", $_service_category_ids) ?>">
+        <?php
                             get_template_part( 'template-parts/branch', 'summary', array(
                                 "services" => $services, 
                                 "doctor_id" => $doctor_id, 
                                 "service_categories" => $service_categories,
                             ));
                         ?>
-                        <hr style="border-top:1px solid #f2f2f2;margin-top:20px"/>
-                    </div>
-                <?php endwhile; ?>
-            <?php endif; wp_reset_postdata(); ?>
-        </div>
-    </section>
+        <hr style="border-top:1px solid #f2f2f2;margin-top:20px" />
+      </div>
+      <?php endwhile; ?>
+      <?php endif; wp_reset_postdata(); ?>
+    </div>
+  </section>
 </main>
 
 <?php get_footer(); ?>
