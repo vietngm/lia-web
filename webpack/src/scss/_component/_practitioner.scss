@@ -1,0 +1,47 @@
+.practitioner {
+	&-rating {
+		display: flex;
+		border-radius: 16px;
+		background-color: $color-gray;
+		padding: 0 8px;
+		grid-gap: 4px;
+		.name {
+			font-weight: bold;
+		}
+		.name,
+		.value {
+			color: $color-green;
+		}
+	}
+	&-info {
+		display: grid;
+	}
+	&-booking {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-gap: 8px;
+	}
+	&-summary {
+		grid-template-columns: 60px auto;
+		display: grid;
+		align-items: center;
+		grid-gap: 12px;
+		.address {
+			color: $color-green;
+		}
+		.experience {
+			font-size: 11px;
+		}
+		.avatar {
+			width: 60px;
+			height: 60px;
+			border-radius: 100%;
+			overflow: hidden;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}
