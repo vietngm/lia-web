@@ -48,7 +48,7 @@
     <header class="sticky top-0 left-0 right-0 bg-white z-50 shadow-sm">
       <?php include get_template_directory()."/content/app-download.php"; ?>
       <?php      	
-       if( !is_page('danh-sach-chuyen-vien')) include get_template_directory()."/content/header.php";
+       if( !is_page('danh-sach-chuyen-vien') && !is_page('danh-sach-chi-nhanh')) include get_template_directory()."/content/header.php";
       ?>
     </header>
 
