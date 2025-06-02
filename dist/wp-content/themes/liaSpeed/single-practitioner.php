@@ -634,11 +634,110 @@ window.addEventListener('scroll', function() {
         <span class="line"></span>
       </div>
     </div>
-    <div class="header-review">
-      <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/review.svg") ?>" alt="" />
-      <h3 style="    color: #1a5477;font-weight: 600;">4.9 · 243 đánh giá</h3>
+
+    <div class="content-rating mt-4">
+      <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
+        <div class="flex justify-between items-center" style="border-bottom: 1px solid #eee; padding-bottom: 8px;">
+          <div class="flex items-center gap-2">
+            <div class="text-xl text-gray-700 font-bold text-24 "><?= $fields["rating"] ?></div>
+            <div class="text-xl text-gray-700 text-14 ">/5 sao</div>
+          </div>
+          <div class="flex flex-col ">
+            <div class="text-xl text-gray-700  font-bold text-20" style="font-size:18px"><?= $fields["rating_number"] ?>
+            </div>
+            <div>khách hàng đã đánh giá</div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <div class="flex items-center gap-2">
+            <div class="text-14">Hữu ích nhất</div>
+            <img style="width:12px" src="<?= get_theme_file_uri("assets/images/icons/feedback.svg") ?>" alt="" />
+          </div>
+
+          <div class="rating-container">
+            <div class="rating-summary">
+              <div class="rating-score"><?= $fields["rating-tb"] ?> </div>
+            </div>
+            <div class="rating-details" class="flex gap-2 ">
+              <div>
+                <div class="stars">★★★★★</div>
+                <div class="stars">★★★★☆</div>
+                <div class="stars">★★★☆☆</div>
+                <div class="stars">★★☆☆☆</div>
+                <div class="stars">★☆☆☆☆</div>
+              </div>
+              <div style="display: flex;
+								flex-direction: column;
+								align-items: center;
+								gap: 7px;">
+                <div class="progress-bar">
+                  <div class="fill" style="width: 80%;"></div>
+                </div>
+                <div class="progress-bar">
+                  <div class="fill" style="width: 15%;"></div>
+                </div>
+                <div class="progress-bar">
+                  <div class="fill" style="width: 10%;"></div>
+                </div>
+                <div class="progress-bar">
+                  <div class="fill" style="width: 5%;"></div>
+                </div>
+                <div class="progress-bar">
+                  <div class="fill" style="width: 2%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="overflow-x-auto no-scrollbar flex gap-2 mb-2 ">
+            <?php if ($fields["review_group"]["reviews"]) : foreach ($fields["review_group"]["reviews"] as $review) : ?>
+            <div class="bg-gray-50  rounded-lg shadow-sm mb-4" style="       
+							margin: 2px;
+							width: 300px;
+							box-shadow: rgb(247 247 247) 0px 0px 0px 1px, rgb(236 236 236) 0px 0px 0px 1px inset;
+							padding: 12px;
+							border-radius: 8px;
+							background: #ececec69;">
+              <div class="flex justify-between items-center" style="width:300px;">
+                <div class="flex items-center gap-2">
+                  <img style="width:30px ; height:30px"
+                    src="<?= !empty($review["image"]) ? $review["image"] : get_theme_file_uri("assets/images/avatar.png") ?>"
+                    alt="Avatar" class="w-12 h-12 rounded-full mr-3">
+                  <div class=" flex align-start flex-col">
+                    <h3 class="text-lg font-medium"><?= $review["fullname"] ?></h3>
+                    <div class="flex items-center gap-1">
+                      <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>"
+                        alt="" />
+                      <p class="text-yellow-500 font-medium text-12"><?= $review["rating"] ?>/5</p>
+                    </div>
+                  </div>
+                </div>
+                <p class="text-gray-500 text-12" style="margin-right:24px"><?= $review["date"] ?></p>
+              </div>
+              <div class="mt-2" style="width: 280px;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								line-height: 19px;
+								-webkit-line-clamp: 2;
+								height: 40px;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;
+								font-size: 13px;">
+                <?= $review["content"] ?>
+              </div>
+              <div class="mt-2 flex gap-2">
+                <?php if ($review["gallery"]) : foreach ($review["gallery"] as $image) : ?>
+                <img style="width:50px; height:auto; border-radius:6px" src="<?= $image ?>" alt="Image 1"
+                  class="w-24 h-24 rounded-lg mr-2">
+                <?php endforeach; endif; ?>
+              </div>
+            </div>
+            <?php endforeach; endif; ?>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="reviews flex overflow-x-auto no-scrollbar gap-3">
+
+    <!-- <div class="reviews flex overflow-x-auto no-scrollbar gap-3">
       <div class="review-card">
         <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
         <div class="review-meta">
@@ -670,7 +769,8 @@ window.addEventListener('scroll', function() {
         <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
           nisl...</p>
       </div>
-    </div>
+    </div> -->
+
   </div>
   <div class="row-rating">
     <div class="evaluate-section">
