@@ -4,6 +4,10 @@
 // --------------------------------------------------
 .is-recruitment {
 	.recruitment {
+		&-content {
+			display: grid;
+			grid-gap: 16px;
+		}
 		&-heading {
 			display: grid;
 			margin: 16px auto auto;

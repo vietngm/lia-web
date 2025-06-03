@@ -244,6 +244,13 @@ $recruitment_id = get_the_ID();
   $yccv_group = $recruitment_fields['yeu_cau'];
   $yccv_group_2 = $recruitment_fields['ho_so_chuan_bi'];
 
+
+  $ql_tdc = $recruitment_fields['title'];
+  $ql_tdp = $recruitment_fields['sub_title'];
+  $ql_mtn = $recruitment_fields['muc_thu_nhap'];
+  $ql_month = $recruitment_fields['so_thang'];
+  $ql_noidung = $recruitment_fields['noi_dung'];
+
 ?>
 <main class="is-recruitment">
   <section class="section-booking-banner w-full h-[200px] relative px-4 flex items-center justify-center">
@@ -271,6 +278,8 @@ $recruitment_id = get_the_ID();
         </div>
       </div>
 
+      ------
+
       <div class="recruitment-content">
         <div class="heading-main"><?php echo $gt_tdc; ?></div>
         <div class="heading-sub"><?php echo $gt_tdp; ?></div>
@@ -283,6 +292,45 @@ $recruitment_id = get_the_ID();
           <?php } ?>
         </ul>
       </div>
+
+      ------
+
+      <div class="recruitment-content">
+        <div class="heading-main"><?php echo $yccv_tdc; ?></div>
+        <div class="heading-sub"><?php echo $yccv_tdp; ?></div>
+        <p><?=$yccv_title;?></p>
+        ------
+        <ul class="about">
+          <?php echo $yccv_group['tieu_de'];?>
+          <?php foreach ($yccv_group['noi_dung'] as $item1) { ?>
+          <li><?=$item1['text'];?></li>
+          <?php } ?>
+        </ul>
+        ------
+        <ul class="about">
+          <?php echo $yccv_group_2['title'];?>
+          <?php foreach ($yccv_group_2['noi_dung'] as $item) { ?>
+          <li><?=$item['text']?></li>
+          <?php } ?>
+        </ul>
+      </div>
+
+      ------
+
+      <div class="recruitment-content">
+        <div class="heading-main"><?php echo $ql_tdc; ?></div>
+        <div class="heading-sub"><?php echo $ql_tdp; ?></div>
+        <div><?=$ql_mtn?></div>
+        <div><?=$ql_month?></div>
+
+        <ul class="about">
+          <?php foreach ($ql_noidung as $item) { ?>
+          <li><?=$item['text_mt']?></li>
+          <?php } ?>
+        </ul>
+      </div>
+
+      ------
 
       <div id="register-recruitment">
         <?= wp_nonce_field( 'recruitment_form' ); ?>
