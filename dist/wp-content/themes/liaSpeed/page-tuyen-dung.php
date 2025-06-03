@@ -232,6 +232,18 @@ $recruitment_id = get_the_ID();
 	$location = $recruitment_fields['khu_vuc'];
   $experience = $recruitment_fields['kinh_nghiem'];
   $salary = $recruitment_fields['thu_nhap_mong_muon'];
+  $slungvien = $recruitment_fields['gt_slcv'];
+  $gt_tdc = $recruitment_fields['tdc_gt'];
+  $gt_tdp = $recruitment_fields['tdp_gt'];
+  $gt_soluoc = $recruitment_fields['gioi_thieu_so_luoc'];
+  $gt_ndc = $recruitment_fields['noi_dung_chinh'];
+
+  $yccv_tdc = $recruitment_fields['tdc_yccv'];
+  $yccv_tdp = $recruitment_fields['tdp_yccv'];
+  $yccv_title = $recruitment_fields['tdcv_yccv'];
+  $yccv_group = $recruitment_fields['yeu_cau'];
+  $yccv_group_2 = $recruitment_fields['ho_so_chuan_bi'];
+
 ?>
 <main class="is-recruitment">
   <section class="section-booking-banner w-full h-[200px] relative px-4 flex items-center justify-center">
@@ -258,6 +270,20 @@ $recruitment_id = get_the_ID();
           ỨNG TUYỂN CHUYÊN VIÊN SPA<br>
         </div>
       </div>
+
+      <div class="recruitment-content">
+        <div class="heading-main"><?php echo $gt_tdc; ?></div>
+        <div class="heading-sub"><?php echo $gt_tdp; ?></div>
+        <p><?=$gt_soluoc;?></p>
+        <ul class="about">
+          <?php foreach ($gt_ndc as $item) { ?>
+          <li><?=$item['td_ndc']?></li>
+          <li><?=$item['nd_ndp']?></li>
+          <li><?=$item['nd_ndc']?></li>
+          <?php } ?>
+        </ul>
+      </div>
+
       <div id="register-recruitment">
         <?= wp_nonce_field( 'recruitment_form' ); ?>
         <div class="content-editor recruitment-form">
