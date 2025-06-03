@@ -5,6 +5,64 @@
 </head>
 
 <style>
+.arrow-shake {
+  display: inline-block;
+  font-size: 32px;
+  animation: shake 0.6s ease-in-out infinite;
+  animation-delay: 1s;
+  position: relative;
+}
+
+/* Keyframes for shaking motion */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(3px);
+  }
+
+  40% {
+    transform: translateX(-3px);
+  }
+
+  60% {
+    transform: translateX(3px);
+  }
+
+  80% {
+    transform: translateX(-3px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.arrow-loop {
+  display: inline-block;
+  font-size: 24px;
+  animation: moveRight 1s linear infinite;
+  position: relative;
+}
+
+@keyframes moveRight {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 10px;
+    opacity: 0;
+  }
+}
+
 :root {
   --primary-color: #1A5477;
   --accent-color: #94C347;
@@ -228,8 +286,10 @@
 <?php
   $recruitment_id = get_the_ID();
 	$recruitment_fields = get_fields($recruitment_id);
-	// $thumbnail_url = get_the_post_thumbnail_url($recruitment_id, 'full');
-	$location = $recruitment_fields['khu_vuc'];
+	
+  $key_visual = $recruitment_fields['td_key_visual'];
+  
+  $location = $recruitment_fields['khu_vuc'];
   $experience = $recruitment_fields['kinh_nghiem'];
   $salary = $recruitment_fields['thu_nhap_mong_muon'];
   $slungvien = $recruitment_fields['gt_slcv'];
@@ -355,6 +415,8 @@
       ------
 
       <div class="recruitment-content">
+        <div class="heading-main"><?php echo $vanhoa_tdc; ?></div>
+        <div class="heading-sub"><?php echo $vanhoa_tdp; ?></div>
         <ul class="about">
           <?php foreach ($vanhoa_noidung as $item) { ?>
           <li><?=$item['icon_vh']['url']?></li>
@@ -363,9 +425,11 @@
           <?php } ?>
         </ul>
       </div>
-      <!-- $vanhoa_tdc = $recruitment_fields['tdc_vh'];
-  $vanhoa_tdp = $recruitment_fields['tdp_vh'];
-  $vanhoa_noidung = $recruitment_fields['nd_vh']; -->
+
+      <div class="arrow-loop">→</div>
+      <div class="arrow-shake">→</div>
+
+
 
       <div id="register-recruitment">
         <?= wp_nonce_field( 'recruitment_form' ); ?>
