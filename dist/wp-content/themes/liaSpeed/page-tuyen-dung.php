@@ -226,30 +226,42 @@
 }
 </style>
 <?php
-$recruitment_id = get_the_ID();
+  $recruitment_id = get_the_ID();
 	$recruitment_fields = get_fields($recruitment_id);
 	// $thumbnail_url = get_the_post_thumbnail_url($recruitment_id, 'full');
 	$location = $recruitment_fields['khu_vuc'];
   $experience = $recruitment_fields['kinh_nghiem'];
   $salary = $recruitment_fields['thu_nhap_mong_muon'];
   $slungvien = $recruitment_fields['gt_slcv'];
+  
+  // Gioi thieu
   $gt_tdc = $recruitment_fields['tdc_gt'];
   $gt_tdp = $recruitment_fields['tdp_gt'];
   $gt_soluoc = $recruitment_fields['gioi_thieu_so_luoc'];
   $gt_ndc = $recruitment_fields['noi_dung_chinh'];
 
+  // Yeu cau cong viec
   $yccv_tdc = $recruitment_fields['tdc_yccv'];
   $yccv_tdp = $recruitment_fields['tdp_yccv'];
   $yccv_title = $recruitment_fields['tdcv_yccv'];
   $yccv_group = $recruitment_fields['yeu_cau'];
   $yccv_group_2 = $recruitment_fields['ho_so_chuan_bi'];
 
-
+  // Quyen loi
   $ql_tdc = $recruitment_fields['title'];
   $ql_tdp = $recruitment_fields['sub_title'];
   $ql_mtn = $recruitment_fields['muc_thu_nhap'];
   $ql_month = $recruitment_fields['so_thang'];
   $ql_noidung = $recruitment_fields['noi_dung'];
+
+  // Lo trinh
+  $lt_tdc = $recruitment_fields['td_lt'];
+  $lt_thumb = $recruitment_fields['hmhlt'];
+
+  // Van hoa
+  $vanhoa_tdc = $recruitment_fields['tdc_vh'];
+  $vanhoa_tdp = $recruitment_fields['tdp_vh'];
+  $vanhoa_noidung = $recruitment_fields['nd_vh'];
 
 ?>
 <main class="is-recruitment">
@@ -331,6 +343,29 @@ $recruitment_id = get_the_ID();
       </div>
 
       ------
+
+      <div class="recruitment-content">
+        <div class="heading-main"><?php echo $lt_tdc; ?></div>
+        <div class="heading-sub"><?php //echo $ql_tdp; ?></div>
+        <div>
+          <img src="<?php echo $lt_thumb['url'];?>" />
+        </div>
+      </div>
+
+      ------
+
+      <div class="recruitment-content">
+        <ul class="about">
+          <?php foreach ($vanhoa_noidung as $item) { ?>
+          <li><?=$item['icon_vh']['url']?></li>
+          <li><?=$item['td_vh']?></li>
+          <li><?=$item['mt_vh']?></li>
+          <?php } ?>
+        </ul>
+      </div>
+      <!-- $vanhoa_tdc = $recruitment_fields['tdc_vh'];
+  $vanhoa_tdp = $recruitment_fields['tdp_vh'];
+  $vanhoa_noidung = $recruitment_fields['nd_vh']; -->
 
       <div id="register-recruitment">
         <?= wp_nonce_field( 'recruitment_form' ); ?>
