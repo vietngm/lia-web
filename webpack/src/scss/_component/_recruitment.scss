@@ -1,0 +1,60 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.recruitment {
+	.background {
+		background-color: #f3faf3;
+		margin-left: -1rem;
+		margin-right: -1rem;
+		padding: 1.2rem 1rem;
+	}
+	.heading-main,
+	.heading-sub {
+		display: grid;
+	}
+	.heading-sub {
+		color: $color-main;
+	}
+	.heading-main {
+		color: $color-light2-green;
+	}
+	.block1,
+	.block2,
+	.block3 {
+		display: grid;
+	}
+	.block1 {
+		grid-template-columns: repeat(3, 1fr);
+		.tdc,
+		.ndp,
+		.ndc {
+			display: grid;
+			align-items: center;
+			text-align: center;
+		}
+	}
+	&-content {
+		display: grid;
+		grid-gap: 16px;
+		// padding: 16px;
+	}
+	&-heading {
+		display: grid;
+		margin: 16px auto auto;
+		font-weight: bold;
+		width: 100%;
+		@media (min-width: $screen-md-min) {
+			margin: 48px auto auto;
+			max-width: 600px;
+		}
+	}
+	&-form {
+		width: 100%;
+		margin: 16px auto auto;
+		@media (min-width: $screen-md-min) {
+			margin: 48px auto auto;
+			max-width: 600px;
+		}
+	}
+}

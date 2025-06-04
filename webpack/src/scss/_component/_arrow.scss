@@ -113,3 +113,38 @@
 // .down {
 // 	transform: rotate(135deg);
 // }
+
+.arrow-shake {
+	display: inline-block;
+	font-size: 32px;
+	animation: shake 0.6s ease-in-out infinite;
+	animation-delay: 1s;
+	position: relative;
+}
+
+/* Keyframes for shaking motion */
+@keyframes shake {
+	0% {
+		transform: translateX(0);
+	}
+
+	20% {
+		transform: translateX(3px);
+	}
+
+	40% {
+		transform: translateX(-3px);
+	}
+
+	60% {
+		transform: translateX(3px);
+	}
+
+	80% {
+		transform: translateX(-3px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
