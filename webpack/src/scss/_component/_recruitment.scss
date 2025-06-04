@@ -3,6 +3,12 @@
 // ○○○
 // --------------------------------------------------
 .recruitment {
+	display: grid;
+	// grid-gap: 16px;
+	margin-bottom: 64px;
+	.mt {
+		margin-top: 16px;
+	}
 	.background {
 		background-color: $color-light3-green;
 		margin-left: -1rem;
@@ -94,6 +100,10 @@
 			margin: 48px auto auto;
 			max-width: 600px;
 		}
+		.form-group {
+			margin-bottom: 12px;
+			grid-gap: 2px;
+		}
 	}
 	.target {
 		background-color: $color-light3-green;
@@ -138,6 +148,35 @@
 			font-weight: bold;
 			color: $color-main;
 			padding: 16px 24px;
+		}
+	}
+	.culture {
+		display: grid;
+		align-items: baseline;
+		grid-gap: 16px;
+		grid-template-columns: 1fr 1fr 1fr;
+		&-item {
+			display: grid;
+			grid-gap: 16px;
+		}
+		&-icon {
+			display: grid;
+		}
+		&-title {
+			text-align: left;
+			font-weight: bold;
+		}
+		&-desc {
+			text-align: left;
+		}
+	}
+	&-contact {
+		background-color: #f8f8f8;
+		padding: 1rem;
+		margin-left: -1rem;
+		margin-right: -1rem;
+		.header-main {
+			font-weight: bold;
 		}
 	}
 }

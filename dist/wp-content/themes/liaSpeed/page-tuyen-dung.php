@@ -73,9 +73,11 @@
 
       <div class="recruitment">
         <div class="recruitment-content">
+          <div>TUYÊN DUNG</div>
+          <div>300 + CHUYÊN VIÊN SPA</div>
           <ul class="block1">
             <?php foreach ($gt_ndc as $item) { ?>
-            <li class="item">
+            <li class="item frame-value">
               <div class="tdc"><?=$item['td_ndc']?></div>
               <div class="ndp"><?=$item['nd_ndp']?></div>
               <div class="ndc"><?=$item['nd_ndc']?></div>
@@ -95,8 +97,7 @@
 
         </div>
 
-
-        <div class="recruitment-content background">
+        <div class="recruitment-content background mt">
           <div class="heading">
             <div class="heading-main"><?php echo $yccv_tdc; ?></div>
             <div class="heading-sub"><?php echo $yccv_tdp; ?></div>
@@ -152,117 +153,110 @@
           </a>
         </div>
 
-        ------
-
-        <div class="recruitment-content">
+        <div class="recruitment-content mt">
           <div class="heading">
             <div class="heading-main"><?php echo $vanhoa_tdc; ?></div>
             <div class="heading-sub"><?php echo $vanhoa_tdp; ?></div>
           </div>
-          <ul class="block4">
+          <ul class="culture culture-list">
             <?php foreach ($vanhoa_noidung as $item) { ?>
-            <li>
-              <img src="<?=$item['icon_vh']['url']?>" />
-              <?=$item['td_vh']?>
-              <?=$item['mt_vh']?>
+            <li class="culture-item">
+              <div class="culture-icon"><img src="<?=$item['icon_vh']['url']?>" /></div>
+              <div class="culture-title"><?=$item['td_vh']?></div>
+              <div class="culture-desc"><?=$item['mt_vh']?></div>
             </li>
             <?php } ?>
           </ul>
         </div>
 
-
-
-
-
-
-        <div class="recruitment-content">
-          <div class="recruitment-heading">
-            FORM ĐĂNG KÝ<br>
-            ỨNG TUYỂN CHUYÊN VIÊN SPA<br>
+        <div class="recruitment-contact mt">
+          <div class="contact-header">
+            <div class="header-sub">FORM ĐĂNG KÝ</div>
+            <div class="header-main">ỨNG TUYỂN CHUYÊN VIÊN SPA</div>
           </div>
-        </div>
+          <div id="register-recruitment">
+            <?= wp_nonce_field( 'recruitment_form' ); ?>
+            <div class="content-editor recruitment-form">
+              <div class="form-group">
+                <label class="form-label" for="name">Họ tên</label>
+                <input type="text" id="name" name="fullname" class="form-input" placeholder="Nhập họ tên của bạn"
+                  required>
+                <div class="has-error error-fullname"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="Nhập số điện thoại của bạn"
+                  required>
+                <div class="has-error error-phone"></div>
+              </div>
 
-        <div id="register-recruitment">
-          <?= wp_nonce_field( 'recruitment_form' ); ?>
-          <div class="content-editor recruitment-form">
-            <div class="form-group">
-              <label class="form-label" for="name">Họ tên</label>
-              <input type="text" id="name" name="fullname" class="form-input" placeholder="Nhập họ tên của bạn"
-                required>
-              <div class="has-error error-fullname"></div>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="phone">Số điện thoại</label>
-              <input type="tel" id="phone" name="phone" class="form-input" placeholder="Nhập số điện thoại của bạn"
-                required>
-              <div class="has-error error-phone"></div>
-            </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-input" placeholder="Nhập email của bạn">
+                <div class="has-error error-email"></div>
+              </div>
 
-            <div class="form-group">
-              <label class="form-label" for="email">Email</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="Nhập email của bạn">
-              <div class="has-error error-email"></div>
-            </div>
-
-            <div class="form-group">
-              <input type="hidden" name="location" value="">
-              <label class="form-label" for="phone">Lựa chọn nơi làm việc trong tương lai</label>
-              <div class="recruitment-dropdown" id="location">
-                <span class="selected-option">Vui lòng chọn</span>
-                <div class="dropdown-options">
-                  <?php 
+              <div class="form-group">
+                <input type="hidden" name="location" value="">
+                <label class="form-label" for="phone">Lựa chọn nơi làm việc trong tương lai</label>
+                <div class="recruitment-dropdown" id="location">
+                  <span class="selected-option">Vui lòng chọn</span>
+                  <div class="dropdown-options">
+                    <?php 
     if ($location) {
       foreach ($location as $item) {
         echo '<div class="dropdown-option" data-value="' . esc_attr($item['ten_kv']) . '">' . esc_html($item['ten_kv']) . '</div>';
       }
     }
     ?>
+                  </div>
                 </div>
+                <div class="has-error error-location"></div>
               </div>
-              <div class="has-error error-location"></div>
-            </div>
 
-            <div class="form-group">
-              <input type="hidden" name="experience" value="">
-              <label class="form-label" for="phone">Bạn đã có kinh nghiệm nghề chưa?</label>
-              <div class="recruitment-dropdown" id="experience">
-                <span class="selected-option">Vui lòng chọn</span>
-                <div class="dropdown-options">
-                  <?php 
+              <div class="form-group">
+                <input type="hidden" name="experience" value="">
+                <label class="form-label" for="phone">Bạn đã có kinh nghiệm nghề chưa?</label>
+                <div class="recruitment-dropdown" id="experience">
+                  <span class="selected-option">Vui lòng chọn</span>
+                  <div class="dropdown-options">
+                    <?php 
     if ($experience) {
       foreach ($experience as $item) {
         echo '<div class="dropdown-option" data-value="' . esc_attr($item['noi_dung']) . '">' . esc_html($item['noi_dung']) . '</div>';
       }
     }
     ?>
+                  </div>
                 </div>
+                <div class="has-error error-experience"></div>
               </div>
-              <div class="has-error error-experience"></div>
-            </div>
 
 
-            <div class="form-group">
-              <input type="hidden" name="salary" value="">
-              <label class="form-label" for="phone">Thu nhập mong muốn mỗi tháng</label>
-              <div class="recruitment-dropdown" id="salary">
-                <span class="selected-option">Vui lòng chọn</span>
-                <div class="dropdown-options">
-                  <?php 
+              <div class="form-group">
+                <input type="hidden" name="salary" value="">
+                <label class="form-label" for="phone">Thu nhập mong muốn mỗi tháng</label>
+                <div class="recruitment-dropdown" id="salary">
+                  <span class="selected-option">Vui lòng chọn</span>
+                  <div class="dropdown-options">
+                    <?php 
     if ($salary) {
       foreach ($salary as $item) {
         echo '<div class="dropdown-option" data-value="' . esc_attr($item['tu_den_vnd']) . '">' . esc_html($item['tu_den_vnd']) . '</div>';
       }
     }
     ?>
+                  </div>
                 </div>
+                <div class="has-error error-salary"></div>
               </div>
-              <div class="has-error error-salary"></div>
-            </div>
 
-            <button type="button" class="button1 js-recruitment" title="ĐĂNG KÝ ỨNG TUYỂN NGAY">
-              <span>ĐĂNG KÝ ỨNG TUYỂN NGAY</span>
-              <span class="arrow-shake">→</span>
-            </button>
+              <button type="button" class="button1 js-recruitment" title="ĐĂNG KÝ ỨNG TUYỂN NGAY">
+                <span>ĐĂNG KÝ ỨNG TUYỂN NGAY</span>
+                <span class="arrow-shake">→</span>
+              </button>
+
+            </div>
 
           </div>
         </div>
