@@ -90,6 +90,7 @@
 
           <a href="#" class="contact-now" title="ỨNG TUYỂN NGAY">
             <span>ỨNG TUYỂN NGAY</span>
+            <span class="arrow-shake">→</span>
           </a>
 
         </div>
@@ -147,6 +148,7 @@
           <div class="way-heading"><?php echo $lt_tdc; ?></div>
           <a href="#" class="contact-now" title="ỨNG TUYỂN NGAY">
             <span>ỨNG TUYỂN NGAY</span>
+            <span class="arrow-shake">→</span>
           </a>
         </div>
 
@@ -159,15 +161,17 @@
           </div>
           <ul class="block4">
             <?php foreach ($vanhoa_noidung as $item) { ?>
-            <li><?=$item['icon_vh']['url']?></li>
-            <li><?=$item['td_vh']?></li>
-            <li><?=$item['mt_vh']?></li>
+            <li>
+              <img src="<?=$item['icon_vh']['url']?>" />
+              <?=$item['td_vh']?>
+              <?=$item['mt_vh']?>
+            </li>
             <?php } ?>
           </ul>
         </div>
 
 
-        <div class="arrow-shake">→</div>
+
 
 
 
@@ -257,6 +261,7 @@
 
             <button type="button" class="button1 js-recruitment" title="ĐĂNG KÝ ỨNG TUYỂN NGAY">
               <span>ĐĂNG KÝ ỨNG TUYỂN NGAY</span>
+              <span class="arrow-shake">→</span>
             </button>
 
           </div>
