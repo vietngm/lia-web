@@ -15,7 +15,8 @@
 		margin-top: 1rem;
 	}
 
-	.button1 {
+	.button1,
+	.contact-now {
 		border-radius: 8px;
 		border: none;
 		display: inline-block;
@@ -31,8 +32,6 @@
 		@media (min-width: $screen-md-min) {
 			width: 300px;
 		}
-
-		// top: 1000px;
 	}
 
 	.button1 span {

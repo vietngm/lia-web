@@ -82,69 +82,81 @@
             </li>
             <?php } ?>
           </ul>
+          <div class="heading">
+            <div class="heading-main"><?php echo $gt_tdc; ?></div>
+            <div class="heading-sub"><?php echo $gt_tdp; ?></div>
+          </div>
+          <?=$gt_soluoc;?>
 
-          <div class="heading-main"><?php echo $gt_tdc; ?></div>
-          <div class="heading-sub"><?php echo $gt_tdp; ?></div>
-          <p><?=$gt_soluoc;?></p>
-
-          <a href="#" type="button" class="button1" title="ĐĂNG KÝ ỨNG TUYỂN NGAY">
+          <a href="#" class="contact-now" title="ỨNG TUYỂN NGAY">
             <span>ỨNG TUYỂN NGAY</span>
           </a>
 
         </div>
 
-        ------
 
         <div class="recruitment-content background">
-          <div class="heading-main"><?php echo $yccv_tdc; ?></div>
-          <div class="heading-sub"><?php echo $yccv_tdp; ?></div>
-          <p><?=$yccv_title;?></p>
-          ------
-          <?php echo $yccv_group['tieu_de'];?>
-          <ul class="block2">
-            <?php foreach ($yccv_group['noi_dung'] as $item1) { ?>
-            <li><?=$item1['text'];?></li>
-            <?php } ?>
-          </ul>
-          ------
-          <?php echo $yccv_group_2['title'];?>
-          <ul class="block2">
-            <?php foreach ($yccv_group_2['noi_dung'] as $item) { ?>
-            <li><?=$item['text']?></li>
-            <?php } ?>
-          </ul>
-        </div>
+          <div class="heading">
+            <div class="heading-main"><?php echo $yccv_tdc; ?></div>
+            <div class="heading-sub"><?php echo $yccv_tdp; ?></div>
+          </div>
 
-        ------
+          <div class="border">
+            <div class="heading-underline"><?=$yccv_title;?></div>
+            <div class="block2">
+              <div class="block2-heading"><?php echo $yccv_group['tieu_de'];?></div>
+              <ul class="block2 block-list">
+                <?php foreach ($yccv_group['noi_dung'] as $item1) { ?>
+                <li><span>•</span><span><?=$item1['text'];?></span></li>
+                <?php } ?>
+              </ul>
+            </div>
+            <div class="block2">
+              <div class="block2-heading"><?php echo $yccv_group_2['title'];?></div>
+              <ul class="block2 block-list">
+                <?php foreach ($yccv_group_2['noi_dung'] as $item) { ?>
+                <li><span>•</span><span><?=$item['text']?></span></li>
+                <?php } ?>
+              </ul>
+            </div>
+          </div>
 
-        <div class="recruitment-content">
-          <div class="heading-main"><?php echo $ql_tdc; ?></div>
-          <div class="heading-sub"><?php echo $ql_tdp; ?></div>
-          <div><?=$ql_mtn?></div>
-          <div><?=$ql_month?></div>
+          <div class="border">
+            <div class="heading-underline"><?php echo $ql_tdc; ?></div>
+            <div class="target">
+              <div class="target-heading"><?php echo $ql_tdp; ?></div>
+              <div class="target-money">
+                <div class="value"><?=$ql_mtn?></div>
+                <div class="name">/ tháng</div>
+              </div>
+              <div class="target-month">Sau <?=$ql_month?> tháng</div>
+            </div>
 
-          <ul class="block3">
-            <?php foreach ($ql_noidung as $item) { ?>
-            <li><?=$item['text_mt']?></li>
-            <?php } ?>
-          </ul>
-        </div>
-
-        ------
-
-        <div class="recruitment-content">
-          <div class="heading-main"><?php echo $lt_tdc; ?></div>
-          <div class="heading-sub"><?php //echo $ql_tdp; ?></div>
-          <div>
-            <img src="<?php echo $lt_thumb['url'];?>" />
+            <ul class="block3 block-list">
+              <?php foreach ($ql_noidung as $item) { ?>
+              <li><span>•</span><span><?=$item['text_mt']?></span></li>
+              <?php } ?>
+            </ul>
           </div>
         </div>
 
+        <div class="recruitment-content">
+          <div class="way-thumb">
+            <img src="<?php echo $lt_thumb['url'];?>" />
+          </div>
+          <div class="way-heading"><?php echo $lt_tdc; ?></div>
+          <a href="#" class="contact-now" title="ỨNG TUYỂN NGAY">
+            <span>ỨNG TUYỂN NGAY</span>
+          </a>
+        </div>
+
         ------
 
         <div class="recruitment-content">
-          <div class="heading-main"><?php echo $vanhoa_tdc; ?></div>
-          <div class="heading-sub"><?php echo $vanhoa_tdp; ?></div>
+          <div class="heading">
+            <div class="heading-main"><?php echo $vanhoa_tdc; ?></div>
+            <div class="heading-sub"><?php echo $vanhoa_tdp; ?></div>
+          </div>
           <ul class="block4">
             <?php foreach ($vanhoa_noidung as $item) { ?>
             <li><?=$item['icon_vh']['url']?></li>

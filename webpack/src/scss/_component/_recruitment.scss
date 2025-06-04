@@ -4,7 +4,7 @@
 // --------------------------------------------------
 .recruitment {
 	.background {
-		background-color: #f3faf3;
+		background-color: $color-light3-green;
 		margin-left: -1rem;
 		margin-right: -1rem;
 		padding: 1.2rem 1rem;
@@ -12,6 +12,9 @@
 	.heading-main,
 	.heading-sub {
 		display: grid;
+		font-weight: bold;
+		align-items: center;
+		text-align: left;
 	}
 	.heading-sub {
 		color: $color-main;
@@ -19,10 +22,28 @@
 	.heading-main {
 		color: $color-light2-green;
 	}
+	.heading-underline {
+		text-align: center;
+		font-weight: bold;
+		position: relative;
+		font-size: 1rem;
+		padding-bottom: 8px;
+		&:after {
+			content: "";
+			height: 1px;
+			width: 30%;
+			background-color: $color-main;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
 	.block1,
 	.block2,
 	.block3 {
 		display: grid;
+		grid-gap: 8px;
 	}
 	.block1 {
 		grid-template-columns: repeat(3, 1fr);
@@ -34,9 +55,18 @@
 			text-align: center;
 		}
 	}
+	.block-list {
+		display: grid;
+		grid-gap: 12px;
+		li {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			grid-gap: 8px;
+		}
+	}
 	&-content {
 		display: grid;
-		grid-gap: 16px;
+		grid-gap: 12px;
 		// padding: 16px;
 	}
 	&-heading {
@@ -49,12 +79,65 @@
 			max-width: 600px;
 		}
 	}
+	.border {
+		border: solid 1px $color-main;
+		padding: 16px;
+		background-color: white;
+		border-radius: 8px;
+		display: grid;
+		grid-gap: 8px;
+	}
 	&-form {
 		width: 100%;
 		margin: 16px auto auto;
 		@media (min-width: $screen-md-min) {
 			margin: 48px auto auto;
 			max-width: 600px;
+		}
+	}
+	.target {
+		background-color: $color-light3-green;
+		padding: 16px;
+		text-align: center;
+		justify-content: center;
+		display: grid;
+		border-radius: 8px;
+		justify-items: center;
+		width: 100%;
+		&-money {
+			display: flex;
+			align-items: center;
+			.value {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+		}
+		&-month {
+			border-radius: 16px;
+			background-color: $color-main;
+			color: white;
+			padding: 4px 8px;
+			text-align: center;
+		}
+	}
+	.way {
+		display: grid;
+		align-items: center;
+		&-thumb {
+			display: grid;
+			margin-left: -1rem;
+			margin-right: -1rem;
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+			}
+		}
+		&-heading {
+			text-align: center;
+			font-weight: bold;
+			color: $color-main;
+			padding: 16px 24px;
 		}
 	}
 }
