@@ -26,34 +26,10 @@
 			transform: translateX(-50%);
 		}
 	}
-	&-btn {
-		position: absolute;
-		top: 60%;
-		left: 50%;
-		transform: translate(-60%, -50%);
-		z-index: 1;
-		&.btn {
-			border-radius: 32px;
-			background-color: rgba($color-main, 0.8);
-			color: white;
-			transition: all 0.4s ease;
-			font-weight: bold;
-			padding: 8px 16px;
-			font-size: 0.8rem;
-			&:hover {
-				color: white;
-				background-color: rgba($color-main, 0.4);
-			}
-			@media (min-width: $screen-md-min) {
-				padding: 8px 24px;
-				font-size: 1rem;
-			}
-		}
-	}
 
 	&-item {
 		background-size: cover;
-		height: calc(100vh - 300px);
+		height: 200px;
 		@media (min-width: $screen-md-min) {
 			height: 65vh;
 		}
