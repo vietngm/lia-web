@@ -45,26 +45,27 @@
 
 ?>
 <main class="is-recruitment">
-  <div>
-    <?php foreach ($key_visual as $item) { ?>
-    <li><?=$item['url']?></li>
-    <?php } ?>
-  </div>
-  <section class="section-booking-banner w-full h-[200px] relative px-4 flex items-center justify-center">
-    <?php $image = get_the_post_thumbnail_url( ) ?>
-    <?php if ($image) : ?>
-    <img class="w-full h-full object-cover object-center absolute" src="<?= $image ?>" />
-    <?php endif; ?>
-    <div class="w-full h-full absolute bg-black bg-opacity-50"></div>
-    <h1 class="relative z-20 text-white text-24 text-center font-bold uppercase"><?= get_the_title(); ?></h1>
+  <section>
+    <div class="key-visual">
+      <div class="loop owl-carousel owl-theme">
+        <?php foreach ($key_visual as $item) { ?>
+        <div class="key-item" style="background-image: url('<?=$item['url']?>')">
+          <!-- <figure>
+    <img class="owl-lazy" data-src="<?php //echo $img[0]; ?>" alt="SB Global Solutions" title="SB Global Solutions">
+  </figure> -->
+        </div>
+        <?php } ?>
+      </div>
+    </div>
   </section>
+
   <section class="section section-blog">
-    <div class="container pb-4">
-      <div class="flex gap-2 flex-wrap mb-8">
+    <div class="container">
+      <!-- <div class="flex gap-2 flex-wrap mb-8">
         <a class="text-primary font-semibold" href="/">Trang chủ</a>
         <span>›</span>
-        <a class="" href="<?= the_permalink() ?>"><?= get_the_title(); ?></a>
-      </div>
+        <a class="" href="<?//= the_permalink() ?>"><?//= get_the_title(); ?></a>
+      </div> -->
       <!-- <div class="recruitment-content">
         <div classs="recruitment-description"> -->
       <?//= the_content(); ?>
