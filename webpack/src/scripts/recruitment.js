@@ -88,7 +88,7 @@ jQuery(function ($) {
 
 		const fullname = $root.find('[name="fullname"]').val();
 		const phone = $root.find('[name="phone"]').val();
-		const email = $root.find('[name="email"]').val();
+		// const email = $root.find('[name="email"]').val();
 		const experience = $root.find('[name="experience"').val();
 		const location = $root.find('[name="location"').val();
 		const salary = $root.find('[name="salary"').val();
@@ -105,7 +105,7 @@ jQuery(function ($) {
 
 		const errorFullname = $root.find(".error-fullname");
 		const errorPhone = $root.find(".error-phone");
-		const errorEmail = $root.find(".error-email");
+		// const errorEmail = $root.find(".error-email");
 		const errorLocation = $root.find(".error-location");
 		const errorExperience = $root.find(".error-experience");
 		const errorSalary = $root.find(".error-salary");
@@ -113,7 +113,7 @@ jQuery(function ($) {
 		let dataRecruitment = {
 			fullname: fullname,
 			phone: phone,
-			email: email,
+			// email: email,
 			location: location,
 			experience: experience,
 			salary: salary,
@@ -140,16 +140,16 @@ jQuery(function ($) {
 			"Vui lòng nhập số điện thoại."
 		);
 
-		if (!email) {
-			hasError = true;
-			errorMessages.push("Vui lòng cho biết địa chỉ mail.");
-		}
+		// if (!email) {
+		// 	hasError = true;
+		// 	errorMessages.push("Vui lòng cho biết địa chỉ mail.");
+		// }
 
-		hasError |= validateField(
-			email,
-			errorEmail,
-			"Vui lòng cho biết địa chỉ mail."
-		);
+		// hasError |= validateField(
+		// 	email,
+		// 	errorEmail,
+		// 	"Vui lòng cho biết địa chỉ mail."
+		// );
 
 		if (!location) {
 			hasError = true;
@@ -183,7 +183,7 @@ jQuery(function ($) {
 		if (hasError) {
 			Toastify({
 				text:
-					errorMessages.length === 6
+					errorMessages.length === 5
 						? "Vui lòng nhập đầy đủ thông tin."
 						: errorMessages.join("\n"),
 				duration: 3000,

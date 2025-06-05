@@ -180,7 +180,7 @@
           </ul>
         </div>
 
-        <div class="recruitment-contact mt">
+        <div class="recruitment-contact mt" id="form">
           <div class="contact-header">
             <div class="header-sub">FORM ĐĂNG KÝ</div>
             <div class="header-main">ỨNG TUYỂN CHUYÊN VIÊN SPA</div>
@@ -201,11 +201,11 @@
                 <div class="has-error error-phone"></div>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label class="form-label" for="email">Email</label>
                 <input type="email" id="email" name="email" class="form-input" placeholder="Nhập email của bạn">
                 <div class="has-error error-email"></div>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <input type="hidden" name="location" value="">

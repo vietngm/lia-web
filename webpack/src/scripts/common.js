@@ -5,3 +5,4 @@ import "./branch.js";
 import "./recruitment.js";
 import "./component.js";
 import "./owlCarousel.js";
+import "./contactNow.js";
