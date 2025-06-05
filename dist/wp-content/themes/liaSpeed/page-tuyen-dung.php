@@ -73,22 +73,33 @@
 
       <div class="recruitment">
         <div class="recruitment-content">
-          <div>TUYÊN DUNG</div>
-          <div>300 + CHUYÊN VIÊN SPA</div>
-          <ul class="block1">
-            <?php foreach ($gt_ndc as $item) { ?>
+          <div class="main-block">
+            <div class="main-logo"><img src="<?=get_theme_file_uri()?>/assets/images/logo.png" alt="LiA Beauty" /></div>
+            <div class="main-title"><img src="<?=get_theme_file_uri()?>/assets/images/15226.png" alt="Tuyển dụng" />
+            </div>
+            <div class="main-thumb"><img src="<?=get_theme_file_uri()?>/assets/images/15202.png"
+                alt="300 + CHUYÊN VIÊN SPA" /></div>
+          </div>
+          <!-- <ul class="block1">
+            <?php //foreach ($gt_ndc as $item) { ?>
             <li class="item frame-value">
-              <div class="tdc"><?=$item['td_ndc']?></div>
-              <div class="ndp"><?=$item['nd_ndp']?></div>
-              <div class="ndc"><?=$item['nd_ndc']?></div>
+              <div class="tdc"><?//=$item['td_ndc']?></div>
+              <div class="ndp"><?//=$item['nd_ndp']?></div>
+              <div class="ndc"><?//=$item['nd_ndc']?></div>
             </li>
-            <?php } ?>
-          </ul>
-          <div class="heading">
+            <?php //} ?>
+          </ul> -->
+          <div class="heading mt">
             <div class="heading-main"><?php echo $gt_tdc; ?></div>
             <div class="heading-sub"><?php echo $gt_tdp; ?></div>
           </div>
-          <?=$gt_soluoc;?>
+          <?//=$gt_soluoc;?>
+          <div class="recruitment-about">
+            <p>🎮 “Làm việc như chơi game” tại LiA Speed Beauty!</p>
+            <p>Dù bạn mới bắt đầu hay đã có kinh nghiệm, chỉ cần đăng ký trong 5 phút, bạn đã vào vai “Cộng sự LiA”
+              chinh
+              phục thử thách, tích điểm nhanh, thăng cấp liên tục.</p>
+          </div>
 
           <a href="#" class="contact-now" title="ỨNG TUYỂN NGAY">
             <span>ỨNG TUYỂN NGAY</span>

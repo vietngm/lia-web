@@ -13,7 +13,7 @@
 		background-color: $color-light3-green;
 		margin-left: -1rem;
 		margin-right: -1rem;
-		padding: 1.2rem 1rem;
+		padding: 1.5rem 1rem;
 	}
 	.heading-main,
 	.heading-sub {
@@ -172,11 +172,19 @@
 	}
 	&-contact {
 		background-color: #f8f8f8;
-		padding: 1rem;
+		padding: 1.5rem 1rem;
 		margin-left: -1rem;
 		margin-right: -1rem;
 		.header-main {
 			font-weight: bold;
 		}
+	}
+	.main-logo {
+		width: 200px;
+		margin: auto;
+	}
+	.main-title {
+	}
+	.main-thumb {
 	}
 }
