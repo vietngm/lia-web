@@ -6,7 +6,6 @@
 <?php
   $recruitment_id = get_the_ID();
 	$recruitment_fields = get_fields($recruitment_id);
-	
   $key_visual = $recruitment_fields['td_key_visual'];
   
   $location = $recruitment_fields['khu_vuc'];

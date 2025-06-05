@@ -171,6 +171,9 @@ p {
 	position: relative;
 	max-width: 1200px;
 	margin: auto;
+	.slick-dotted.slick-slider {
+		margin-bottom: 8px;
+	}
 }
 
 .slide-content {

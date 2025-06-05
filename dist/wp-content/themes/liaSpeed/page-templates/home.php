@@ -557,6 +557,33 @@ background-color: #00000021;
     <?php get_template_part( 'template-parts/franchise', 'summary', array("franchise" => $fields["franchise"]["highlight_nhuong_quyen"]) ); ?>
   </div>
 
+  <?php
+  $post_id = 3375;
+	$recruitment_fields = get_fields($post_id);
+  // Gioi thieu
+  $gt_tdc = $recruitment_fields['tdc_gt'];
+  $gt_tdp = $recruitment_fields['tdp_gt'];
+  // $gt_soluoc = $recruitment_fields['gioi_thieu_so_luoc'];
+  // $gt_ndc = $recruitment_fields['noi_dung_chinh'];
+  $post_content = get_post($post_id);
+  $content = $post_content->post_content;
+ ?>
+  <div class="container">
+    <div class="recruitment">
+      <div class="recruitment-content">
+        <div class="heading">
+          <div class="heading-main"><?php echo $gt_tdc; ?></div>
+          <div class="heading-sub"><?php echo $gt_tdp; ?></div>
+        </div>
+        <div class="recruitment-excerpt"><?php echo $content;?></div>
+        <a href="<?php echo get_permalink(get_page_by_path('tuyen-dung')); ?>" class="contact-now"
+          title="ỨNG TUYỂN NGAY">
+          <span>ỨNG TUYỂN NGAY</span>
+          <span class="arrow-shake">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Registration Modal -->
   <div class="franchise-modal" id="register-modal">

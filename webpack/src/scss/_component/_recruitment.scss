@@ -5,7 +5,7 @@
 .recruitment {
 	display: grid;
 	// grid-gap: 16px;
-	margin-bottom: 64px;
+	// margin-bottom: 64px;
 	.mt {
 		margin-top: 16px;
 	}
@@ -184,7 +184,13 @@
 		margin: auto;
 	}
 	.main-title {
+		display: grid;
 	}
 	.main-thumb {
+		display: grid;
+	}
+	&-excerpt {
+		font-size: 0.9em;
+		color: #4b4f52;
 	}
 }
