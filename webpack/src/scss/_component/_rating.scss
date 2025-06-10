@@ -1,0 +1,18 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.rating {
+	display: flex;
+	border-radius: 16px;
+	background-color: $color-gray;
+	padding: 0 8px;
+	grid-gap: 4px;
+	.name {
+		font-weight: bold;
+	}
+	.name,
+	.value {
+		color: $color-green;
+	}
+}

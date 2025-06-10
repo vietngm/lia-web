@@ -4,8 +4,6 @@
 	$fields = get_fields();
 	$image = bfi_thumb(get_the_post_thumbnail_url() , array("width"=>400, 'crop'=>false));
 	$service_categories = get_field('service_categories');
-
-	print_r($get_fields);
 ?>
 
 <head>
@@ -301,8 +299,6 @@ header.show {
   display: flex;
   align-items: center;
 }
-
-
 
 .doctor-image {
   width: 100%;
@@ -611,7 +607,7 @@ window.addEventListener('scroll', function() {
             <div style="color:#9e9e9e" class="text-16 font-bold  text-center"><?= get_the_title() ?></div>
           </div>
           <div style="position: absolute;bottom:0px;right:0" class="slide-right">
-            <div class="text-12  text-right">Kinh nghiệm: <?= $fields["diary_number"] ?></div>
+            <div class="text-12  text-right">Kinh nghiệm: <?= $fields["experience"] ?? 2 ?></div>
             <div class="text-12  text-right">Đánh giá : <?= $fields["rating_number"] ?></div>
           </div>
           <div style="position: absolute;bottom:173px;" class="slide-left flex flex-col items-center">
@@ -638,25 +634,34 @@ window.addEventListener('scroll', function() {
     <div class="content-rating mt-4">
       <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
         <div class="flex justify-between items-center" style="border-bottom: 1px solid #eee; padding-bottom: 8px;">
-          <div class="flex items-center gap-2">
-            <div class="text-xl text-gray-700 font-bold text-24 "><?= $fields["rating"] ?></div>
+
+          <h4 class="rating">
+            <span class="name">
+              <?= $fields["rating"] ?></span>
+            <span class="value">
+              (<?= $fields["rating_number"] ?>)
+            </span>
+          </h4>
+          <!-- <div class="flex items-center gap-2">
+            <div class="text-xl text-gray-700 font-bold text-24 "><?//= $fields["rating"] ?></div>
             <div class="text-xl text-gray-700 text-14 ">/5 sao</div>
-          </div>
+          </div> -->
           <div class="flex flex-col ">
-            <div class="text-xl text-gray-700  font-bold text-20" style="font-size:18px"><?= $fields["rating_number"] ?>
-            </div>
+            <!-- <div class="text-xl text-gray-700  font-bold text-20" style="font-size:18px"><?//= $fields["rating_number"] ?>
+            </div> -->
             <div>khách hàng đã đánh giá</div>
           </div>
+
         </div>
         <div class="mt-2">
-          <div class="flex items-center gap-2">
+          <!-- <div class="flex items-center gap-2">
             <div class="text-14">Hữu ích nhất</div>
-            <img style="width:12px" src="<?= get_theme_file_uri("assets/images/icons/feedback.svg") ?>" alt="" />
-          </div>
+            <img style="width:12px" src="<?//= get_theme_file_uri("assets/images/icons/feedback.svg") ?>" alt="" />
+          </div> -->
 
-          <div class="rating-container">
+          <!-- <div class="rating-container">
             <div class="rating-summary">
-              <div class="rating-score"><?= $fields["rating-tb"] ?> </div>
+              <div class="rating-score"><?//= $fields["rating-tb"] ?> </div>
             </div>
             <div class="rating-details" class="flex gap-2 ">
               <div>
@@ -687,7 +692,7 @@ window.addEventListener('scroll', function() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="overflow-x-auto no-scrollbar flex gap-2 mb-2 ">
             <?php if ($fields["review_group"]["reviews"]) : foreach ($fields["review_group"]["reviews"] as $review) : ?>
             <div class="bg-gray-50  rounded-lg shadow-sm mb-4" style="       
@@ -703,11 +708,17 @@ window.addEventListener('scroll', function() {
                     src="<?= !empty($review["image"]) ? $review["image"] : get_theme_file_uri("assets/images/avatar.png") ?>"
                     alt="Avatar" class="w-12 h-12 rounded-full mr-3">
                   <div class=" flex align-start flex-col">
-                    <h3 class="text-lg font-medium"><?= $review["fullname"] ?></h3>
-                    <div class="flex items-center gap-1">
-                      <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>"
+                    <span class="text-lg font-medium"><?= $review["fullname"] ?></span>
+                    <!-- <div class="flex items-center gap-1">
+                      <img class="w-4 h-4" src="<?//= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>"
                         alt="" />
-                      <p class="text-yellow-500 font-medium text-12"><?= $review["rating"] ?>/5</p>
+                      <p class="text-yellow-500 font-medium text-12"><?//= $review["rating"] ?>/5</p>
+                    </div> -->
+                    <div class="rating text-10" style="font-weight:800;width:fit-content">
+                      <span class="name"><?= $review["rating"] ?></span>
+                      <span class="value">
+                        (<?= $review["rating_number"] ?? 5 ?>)
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -772,37 +783,9 @@ window.addEventListener('scroll', function() {
     </div> -->
 
   </div>
+
   <div class="row-rating">
-    <div class="evaluate-section">
-      <div class="background-text">Chuyên viên</div>
-      <div>
-        <span class="line"></span>
-        <span class="main-text">Công tác</span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <div class="location">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.472115093133!2d106.66985297596929!3d10.775106789373599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed93a8e0359%3A0x5f3bca8538aa55fd!2zNDM0IMSQLiBDYW8gVGjhuq9uZywgUGjGsOG7nW5nIDEyLCBRdeG6rW4gMTAsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1741753075843!5m2!1svi!2s"
-        width="100%" height="200" style="border:0;" referrerpolicy="no-referrer-when-downgrade" loading="lazy">
-      </iframe>
-      <div class="place-info">
-        <div class="flex items-center gap-3">
-          <img class="w-8 h-8" src="<?= get_theme_file_uri("assets/images/logo1.png") ?>" alt="" />
-          <h3 style="font-size:16px;font-weight:700">LiA Beauty Quận 10</h3>
-        </div>
-        <div style="padding-left:44px">
-          <div class="flex items-center gap-1">
-            <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="" />
-            <span> 434 Cao Thắng, Phường 12, Quận 10</span>
-          </div>
-          <div class="flex items-center gap-1">
-            <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="" />
-            <span> 4.9 (243 đánh giá)</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <?php include get_template_directory()."/content/practitioner-branch.php"; ?>
   </div>
 
   <div class="row-service">
@@ -837,6 +820,11 @@ window.addEventListener('scroll', function() {
         </div>
         <?php endwhile; endif; wp_reset_postdata(); ?>
       </div>
+      <?php if (count($the_query->posts) <= 0) : ?>
+      <div class="grid justify-center items-center">
+        Chưa có dịch vụ.
+      </div>
+      <?php endif;?>
     </div>
   </div>
 </main>

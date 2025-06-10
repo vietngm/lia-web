@@ -214,7 +214,6 @@ function verify_booking_form_otp() {
     }
 }
 
-
 function ajax_booking_form(){
 	verify_booking_form();
 	verify_booking_form_otp();
@@ -464,13 +463,11 @@ function ajax_buffet_form() {
 		die();
 	}
 
-
     // Lấy dữ liệu từ form
 	$order_type = sanitize_text_field($_POST['order_type']); // Loại đơn hàng
     $name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
     $phone = isset($_POST['phone']) ? sanitize_text_field($_POST['phone']) : '';
     $buffetPackageId = isset($_POST['buffet_package']) ? sanitize_text_field($_POST['buffet_package']) : '';
-
 
     // Kiểm tra dữ liệu
     if (empty($name) || empty($phone) || empty($buffetPackageId)) {
@@ -568,7 +565,6 @@ function ajax_consultation_form(){
 	$packageInvestment = isset($_POST["packageInvestment"]) ? $_POST["packageInvestment"] : "";
 	$paymentPolicy = isset($_POST["paymentPolicy"]) ? $_POST["paymentPolicy"] : "";
 
-
 	if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'consultation_form' ) ) {
 		echo json_encode(
 			array(
@@ -612,7 +608,6 @@ function ajax_consultation_form(){
 add_action( 'wp_ajax_consultation_form', 'ajax_consultation_form');
 add_action( 'wp_ajax_nopriv_consultation_form', 'ajax_consultation_form');
 
-
 /********************************************* Recruitment **********************************************/
 function ajax_recruitment_form(){
 	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
@@ -621,7 +616,6 @@ function ajax_recruitment_form(){
 	$location = isset($_POST["location"]) ? $_POST["location"] : "";
 	$experience = isset($_POST["experience"]) ? $_POST["experience"] : "";
 	$salary = isset($_POST["salary"]) ? $_POST["salary"] : "";
-
 
 	if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'recruitment_form' ) ) {
 		echo json_encode(
@@ -642,8 +636,8 @@ function ajax_recruitment_form(){
 				"ho_va_ten" => $fullname,
 				"dt" => $phone,
 				"nlv" => $location,
-				"mtnmm"=>$experience,
-				"kn"=>$salary,
+				"mtnmm"=>$salary,
+				"kn"=>$experience,
 			),
 		)
 	);

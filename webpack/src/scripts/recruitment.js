@@ -3,61 +3,90 @@ jQuery(function ($) {
 	const experience = document.getElementById("experience");
 	const location = document.getElementById("location");
 	const salary = document.getElementById("salary");
-	const dropdowns = [experience, location, salary];
+	// Filter out any null elements
+	const dropdowns = [experience, location, salary].filter(Boolean);
+
+	if (dropdowns.length === 0) {
+		console.warn("No dropdown elements found on the page");
+		return;
+	}
 
 	// Setup each dropdown
 	dropdowns.forEach((dropdown) => {
-		const selectedOption = dropdown.querySelector(".selected-option");
-		const options = dropdown.querySelector(".dropdown-options");
+		try {
+			const selectedOption = dropdown.querySelector(".selected-option");
+			const options = dropdown.querySelector(".dropdown-options");
 
-		// Toggle dropdown when clicked
-		selectedOption.addEventListener("click", function (e) {
-			e.stopPropagation();
+			if (!selectedOption || !options) {
+				console.warn(`Required elements not found in dropdown: ${dropdown.id}`);
+				return;
+			}
 
-			// Close all other dropdowns first
-			dropdowns.forEach((d) => {
-				if (d !== dropdown) {
-					d.querySelector(".dropdown-options").style.display = "none";
-					d.classList.remove("active");
-				}
-			});
+			// Toggle dropdown when clicked
+			selectedOption.addEventListener("click", function (e) {
+				e.stopPropagation();
 
-			// Toggle this dropdown
-			options.style.display =
-				options.style.display === "block" ? "none" : "block";
-			dropdown.classList.toggle("active");
-		});
-
-		// Handle option selection
-		options.querySelectorAll(".dropdown-option").forEach((option) => {
-			option.addEventListener("click", function () {
-				// Update selected option text
-				selectedOption.textContent = this.textContent;
-
-				// Update selected class
-				options.querySelectorAll(".dropdown-option").forEach((opt) => {
-					opt.classList.remove("selected");
+				// Close all other dropdowns first
+				dropdowns.forEach((d) => {
+					try {
+						if (d !== dropdown) {
+							const dOptions = d.querySelector(".dropdown-options");
+							if (dOptions) {
+								dOptions.style.display = "none";
+								d.classList.remove("active");
+							}
+						}
+					} catch (err) {
+						console.warn(`Error handling dropdown: ${d.id}`, err);
+					}
 				});
-				this.classList.add("selected");
 
-				// Close dropdown
-				options.style.display = "none";
-				dropdown.classList.remove("active");
-
-				// Update grid with combined selections
-				// updateGridFromSelections();
-
-				// Update deposit modal summary
-				// updateDepositSummary();
+				// Toggle this dropdown
+				options.style.display =
+					options.style.display === "block" ? "none" : "block";
+				dropdown.classList.toggle("active");
 			});
-		});
+
+			// Handle option selection
+			options.querySelectorAll(".dropdown-option").forEach((option) => {
+				option.addEventListener("click", function () {
+					// Update selected option text
+					selectedOption.textContent = this.textContent;
+
+					// Update selected class
+					options.querySelectorAll(".dropdown-option").forEach((opt) => {
+						opt.classList.remove("selected");
+					});
+					this.classList.add("selected");
+
+					// Close dropdown
+					options.style.display = "none";
+					dropdown.classList.remove("active");
+
+					// Update grid with combined selections
+					// updateGridFromSelections();
+
+					// Update deposit modal summary
+					// updateDepositSummary();
+				});
+			});
+		} catch (err) {
+			console.warn(`Error setting up dropdown: ${dropdown.id}`, err);
+		}
 	});
 
 	// Close all dropdowns when clicking outside
 	document.addEventListener("click", function () {
 		dropdowns.forEach((dropdown) => {
-			dropdown.querySelector(".dropdown-options").style.display = "none";
-			dropdown.classList.remove("active");
+			try {
+				const options = dropdown.querySelector(".dropdown-options");
+				if (options) {
+					options.style.display = "none";
+					dropdown.classList.remove("active");
+				}
+			} catch (err) {
+				console.warn(`Error closing dropdown: ${dropdown.id}`, err);
+			}
 		});
 	});
 

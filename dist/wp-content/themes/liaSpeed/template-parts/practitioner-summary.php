@@ -83,7 +83,7 @@
           <h1 class="font-bold" style="font-size:14px"><?= esc_html($doctor_name); ?></h1>
         </div>
         <div class="flex gap-1 items-center text-12">
-          <h4 class="practitioner-rating">
+          <h4 class="rating">
             <span class="name">
               <?= esc_html($doctor_rating); ?>
             </span>
@@ -94,8 +94,7 @@
         </div>
       </div>
       <div class="gap-1 items-center">
-        <div class="experience"><?=  $doctor_experience ? esc_html($doctor_experience):2; ?> năm kinh nghiệm</div>
-        <!-- <img class="w-3 h-3" src="<?//= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="" /> -->
+        <div class="experience"><?= $doctor_experience ? esc_html($doctor_experience):2; ?> năm kinh nghiệm</div>
         <div class="items-center">
           <h4 class="address"><?= esc_html($doctor_address); ?></h4>
         </div>
