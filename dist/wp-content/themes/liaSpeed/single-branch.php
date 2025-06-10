@@ -34,11 +34,11 @@
     margin-top: 16px;
   }
 
-  .button-booking {
+  /* .button-booking {
     border-radius: 6px;
     border: 1px solid #ccc;
     padding: 4px 16px;
-  }
+  } */
 
   .button-zalo {
     border-radius: 6px;
@@ -484,6 +484,7 @@ header.show {
   margin-top: 8px;
 }
 
+/* 
 .review-card {
   background: #f2f2f291;
   padding: 10px;
@@ -496,7 +497,7 @@ header.show {
 .review-card h3 {
   font-size: 16px;
   margin-bottom: 5px;
-}
+} */
 
 .review-meta {
   font-size: 12px;
@@ -595,7 +596,7 @@ h2 {
 }
 
 .info-value {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
 }
 </style>
@@ -634,12 +635,12 @@ window.addEventListener('scroll', function() {
       <p class="info-value">5 năm</p>
     </div>
     <div class="info-box">
-      <p class="info-label">10 lượt đánh giá</p>
-      <p class="info-value">4.9/5</p>
+      <p class="info-label">Lượt đánh giá</p>
+      <p class="info-value"> <?= $fields["rating"] ?>/<?= $fields["rating_number"] ?></p>
     </div>
     <div class="info-box">
-      <p class="info-label">Chuyên</p>
-      <p class="info-value">7 dịch vụ</p>
+      <p class="info-label">Có</p>
+      <p class="info-value"><?= count($fields["chuyen_vien"]) ?> chuyên viên</p>
     </div>
   </div>
 </div>
@@ -662,78 +663,6 @@ window.addEventListener('scroll', function() {
     </div>
   </div>
 
-  <!-- <div class="reviews flex overflow-x-auto no-scrollbar gap-3">
-      <div class="review-card">
-        <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
-        <div class="review-meta">
-          <div class="flex items-center">
-            <?php for ($i = 0; $i < 5; $i++): ?>
-            <img class="w-2 h-2" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="star" />
-            <?php endfor; ?>
-          </div>
-          <span class="date">25/02/2025</span>
-          <span>•</span>
-          <span class="author">Nguyễn Văn A</span>
-        </div>
-        <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
-          nisl...</p>
-      </div>
-
-      <div class="review-card">
-        <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
-        <div class="review-meta">
-          <div class="flex items-center">
-            <?php for ($i = 0; $i < 5; $i++): ?>
-            <img class="w-2 h-2" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="star" />
-            <?php endfor; ?>
-          </div>
-          <span class="date">25/02/2025</span>
-          <span>•</span>
-          <span class="author">Nguyễn Văn A</span>
-        </div>
-        <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
-          nisl...</p>
-      </div>
-    </div> -->
-
-  </div>
-
-  <div class="row-diary">
-
-    <div class="reviews flex overflow-x-auto no-scrollbar gap-3">
-      <!-- <div class="review-card">
-        <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
-        <div class="review-meta">
-          <div class="flex items-center">
-            <?php for ($i = 0; $i < 5; $i++): ?>
-            <img class="w-2 h-2" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="star" />
-            <?php endfor; ?>
-          </div>
-          <span class="date">25/02/2025</span>
-          <span>•</span>
-          <span class="author">Nguyễn Văn A</span>
-        </div>
-        <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
-          nisl...</p>
-      </div>
-
-      <div class="review-card">
-        <h3 style="width:250px;font-weight:600;font-size:14px">Dịch vụ tuyệt vời</h3>
-        <div class="review-meta">
-          <div class="flex items-center">
-            <?php for ($i = 0; $i < 5; $i++): ?>
-            <img class="w-2 h-2" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="star" />
-            <?php endfor; ?>
-          </div>
-          <span class="date">25/02/2025</span>
-          <span>•</span>
-          <span class="author">Nguyễn Văn A</span>
-        </div>
-        <p>Vitae Nam tempor viverra quis vel dui malesuada. Cras odio ultrices dignissim, odio viverra luctus vel
-          nisl...</p>
-      </div> -->
-    </div>
-  </div>
   <div class="row-rating">
     <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2" style="font-size:16px;color:#1A5477">
       Vị trí</h2>
@@ -761,23 +690,7 @@ window.addEventListener('scroll', function() {
   <div class="row-service">
     <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2" style="font-size:16px;color:#1A5477">
       Chuyên viên</h2>
-    <div class="content-service mt-4">
-      <?php if (!empty($fields["chuyen_vien"]) && is_array($fields["chuyen_vien"])) : ?>
-      <?php foreach ($fields["chuyen_vien"] as $practitionerId) : ?>
-      <?php echo $practitionerId; ?>
-      <div class="col-span-1 product-list-item">
-        <?php
-							get_template_part('template-parts/practitioner', 'summary', array(
-								"practitioner_id" => $practitionerId, // Đảm bảo ID đúng
-							));
-						?>
-      </div>
-      <?php endforeach; ?>
-      <?php else : ?>
-      <p class="text-gray-500">Chưa có chuyên viên nào được thêm.</p>
-      <?php endif; ?>
-    </div>
-
+    <?php include get_template_directory()."/content/branch-employee.php"; ?>
   </div>
   <div class="row-service">
     <?php //include get_template_directory()."/content/service-branch.php"; ?>

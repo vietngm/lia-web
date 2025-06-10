@@ -58,7 +58,6 @@
   transform: scale(1);
   /* Phóng về kích thước ban đầu */
 
-
 }
 
 .swiper-container {
@@ -706,21 +705,6 @@ window.addEventListener('scroll', function() {
   <div class="block lg:hidden w-full h-[2px] bg-gray-200  mb-2"></div>
   <section>
     <div class="max-w-2xl mx-auto bg-white p-4 rounded-lg shadow-md" style="padding-top:0px">
-      <!-- <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg ">
-				<div class="bg-gray-50  rounded-lg  mb-2" style="border-radius:8px">
-					<div class="flex justify-between items-center"  >
-						<div class="flex items-center gap-2">
-							<img style="width:46px;height:46px" src="<?= get_theme_file_uri("assets/images/logoF.png") ?>" alt="Avatar" class="w-12 h-12 rounded-full mr-3 border-1">
-							<div>
-								<h3 class="text-12 font-bold">Phòng khám Trang Beauty Center</h3>
-								<h3 class="text-12">434 Cao thắng, Phường 12, Quận 10</h3>
-								
-							</div>
-						</div>
-						<a href="https://phongkhamtrangbeauty.com/phong-kham-va-trung-tam-cua-toi/" class="text-yellow-500 text-12" style="padding:2px 12px;border-radius:6px;background:#523870;color:#FFF">Chi tiết</a>
-					</div>
-				</div>
-			</div> -->
       <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
         style="font-size:16px;color:#1A5477">Chuyên viên</h2>
       <div class="flex overflow-x-auto no-scrollbar gap-3 mt-2">
@@ -730,21 +714,17 @@ window.addEventListener('scroll', function() {
           class="flex flex-shrink-0 gap-3 px-3 py-2 rounded-2">
           <img class="w-10 h-10 rounded-full  border-text" src="<?= get_the_post_thumbnail_url($doctorId) ?>" />
           <div class="flex-1">
-            <h3 style="font-weight:500 ;font-size:12px"><?= get_the_title($doctorId) ?></h3>
+            <span style="font-weight:500 ;font-size:12px"><?= get_the_title($doctorId) ?></span>
             <div class="flex gap-2 items-center">
               <div class="text-12 flex items-center gap-1">
                 <div class="flex items-center gap-1">
-                  <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="" />
                   <h2 style="font-weight:500"><?= $doctorFields["rating"] ?></h2>
                 </div>
-                <div style="color:#ccc">
-                  |
-                </div>
+                <div style="color:#ccc">|</div>
                 <div class="flex items-center gap-1">
                   <h2 style="font-weight:500 text-12"><?= $doctorFields["client_number"] ?>K+</h2>
                   <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/users.svg") ?>" alt="" />
                 </div>
-
               </div>
             </div>
           </div>
@@ -975,7 +955,6 @@ selectOptionTp4 = (element) => {
   // });
 };
 </script>
-
 
 <script>
 selectOptionTp5 = (element) => {

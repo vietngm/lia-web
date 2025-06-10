@@ -2,19 +2,19 @@
 </h2>
 <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
   <div class="mt-2">
-    <div class="rating-container">
-      <div class="rating-summary">
+    <!-- <div class="rating-container"> -->
+    <!-- <div class="rating-summary">
         <div class="rating-score"><?= $fields["rating"] ?> </div>
-      </div>
-      <div class="rating-details" class="flex gap-2 ">
-        <div>
+      </div> -->
+    <!-- <div class="rating-details" class="flex gap-2 "> -->
+    <!-- <div>
           <div class="stars">★★★★★</div>
           <div class="stars">★★★★☆</div>
           <div class="stars">★★★☆☆</div>
           <div class="stars">★★☆☆☆</div>
           <div class="stars">★☆☆☆☆</div>
-        </div>
-        <div style="display: flex;
+        </div> -->
+    <!-- <div style="display: flex;
               flex-direction: column;
               align-items: center;
               gap: 7px;">
@@ -33,9 +33,9 @@
           <div class="progress-bar">
             <div class="fill" style="width: 2%;"></div>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
     <div class="overflow-x-auto no-scrollbar flex gap-2 mb-2 ">
       <?php if ($fields["review_group"]["reviews"]) : foreach ($fields["review_group"]["reviews"] as $review) : ?>
       <div class="bg-gray-50  rounded-lg shadow-sm mb-4" style="       
@@ -51,9 +51,8 @@
               src="<?= !empty($review["image"]) ? $review["image"] : get_theme_file_uri("assets/images/avatar.png") ?>"
               alt="Avatar" class="w-12 h-12 rounded-full mr-3">
             <div class=" flex align-start flex-col">
-              <h3 class="text-lg font-medium"><?= $review["fullname"] ?></h3>
+              <span class="text-lg font-medium"><?= $review["fullname"] ?></span>
               <div class="flex items-center gap-1">
-                <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/star-yellow.svg") ?>" alt="" />
                 <p class="text-yellow-500 font-medium text-12"><?= $review["rating"] ?>/5</p>
               </div>
             </div>
