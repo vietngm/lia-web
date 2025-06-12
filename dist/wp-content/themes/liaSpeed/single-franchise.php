@@ -483,8 +483,8 @@ body {
 }
 
 .franchise-process {
-  margin-top: 30px;
-  padding-top: 30px;
+  /* margin-top: 30px;
+  padding-top: 30px; */
 }
 
 .process-title {

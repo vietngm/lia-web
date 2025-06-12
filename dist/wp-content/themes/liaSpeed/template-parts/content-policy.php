@@ -21,7 +21,7 @@ if ($child->have_posts()) : while ($child->have_posts()) : $child->the_post();
     <div class="policy-title"><?php the_title();?></div>
     <a href="#warranty-modal" class="policy-more">Chi tiết →</a>
   </div>
-  <div class="warranty-timeline">
+  <div>
     <img src="<?php echo $featured_img_url; ?>" alt="Warranty">
   </div>
   <!-- Modal for Warranty Policy Details -->
@@ -38,7 +38,7 @@ if ($child->have_posts()) : while ($child->have_posts()) : $child->the_post();
     <div class="policy-title"><?php the_title();?></div>
     <a href="#refund-modal" class="policy-more">Chi tiết →</a>
   </div>
-  <div class="refund-timeline">
+  <div>
     <?php ?>
     <img src="<?php echo $featured_img_url; ?>" alt="Refund">
   </div>
