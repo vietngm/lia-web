@@ -1,17 +1,23 @@
 jQuery(function ($) {
 	$(".expand-item").on("click", function () {
-		$(this).toggleClass("active");
-		$(this).find(".expand-content").toggleClass("active");
-		$(this).find(".arrow-up").toggleClass("active");
-		height = $(this).find(".expand-content .expand-desc").height() + 8;
+		const $item = $(this);
+		const $content = $item.find(".expand-content");
+		const $desc = $content.find(".expand-desc");
+		const $arrow = $item.find(".arrow-up");
 
-		if ($(this).hasClass("active")) {
-			$(this).find(".expand-content").css({
+		$item.toggleClass("active");
+		$content.toggleClass("active");
+		$arrow.toggleClass("active");
+
+		const height = $desc.length ? $desc.height() + 8 : 0;
+
+		if ($item.hasClass("active")) {
+			$content.css({
 				height: height,
 				overflow: "visible",
 			});
 		} else {
-			$(this).find(".expand-content").removeAttr("style");
+			$content.removeAttr("style");
 		}
 	});
 });
