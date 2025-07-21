@@ -31,8 +31,8 @@
       </div>
 
       <div class="expand-item">
-        <div class="expand-title">
-          <span class="expand-label"><?= $fields['footer']['lia_viet_nam']['title'] ?></span>
+        <div class="accordion-header">
+          <span class="accordion-title"><?= $fields['footer']['lia_viet_nam']['title'] ?></span>
           <div class="arrow-up"></div>
         </div>
         <div class="expand-content">

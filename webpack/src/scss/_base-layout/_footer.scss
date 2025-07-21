@@ -4,10 +4,37 @@
 // ○○○
 // --------------------------------------------------
 .footer-general {
+	color: #000;
+	text-align: start;
+	background-color: #f6f6f6;
+	padding: 16px 0;
+
 	.logo {
 		width: 96px;
 		overflow: hidden;
 		margin-left: -16px;
+	}
+	.accordion-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0;
+	}
+
+	.accordion-header {
+		width: 100%;
+		background: none;
+		border: none;
+		font-size: 12px;
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 8px 0px;
+	}
+	.accordion-title {
+		font-size: 12px;
+		font-weight: 300;
 	}
 	.menu {
 		&-item {
@@ -20,6 +47,7 @@
 				text-decoration: none;
 				font-size: 12px;
 				font-weight: 300;
+				line-height: 1.6rem;
 			}
 		}
 	}
@@ -34,18 +62,6 @@
 
 	.accordion-item {
 		border-bottom: 1px solid #ddd;
-	}
-
-	.accordion-header {
-		width: 100%;
-		background: none;
-		border: none;
-		font-size: 12px;
-		cursor: pointer;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 8px 0px;
 	}
 
 	.accordion-content {
@@ -75,14 +91,6 @@
 		padding: 20px;
 		font-size: 12px;
 		color: #888;
-	}
-
-	.footer-general {
-		padding: 0px;
-		color: #000;
-		text-align: start;
-		background-color: #f6f6f6;
-		padding: 16px 0px;
 	}
 
 	.material-icons {
