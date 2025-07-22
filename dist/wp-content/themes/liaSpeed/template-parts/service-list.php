@@ -32,7 +32,7 @@
     <div class="highlight-filter pb-3">
       <?php foreach ($term_categories as $term_category) :?>
       <div class="item cursor-pointer service-tab" data-id="<?= $term_category->term_id ?>">
-        <div class="text" style="font-size:14px;font-weight: 500"><?= $term_category->name ?></div>
+        <div class="service-text"><?= $term_category->name ?></div>
       </div>
       <?php endforeach; ?>
     </div>

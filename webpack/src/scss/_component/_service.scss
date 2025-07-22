@@ -3,6 +3,15 @@
 // ○○○
 // --------------------------------------------------
 .service {
+	&-content {
+		display: grid;
+		align-content: space-between;
+	}
+	&-link {
+		&:hover {
+			opacity: 0.8;
+		}
+	}
 	&-tab {
 		width: auto !important;
 		display: flex !important;
@@ -10,8 +19,9 @@
 		padding: 6px 16px !important;
 		border-radius: 24px !important;
 		border: none;
-		background-color: rgba($color-light-blue, 0.4) !important;
-		color: $color-main !important;
+		background-color: rgba($color-light-blue, 0.4);
+		color: $color-main;
+		font-size: 12px;
 		&.item-active {
 			background-color: $color-main !important;
 			color: $color-white !important;

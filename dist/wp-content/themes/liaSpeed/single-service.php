@@ -781,7 +781,7 @@ window.addEventListener('scroll', function() {
   </secrion>
   <div class="block lg:hidden w-full h-[3px] bg-gray-200  mb-2"></div>
 
-  <div id="modal-booking" class=" modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
+  <div id="modal-booking" class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
     <?php get_template_part( 'template-parts/modal', 'service-booking' ); ?>
   </div>
 
