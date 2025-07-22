@@ -1,19 +1,57 @@
 @charset "utf-8";
-
 // --------------------------------------------------
 // ○○○
 // --------------------------------------------------
+.footer-logo {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 8px;
+	align-items: center;
+	@media (min-width: $screen-md-min) {
+		grid-template-columns: 144px 1fr;
+	}
+	.logo {
+		display: flex;
+		img {
+			width: 144px;
+			height: 100%;
+			object-fit: contain;
+		}
+		@media (min-width: $screen-md-min) {
+			// width: 96px;
+		}
+	}
+	.address {
+		font-size: 12px;
+	}
+}
 .footer-general {
 	color: #000;
 	text-align: start;
 	background-color: #f6f6f6;
 	padding: 16px 0;
 
-	.logo {
-		width: 96px;
-		overflow: hidden;
-		margin-left: -16px;
+	.accordion {
+		&-item {
+			border-bottom: 1px solid #ddd;
+		}
 	}
+
+	a {
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+
+	.accordion {
+		max-width: 600px;
+		margin: auto;
+	}
+
+	.accordion-item {
+		border-bottom: 1px solid #ddd;
+	}
+
 	.accordion-header {
 		display: flex;
 		align-items: center;
@@ -51,49 +89,48 @@
 			}
 		}
 	}
-	.address {
-		font-size: 12px;
-	}
 
-	.accordion {
-		max-width: 600px;
-		margin: auto;
-	}
-
-	.accordion-item {
-		border-bottom: 1px solid #ddd;
-	}
-
-	.accordion-content {
-		max-height: 0;
-		overflow: hidden;
-		transition: max-height 0.3s ease-out;
-		/* Hiệu ứng mở rộng */
-	}
-
-	.accordion-content ul {
-		list-style: none;
-		padding: 4px;
-	}
-
-	.accordion-content li {
-		padding: 4px;
-		font-weight: 300;
-	}
-
-	.accordion-content p {
-		padding: 0px 8px 12px;
-		font-weight: 300;
-	}
-
-	footer {
+	.tax-no {
 		text-align: center;
-		padding: 20px;
 		font-size: 12px;
-		color: #888;
+		font-weight: 300;
+		margin-top: 16px;
+		padding: 0 16px;
+		@media (min-width: $screen-md-min) {
+			padding: 0;
+		}
 	}
 
-	.material-icons {
-		font-size: 16px;
-	}
+	// .accordion-content {
+	// 	max-height: 0;
+	// 	overflow: hidden;
+	// 	transition: max-height 0.3s ease-out;
+	// 	/* Hiệu ứng mở rộng */
+	// }
+
+	// .accordion-content ul {
+	// 	list-style: none;
+	// 	padding: 4px;
+	// }
+
+	// .accordion-content li {
+	// 	padding: 4px;
+	// 	font-weight: 300;
+	// }
+
+	// .accordion-content p {
+	// 	padding: 0px 8px 12px;
+	// 	font-weight: 300;
+	// }
+
+	// footer {
+	// 	text-align: center;
+	// 	padding: 20px;
+	// 	font-size: 12px;
+	// 	color: #888;
+	// }
+
+	// .material-icons {
+	// 	font-size: 16px;
+	// }
 }

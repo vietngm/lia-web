@@ -2829,10 +2829,10 @@ body {
   color: rgb(3 145 255 / var(--tw-text-opacity)) !important;
 }
 
-.\!text-primary {
+/* .\!text-primary {
   --tw-text-opacity: 1 !important;
   color: #71AD67 !important;
-}
+} */
 
 .text-\[\#606060\] {
   --tw-text-opacity: 1;
@@ -2869,10 +2869,10 @@ body {
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
-.text-primary {
+/* .text-primary {
   --tw-text-opacity: 1;
   color: #71AD67;
-}
+} */
 
 .text-red-500 {
   --tw-text-opacity: 1;

@@ -12,10 +12,10 @@
 	justify-content: center;
 
 	&-go {
-		width: 11px;
-		height: 11px;
-		border-right: solid 1px $color-main;
-		border-top: solid 1px $color-main;
+		width: 8px;
+		height: 8px;
+		border-right: solid 1px black;
+		border-top: solid 1px black;
 		transform: (rotate(45deg) translate3d(0, 0, 0));
 		left: -2px;
 		position: relative;

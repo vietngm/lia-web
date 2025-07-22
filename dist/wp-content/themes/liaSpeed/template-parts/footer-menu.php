@@ -1,45 +1,66 @@
 <?php
 	$fields = get_fields("option");
+	$footer = $fields['footer'];
+	$liaVietNam = $footer['lia_viet_nam'];
+	$trachNhiemLia = $footer['trach_nhiem_lia'];
+	$thongTinDauTu = $footer['thong_tin_dau_tu'];
 ?>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-</head>
 
 <footer class="footer-general">
   <div class="container">
-    <div class="flex gap-2 items-center">
-      <div class="logo">
+    <div class="footer-logo">
+      <a href="<?= $home_url ?>" class="logo">
         <img src="<?= get_theme_file_uri("assets/images/logo.png") ?>" />
-      </div>
-      <p class="address">434 Cao Thắng, Phường 12, Quận 10, TP. Hồ Chí Minh</p>
+      </a>
+      <p class="address"><?= $fields["footer"]["contact"]["address"] ?></p>
     </div>
     <hr style="margin-top: 16px;border-top: 1px solid #ddd" />
     <div class="accordion">
-      <div class="accordion-item">
-        <button class="accordion-header">Về chúng tôi <span class="arrow-up active"></span></button>
-        <div class="accordion-content">
-          <ul>
-            <li>Câu chuyện về Lia</li>
-            <li>Lãnh đạo của Lia</li>
-            <li>Cơ hội nghề nghiệp</li>
-            <li>Đạo đức và tuân thủ</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="expand-item">
+      <div class="expand-item accordion-item">
         <div class="accordion-header">
-          <span class="accordion-title"><?= $fields['footer']['lia_viet_nam']['title'] ?></span>
+          <span class="accordion-title"><?= $liaVietNam['title'] ?></span>
           <div class="arrow-up"></div>
         </div>
         <div class="expand-content">
           <ul class="expand-desc">
             <?php
-					$items = $fields['footer']['lia_viet_nam']['items'];
+					$items = $liaVietNam['items'];
+					foreach($items as $item) {
+						$link = $item['link'];
+						echo '<li class="menu-item"><a href="'.$link['url'].'">'.$link['title'].'</a></li>';
+					}
+					?>
+          </ul>
+        </div>
+      </div>
 
+      <div class="expand-item accordion-item">
+        <div class="accordion-header">
+          <span class="accordion-title"><?= $trachNhiemLia['title'] ?></span>
+          <div class="arrow-up"></div>
+        </div>
+        <div class="expand-content">
+          <ul class="expand-desc">
+            <?php
+					$items = $trachNhiemLia['items'];
+					foreach($items as $item) {
+						$link = $item['link'];
+						echo '<li class="menu-item"><a href="'.$link['url'].'">'.$link['title'].'</a></li>';
+					}
+					?>
+          </ul>
+        </div>
+      </div>
+
+      <div class="expand-item accordion-item">
+        <div class="accordion-header">
+          <span class="accordion-title"><?= $thongTinDauTu['title'] ?></span>
+          <div class="arrow-up"></div>
+        </div>
+        <div class="expand-content">
+          <ul class="expand-desc">
+            <?php
+					$items = $thongTinDauTu['items'];
 					foreach($items as $item) {
 						$link = $item['link'];
 						echo '<li class="menu-item"><a href="'.$link['url'].'">'.$link['title'].'</a></li>';
@@ -50,107 +71,20 @@
       </div>
 
       <div class="accordion-item">
-        <button class="accordion-header">Quy trình hợp tác nhượng quyền <span
-            class="material-icons">expand_more</span></button>
-        <div class="accordion-content"></div>
+        <a href="<?=get_permalink(get_page_by_path('tuyen-dung'))?>" class="accordion-header">
+          <span class="accordion-title">Thông tin tuyển dụng</span>
+          <div class="arrow-go"></div>
+        </a>
       </div>
 
       <div class="accordion-item">
-        <button class="accordion-header">Chính sách hợp tác <span class="material-icons">expand_more</span></button>
-        <div class="accordion-content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat.
-
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header">Trách nhiệm <span class="material-icons">expand_more</span></button>
-        <div class="accordion-content"></div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header">Hỏi đáp cùng Lia <span class="material-icons">expand_more</span></button>
-        <div class="accordion-content"></div>
+        <a href="<?=get_permalink(get_page_by_path('tin-tuc'))?>" class="accordion-header">
+          <span class="accordion-title">Tin tức</span>
+          <div class="arrow-go"></div>
+        </a>
       </div>
     </div>
-    <p style="margin:16px 0px;text-align:center">© 2022 Viện Thẩm Mỹ LIA Beauty. Mã số thuế: 0317197387. Chịu trách
-      nhiệm bởi Vũ Mạnh Tân. Designed by LIA MEDIA</p>
-    <!-- <h2 class="md:text-20 text-18 font-bold text-center mb-6"><?= $fields["footer"]["title"] ?></h2>
-		<div class="grid grid-cols-10 gap-4">
-			<div class="md:col-span-4 col-span-10">
-				<h3 class="text-16 mb-4 font-semibold"><?= $fields["footer"]["contact"]["title"] ?></h3>
-				<div class="flex gap-2 mb-2">
-					<div class="w-6 h-6 bg-white rounded-6 flex items-center justify-center">
-						<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" />
-					</div>
-					<div class="flex-1 self-center"><?= $fields["footer"]["contact"]["address"] ?></div>
-				</div>
-				<div>
-					<a href="tel:<?= $fields["footer"]["contact"]["phone"] ?>" class="inline-flex gap-2 mb-2">
-						<div class="w-6 h-6 bg-white rounded-6 flex items-center justify-center">
-							<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/phone-small.svg") ?>" />
-						</div>
-						<div class="flex-1 self-center"><?= $fields["footer"]["contact"]["phone"] ?></div>
-					</a>
-				</div>
-				<div>
-					<a href="mailto:<?= $fields["footer"]["contact"]["email"] ?>" class="inline-flex gap-2 mb-2">
-						<div class="w-6 h-6 bg-white rounded-6 flex items-center justify-center">
-							<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/email.svg") ?>" />
-						</div>
-						<div class="flex-1 self-center"><?= $fields["footer"]["contact"]["email"] ?></div>
-					</a>
-				</div>
-				<div class="flex gap-2 mb-2">
-					<div class="w-6 h-6 bg-white rounded-6 flex items-center justify-center">
-						<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/clock.svg") ?>" />
-					</div>
-					<div class="flex-1 self-center"><?= $fields["footer"]["contact"]["time"] ?></div>
-				</div>
-			</div>
-			<div class="md:col-span-3 col-span-10">
-				<h3 class="text-16 mb-4 font-semibold"><?= $fields["footer"]["license"]["title"] ?></h3>
-				<?php foreach( $fields["footer"]["license"]["items"] as $item ) : ?>
-				<a class="flex gap-2 mb-2" href="<?= $item["link"]["url"] ?>" target="<?= $item["link"]["target"] ?>">
-					<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-right-white.svg") ?>" />
-					<span><?= $item["link"]["title"] ?></span>
-				</a>
-				<?php endforeach; ?>
-			</div>
-			<div class="md:col-span-3 col-span-10">
-				<h3 class="text-16 mb-4 font-semibold"><?= $fields["footer"]["policy"]["title"] ?></h3>
-				<?php foreach( $fields["footer"]["policy"]["items"] as $item ) : ?>
-				<a class="flex gap-2 mb-2" href="<?= $item["link"]["url"] ?>" target="<?= $item["link"]["target"] ?>">
-					<img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-right-white.svg") ?>" />
-					<span><?= $item["link"]["title"] ?></span>
-				</a>
-				<?php endforeach; ?>
-			</div>
-		</div> -->
+  </div>
+  <p class="tax-no"><?= $fields["footer"]["contact"]["tax_no"] ?></p>
   </div>
 </footer>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const headers = document.querySelectorAll(".accordion-header");
-
-  headers.forEach(header => {
-    header.addEventListener("click", function() {
-      const content = this.nextElementSibling;
-      const icon = this.querySelector(".material-icons");
-
-      if (content.style.maxHeight) {
-        content.style.maxHeight = null; // Thu gọn
-        icon.textContent = "expand_more"; // Đổi icon về mặc định
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px"; // Mở rộng
-        icon.textContent = "expand_less"; // Đổi icon khi mở
-      }
-    });
-  });
-});
-</script>

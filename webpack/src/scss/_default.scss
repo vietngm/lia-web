@@ -2,6 +2,14 @@
 // --------------------------------------------------
 // ○○○
 // --------------------------------------------------
-// * {
-// 	box-sizing: (border-box);
-// }
+* {
+	box-sizing: (border-box);
+}
+.text-primary {
+	opacity: 1;
+	color: $color-main;
+}
+a,
+li {
+	transition: all 0.4s;
+}
