@@ -485,3 +485,5 @@ add_action( 'init', 'register_product_category_taxonomy', 0 );
 
 /********************************************* Recruitment **********************************************/
 include get_template_directory() . "/inc/recruitment.php";
+/********************************************* News **********************************************/
+include get_template_directory() . "/inc/news.php";
