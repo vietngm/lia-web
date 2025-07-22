@@ -1,5 +1,6 @@
 <?php
 	$fields = get_fields("option");
+  $is_home = is_home() || is_front_page();
 ?>
 <?php
 	$_term_categories = get_terms('service-category', array(
@@ -46,7 +47,7 @@
   <body>
 
     <header class="sticky top-0 left-0 right-0 bg-white z-50 shadow-sm">
-      <?php include get_template_directory()."/content/app-download.php"; ?>
+      <?php if($is_home) { include get_template_directory()."/content/app-download.php"; }?>
       <?php      	
        if( !is_page('danh-sach-chuyen-vien') && !is_page('danh-sach-chi-nhanh') && !is_page('tuyen-dung')) include get_template_directory()."/content/header.php";
       ?>

@@ -9,7 +9,7 @@
 <footer class="footer-general">
   <div class="container">
     <div class="footer-logo">
-      <a href="<?= $home_url ?>" class="logo">
+      <a href="/" class="logo">
         <img src="<?= get_theme_file_uri("assets/images/logo.png") ?>" />
       </a>
       <p class="address"><?= $fields["footer"]["contact"]["address"] ?></p>
