@@ -15,7 +15,7 @@ function register_news_post_type(){
 			'editor',
 		),
 		'hierarchical' => true,
-		'taxonomies' => array(),	
+		'taxonomies' => array('news-category'),	
 		'show_ui' => true,
 		'public' => false,
 		'publicly_queryable' => false,
@@ -33,4 +33,31 @@ function register_news_post_type(){
 	register_post_type('tin-tuc', $args);
 }
 add_action('init', 'register_news_post_type');
+/********************************************* News Category **********************************************/
+function register_news_category_taxonomy() {
+
+	$labels = array(
+		'name' => 'Danh mục',
+		'singular' => 'Danh mục',
+		'menu_name' => 'Danh mục',
+		'add_new_item' => 'Thêm mới danh mục',
+		'most_used' => 'Gần đây',
+	);
+
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'public'			=> false,
+		'rewrite'			=> true,
+		'query_var'         => true,
+		'publicly_queryable' => true,
+		'rewrite'           => array( 'slug' => '', 'with_front' => false ),
+	);
+
+	register_taxonomy('news-category', 'tin-tuc', $args);
+}
+
+add_action( 'init', 'register_news_category_taxonomy', 0 );
 ?>
