@@ -46,6 +46,6 @@
       <?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
       <?php endif; ?>
     </div>
-
+    <div class="btn-service">Đặt lịch</div>
   </div>
 </a>
