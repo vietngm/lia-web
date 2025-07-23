@@ -123,7 +123,7 @@
   </div>
 
   <section class="section">
-    <div class="container" style="padding-right:0">
+    <div class="news">
       <?php get_template_part( 'content/news' ); ?>
     </div>
   </section>

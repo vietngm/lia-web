@@ -1,6 +1,6 @@
-   <div class="news-carousel-title">
+   <!-- <div class="news-carousel-title">
      <h2>Tin tức & Sự kiện</h2>
-   </div>
+   </div> -->
    <ul class="news-carousel owl-carousel owl-theme js-news-carousel">
      <?php
 		$arg = array(
