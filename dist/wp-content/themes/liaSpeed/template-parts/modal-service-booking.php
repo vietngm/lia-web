@@ -17,15 +17,12 @@
 		"posts_per_page" => -1,
 	));
 
-  
-
 	foreach ($post_services as $post_service) {
 		$doctorIds = get_field("doctors", $post_service->ID);
 		$price = get_field("price", $post_service->ID) ?? 0;
 		$post_prices = get_field("prices", $post_service->ID) ?? [];
 		$prices = [];
 	
-  
 		if ($post_prices) {
 			foreach ($post_prices as $post_price) {
 				array_push($prices, array(
@@ -132,14 +129,11 @@ $(document).ready(function() {
   console.log("Danh sách dịch vụ:", services);
   console.log("Danh sách doctors:", doctors);
 
-
-
   if (storedServiceId) {
     const serviceId = parseInt(storedServiceId);
     const selectedService = services.find(service => service.id === serviceId);
 
     console.log("Dịch vụ đã chọn:", selectedService);
-
 
     if (selectedService) {
       console.log("Dịch vụ đã chọn:", selectedService);
@@ -148,7 +142,6 @@ $(document).ready(function() {
       const doctorIds = Array.isArray(selectedService.doctorIds) ? selectedService.doctorIds : [];
       const filteredDoctors = doctors.filter(doctor => doctorIds.includes(doctor.id));
       console.log("Danh sách chuyên viên:", filteredDoctors);
-
 
       // Cập nhật danh sách chuyên viên vào dropdown
       const doctorSelect = $(".input-doctor select");
@@ -221,7 +214,6 @@ function updateUI() {
     }
   }
 
-
   const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
   if (selectedMaterials !== null) {
     const materialName = selectedMaterials.name;
@@ -287,20 +279,6 @@ function updateSelected() {
 }
 </script>
 
-
-<style>
-.button-select-gift {
-  background: rgba(255, 35, 89, .1);
-  color: #ff2359;
-  padding: 2px 12px;
-  border-radius: 6px;
-
-}
-
-.button-select-gift span {
-  font-size: 12px;
-}
-</style>
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
 <div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
   <div class=" overflow-hidden w-full h-full ">
@@ -420,7 +398,6 @@ function updateSelected() {
             </select>
             <div class="text-12 italic text-red-500 error-doctor"></div>
           </div>
-
 
           <hr class="my-4" />
         </div>

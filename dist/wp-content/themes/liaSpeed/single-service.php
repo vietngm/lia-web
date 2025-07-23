@@ -29,400 +29,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
-<style>
-.modal-desire,
-.modal-material,
-.modal-bh,
-.modal-topping,
-.modal-pd {
-  display: none;
-  /* Ẩn modal */
-  opacity: 0;
-  /* Mờ hoàn toàn */
-  transform: scale(0.9);
-  /* Thu nhỏ modal một chút */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  /* Hiệu ứng chuyển đổi */
-}
 
-/* Trạng thái hiển thị modal */
-.modal-desire.show,
-.modal-material.show,
-.modal-bh.show,
-.modal-topping.show,
-.modal-pd.show {
-  display: flex;
-  /* Hiển thị modal */
-  opacity: 1;
-  /* Hiện rõ */
-  transform: scale(1);
-  /* Phóng về kích thước ban đầu */
-
-}
-
-.swiper-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.rating-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.rating-summary {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.rating-score {
-  font-size: 56px;
-  font-weight: bold;
-  color: #4A4A4A;
-}
-
-.rating-text,
-.rating-count {
-  font-size: 14px;
-  color: #7A7A7A;
-}
-
-.rating-details {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-
-}
-
-.stars {
-  font-size: 6px;
-  color: #7A7A7A;
-}
-
-.progress-bar {
-  width: 150px;
-  height: 2px;
-  background-color: #E5E7EB;
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  background-color: #4A4A4A;
-  border-radius: 4px;
-}
-
-.form-title::before {
-  background: #1a5478;
-  width: 3px;
-}
-
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 7rem;
-  /* h-28 trong Tailwind là 7rem */
-  background: linear-gradient(to top, white, rgba(255, 255, 255, 0.8), transparent);
-  transition: opacity 0.3s ease-in-out;
-}
-
-.collapsed {
-  height: 300px;
-  overflow: hidden;
-  transition: height 0.3s ease-in-out;
-}
-
-.expanded {
-  height: auto;
-  transition: height 0.3s ease-in-out;
-}
-
-body.modal-open {
-  overflow: hidden !important;
-  position: fixed;
-  /* Cố định vị trí */
-  width: 100vw;
-  /* Đảm bảo không bị tràn */
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.options-container {
-  display: flex;
-  gap: 4px
-}
-
-.option-desire {
-  display: grid;
-}
-
-.option-material,
-.option-bh {
-  display: flex;
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  transition: all 0.3s;
-  background: #fff;
-  flex-direction: column;
-}
-
-.option-desire img,
-.option-material img,
-.option-bh img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-.option-desire .text,
-.option-material .text,
-.option-bh .text {
-  margin-left: 10px;
-  flex-grow: 1;
-}
-
-.option-desire .text p,
-.option-material .text p,
-.option-bh .text p {
-  margin: 2px 0;
-  font-size: 14px;
-  color: #333;
-}
-
-.option-desire .price,
-.option-material .price,
-.option-bh .price {
-  color: red;
-  font-weight: bold;
-}
-
-/* Khi được chọn */
-.option-desire.selected,
-.option-material.selected,
-.option-bh.selected {
-  border-color: #8C61A8;
-  /* Viền tím */
-  border-width: 1.5px;
-}
-
-.option-desire.selected::after,
-.option-material.selected::after,
-.option-bh.selected::after {
-  content: "✔";
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  background-color: rgb(255, 255, 255);
-  font-size: 5px;
-  font-weight: bold;
-  padding: 0px;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#selectedInfo,
-#totalPrice {
-  display: none;
-}
-
-.discount-percentages {
-  background: #FFEDED;
-  border-radius: 24px;
-  color: #ef4444;
-  font-size: 11px;
-  padding: 3px 8px;
-}
-
-.flash-sale-btn {
-  position: fixed;
-  bottom: 130px;
-  right: 12px;
-  z-index: 1000;
-  animation: flash 1s infinite alternate, wobble 2s infinite ease-in-out;
-  transform-origin: center bottom;
-}
-
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.6;
-  }
-}
-
-@keyframes wobble {
-
-  0%,
-  40% {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  60% {
-    transform: rotate(5deg);
-  }
-
-  70% {
-    transform: rotate(-5deg);
-  }
-
-  80% {
-    transform: rotate(5deg);
-  }
-
-  90% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-.gift-service {
-  margin-top: 12px;
-  border: 1px solid #1a547824;
-  border-radius: 8px;
-}
-
-.gift-service-child {
-  padding: 8px;
-
-}
-
-span.text-bold {
-  font-weight: 500;
-}
-
-.gift-child {
-  background: #ef4444;
-  color: #fff;
-  padding: 1px 8px;
-  border-radius: 24px;
-  font-size: 10px;
-  font-weight: 600;
-}
-
-.promotion-service {
-  background: #1a547824;
-  border-radius: 7px 7px 0px 0px;
-  padding: 4px 8px;
-  font-weight: 600;
-  overflow: hidden;
-}
-
-.image_service img,
-.contentBox img {
-  width: 100%;
-}
-
-.swiper-wrapper {
-  height: auto;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  padding: 8px 16px;
-  z-index: 1000;
-  transform: translateY(-100%);
-  transition: transform 0.4s ease-in-out;
-  display: flex;
-  align-items: center;
-}
-
-header.show {
-  transform: translateY(0);
-  display: flex;
-  align-items: center;
-}
-
-.radio,
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  color: #333;
-}
-
-textarea {
-  width: 100%;
-  height: 80px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  font-size: 14px;
-  resize: none;
-  margin-top: 4px;
-}
-
-.header-review {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  gap: 8px;
-}
-
-.reviews-container {
-  margin-top: 16px;
-}
-
-.review-card p {
-  font-size: 12px
-}
-
-.reviews {
-  margin-top: 8px;
-}
-
-.review-card {
-  background: #f2f2f291;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  margin: 1px;
-}
-
-.review-card h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.review-meta {
-  font-size: 12px;
-  color: #777;
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.stars {
-  color: #f4b400;
-}
-</style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const price = <?= isset($fields['discountPrice']) && $fields['discountPrice'] > 0 && $fields['discountPrice'] < $fields['price'] 
@@ -496,8 +103,8 @@ window.addEventListener('scroll', function() {
   }
 });
 </script>
-<main>
-  <section class=" section-product-header mb-2">
+<main class="is-service">
+  <section class="section-product-header mb-2">
     <header id="page-header">
       <div class="history-back cursor-pointer" data-fallback="<?= get_permalink(get_field("home", "option")) ?>">
         <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-left-gray.svg") ?>" alt="" />
@@ -560,7 +167,7 @@ window.addEventListener('scroll', function() {
           data-price="<?= isset($fields['discountPrice']) && $fields['discountPrice'] > 0 && $fields['discountPrice'] < $fields['price'] ? $fields['discountPrice'] : (isset($fields['price']) ? $fields['price'] : 0); ?>">
         </div>
         <div class="flex justify-between items-center">
-          <h3 class="font-medium">
+          <h3 class="font-medium service-topping-name">
             <?= !empty($fields['name_desire']) ? $fields['name_desire'] : "Hình thức gội đầu" ?> <span class="text-12"
               style="font-weight:300"> ( Chọn 1 ) </span>
           </h3>
@@ -584,7 +191,7 @@ window.addEventListener('scroll', function() {
       <!-- Vật liệu -->
       <div class="mt-2">
         <div class="flex justify-between items-center">
-          <h3 class="font-medium">
+          <h3 class="font-medium service-topping-name">
             <?= !empty($fields['name_material']) ? $fields['name_material'] : "Topping A" ?><span class="text-12"
               style="font-weight:300"> ( Chọn 1 ) </span>
           </h3>
@@ -609,7 +216,7 @@ window.addEventListener('scroll', function() {
       <?php if (!empty($fields['bh'])): ?>
       <div class="mt-2">
         <div class="flex justify-between items-center">
-          <h3 class="font-medium">
+          <h3 class="font-medium service-topping-name">
             <?= !empty($fields['name_bh']) ? $fields['name_bh'] : "Topping B" ?>
           </h3>
           <button id="bh" class="submit text-sm text-gray-500 cursor-pointer"
@@ -626,13 +233,13 @@ window.addEventListener('scroll', function() {
 					?>
         </div>
       </div>
-      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
+      <div class="w-full bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
       <?php endif; ?>
       <?php if (!empty($fields['topping_4'])): ?>
       <!-- Topping 4-->
       <div class="mt-2">
         <div class="flex justify-between items-center">
-          <h3 class="font-medium">
+          <h3 class="font-medium service-topping-name">
             <?= !empty($fields['ten_topping_4']) ? $fields['ten_topping_4'] : "Topping Option" ?> <span class="text-12"
               style="font-weight:300"> ( Chọn 1 ) </span>
           </h3>
@@ -657,7 +264,7 @@ window.addEventListener('scroll', function() {
       <!-- Topping 5-->
       <div class="mt-2">
         <div class="flex justify-between items-center">
-          <h3 class="font-medium">
+          <h3 class="font-medium service-topping-name">
             <?= !empty($fields['ten_topping_5']) ? $fields['ten_topping_5'] : "Topping Option" ?> <span class="text-12"
               style="font-weight:300"> ( Chọn 1 ) </span>
           </h3>

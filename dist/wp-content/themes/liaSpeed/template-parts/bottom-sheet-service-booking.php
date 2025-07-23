@@ -17,15 +17,12 @@
 		"posts_per_page" => -1,
 	));
 
-  
-
 	foreach ($post_services as $post_service) {
 		$doctorIds = get_field("doctors", $post_service->ID);
 		$price = get_field("price", $post_service->ID) ?? 0;
 		$post_prices = get_field("prices", $post_service->ID) ?? [];
 		$prices = [];
 	
-  
 		if ($post_prices) {
 			foreach ($post_prices as $post_price) {
 				array_push($prices, array(
@@ -129,17 +126,14 @@ $(document).ready(function() {
   const services = BOOKING_DATA.services;
   const doctors = BOOKING_DATA.doctors; // Danh sách tất cả chuyên viên
 
-  console.log("Danh sách dịch vụ:", services);
-  console.log("Danh sách doctors:", doctors);
-
-
+  // console.log("Danh sách dịch vụ:", services);
+  // console.log("Danh sách doctors:", doctors);
 
   if (storedServiceId) {
     const serviceId = parseInt(storedServiceId);
     const selectedService = services.find(service => service.id === serviceId);
 
     console.log("Dịch vụ đã chọn:", selectedService);
-
 
     if (selectedService) {
       console.log("Dịch vụ đã chọn:", selectedService);
@@ -148,7 +142,6 @@ $(document).ready(function() {
       const doctorIds = Array.isArray(selectedService.doctorIds) ? selectedService.doctorIds : [];
       const filteredDoctors = doctors.filter(doctor => doctorIds.includes(doctor.id));
       console.log("Danh sách chuyên viên:", filteredDoctors);
-
 
       // Cập nhật danh sách chuyên viên vào dropdown
       const doctorSelect = $(".input-doctor select");
@@ -166,141 +159,126 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/HichemTab-tech/OTP-designer-jquery@2.3.1/dist/otpdesigner.min.js"></script>
 
 <script>
-function updateBookingInfo() {
-  const totalPrice = localStorage.getItem("totalPrice") || 0;
-  const formattedPrice = new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
-  const totalPriceElement = document.getElementById("totalPriceBooking");
-  if (totalPriceElement) {
-    totalPriceElement.textContent = formattedPrice;
-  }
+// function updateBookingInfo() {
+//   const totalPrice = localStorage.getItem("totalPrice") || 0;
+//   const formattedPrice = new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
+//   const totalPriceElement = document.getElementById("totalPriceBooking");
+//   if (totalPriceElement) {
+//     totalPriceElement.textContent = formattedPrice;
+//   }
 
-  const serviceName = localStorage.getItem("serviceName") || "Không có dịch vụ";
-  const serviceNameElement = document.getElementById("serviceName");
-  if (serviceNameElement) {
-    serviceNameElement.textContent = serviceName;
-  }
+//   const serviceName = localStorage.getItem("serviceName") || "Không có dịch vụ";
+//   const serviceNameElement = document.getElementById("serviceName");
+//   if (serviceNameElement) {
+//     serviceNameElement.textContent = serviceName;
+//   }
 
-  const servicePrice = localStorage.getItem("servicePrice") || 0;
-  const formattedPriceService = new Intl.NumberFormat("vi-VN").format(servicePrice) + " đ";
-  const servicePriceElement = document.getElementById("servicePrice");
-  if (servicePriceElement) {
-    servicePriceElement.textContent = formattedPriceService;
-  }
-}
-document.addEventListener("DOMContentLoaded", function() {
-  updateBookingInfo();
-});
-window.addEventListener("storage", function(event) {
-  if (["totalPrice", "serviceName", "servicePrice"].includes(event.key)) {
-    updateBookingInfo();
-  }
-});
+//   const servicePrice = localStorage.getItem("servicePrice") || 0;
+//   const formattedPriceService = new Intl.NumberFormat("vi-VN").format(servicePrice) + " đ";
+//   const servicePriceElement = document.getElementById("servicePrice");
+//   if (servicePriceElement) {
+//     servicePriceElement.textContent = formattedPriceService;
+//   }
+// }
+// document.addEventListener("DOMContentLoaded", function() {
+//   updateBookingInfo();
+// });
+// window.addEventListener("storage", function(event) {
+//   if (["totalPrice", "serviceName", "servicePrice"].includes(event.key)) {
+//     updateBookingInfo();
+//   }
+// });
 </script>
 <script>
-function updateUI() {
-  const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire")) || [];
+// function updateUI() {
+//   const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire")) || [];
 
-  if (Array.isArray(selectedDesire) && selectedDesire.length > 0) {
-    // Gộp tên các lựa chọn lại thành một chuỗi
-    const desireNames = selectedDesire.map(desire => desire.name).join(", ");
-    // Tính tổng giá của tất cả các lựa chọn
-    const totalDesirePrice = selectedDesire.reduce((sum, desire) => sum + (Number(desire.price) || 0), 0);
-    // Định dạng giá tiền
-    const formattedPriceDesire = new Intl.NumberFormat("vi-VN").format(totalDesirePrice) + " đ";
+//   if (Array.isArray(selectedDesire) && selectedDesire.length > 0) {
+//     // Gộp tên các lựa chọn lại thành một chuỗi
+//     const desireNames = selectedDesire.map(desire => desire.name).join(", ");
+//     // Tính tổng giá của tất cả các lựa chọn
+//     const totalDesirePrice = selectedDesire.reduce((sum, desire) => sum + (Number(desire.price) || 0), 0);
+//     // Định dạng giá tiền
+//     const formattedPriceDesire = new Intl.NumberFormat("vi-VN").format(totalDesirePrice) + " đ";
 
-    // Hiển thị tên các lựa chọn
-    const desireNameElement = document.getElementById("desireName");
-    if (desireNameElement) {
-      desireNameElement.textContent = desireNames;
-    }
+//     // Hiển thị tên các lựa chọn
+//     const desireNameElement = document.getElementById("desireName");
+//     if (desireNameElement) {
+//       desireNameElement.textContent = desireNames;
+//     }
 
-    // Hiển thị tổng giá của các lựa chọn
-    const desirePriceElement = document.getElementById("desirePrice");
-    if (desirePriceElement) {
-      desirePriceElement.textContent = formattedPriceDesire;
-    }
-  }
+//     // Hiển thị tổng giá của các lựa chọn
+//     const desirePriceElement = document.getElementById("desirePrice");
+//     if (desirePriceElement) {
+//       desirePriceElement.textContent = formattedPriceDesire;
+//     }
+//   }
 
+//   const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
+//   if (selectedMaterials !== null) {
+//     const materialName = selectedMaterials.name;
+//     const materialPrice = selectedMaterials.price || 0;
+//     const formattedPriceMaterial = new Intl.NumberFormat("vi-VN").format(materialPrice) + " đ";
+//     const materialNameElement = document.getElementById("materialName");
+//     if (materialNameElement) {
+//       materialNameElement.textContent = materialName;
+//     }
+//     const materialPriceElement = document.getElementById("materialPrice");
+//     if (materialPriceElement) {
+//       materialPriceElement.textContent = formattedPriceMaterial;
+//     }
+//   }
 
-  const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
-  if (selectedMaterials !== null) {
-    const materialName = selectedMaterials.name;
-    const materialPrice = selectedMaterials.price || 0;
-    const formattedPriceMaterial = new Intl.NumberFormat("vi-VN").format(materialPrice) + " đ";
-    const materialNameElement = document.getElementById("materialName");
-    if (materialNameElement) {
-      materialNameElement.textContent = materialName;
-    }
-    const materialPriceElement = document.getElementById("materialPrice");
-    if (materialPriceElement) {
-      materialPriceElement.textContent = formattedPriceMaterial;
-    }
-  }
+//   const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
+//   if (selectedBh !== null) {
+//     const bhName = selectedBh.name;
+//     const bhPrice = selectedBh.price || 0;
+//     const formattedPriceBh = new Intl.NumberFormat("vi-VN").format(bhPrice) + " đ";
+//     const bhNameElement = document.getElementById("bhName");
+//     if (bhNameElement) {
+//       bhNameElement.textContent = bhName;
+//     }
+//     const bhPriceElement = document.getElementById("bhPrice");
+//     if (bhPriceElement) {
+//       bhPriceElement.textContent = formattedPriceBh;
+//     }
+//   }
+//   if (selectedDesire !== null || selectedMaterials !== null || selectedBh !== null) {
+//     document.querySelector(".byHand").style.display = "block";
+//   }
+// }
 
-  const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
-  if (selectedBh !== null) {
-    const bhName = selectedBh.name;
-    const bhPrice = selectedBh.price || 0;
-    const formattedPriceBh = new Intl.NumberFormat("vi-VN").format(bhPrice) + " đ";
-    const bhNameElement = document.getElementById("bhName");
-    if (bhNameElement) {
-      bhNameElement.textContent = bhName;
-    }
-    const bhPriceElement = document.getElementById("bhPrice");
-    if (bhPriceElement) {
-      bhPriceElement.textContent = formattedPriceBh;
-    }
-  }
-  if (selectedDesire !== null || selectedMaterials !== null || selectedBh !== null) {
-    document.querySelector(".byHand").style.display = "block";
-  }
-}
+// function updateNoteTopping() {
+//   const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
+//   const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
+//   const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire"));
 
-function updateNoteTopping() {
-  const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
-  const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
-  const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire"));
+//   const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price) + " đ";
 
-  const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price) + " đ";
+//   const nameDesire = selectedDesire ? selectedDesire?.map(desire => desire.name).join(", ") : "";
+//   const priceDesire = selectedDesire ? selectedDesire.reduce((sum, desire) => sum + desire.price, 0) : 0;
 
-  const nameDesire = selectedDesire ? selectedDesire?.map(desire => desire.name).join(", ") : "";
-  const priceDesire = selectedDesire ? selectedDesire.reduce((sum, desire) => sum + desire.price, 0) : 0;
+//   const noteTopping = [
+//     selectedBh ? `Bảo hành: ${selectedBh.name} - ${formatPrice(selectedBh.price)}` : "",
+//     selectedMaterials ? `Vật liệu: ${selectedMaterials.name} - ${formatPrice(selectedMaterials.price)}` : "",
+//     selectedDesire ? `Mong muốn: ${nameDesire} - ${formatPrice(priceDesire)}` : ""
+//   ].filter(Boolean).join(" | ");
 
-  const noteTopping = [
-    selectedBh ? `Bảo hành: ${selectedBh.name} - ${formatPrice(selectedBh.price)}` : "",
-    selectedMaterials ? `Vật liệu: ${selectedMaterials.name} - ${formatPrice(selectedMaterials.price)}` : "",
-    selectedDesire ? `Mong muốn: ${nameDesire} - ${formatPrice(priceDesire)}` : ""
-  ].filter(Boolean).join(" | ");
+//   $("textarea[name='noteTopping']").val(noteTopping).trigger("change");
+// }
 
-  $("textarea[name='noteTopping']").val(noteTopping).trigger("change");
-}
+// function updateSelected() {
+//   const selectedGift = localStorage.getItem("selectedGift") || "Không có quà tặng";
+//   const selectedGiftElement = document.getElementById("selectedGift");
 
-function updateSelected() {
-  const selectedGift = localStorage.getItem("selectedGift") || "Không có quà tặng";
-  const selectedGiftElement = document.getElementById("selectedGift");
+//   if (selectedGiftElement) {
+//     selectedGiftElement.textContent = selectedGift;
+//   }
+//   $("textarea[name='gift']").val(selectedGift).trigger("change");
 
-  if (selectedGiftElement) {
-    selectedGiftElement.textContent = selectedGift;
-  }
-  $("textarea[name='gift']").val(selectedGift).trigger("change");
-
-}
+// }
 </script>
 
-
-<style>
-.button-select-gift {
-  background: rgba(255, 35, 89, .1);
-  color: #ff2359;
-  padding: 2px 12px;
-  border-radius: 6px;
-
-}
-
-.button-select-gift span {
-  font-size: 12px;
-}
-</style>
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
 <div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
   <div class=" overflow-hidden w-full h-full ">
@@ -337,6 +315,9 @@ function updateSelected() {
       </div>
       <hr class="my-4" />
       <?= wp_nonce_field( 'booking_order' ); ?>
+      <div id="topping-container">
+
+      </div>
       <div class="grid grid-cols-2 gap-x-6">
         <div class="lg:col-span-1 col-span-2">
           <h2 class="form-title mb-2" style="font-size:14px">Thông tin khách hàng</h2>
@@ -420,7 +401,6 @@ function updateSelected() {
             </select>
             <div class="text-12 italic text-red-500 error-doctor"></div>
           </div>
-
 
           <hr class="my-4" />
         </div>
@@ -516,49 +496,53 @@ function updateSelected() {
       <div class="h-[80px] flex items-center  fixed bottom-0 left-0 right-0 bg-white bottom-action" style=" z-index:10">
         <?php get_template_part( 'template-parts/modal', 'booking-confirm' ); ?>
       </div>
+      <!-- <div class="topping-summary mt-4 border-t pt-4 flex justify-between text-lg font-semibold">
+        <span>Tổng cộng:</span>
+        <span id="topping-total">0 đ</span>
+      </div> -->
     </section>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-topping');
-  const confirmButton = document.getElementById('edit-topping');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const modal = document.getElementById('modal-topping');
+//   const confirmButton = document.getElementById('edit-topping');
+//   const overlay = modal.querySelector('.bg-black');
+//   const closeModalButton = modal.querySelector('.close-modal');
 
-  // Mở modal
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.body.classList.add('modal-open'); // Thêm class để chặn scroll
-  });
+//   // Mở modal
+//   confirmButton.addEventListener('click', function() {
+//     modal.style.display = 'flex';
+//     setTimeout(() => {
+//       modal.classList.add('show');
+//     }, 10);
+//     document.body.classList.add('modal-open'); // Thêm class để chặn scroll
+//   });
 
-  // Đóng modal
-  const closeModal = () => {
-    console.log("Đóng modal...");
-    if (!modal) {
-      console.error("Modal không tồn tại!");
-      return;
-    }
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.body.classList.remove('modal-open');
-  };
+//   // Đóng modal
+//   const closeModal = () => {
+//     console.log("Đóng modal...");
+//     if (!modal) {
+//       console.error("Modal không tồn tại!");
+//       return;
+//     }
+//     modal.classList.remove('show');
+//     setTimeout(() => {
+//       modal.style.display = 'none';
+//     }, 300);
+//     document.body.classList.remove('modal-open');
+//   };
 
-  // Đóng khi nhấn nút close
-  closeModalButton.addEventListener('click', closeModal);
-  overlay.addEventListener('click', closeModal);
+//   // Đóng khi nhấn nút close
+//   closeModalButton.addEventListener('click', closeModal);
+//   overlay.addEventListener('click', closeModal);
 
-  // Lắng nghe sự kiện từ modal
-  window.addEventListener("message", function(event) {
-    if (event.data.action === "closeModal") {
-      closeModal();
-    }
-  });
-});
+//   // Lắng nghe sự kiện từ modal
+//   window.addEventListener("message", function(event) {
+//     if (event.data.action === "closeModal") {
+//       closeModal();
+//     }
+//   });
+// });
 </script>

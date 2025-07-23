@@ -134,3 +134,209 @@
 	// 	font-size: 16px;
 	// }
 }
+
+.border-zalo-bottom {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.consultant-zalo-bottom-v1 {
+	border-radius: 8px;
+	padding: 6px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	flex-direction: column;
+	border: 1px solid #cacaca;
+	width: 120px;
+}
+
+.bottom-action {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: white;
+	border-top: 1px solid #eee;
+	z-index: 10;
+	transform: translateY(0);
+	transition: transform 0.4s ease-in-out !important;
+	will-change: transform;
+	/* Tối ưu hiệu suất */
+	pointer-events: auto;
+	/* Đảm bảo không bị chặn click */
+}
+
+.modal-booking {
+	display: none;
+	/* Ẩn modal */
+	opacity: 0;
+	/* Mờ hoàn toàn */
+	transform: scale(0.9);
+	/* Thu nhỏ modal một chút */
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
+	/* Hiệu ứng chuyển đổi */
+}
+
+/* Trạng thái hiển thị modal */
+.modal-booking.show {
+	display: flex;
+	/* Hiển thị modal */
+	opacity: 1;
+	/* Hiện rõ */
+	transform: scale(1);
+	/* Phóng về kích thước ban đầu */
+}
+
+@keyframes shine {
+	0% {
+		background-position: -200% 0;
+	}
+
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+@keyframes glow {
+	0%,
+	50% {
+		box-shadow: 0 0 7px #1a5478;
+	}
+
+	30% {
+		box-shadow: 0 0 5px #1a5478;
+	}
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	25% {
+		transform: translateX(-2px);
+	}
+
+	50% {
+		transform: translateX(2px);
+	}
+
+	75% {
+		transform: translateX(-1px);
+	}
+}
+
+@keyframes sparkle {
+	0%,
+	100% {
+		opacity: 0.6;
+		transform: translateY(0);
+	}
+
+	50% {
+		opacity: 1;
+		transform: translateY(-3px);
+	}
+}
+
+/* Nút chính */
+.consultant-zalo-bottom-v2 {
+	position: relative;
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+	border-radius: 12px;
+	overflow: hidden;
+	background: linear-gradient(90deg, #1a5478, #1a5478b8, #1a5478);
+	background-size: 200% 100%;
+	animation:
+		shine 2.5s infinite linear,
+		glow 1.5s infinite alternate;
+	transition:
+		transform 0.2s ease-in-out,
+		box-shadow 0.3s ease-in-out;
+}
+
+/* Hiệu ứng rung sau 5 giây để kích thích click */
+@keyframes delayedShake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(3px);
+	}
+}
+
+.consultant-zalo-bottom-v2.shake {
+	animation: delayedShake 0.3s ease-in-out 5s infinite;
+}
+
+/* Hover: Hiệu ứng nhấp nháy mạnh hơn */
+.consultant-zalo-bottom-v2:hover {
+	transform: scale(1.15);
+	box-shadow: 0 0 50px #1a5478;
+}
+
+/* Active: Khi bấm xuống */
+.consultant-zalo-bottom-v2:active {
+	transform: scale(0.95);
+	box-shadow: 0 0 15px #1a5478;
+}
+
+/* Thêm hiệu ứng lấp lánh */
+.consultant-zalo-bottom-v2::after {
+	content: "";
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	width: 50px;
+	height: 50px;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, rgba(255, 255, 255, 0) 50%);
+	opacity: 0.6;
+	animation: sparkle 2.5s infinite linear;
+}
+
+.consultant-zalo-bottom-v2 .discount-text {
+	font-size: 14px;
+	/* Tăng kích thước chữ */
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	/* Màu vàng nhạt giúp dễ nhìn hơn */
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+	/* Bóng mờ giúp chữ không bị chìm */
+	letter-spacing: 0.5px;
+	/* Giãn chữ một chút để rõ ràng hơn */
+}
+
+.border-zalo-bottom {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 12px;
+}
+
+.consultant-zalo-bottom {
+	border-radius: 30px;
+	padding: 8px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #ececec;
+	flex-direction: column;
+}
+
+.bottom-action {
+	transform: translateY(0);
+	transition: transform 0.4s ease-in-out;
+}

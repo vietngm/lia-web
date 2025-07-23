@@ -178,3 +178,22 @@ input:checked + .time-input-content,
 	padding-bottom: 4px;
 	margin-bottom: 4px;
 }
+
+.button-select-gift {
+	background: rgba(255, 35, 89, 0.1);
+	color: #ff2359;
+	padding: 2px 12px;
+	border-radius: 6px;
+}
+
+.button-select-gift span {
+	font-size: 12px;
+}
+
+.booking-confirm {
+	background-color: #009688;
+	color: #fff;
+	padding: 8px 16px;
+	border-radius: 24px;
+	font-weight: 700;
+}

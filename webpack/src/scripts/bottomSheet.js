@@ -1,47 +1,83 @@
 jQuery(function ($) {
-	// document.addEventListener("DOMContentLoaded", function () {
 	const modal = document.getElementById("bottom-sheet-booking");
-	// const confirmButton = $(".js-open-bottom-sheet");
-	$(document).on("click", ".js-open-bottom-sheet", function () {
-		console.log("WOrk...");
+	if (!modal) return;
 
-		modal.style.display = "flex";
-		setTimeout(() => {
-			modal.classList.add("show");
-		}, 10);
-		document.documentElement.style.overflow = "hidden";
-		document.body.style.overflow = "hidden";
+	let basePrice = 0; // Biến lưu giá gốc của dịch vụ
+
+	// Mở modal
+	$(document).on("click", ".js-open-bottom-sheet", function () {
+		const toppingsData = $(this).data("toppings");
+		basePrice = parseFloat($(this).data("price")) || 0;
+
+		if (!Array.isArray(toppingsData)) return;
+
+		const container = $("#topping-container");
+		container.empty();
+
+		toppingsData.forEach((groupObj) => {
+			const groupKey = Object.keys(groupObj)[0];
+			const groupData = groupObj[groupKey];
+			if (!groupData || !groupData.toppings?.length) return;
+
+			const groupTitle = groupData.name || "Tùy chọn";
+			const radioName = `topping-${groupKey}`;
+			const groupEl = $(
+				`<div><h3 class="font-semibold mb-2">${groupTitle}</h3></div>`
+			);
+			const itemsContainer = $('<div class="space-y-2"></div>');
+
+			groupData.toppings.forEach((item, index) => {
+				const itemId = `${radioName}-${index}`;
+				const itemHtml = $(`
+					<label for="${itemId}" class="flex items-center justify-between border p-2 rounded bg-gray-100 cursor-pointer">
+						<div class="flex items-center gap-2">
+							<input type="radio" name="${radioName}" id="${itemId}" value="${
+					item.price
+				}" class="topping-radio" />
+							<span>${item.name}</span>
+						</div>
+						<span>${Number(item.price).toLocaleString()} đ</span>
+					</label>
+				`);
+				itemsContainer.append(itemHtml);
+			});
+
+			groupEl.append(itemsContainer);
+			container.append(groupEl);
+		});
+
+		if (!modal.classList.contains("show")) {
+			modal.style.display = "flex";
+			setTimeout(() => modal.classList.add("show"), 10);
+			$("html, body").css("overflow", "hidden");
+		}
+
+		calculateTotal();
 	});
 
+	// Đóng modal
 	$(document).on("click", ".close-modal", function () {
 		modal.classList.remove("show");
-		setTimeout(() => {
-			modal.style.display = "none";
-		}, 300);
-		document.documentElement.style.overflow = "";
-		document.body.style.overflow = "";
+		setTimeout(() => (modal.style.display = "none"), 300);
+		$("html, body").css("overflow", "");
 	});
-	// const overlay = modal.querySelector(".bg-black");
-	// const closeModalButton = modal.querySelector(".close-modal");
 
-	// confirmButton.addEventListener("click", function () {
-	// 	modal.style.display = "flex";
-	// 	setTimeout(() => {
-	// 		modal.classList.add("show");
-	// 	}, 10);
-	// 	document.documentElement.style.overflow = "hidden";
-	// 	document.body.style.overflow = "hidden";
-	// });
+	// Đóng modal khi click nền đen
+	$(document).on("click", "#bottom-sheet-booking", function (e) {
+		if (e.target.id === "bottom-sheet-booking") {
+			$(".close-modal").trigger("click");
+		}
+	});
 
-	// const closeModal = () => {
-	// 	modal.classList.remove("show");
-	// 	setTimeout(() => {
-	// 		modal.style.display = "none";
-	// 	}, 300);
-	// 	document.documentElement.style.overflow = "";
-	// 	document.body.style.overflow = "";
-	// };
+	// Tính tổng
+	function calculateTotal() {
+		let total = basePrice;
+		$(".topping-radio:checked").each(function () {
+			const price = parseFloat($(this).val());
+			if (!isNaN(price)) total += price;
+		});
+		$("#totalPriceBooking").text(total.toLocaleString() + " đ");
+	}
 
-	// closeModalButton.addEventListener("click", closeModal);
-	// });
+	$(document).on("change", ".topping-radio", calculateTotal);
 });
