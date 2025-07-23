@@ -201,6 +201,7 @@ input:checked + .time-input-content,
 .topping-container {
 	margin-bottom: 16px;
 	display: grid;
+	grid-gap: 8px;
 }
 .topping-group {
 	display: grid;
@@ -209,5 +210,5 @@ input:checked + .time-input-content,
 .topping-group-title {
 	font-size: 14px;
 	font-weight: bold;
-	margin-bottom: 12px;
+	margin-bottom: 8px;
 }
