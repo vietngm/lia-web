@@ -8,6 +8,11 @@ jQuery(function ($) {
 	$(document).on("click", ".js-open-bottom-sheet", function () {
 		const toppingsData = $(this).data("toppings");
 		basePrice = parseFloat($(this).data("price")) || 0;
+		const title = $(this).data("title");
+		const serviceId = parseInt($(this).data("id")); // Lấy từ data-id trên nút
+		localStorage.setItem("serviceId", serviceId); // Ghi đè lên localStorage
+		$("#serviceName").text(title);
+		$("#servicePrice").text(basePrice.toLocaleString() + " đ");
 
 		if (!Array.isArray(toppingsData)) return;
 
@@ -22,7 +27,7 @@ jQuery(function ($) {
 			const groupTitle = groupData.name || "Tùy chọn";
 			const radioName = `topping-${groupKey}`;
 			const groupEl = $(
-				`<div><h3 class="font-semibold mb-2">${groupTitle}</h3></div>`
+				`<div><h3 class="topping-group-title">${groupTitle}</h3></div>`
 			);
 			const itemsContainer = $('<div class="space-y-2"></div>');
 
@@ -58,6 +63,7 @@ jQuery(function ($) {
 	// Đóng modal
 	$(document).on("click", ".close-modal", function () {
 		modal.classList.remove("show");
+		localStorage.removeItem("serviceId");
 		setTimeout(() => (modal.style.display = "none"), 300);
 		$("html, body").css("overflow", "");
 	});
@@ -76,7 +82,7 @@ jQuery(function ($) {
 			const price = parseFloat($(this).val());
 			if (!isNaN(price)) total += price;
 		});
-		$("#totalPriceBooking").text(total.toLocaleString() + " đ");
+		$("#totalPriceBooking").text(total.toLocaleString());
 	}
 
 	$(document).on("change", ".topping-radio", calculateTotal);

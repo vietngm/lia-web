@@ -136,7 +136,7 @@ window.addEventListener('scroll', function() {
             <div class="text-16 text-red-500 flex items-center gap-2 justify-between w-full">
               <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
               <div class="flex items-center gap-2 font-semibold">
-                <span class="text-red-500 ml-2" style="font-weight:700">
+                <span class="text-price ml-2" style="font-weight:700">
                   <?= number_format($discountPrice, 0, ",", ".") ?> <small>đ</small>
                 </span>
                 <span class="text-gray-400 line-through opacity-70" style="color:#ccc;font-size:13px">
@@ -209,7 +209,7 @@ window.addEventListener('scroll', function() {
 					?>
         </div>
       </div>
-      <div class="w-full  bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
+      <div class="w-full bg-gray-200 " style="border-top:1px solid #eee;margin-top:8px"></div>
       <?php endif; ?>
 
       <!-- Bảo hành -->
@@ -226,7 +226,7 @@ window.addEventListener('scroll', function() {
         <div class="flex flex-col gap-2 mt-2 ">
           <?php include get_template_directory()."/content/warranty.php"; ?>
         </div>
-        <div id="modal-bh" class=" modal-bh fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
+        <div id="modal-bh" class="modal-bh fixed hidden top-0 left-0 right-0 bottom-0 z-[120]  modal-popup">
           <?php 
 						set_query_var('field', $fields);
 						get_template_part( 'template-parts/modal', "service-bh"); 

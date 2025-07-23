@@ -41,21 +41,6 @@
 	}
 
 	// Doctors
-	// $post_doctors = get_posts(array(
-	// 	"post_type" => "practitioner",
-	// 	"posts_per_page" => -1,
-	// ));
-	// $doctors = [];
-	// foreach ($post_doctors as $post_doctor) {
-	// 	$workingTimes = get_field("working-time", $post_doctor->ID);
-	// 	array_push($doctors, [
-	// 		"id" => $post_doctor->ID,
-	// 		"title" => $post_doctor->post_title,
-	// 		"workingTimes" => $workingTimes,
-	// 	]);
-	// }
-
-	// Doctors
 	$post_doctors = get_posts(array(
 		"post_type" => "practitioner",
 		"posts_per_page" => -1,
@@ -126,9 +111,6 @@ $(document).ready(function() {
   const services = BOOKING_DATA.services;
   const doctors = BOOKING_DATA.doctors; // Danh sách tất cả chuyên viên
 
-  // console.log("Danh sách dịch vụ:", services);
-  // console.log("Danh sách doctors:", doctors);
-
   if (storedServiceId) {
     const serviceId = parseInt(storedServiceId);
     const selectedService = services.find(service => service.id === serviceId);
@@ -157,127 +139,6 @@ $(document).ready(function() {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/gh/HichemTab-tech/OTP-designer-jquery@2.3.1/dist/otpdesigner.min.js"></script>
-
-<script>
-// function updateBookingInfo() {
-//   const totalPrice = localStorage.getItem("totalPrice") || 0;
-//   const formattedPrice = new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
-//   const totalPriceElement = document.getElementById("totalPriceBooking");
-//   if (totalPriceElement) {
-//     totalPriceElement.textContent = formattedPrice;
-//   }
-
-//   const serviceName = localStorage.getItem("serviceName") || "Không có dịch vụ";
-//   const serviceNameElement = document.getElementById("serviceName");
-//   if (serviceNameElement) {
-//     serviceNameElement.textContent = serviceName;
-//   }
-
-//   const servicePrice = localStorage.getItem("servicePrice") || 0;
-//   const formattedPriceService = new Intl.NumberFormat("vi-VN").format(servicePrice) + " đ";
-//   const servicePriceElement = document.getElementById("servicePrice");
-//   if (servicePriceElement) {
-//     servicePriceElement.textContent = formattedPriceService;
-//   }
-// }
-// document.addEventListener("DOMContentLoaded", function() {
-//   updateBookingInfo();
-// });
-// window.addEventListener("storage", function(event) {
-//   if (["totalPrice", "serviceName", "servicePrice"].includes(event.key)) {
-//     updateBookingInfo();
-//   }
-// });
-</script>
-<script>
-// function updateUI() {
-//   const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire")) || [];
-
-//   if (Array.isArray(selectedDesire) && selectedDesire.length > 0) {
-//     // Gộp tên các lựa chọn lại thành một chuỗi
-//     const desireNames = selectedDesire.map(desire => desire.name).join(", ");
-//     // Tính tổng giá của tất cả các lựa chọn
-//     const totalDesirePrice = selectedDesire.reduce((sum, desire) => sum + (Number(desire.price) || 0), 0);
-//     // Định dạng giá tiền
-//     const formattedPriceDesire = new Intl.NumberFormat("vi-VN").format(totalDesirePrice) + " đ";
-
-//     // Hiển thị tên các lựa chọn
-//     const desireNameElement = document.getElementById("desireName");
-//     if (desireNameElement) {
-//       desireNameElement.textContent = desireNames;
-//     }
-
-//     // Hiển thị tổng giá của các lựa chọn
-//     const desirePriceElement = document.getElementById("desirePrice");
-//     if (desirePriceElement) {
-//       desirePriceElement.textContent = formattedPriceDesire;
-//     }
-//   }
-
-//   const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
-//   if (selectedMaterials !== null) {
-//     const materialName = selectedMaterials.name;
-//     const materialPrice = selectedMaterials.price || 0;
-//     const formattedPriceMaterial = new Intl.NumberFormat("vi-VN").format(materialPrice) + " đ";
-//     const materialNameElement = document.getElementById("materialName");
-//     if (materialNameElement) {
-//       materialNameElement.textContent = materialName;
-//     }
-//     const materialPriceElement = document.getElementById("materialPrice");
-//     if (materialPriceElement) {
-//       materialPriceElement.textContent = formattedPriceMaterial;
-//     }
-//   }
-
-//   const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
-//   if (selectedBh !== null) {
-//     const bhName = selectedBh.name;
-//     const bhPrice = selectedBh.price || 0;
-//     const formattedPriceBh = new Intl.NumberFormat("vi-VN").format(bhPrice) + " đ";
-//     const bhNameElement = document.getElementById("bhName");
-//     if (bhNameElement) {
-//       bhNameElement.textContent = bhName;
-//     }
-//     const bhPriceElement = document.getElementById("bhPrice");
-//     if (bhPriceElement) {
-//       bhPriceElement.textContent = formattedPriceBh;
-//     }
-//   }
-//   if (selectedDesire !== null || selectedMaterials !== null || selectedBh !== null) {
-//     document.querySelector(".byHand").style.display = "block";
-//   }
-// }
-
-// function updateNoteTopping() {
-//   const selectedBh = JSON.parse(localStorage.getItem("selectedBh"));
-//   const selectedMaterials = JSON.parse(localStorage.getItem("selectedMaterials"));
-//   const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire"));
-
-//   const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price) + " đ";
-
-//   const nameDesire = selectedDesire ? selectedDesire?.map(desire => desire.name).join(", ") : "";
-//   const priceDesire = selectedDesire ? selectedDesire.reduce((sum, desire) => sum + desire.price, 0) : 0;
-
-//   const noteTopping = [
-//     selectedBh ? `Bảo hành: ${selectedBh.name} - ${formatPrice(selectedBh.price)}` : "",
-//     selectedMaterials ? `Vật liệu: ${selectedMaterials.name} - ${formatPrice(selectedMaterials.price)}` : "",
-//     selectedDesire ? `Mong muốn: ${nameDesire} - ${formatPrice(priceDesire)}` : ""
-//   ].filter(Boolean).join(" | ");
-
-//   $("textarea[name='noteTopping']").val(noteTopping).trigger("change");
-// }
-
-// function updateSelected() {
-//   const selectedGift = localStorage.getItem("selectedGift") || "Không có quà tặng";
-//   const selectedGiftElement = document.getElementById("selectedGift");
-
-//   if (selectedGiftElement) {
-//     selectedGiftElement.textContent = selectedGift;
-//   }
-//   $("textarea[name='gift']").val(selectedGift).trigger("change");
-
-// }
-</script>
 
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
 <div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
@@ -315,7 +176,7 @@ $(document).ready(function() {
       </div>
       <hr class="my-4" />
       <?= wp_nonce_field( 'booking_order' ); ?>
-      <div id="topping-container">
+      <div id="topping-container" class="topping-container">
 
       </div>
       <div class="grid grid-cols-2 gap-x-6">
@@ -354,7 +215,7 @@ $(document).ready(function() {
           <h2 class="form-title mb-2 " style="font-size:14px">Thông tin đơn hàng</h2>
           <div class="input-select mb-4 input-service relative">
             <div class="flex items-center gap-3 justify-between">
-              <span id="serviceName" class=" font-bold "></span>
+              <span id="serviceName" class="font-bold"></span>
               <span id="servicePrice" class="text-12">
                 <?php echo number_format($servicePrice, 0, ',', '.') ?> đ
               </span>

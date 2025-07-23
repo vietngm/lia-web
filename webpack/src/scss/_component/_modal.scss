@@ -197,3 +197,14 @@ input:checked + .time-input-content,
 	border-radius: 24px;
 	font-weight: 700;
 }
+
+.topping-container {
+	margin-bottom: 16px;
+	display: grid;
+}
+
+.topping-group-title {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 0;
+}

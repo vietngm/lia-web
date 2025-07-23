@@ -37,14 +37,14 @@
         </div>
         <div class="flex items-center justify-between mt-1">
           <span class="text-price ml-2" style="font-size:14px">
-            <?= number_format($discountPrice, 0, ",", ".") ?><small>đ</small>
+            <?= number_format($discountPrice, 0, ",", ".") ?><small> <u>đ</u></small>
           </span>
           <span class="text-gray-400 line-through opacity-70" style="color:#ccc;font-size:12px">
-            <?= number_format($price, 0, ",", ".") ?><small>đ</small>
+            <?= number_format($price, 0, ",", ".") ?><small> <u>đ</u></small>
           </span>
         </div>
         <?php else : ?>
-        <?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
+        <?= number_format($price, 0, ",", ".") ?> <small> <u>đ</u></small>
         <?php endif; ?>
       </div>
     </a>
@@ -161,8 +161,8 @@
       $dataJson = htmlspecialchars(json_encode($dataToppings, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
     ?>
     <button class="btn-booking-service js-open-bottom-sheet"
-      data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-id="<?= get_the_ID() ?>"
-      data-toppings="<?= $dataJson ?>">Đặt lịch</button>
+      data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
+      data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>">Đặt lịch</button>
     <?php } ?>
   </div>
 </div>
