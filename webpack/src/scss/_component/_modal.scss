@@ -202,9 +202,12 @@ input:checked + .time-input-content,
 	margin-bottom: 16px;
 	display: grid;
 }
-
+.topping-group {
+	display: grid;
+	grid-gap: 8px;
+}
 .topping-group-title {
 	font-size: 14px;
 	font-weight: bold;
-	margin-bottom: 0;
+	margin-bottom: 12px;
 }

@@ -85,9 +85,11 @@
   </section>
 
   <!-- Add the detailed franchise section that matches the image -->
-  <div class="franchise-container mt-8">
-    <h1 class="section-title" style="padding-left: 16px;"><?= $fields["franchise"]["title"] ?></h1>
-    <?php get_template_part( 'template-parts/franchise', 'summary', array("franchise" => $fields["franchise"]["highlight_nhuong_quyen"]) ); ?>
+  <div class="container">
+    <div class="franchise-container mt-8">
+      <h1 class="section-title" style="padding-left: 16px;"><?= $fields["franchise"]["title"] ?></h1>
+      <?php get_template_part( 'template-parts/franchise', 'summary', array("franchise" => $fields["franchise"]["highlight_nhuong_quyen"]) ); ?>
+    </div>
   </div>
 
   <?php
@@ -119,6 +121,12 @@
       </div>
     </div>
   </div>
+
+  <section class="section">
+    <div class="container" style="padding-right:0">
+      <?php get_template_part( 'content/news' ); ?>
+    </div>
+  </section>
 
   <!-- Registration Modal -->
   <div class="franchise-modal" id="register-modal">

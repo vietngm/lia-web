@@ -29,12 +29,12 @@ jQuery(function ($) {
 			const groupEl = $(
 				`<div><h3 class="topping-group-title">${groupTitle}</h3></div>`
 			);
-			const itemsContainer = $('<div class="space-y-2"></div>');
+			const itemsContainer = $('<div class="space-y-2 topping-group"></div>');
 
 			groupData.toppings.forEach((item, index) => {
 				const itemId = `${radioName}-${index}`;
 				const itemHtml = $(`
-					<label for="${itemId}" class="flex items-center justify-between border p-2 rounded bg-gray-100 cursor-pointer">
+					<label for="${itemId}" class="flex items-center justify-between cursor-pointer">
 						<div class="flex items-center gap-2">
 							<input type="radio" name="${radioName}" id="${itemId}" value="${
 					item.price

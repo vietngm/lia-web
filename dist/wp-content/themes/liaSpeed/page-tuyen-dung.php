@@ -48,11 +48,7 @@
     <div class="key-visual">
       <div class="loop owl-carousel owl-theme">
         <?php foreach ($key_visual as $item) { ?>
-        <div class="key-item" style="background-image: url('<?=$item['url']?>')">
-          <!-- <figure>
-    <img class="owl-lazy" data-src="<?php //echo $img[0]; ?>" alt="SB Global Solutions" title="SB Global Solutions">
-  </figure> -->
-        </div>
+        <div class="key-item" style="background-image: url('<?=$item['url']?>')"></div>
         <?php } ?>
       </div>
     </div>
@@ -242,7 +238,6 @@
                 </div>
                 <div class="has-error error-experience"></div>
               </div>
-
 
               <div class="form-group">
                 <input type="hidden" name="salary" value="">
