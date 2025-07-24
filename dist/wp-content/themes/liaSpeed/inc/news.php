@@ -17,8 +17,8 @@ function register_news_post_type(){
 		'hierarchical' => true,
 		'taxonomies' => array('news-category'),	
 		'show_ui' => true,
-		'public' => false,
-		'publicly_queryable' => false,
+		'public' => true,
+		'publicly_queryable' => true,
 		'exclude_from_search' => false,
 		'show_in_admin_bar' => true,
 		'show_in_nav_menus' => true,
@@ -29,6 +29,7 @@ function register_news_post_type(){
 		'menu_icon' => 'dashicons-admin-site',
 		'can_export' => true,
 		'has_archive' => false,
+		'rewrite' => array('slug' => 'tin-tuc', 'with_front' => false)
 	);
 	register_post_type('tin-tuc', $args);
 }
