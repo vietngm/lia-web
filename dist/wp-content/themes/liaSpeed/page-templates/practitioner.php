@@ -88,12 +88,12 @@
 }
 </style>
 <main>
-  <section class="section-doctor " style="padding-top:12px">
-    <h2 style="font-weight:700;padding:0px 12px">Danh sách chuyên viên</h2>
+  <section class="section-doctor" style="padding-top:0">
+    <!-- <h2 style="font-weight:700;padding:0px 12px">Danh sách chuyên viên</h2> -->
     <div class="highlight-filter">
       <?php foreach ($term_categories as $term_category) :?>
       <div class="item cursor-pointer service-tab" data-id="<?= $term_category->term_id ?>">
-        <div class="text" style="font-size:14px;font-weight: 500"><?= $term_category->name ?></div>
+        <div class="text" style="font-size:12px;font-weight: 500"><?= $term_category->name ?></div>
       </div>
       <?php endforeach; ?>
     </div>

@@ -42,17 +42,22 @@
 }
 
 .button-detail {
-	background: #edffe1;
-	color: #45843b;
-	font-weight: 600;
+	background-color: white;
+	color: $color-main;
+	// font-weight: 600;
 	padding: 5px 12px;
-	border: 1px solid #45843b;
+	border: 1px solid $color-main;
 }
 
 .button-booking {
-	background: #45843b;
+	background-color: $color-main;
 	color: #fff;
 	font-weight: 600;
 	padding: 5px 12px;
-	border: 1px solid #45843b;
+	border: 1px solid $color-main;
+	&.disabled {
+		background-color: #ccc;
+		border: 1px solid #ccc;
+		color: gray;
+	}
 }

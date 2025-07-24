@@ -44,10 +44,24 @@
       </div>
     </div>
   </div>
+
+  <!-- <div class="flex flex-wrap gap-1 mt-2">
+    <?php //if ($services) : foreach ($services as $service) : ?>
+    <div class="text-10 h-[15px] px-2 flex items-center bg-[#ddd] rounded-full"><?//= $service->post_title ?></div>
+    <?php //endforeach; endif; ?>
+  </div> -->
+
   <div class="practitioner-booking items-center">
     <a href="<?= get_permalink($doctor_id) ?>" class="bg-blue-500  rounded-2 px-2 py-1 text-12 button-detail"
       style="font-size: 12px;">Xem chi tiết</a>
+
+    <?php if (count($services) == 0) : ?>
+    <div class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-booking disabled"
+      style="font-size: 12px;text-align:center;">Đặt lịch</div>
+    <?php else: ?>
     <a class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-booking" style="font-size: 12px;text-align:center;">Đặt
       lịch</a>
+    <?php endif; ?>
   </div>
+
 </div>
