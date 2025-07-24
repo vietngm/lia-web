@@ -53,7 +53,14 @@
           'orderby' => 'date',
           'order' => 'desc',
           'posts_per_page' => -1,
-          'status' => array('publish', 'private')
+          'status' => array('publish', 'private'),
+          'tax_query' => array(
+            array(
+              'taxonomy' => 'news-category',
+              'field' => 'slug',
+              'terms' => get_query_var('news-category'),
+            ),
+          ),
         );
         $the_query = new WP_Query($arg);
           while ($the_query->have_posts()) : $the_query->the_post();
