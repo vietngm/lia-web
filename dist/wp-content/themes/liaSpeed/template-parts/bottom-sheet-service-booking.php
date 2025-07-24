@@ -93,7 +93,7 @@
 			"doctorId" => $doctorId,
 		]);
 	}
-
+  
 ?>
 
 <script>
@@ -142,13 +142,14 @@ $(document).ready(function() {
 
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
 <div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
-  <div class=" overflow-hidden w-full h-full ">
+  <div class=" overflow-hidden w-full h-full">
     <div class="close-modal cursor-pointer">
       <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
     </div>
     <section class="section section-booking-form booking-form booking-row">
       <div class="flex items-center gap-2 mb-2">
         <div class="input-select mb-4 input-service relative">
+
           <div class="booking-service-info">
             <div class="booking-service-image">
               <img id="serviceImage" src="" alt="LiA Beauty Center">
@@ -253,7 +254,7 @@ $(document).ready(function() {
             <div class="text-12 italic text-red-500 error-doctor"></div>
           </div>
 
-          <hr class="my-4" />
+          <!-- <hr class="my-4" /> -->
           <!-- <hr class="my-4" /> -->
 
         </div>

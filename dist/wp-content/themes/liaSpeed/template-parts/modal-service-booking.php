@@ -109,6 +109,8 @@
 		]);
 	}
 
+    $image = get_the_post_thumbnail_url(get_the_ID(),'medium');
+
 ?>
 
 <script>
@@ -281,112 +283,115 @@ function updateSelected() {
 
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
 <div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
-  <div class=" overflow-hidden w-full h-full ">
-    <div class="flex justify-between items-center w-full">
-      <div class="flex items-center w-full" style="flex-direction:column;justify-content:center">
-        <div class="text-center w-full text-16" style="font-weight:700">Đặt lịch hẹn</div>
-      </div>
-      <div class="close-modal  cursor-pointer">
-        <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
-      </div>
+  <div class=" overflow-hidden w-full h-full">
+    <div class="close-modal cursor-pointer">
+      <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
     </div>
     <section class="section section-booking-form booking-form booking-row">
       <div class="flex items-center gap-2 mb-2">
-        <div class="border-1 border-dashed border-[#ccc] rounded-5 p-2">
-          <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="">
-        </div>
-        <div>
-          <div class="font-semibold branch-name">LiA Beauty Center</div>
-          <div class="text-10 branch-address">Số 434, Đường Cao Thắng ( nối dài ), Phường 12, Quận 10, TP.HCM</div>
+        <div class="input-select mb-4 input-service relative">
+          <!-- <div class="flex items-center gap-3 justify-between">
+            <span id="serviceName" class=" font-bold "></span>
+            <span id="servicePrice" class="text-12">
+              <?php //echo number_format($servicePrice, 0, ',', '.') ?> đ
+            </span>
+          </div> -->
 
-          <div class="input-select mb-4 input-branch">
-            <select placeholder="Chọn trung tâm" name="branch" class="js-branch">
-              <option></option>
-              <?php foreach ($post_branchs as $branch) : ?>
-              <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>"
-                data-ids="<?php echo json_encode(get_field('chuyen_vien',$branch->ID));?>">
-                <?= $branch->post_title ?></option>
-              <?php endforeach; ?>
-            </select>
-            <div class="text-12 italic text-red-500 error-branch"></div>
-          </div>
-
-        </div>
-      </div>
-      <hr class="my-4" />
-      <?= wp_nonce_field( 'booking_order' ); ?>
-      <div class="grid grid-cols-2 gap-x-6">
-        <div class="lg:col-span-1 col-span-2">
-          <h2 class="form-title mb-2" style="font-size:14px">Thông tin khách hàng</h2>
-          <input type="hidden" name="postId" value="<?= get_the_ID() ?>" />
-          <div class="input-group input-group-left-icon hidden">
-            <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/person-gray.svg") ?>" />
-            <input class="input" placeholder="Họ và tên khách hàng" name="fullname" />
-            <div class="text-12 italic text-red-500 error-fullname"></div>
-          </div>
-          <div class="input-group input-group-left-icon mb-2">
-            <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/phone-gray.svg") ?>" />
-            <input class="input" placeholder="Số điện thoại" name="phone" />
-            <div class="text-12 italic text-red-500 error-phone"></div>
-          </div>
-          <div class="input-group input-group-left-icon mb-2">
-            <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/person-gray.svg") ?>" />
-            <?php
-                  $placeholder = "Mã giới thiệu";
-                  $referralRate = get_field("referralRate");
-                  if ($referralRate) {
-                      $placeholder = "Nhập mã cộng tác viên để giảm $referralRate%";
-                  }
-              ?>
-            <input class="input" placeholder="<?= $placeholder ?>" name="referralCode" />
-          </div>
-          <div class="flex gap-3 items-center cursor-pointer mb-4 checkbox-relatives">
-            <div class="input-checkbox">
-              <input type="checkbox" name="foreigner" />
-              <div class="icon"></div>
+          <div class="booking-service-info">
+            <div class="booking-service-image">
+              <img id="serviceImage" src="<?= $image ?>" alt="LiA Beauty Center">
             </div>
-            <div class="text-12">Đặt hẹn cho người thân/ bạn bè/ người nước ngoài</div>
-          </div>
-          <hr class="my-4" />
-          <h2 class="form-title mb-2 " style="font-size:14px">Thông tin đơn hàng</h2>
-          <div class="input-select mb-4 input-service relative">
-            <div class="flex items-center gap-3 justify-between">
-              <span id="serviceName" class=" font-bold "></span>
-              <span id="servicePrice" class="text-12">
+            <div class="booking-service-content">
+              <div id="serviceName" class="booking-service-name"></div>
+              <div id="servicePrice" class="booking-service-price">
                 <?php echo number_format($servicePrice, 0, ',', '.') ?> đ
-              </span>
+              </div>
             </div>
-            <div class="flex items-center gap-3 justify-between">
+          </div>
+
+          <!-- <div class="flex items-center gap-3 justify-between">
               <div class="flex items-center gap-2 button-select-gift">
                 <img style="width:20px;height:14px" src="<?= get_theme_file_uri("assets/images/gift1.png") ?>" />
                 <span>Quà tặng</span>
               </div>
               <span id="selectedGift" class=" font-bold ">Không có quà tặng</span>
+            </div> -->
+          <div class="byHand" style="border:1px dashed #1a5478;padding:8px;border-radius:10px;margin-top:8px">
+            <div class="title-topping">Topping</div>
+            <button id="edit-topping" class="edit-topping">Sửa</button>
+            <div class="flex items-center gap-3 justify-between">
+              <span id="desireName" class="text-12 " style="color:#aaa">
+              </span>
+              <span id="desirePrice" class="text-12 " style="color:#aaa">
+              </span>
             </div>
-            <div class="byHand" style="border:1px dashed #1a5478;padding:8px;border-radius:10px;margin-top:8px">
-              <div class="title-topping">Topping</div>
-              <button id="edit-topping" class="edit-topping">Sửa</button>
-              <div class="flex items-center gap-3 justify-between">
-                <span id="desireName" class="text-12 " style="color:#aaa">
-                </span>
-                <span id="desirePrice" class="text-12 " style="color:#aaa">
-                </span>
-              </div>
-              <div class="flex items-center gap-3 justify-between">
-                <span id="materialName" class="text-12 " style="color:#aaa">
-                </span>
-                <span id="materialPrice" class="text-12 " style="color:#aaa">
-                </span>
-              </div>
-              <div class="flex items-center gap-3 justify-between">
-                <span id="bhName" class="text-12 " style="color:#aaa">
-                </span>
-                <span id="bhPrice" class="text-12 " style="color:#aaa">
-                </span>
-              </div>
+            <div class="flex items-center gap-3 justify-between">
+              <span id="materialName" class="text-12 " style="color:#aaa">
+              </span>
+              <span id="materialPrice" class="text-12 " style="color:#aaa">
+              </span>
+            </div>
+            <div class="flex items-center gap-3 justify-between">
+              <span id="bhName" class="text-12 " style="color:#aaa">
+              </span>
+              <span id="bhPrice" class="text-12 " style="color:#aaa">
+              </span>
             </div>
           </div>
+        </div>
 
+      </div>
+      <!-- <hr class="my-4" /> -->
+      <?= wp_nonce_field( 'booking_order' ); ?>
+      <div class="grid grid-cols-2 gap-x-6">
+        <div class="lg:col-span-1 col-span-2">
+          <h2 class="font-semibold mb-2" style="font-size:14px">Thông tin cá nhân</h2>
+          <input type="hidden" name="postId" value="<?= get_the_ID() ?>" />
+          <div class="input-group">
+            <input class="input" placeholder="Họ và tên khách hàng" name="fullname" />
+            <div class="text-12 italic text-red-500 error-fullname"></div>
+          </div>
+          <div class="input-group mb-2">
+            <input class="input" placeholder="Số điện thoại" name="phone" />
+            <div class="text-12 italic text-red-500 error-phone"></div>
+          </div>
+          <!-- <div class="input-group input-group-left-icon mb-2">
+            <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/person-gray.svg") ?>" />
+            <?php
+                  // $placeholder = "Mã giới thiệu";
+                  // $referralRate = get_field("referralRate");
+                  // if ($referralRate) {
+                  //     $placeholder = "Nhập mã cộng tác viên để giảm $referralRate%";
+                  // }
+              ?>
+            <input class="input" placeholder="<?= $placeholder ?>" name="referralCode" />
+          </div> -->
+          <!-- <div class="flex gap-3 items-center cursor-pointer mb-4 checkbox-relatives">
+            <div class="input-checkbox">
+              <input type="checkbox" name="foreigner" />
+              <div class="icon"></div>
+            </div>
+            <div class="text-12">Đặt hẹn cho người thân/ bạn bè/ người nước ngoài</div>
+          </div> -->
+          <!-- <hr class="my-4" />
+          <h2 class="mb-2" style="font-size:14px">Thông tin đơn hàng</h2> -->
+
+          <div>
+
+            <div class="font-semibold branch-name mb-2">Trung tâm & Chuyên viên</div>
+            <div class="input-select mb-4 input-branch">
+              <select placeholder="Chọn trung tâm" name="branch" class="js-branch">
+                <option></option>
+                <?php foreach ($post_branchs as $branch) : ?>
+                <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>"
+                  data-ids="<?php echo json_encode(get_field('chuyen_vien',$branch->ID));?>">
+                  <?= $branch->post_title ?></option>
+                <?php endforeach; ?>
+              </select>
+              <div class="text-12 italic text-red-500 error-branch"></div>
+            </div>
+
+          </div>
           <div class="input-select mb-4 input-doctor">
             <select placeholder="Chọn chuyên viên" name="practitioner" id="practitioner">
               <option></option>
@@ -399,11 +404,11 @@ function updateSelected() {
             <div class="text-12 italic text-red-500 error-doctor"></div>
           </div>
 
-          <hr class="my-4" />
+          <!-- <hr class="my-4" /> -->
         </div>
         <div class="lg:col-span-1 col-span-2">
-          <h2 class="form-title mb-0.5" style="font-size:14px">Lịch hẹn</h2>
-          <div class="mb-4">Ngày khám mong muốn <span class="text-red-500">*</span></div>
+          <!-- <h2 class="form-title mb-0.5" style="font-size:14px">Lịch hẹn</h2> -->
+          <div class="font-semibold mb-4">Ngày khám mong muốn <span class="text-red-500">*</span></div>
           <div class="booking-date-picker mb-0">
             <div class="item active" data-date="<?= date("Y-m-d"); ?>">
               <div class="inner">
@@ -432,7 +437,7 @@ function updateSelected() {
           </div>
 
           <div class="text-12 italic text-red-500 error-date"></div>
-          <div class="my-4">Giờ khám mong muốn <span class="text-red-500">*</span></div>
+          <div class="font-semibold my-4">Giờ khám mong muốn <span class="text-red-500">*</span></div>
           <div class="booking-time-picker pointer-events-none opacity-30">
             <div class="flex">
               <div class="sm:w-[80px] w-[60px] flex gap-3 items-center cursor-pointer">
@@ -462,15 +467,15 @@ function updateSelected() {
             </div>
           </div>
           <div class="text-12 italic text-red-500 error-time"></div>
-          <div class="flex gap-3 mt-4">
+          <!-- <div class="flex gap-3 mt-4">
             <div class="w-5 h-5 flex items-center justify-center rounded-5 bg-[#bdbdbd]">
               <img class="w-3.5 h-3.5" src="<?= get_theme_file_uri("assets/images/icons/person-white.svg") ?>" />
             </div>
             <div class="flex-1">Đây là khung giờ lý tưởng để đặt hẹn làm đẹp</div>
-          </div>
-          <hr class="my-6" />
-          <h2 class="form-title mb-2" style="font-size:14px">Ghi chú</h2>
-          <div class="input-group input-note mb-0">
+          </div> -->
+          <!-- <hr class="my-6" /> -->
+          <!-- <h2 class="form-title mb-2" style="font-size:14px">Ghi chú</h2> -->
+          <!-- <div class="input-group input-note mb-0">
             <textarea class="input" rows="3" placeholder="Họ và tên khách hàng" name="note"></textarea>
           </div>
           <div id="noteTopping" class="input-group input-note-topping mb-0" style="display:none">
@@ -478,7 +483,7 @@ function updateSelected() {
           </div>
           <div id="gift" class="input-group input-note-topping mb-0" style="display:none">
             <textarea class="input" rows="3" name="gift"></textarea>
-          </div>
+          </div> -->
         </div>
       </div>
 
