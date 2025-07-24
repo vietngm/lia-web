@@ -340,6 +340,7 @@ $(document).ready(function () {
 			selectedGift: localStorage.getItem("selectedGift") || "",
 		};
 		console.log("Initial formState:", formState);
+		console.log("Khoi tao form...");
 
 		const $inputGift = $('input[name="gift"]');
 
@@ -383,6 +384,11 @@ $(document).ready(function () {
 				errorMessages.push("Vui lòng nhập số điện thoại");
 				$errorPhone.text("Vui lòng nhập Số điện thoại");
 			}
+			if (!formState.fullname) {
+				hasError = true;
+				errorMessages.push("Vui lòng nhập Họ và Tên");
+				$errorFullname.text("Vui lòng nhập Họ và Tên");
+			}
 			if (!/(0|\+84|84)+([0-9]{9})\b/.test(formState.phone)) {
 				hasError = true;
 				errorMessages.push("Số điện thoại không đúng định dạng");
@@ -390,8 +396,8 @@ $(document).ready(function () {
 			}
 			if (!formState.doctorId) {
 				hasError = true;
-				errorMessages.push("Vui lòng chọn bác sĩ");
-				$errorDoctor.text("Vui lòng chọn bác sĩ");
+				errorMessages.push("Vui lòng chọn chuyên viên");
+				$errorDoctor.text("Vui lòng chọn chuyên viên");
 			}
 			if (!formState.serviceId) {
 				hasError = true;
@@ -412,12 +418,13 @@ $(document).ready(function () {
 				errorMessages.push("Vui lòng chọn giờ khám");
 				$errorTime.text("Vui lòng chọn giờ khám");
 			}
-			console.log("Submit data:", formState);
+
+			// console.log("Submit data:", formState);
 
 			if (hasError) {
 				Toastify({
 					text:
-						errorMessages.length === 5
+						errorMessages.length === 6
 							? "Vui lòng nhập đầy đủ thông tin đặt hẹn"
 							: errorMessages.join("\n"),
 					duration: 3000,
@@ -434,11 +441,11 @@ $(document).ready(function () {
 			}
 
 			//thêm mới
-			// submit();
-			sendOtp(function () {
-				$otpModel.removeClass("hidden").addClass("flex");
-				$otp.otpdesigner("clear");
-			});
+			submit();
+			// sendOtp(function () {
+			// 	$otpModel.removeClass("hidden").addClass("flex");
+			// 	$otp.otpdesigner("clear");
+			// });
 		});
 
 		function sendOtp(success, error) {
@@ -512,6 +519,20 @@ $(document).ready(function () {
 		}
 
 		function submit(success, error) {
+			const serviceId = localStorage.getItem("serviceId");
+			const noteTopping = localStorage.getItem("noteTopping");
+			console.log({ serviceId });
+			console.log({ noteTopping });
+			formState.serviceId = serviceId;
+			formState.postId = serviceId;
+			formState.noteTopping = noteTopping;
+
+			console.log("Submit data:", formState);
+			console.log("Khoi tao form...");
+
+			// return;
+			// console.log("Khong qua cho nay...");
+
 			const data = Object.assign(
 				{
 					action: "booking_form",

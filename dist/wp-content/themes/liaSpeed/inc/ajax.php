@@ -216,10 +216,10 @@ function verify_booking_form_otp() {
 
 function ajax_booking_form(){
 	verify_booking_form();
-	verify_booking_form_otp();
+	// verify_booking_form_otp();
 
 	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
-	$fullname = isset($_POST["note"]) ? $_POST["note"] : "";
+	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "N/A";
 	$referralCode = isset($_POST["referralCode"]) ? $_POST["referralCode"] : "";
 	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 	$foreigner = isset($_POST["foreigner"]) ? $_POST["foreigner"] : false;
@@ -256,7 +256,7 @@ function ajax_booking_form(){
 	);
 
 	$date_formatted = date( "d/m/Y", strtotime($date) );
-	send_sms_booking_success($phone, $date_formatted);
+	// send_sms_booking_success($phone, $date_formatted);
 
 	include('sync-data.php');
 	

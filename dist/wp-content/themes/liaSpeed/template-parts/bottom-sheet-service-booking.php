@@ -143,21 +143,10 @@ $(document).ready(function() {
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
 <div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
   <div class=" overflow-hidden w-full h-full ">
-    <div class="flex justify-between items-center w-full">
-      <div class="flex items-center w-full" style="flex-direction:column;justify-content:center">
-        <!-- <div class="text-center w-full text-16" style="font-weight:700">Đặt lịch hẹn</div> -->
-      </div>
-      <div class="close-modal  cursor-pointer">
-        <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
-      </div>
-    </div>
+
     <section class="section section-booking-form booking-form booking-row">
       <div class="flex items-center gap-2 mb-2">
-        <!-- <div class="border-1 border-dashed border-[#ccc] rounded-5 p-2">
-          <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="">
-        </div> -->
 
-        <!-- <h2 class="form-title mb-2 " style="font-size:14px">Thông tin đơn hàng</h2> -->
         <div class="input-select mb-4 input-service relative">
           <div class="flex items-center gap-3">
             <span id="serviceName" class="font-bold"></span>
@@ -197,14 +186,9 @@ $(document).ready(function() {
         </div>
 
       </div>
-      <hr class="my-4" />
-      <?= wp_nonce_field( 'booking_order' ); ?>
-      <div class="toppings-group">
-        <div class="topping-header">Topping</div>
-        <div id="topping-container" class="topping-container">
 
-        </div>
-      </div>
+      <?= wp_nonce_field( 'booking_order' ); ?>
+
       <div class="grid grid-cols-2 gap-x-6">
         <div class="lg:col-span-1 col-span-2">
           <h2 class="font-semibold mb-2" style="font-size:14px">Thông tin cá nhân</h2>
@@ -267,6 +251,17 @@ $(document).ready(function() {
           <!-- <hr class="my-4" /> -->
 
         </div>
+      </div>
+
+      <!-- </div> -->
+      <!-- <div class="lg:col-span-1"> -->
+      <div class="toppings-group">
+        <div class="topping-header">Topping</div>
+        <div id="topping-container" class="topping-container">
+
+        </div>
+      </div>
+      <div>
         <div class="lg:col-span-1 col-span-2">
           <!-- <h2 class="form-title mb-0.5" style="font-size:14px">Lịch hẹn</h2> -->
           <div class="mb-4 font-semibold">Ngày khám mong muốn <span class="text-red-500">*</span></div>

@@ -1,7 +1,7 @@
 <?php
 
 require "inc/BFI_Thumb.php";
-require "inc/sms/send_sms.php";
+// require "inc/sms/send_sms.php";
 require "inc/post-type.php";
 require "inc/ajax.php";
 require 'login/login.php';
