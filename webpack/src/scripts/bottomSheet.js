@@ -2,19 +2,26 @@ jQuery(function ($) {
 	const modal = document.getElementById("bottom-sheet-booking");
 	if (!modal) return;
 
-	let basePrice = 0; // Biến lưu giá gốc của dịch vụ
+	let basePrice = 0;
 
 	// Mở modal
 	$(document).on("click", ".js-open-bottom-sheet", function () {
-		const toppingsData = $(this).data("toppings");
+		let toppingsData = $(this).attr("data-toppings");
+
+		try {
+			toppingsData = JSON.parse(toppingsData.replace(/&quot;/g, '"'));
+		} catch (e) {
+			console.error("Không thể phân tích data-toppings:", e);
+			toppingsData = [];
+		}
+
 		basePrice = parseFloat($(this).data("price")) || 0;
 		const title = $(this).data("title");
-		const serviceId = parseInt($(this).data("id")); // Lấy từ data-id trên nút
-		localStorage.setItem("serviceId", serviceId); // Ghi đè lên localStorage
+		const serviceId = parseInt($(this).data("id"));
+		$(this).find('input[name="postId"]').val(serviceId);
+		localStorage.setItem("serviceId", serviceId);
 		$("#serviceName").text(title);
 		$("#servicePrice").text(basePrice.toLocaleString() + " đ");
-
-		if (!Array.isArray(toppingsData)) return;
 
 		const container = $("#topping-container");
 		container.empty();
@@ -27,7 +34,7 @@ jQuery(function ($) {
 			const groupTitle = groupData.name || "Tùy chọn";
 			const radioName = `topping-${groupKey}`;
 			const groupEl = $(
-				`<div><h3 class="topping-group-title">${groupTitle}</h3></div>`
+				`<div><span class="topping-title">${groupTitle}</span></div>`
 			);
 			const itemsContainer = $('<div class="space-y-2 topping-group"></div>');
 
@@ -57,13 +64,14 @@ jQuery(function ($) {
 			$("html, body").css("overflow", "hidden");
 		}
 
-		calculateTotal();
+		calculateTotal(); // Gọi khi modal mở
 	});
 
 	// Đóng modal
 	$(document).on("click", ".close-modal", function () {
 		modal.classList.remove("show");
 		localStorage.removeItem("serviceId");
+		localStorage.removeItem("noteTopping");
 		setTimeout(() => (modal.style.display = "none"), 300);
 		$("html, body").css("overflow", "");
 	});
@@ -75,15 +83,42 @@ jQuery(function ($) {
 		}
 	});
 
-	// Tính tổng
+	// Tính tổng và lưu noteTopping
 	function calculateTotal() {
 		let total = basePrice;
-		$(".topping-radio:checked").each(function () {
-			const price = parseFloat($(this).val());
-			if (!isNaN(price)) total += price;
+		const selectedToppings = [];
+
+		// Duyệt từng nhóm
+		$("#topping-container > div").each(function () {
+			const groupTitle = $(this).find(".topping-title").text().trim();
+			const selectedInput = $(this).find(".topping-radio:checked");
+
+			if (selectedInput.length > 0) {
+				const price = parseFloat(selectedInput.val()) || 0;
+				const name = selectedInput
+					.closest("label")
+					.find("span")
+					.first()
+					.text()
+					.trim();
+
+				selectedToppings.push({
+					group: groupTitle,
+					name: name,
+					price: price,
+				});
+
+				total += price;
+			}
 		});
-		$("#totalPriceBooking").text(total.toLocaleString());
+
+		// Cập nhật tổng giá
+		$("#totalPriceBooking").text(total.toLocaleString() + " đ");
+
+		// Lưu vào localStorage
+		localStorage.setItem("noteTopping", JSON.stringify(selectedToppings));
 	}
 
+	// Lắng nghe khi thay đổi topping
 	$(document).on("change", ".topping-radio", calculateTotal);
 });

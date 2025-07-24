@@ -20,14 +20,14 @@ jQuery(function ($) {
 		doctorSelect.html('<option value="">Chọn chuyên viên</option>');
 
 		if (!address || !branchName) {
-			$(".branch-name").empty().append("LiA Beauty Center");
+			// $(".branch-name").empty().append("LiA Beauty Center");
 			$(".branch-address")
 				.empty()
 				.append(
 					"Số 434, Đường Cao Thắng ( nối dài ), Phường 12, Quận 10, TP.HCM"
 				);
 		} else {
-			$(".branch-name").empty().append(branchName);
+			// $(".branch-name").empty().append(branchName);
 			$(".branch-address").empty().append(address);
 
 			filteredDoctors.forEach((doctor) => {

@@ -38,7 +38,7 @@ jQuery(document).ready(function ($) {
 		dots: false,
 		responsiveClass: true,
 		responsiveRefreshRate: true,
-		autoplay: false,
+		autoplay: true,
 		margin: 16,
 		navText: [
 			'<span class="custom-next">&#8592;</span>', // Mũi tên trái
