@@ -316,7 +316,7 @@ function updateSelected() {
               </div>
               <span id="selectedGift" class=" font-bold ">Không có quà tặng</span>
             </div> -->
-          <div class="byHand" style="border:1px dashed #1a5478;padding:8px;border-radius:10px;margin-top:8px">
+          <!-- <div class="byHand" style="border:1px dashed #1a5478;padding:8px;border-radius:10px;margin-top:8px">
             <div class="title-topping">Topping</div>
             <button id="edit-topping" class="edit-topping">Sửa</button>
             <div class="flex items-center gap-3 justify-between">
@@ -337,7 +337,7 @@ function updateSelected() {
               <span id="bhPrice" class="text-12 " style="color:#aaa">
               </span>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>
