@@ -5,6 +5,21 @@
 * {
 	box-sizing: (border-box);
 }
+html,
+body,
+main,
+a,
+li,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	// font-size: 1.25em;
+}
 .text-primary {
 	opacity: 1;
 	color: $color-main;

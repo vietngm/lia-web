@@ -30,25 +30,25 @@ jQuery(document).ready(function ($) {
 	});
 
 	$(".js-news-carousel").owlCarousel({
-  center: false,
-  items: 1,
-  loop: true,
-  lazyLoad: true,
-  nav: true, // Bật nút điều hướng
-  dots: false,
-  responsiveClass: true,
-  responsiveRefreshRate: true,
-  autoplay: false,
-  margin: 16,
-  navText: [
-    '<span class="custom-next">&#10094;</span>',  // Mũi tên trái
-    '<span class="custom-prev">&#10095;</span>'   // Mũi tên phải
-  ],
-  responsive: {
-    768: { items: 2 },
-    960: { items: 6 },
-    1200: { items: 6 },
-    1920: { items: 6 },
-  },
-});
+		center: false,
+		items: 1,
+		loop: true,
+		lazyLoad: true,
+		nav: true, // Bật nút điều hướng
+		dots: false,
+		responsiveClass: true,
+		responsiveRefreshRate: true,
+		autoplay: false,
+		margin: 16,
+		navText: [
+			'<span class="custom-next">&#8592;</span>', // Mũi tên trái
+			'<span class="custom-prev">&#8594;</span>', // Mũi tên phải
+		],
+		responsive: {
+			768: { items: 2 },
+			960: { items: 6 },
+			1200: { items: 6 },
+			1920: { items: 6 },
+		},
+	});
 });

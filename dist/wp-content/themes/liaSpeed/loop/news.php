@@ -13,9 +13,7 @@
   </div>
   <?php } ?>
   <div class="news-detail">
-    <div class="news-title">
-      <h4><?php the_title(); ?></h4>
-    </div>
+    <div class="news-title"><?php the_title(); ?></div>
     <div class="news-date">
       <span><?php echo get_the_date('d/m/Y', $post->ID); ?></span>
       <div class="news-more">Đọc thêm <span>&#10095;</span></div>

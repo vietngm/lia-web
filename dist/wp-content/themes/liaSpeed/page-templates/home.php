@@ -123,6 +123,13 @@
   </div>
 
   <section class="section">
+    <div class="container">
+      <div class="news-header">
+        <span>Tin tức & Sự kiện</span>
+        <a href="<?= get_permalink(get_page_by_path('tin-tuc')); ?>" class="news-all">Xem tất
+          cả <span>&#10095;</span></a>
+      </div>
+    </div>
     <div class="news">
       <?php get_template_part( 'content/news' ); ?>
     </div>
