@@ -22,6 +22,7 @@ jQuery(function ($) {
 		localStorage.setItem("serviceId", serviceId);
 		$("#serviceName").text(title);
 		$("#servicePrice").text(basePrice.toLocaleString() + " đ");
+		$("#serviceImage").attr("src", $(this).data("image"));
 
 		const container = $("#topping-container");
 		container.empty();

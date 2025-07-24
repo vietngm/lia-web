@@ -162,7 +162,7 @@
     ?>
     <button class="btn-booking-service js-open-bottom-sheet"
       data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
-      data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>">Đặt lịch</button>
+      data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Đặt lịch</button>
     <?php } ?>
   </div>
 </div>

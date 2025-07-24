@@ -235,3 +235,39 @@ input:checked + .time-input-content,
 		width: auto;
 	}
 }
+
+.booking-service {
+	&-info {
+		display: grid;
+		grid-template-columns: 40px 1fr;
+		align-items: center;
+		gap: 8px;
+		padding-right: 32px;
+	}
+	&-image {
+		width: 40px;
+		height: 40px;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	&-content {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+	&-name {
+		font-size: 12px;
+		line-height: normal;
+	}
+	&-price {
+		font-size: 14px;
+		color: $color-main;
+	}
+}
+
+.modal-booking {
+	.close-modal {
+		position: absolute;
+		right: 16px;
+		z-index: 2;
+	}
+}
