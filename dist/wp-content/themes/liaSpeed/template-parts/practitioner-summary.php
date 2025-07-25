@@ -83,6 +83,9 @@
     $service_id = $service->ID;
     $service_title = $service->post_title;
     $service_price = get_field('price', $service_id);
+    $service_rating = get_field('rating', $service_id);
+    $service_rating_number = get_field('rating_number', $service_id);
+    $service_customers = get_field('client_number', $service_id);
     $service_image = get_the_post_thumbnail_url($service_id);
       $price = $service_price ? $service_price : 0;
 	$discountPrice = $service_price ? $service_price : 0;
@@ -96,6 +99,18 @@
             </div>
             <div class="modal-service-content">
               <div class="modal-service-title"><?= $service_title ?></div>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center gap-1">
+                  <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
+                    <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
+                    <span class="name"><?= $service_rating ?></span>
+                    <span class="value">(<?= $service_rating_number ?>)</span>
+                  </div>
+                  <span class="text-10" style="opacity: 0.5;">|</span>
+                  <span class="text-10">Đặt</span>
+                  <span class="text-10"><?= $service_customers ?></span>
+                </div>
+              </div>
               <div class="modal-service-price">
                 <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
                 <div class="flex items-center gap-2 font-semibold">

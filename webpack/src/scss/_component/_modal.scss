@@ -290,7 +290,15 @@ input:checked + .time-input-content,
 		border-bottom: none;
 	}
 }
-
+.modal-service-content {
+	display: grid;
+	grid-template-columns: 1fr;
+	// grid-gap: 4px;
+}
+.modal-service-title {
+	font-size: 12px;
+	line-height: normal;
+}
 .modal-service-image {
 	width: 60px;
 	height: 60px;
