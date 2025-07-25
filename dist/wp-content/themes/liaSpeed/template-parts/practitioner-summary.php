@@ -66,7 +66,6 @@
 
 <div id="modal-practitioner-service-<?= $doctor_id ?>"
   class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
-
   <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
   <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
     <div class="overflow-hidden w-full h-full">
@@ -79,20 +78,21 @@
       <section class="section section-booking-form booking-form booking-row" style="height: 100%;">
         <ul class="modal-service-list">
           <?php 
-  foreach($services as $service){
-    $service_id = $service->ID;
-    $service_title = $service->post_title;
-    $service_price = get_field('price', $service_id);
-    $service_rating = get_field('rating', $service_id);
-    $service_rating_number = get_field('rating_number', $service_id);
-    $service_customers = get_field('client_number', $service_id);
-    $service_image = get_the_post_thumbnail_url($service_id);
-      $price = $service_price ? $service_price : 0;
-	$discountPrice = $service_price ? $service_price : 0;
-	$discountPercentage = ($price > 0 && $discountPrice < $price) 
-    ? round((($price - $discountPrice) / $price) * 100) 
-    : 0;
-    ?>
+          foreach($services as $service){
+            $service_id = $service->ID;
+            $service_title = $service->post_title;
+            $service_price = get_field('price', $service_id);
+            $service_rating = get_field('rating', $service_id);
+            $service_rating_number = get_field('rating_number', $service_id);
+            $service_customers = get_field('client_number', $service_id);
+            $service_image = get_the_post_thumbnail_url($service_id);
+            $price = $service_price ? $service_price : 0;
+            $discountPrice = $service_price ? $service_price : 0;
+            $discountPercentage = ($price > 0 && $discountPrice < $price) 
+              ? round((($price - $discountPrice) / $price) * 100) 
+              : 0;
+            $dataJson="";
+          ?>
           <li class="modal-service-item">
             <div class="modal-service-image">
               <img src="<?= $service_image ?>" alt="<?= $service_title ?>">
@@ -126,7 +126,12 @@
                 <?php endif; ?>
               </div>
             </div>
-            <div class="modal-service-booking"><button class="button-booking rounded-2">Đặt ngay</button></div>
+            <div class="modal-service-booking">
+              <button class="button-booking rounded-2 js-open-bottom-sheet"
+                data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= $service_title ?>"
+                data-id="<?= $service_id ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $service_image ?>">Đặt
+                ngay</button>
+            </div>
           </li>
           <?php
   }
