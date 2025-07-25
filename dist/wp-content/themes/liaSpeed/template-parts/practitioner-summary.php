@@ -94,6 +94,7 @@
               : 0;
             
             $defaultToppings_1 = get_field('desire', $service_id);
+            $defaultToppings_2 = get_field('material', $service_id);
             $defaultToppings_3 = get_field('bh', $service_id);
             $dataToppings = [];
             $toppings_1 = [];
@@ -123,8 +124,8 @@
       ];
 
       // Nhom topping 2
-      if (!empty($fields['material']) && is_array($fields['material'])) {
-        foreach ($fields['material'] as $topping) {
+      if (!empty($defaultToppings_2) && is_array($defaultToppings_2)) {
+        foreach ($defaultToppings_2 as $topping) {
           $term = get_term($topping["topping"], 'service-topping');
           if ($term && !is_wp_error($term)) {
             $toppings_2[] = [
