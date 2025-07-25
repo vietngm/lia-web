@@ -13,7 +13,7 @@
 
     <div class="news-category">
       <ul class="news-category-list">
-        <li class="news-category-item active">
+        <li class="news-category-item">
           <a href="/tin-tuc" class="news-category-link">
             <span>Tất cả</span>
           </a>
@@ -36,7 +36,7 @@
             'parent'        => $term->term_id
           ); 
         ?>
-        <li class="news-category-item">
+        <li class="news-category-item <?=$item->slug?>">
           <a href="<?php echo get_term_link($term->slug,$taxonomy);?>" class="news-category-link">
             <span><?php echo $term->name; ?></span>
           </a>

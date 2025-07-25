@@ -142,7 +142,8 @@ input:checked + .time-input-content,
 	overflow-y: auto;
 	height: 90%;
 	// padding-bottom: 100px;
-	padding: 0px 4px 30px 4px;
+	// padding: 0px 4px 30px 4px;
+	padding: 0px 0 30px 0;
 }
 
 .booking-row::-webkit-scrollbar {
@@ -269,5 +270,35 @@ input:checked + .time-input-content,
 		position: absolute;
 		right: 16px;
 		z-index: 2;
+	}
+}
+
+.modal-service-list {
+	display: grid;
+	grid-template-columns: 1fr;
+	// grid-gap: 16px;
+}
+
+.modal-service-item {
+	display: grid;
+	grid-template-columns: 60px 1fr auto;
+	grid-gap: 12px;
+	border-bottom: 1px solid #eee;
+	padding: 8px 0;
+	align-items: center;
+	&:last-child {
+		border-bottom: none;
+	}
+}
+
+.modal-service-image {
+	width: 60px;
+	height: 60px;
+	border-radius: 8px;
+	overflow: hidden;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 }

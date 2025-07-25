@@ -7,3 +7,4 @@ import "./component.js";
 import "./owlCarousel.js";
 import "./contactNow.js";
 import "./bottomSheet.js";
+import "./modalPractitionerService.js";

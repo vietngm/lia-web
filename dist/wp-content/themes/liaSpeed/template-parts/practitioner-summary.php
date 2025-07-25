@@ -52,16 +52,73 @@
   </div> -->
 
   <div class="practitioner-booking items-center">
-    <a href="<?= get_permalink($doctor_id) ?>" class="bg-blue-500  rounded-2 px-2 py-1 text-12 button-detail"
+    <a href="<?= get_permalink($doctor_id) ?>" class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-detail"
       style="font-size: 12px;">Xem chi tiết</a>
 
     <?php if (count($services) == 0) : ?>
-    <div class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-booking disabled"
-      style="font-size: 12px;text-align:center;">Đặt lịch</div>
+    <div class="rounded-2 px-2 py-1 text-12 button-booking disabled">Đặt lịch</div>
     <?php else: ?>
-    <a class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-booking" style="font-size: 12px;text-align:center;">Đặt
-      lịch</a>
+    <a class="rounded-2 px-2 py-1 button-booking js-modal-practitioner-service" data-id="<?= $doctor_id ?>">Đặt lịch</a>
     <?php endif; ?>
+  </div>
+
+</div>
+
+<div id="modal-practitioner-service-<?= $doctor_id ?>"
+  class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
+
+  <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
+  <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
+    <div class="overflow-hidden w-full h-full">
+      <div class="flex items-center mb-4">
+        <div class="font-bold">Chọn dịch vụ</div>
+        <div class="close-modal cursor-pointer">
+          <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
+        </div>
+      </div>
+      <section class="section section-booking-form booking-form booking-row" style="height: 100%;">
+        <ul class="modal-service-list">
+          <?php 
+  foreach($services as $service){
+    $service_id = $service->ID;
+    $service_title = $service->post_title;
+    $service_price = get_field('price', $service_id);
+    $service_image = get_the_post_thumbnail_url($service_id);
+      $price = $service_price ? $service_price : 0;
+	$discountPrice = $service_price ? $service_price : 0;
+	$discountPercentage = ($price > 0 && $discountPrice < $price) 
+    ? round((($price - $discountPrice) / $price) * 100) 
+    : 0;
+    ?>
+          <li class="modal-service-item">
+            <div class="modal-service-image">
+              <img src="<?= $service_image ?>" alt="<?= $service_title ?>">
+            </div>
+            <div class="modal-service-content">
+              <div class="modal-service-title"><?= $service_title ?></div>
+              <div class="modal-service-price">
+                <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
+                <div class="flex items-center gap-2 font-semibold">
+                  <span class="text-price ml-2">
+                    <?= number_format($discountPrice, 0, ",", ".") ?> <small><u>đ</u></small>
+                  </span>
+                  <span class="text-gray-400 line-through opacity-70">
+                    <?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
+                  </span>
+                </div>
+                <?php else : ?>
+                <span class="text-price"><?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small></span>
+                <?php endif; ?>
+              </div>
+            </div>
+            <div class="modal-service-booking"><button class="button-booking rounded-2">Đặt ngay</button></div>
+          </li>
+          <?php
+  }
+  ?>
+        </ul>
+      </section>
+    </div>
   </div>
 
 </div>
