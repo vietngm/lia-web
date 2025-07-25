@@ -93,16 +93,18 @@
               ? round((($price - $discountPrice) / $price) * 100) 
               : 0;
             
-             $dataToppings = [];
-      $toppings_1 = [];
-      $toppings_2 = [];
-      $toppings_3 = [];
-      $toppings_4 = [];
-      $toppings_5 = [];
+            $defaultToppings_1 = get_field('desire', $service_id);
+            $defaultToppings_3 = get_field('bh', $service_id);
+            $dataToppings = [];
+            $toppings_1 = [];
+            $toppings_2 = [];
+            $toppings_3 = [];
+            $toppings_4 = [];
+            $toppings_5 = [];
 
       // Nhom topping 1
-      if (!empty($fields['desire']) && is_array($fields['desire'])) {
-        foreach ($fields['desire'] as $topping) {
+      if (!empty($defaultToppings_1) && is_array($defaultToppings_1)) {
+        foreach ($defaultToppings_1 as $topping) {
           $term = get_term($topping["topping"], 'service-topping');
           if ($term && !is_wp_error($term)) {
             $toppings_1[] = [
@@ -141,8 +143,8 @@
       ];
 
       // Nhom topping 3
-      if (!empty($fields['bh']) && is_array($fields['bh'])) {
-        foreach ($fields['bh'] as $topping) {
+      if (!empty($defaultToppings_3) && is_array($defaultToppings_3)) {
+        foreach ($defaultToppings_3 as $topping) {
           $term = get_term($topping["topping"], 'service-topping');
           if ($term && !is_wp_error($term)) {
             $toppings_3[] = [

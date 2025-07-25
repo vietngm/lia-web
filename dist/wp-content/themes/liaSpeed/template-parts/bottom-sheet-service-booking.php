@@ -165,42 +165,6 @@ $(document).ready(function() {
     </div>
 
     <section class="section section-booking-form booking-form booking-row">
-      <div class="flex items-center gap-2 mb-2">
-        <div class="input-select mb-4 input-service relative">
-
-          <!-- <div class="flex items-center gap-3 justify-between">
-            <div class="flex items-center gap-2 button-select-gift">
-              <img style="width:20px;height:14px" src="<?= get_theme_file_uri("assets/images/gift1.png") ?>" />
-              <span>Quà tặng</span>
-            </div>
-            <span id="selectedGift" class=" font-bold ">Không có quà tặng</span>
-          </div> -->
-          <!-- <div class="byHand" style="border:1px dashed #1a5478;padding:8px;border-radius:10px;margin-top:8px">
-            <div class="title-topping">Topping</div>
-            <button id="edit-topping" class="edit-topping">Sửa</button>
-            <div class="flex items-center gap-3 justify-between">
-              <span id="desireName" class="text-12 " style="color:#aaa">
-              </span>
-              <span id="desirePrice" class="text-12 " style="color:#aaa">
-              </span>
-            </div>
-            <div class="flex items-center gap-3 justify-between">
-              <span id="materialName" class="text-12 " style="color:#aaa">
-              </span>
-              <span id="materialPrice" class="text-12 " style="color:#aaa">
-              </span>
-            </div>
-            <div class="flex items-center gap-3 justify-between">
-              <span id="bhName" class="text-12 " style="color:#aaa">
-              </span>
-              <span id="bhPrice" class="text-12 " style="color:#aaa">
-              </span>
-            </div>
-          </div> -->
-        </div>
-
-      </div>
-
       <?= wp_nonce_field( 'booking_order' ); ?>
 
       <div class="grid grid-cols-2 gap-x-6">
