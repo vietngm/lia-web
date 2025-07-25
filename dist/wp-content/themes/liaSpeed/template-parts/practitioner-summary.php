@@ -82,16 +82,126 @@
             $service_id = $service->ID;
             $service_title = $service->post_title;
             $service_price = get_field('price', $service_id);
+            $service_discountPrice = get_field('discountPrice', $service_id);
             $service_rating = get_field('rating', $service_id);
             $service_rating_number = get_field('rating_number', $service_id);
             $service_customers = get_field('client_number', $service_id);
             $service_image = get_the_post_thumbnail_url($service_id);
             $price = $service_price ? $service_price : 0;
-            $discountPrice = $service_price ? $service_price : 0;
+            $discountPrice = $service_discountPrice ? $service_discountPrice : 0;
             $discountPercentage = ($price > 0 && $discountPrice < $price) 
               ? round((($price - $discountPrice) / $price) * 100) 
               : 0;
-            $dataJson="";
+            
+             $dataToppings = [];
+      $toppings_1 = [];
+      $toppings_2 = [];
+      $toppings_3 = [];
+      $toppings_4 = [];
+      $toppings_5 = [];
+
+      // Nhom topping 1
+      if (!empty($fields['desire']) && is_array($fields['desire'])) {
+        foreach ($fields['desire'] as $topping) {
+          $term = get_term($topping["topping"], 'service-topping');
+          if ($term && !is_wp_error($term)) {
+            $toppings_1[] = [
+              "name"  => $term->name,
+              "price" => $topping["origin"],
+            ];
+          }
+        }
+      }
+          
+      $dataToppings[] = [
+        "toppings_1" => [ // 1
+          "name"     => $fields['name_desire'] ?? 'N/A',
+          "toppings" => $toppings_1,
+        ],
+      ];
+
+      // Nhom topping 2
+      if (!empty($fields['material']) && is_array($fields['material'])) {
+        foreach ($fields['material'] as $topping) {
+          $term = get_term($topping["topping"], 'service-topping');
+          if ($term && !is_wp_error($term)) {
+            $toppings_2[] = [
+              "name"  => $term->name,
+              "price" => $topping["origin"],
+            ];
+          }
+        }
+      }
+          
+      $dataToppings[] = [
+        "toppings_2" => [ // 2
+          "name"     => $fields['name_material'] ?? 'N/A',
+          "toppings" => $toppings_2,
+        ],
+      ];
+
+      // Nhom topping 3
+      if (!empty($fields['bh']) && is_array($fields['bh'])) {
+        foreach ($fields['bh'] as $topping) {
+          $term = get_term($topping["topping"], 'service-topping');
+          if ($term && !is_wp_error($term)) {
+            $toppings_3[] = [
+              "name"  => $term->name,
+              "price" => $topping["origin"],
+            ];
+          }
+        }
+      }
+
+      $dataToppings[] = [
+        "toppings_3" => [ // 3
+          "name"     => $fields['name_bh'] ?? 'N/A',
+          "toppings" => $toppings_3,
+        ],
+      ];
+
+      // Nhom topping 4
+      if (!empty($fields['topping_4']) && is_array($fields['topping_4'])) {
+        foreach ($fields['topping_4'] as $topping) { 
+          $term = get_term($topping["topping"], 'service-topping');
+          if ($term && !is_wp_error($term)) {
+            $toppings_4[] = [
+              "name"  => $term->name,
+              "price" => $topping["origin"],
+            ];
+          }
+        }
+      }
+      
+      $dataToppings[] = [
+        "toppings_4" => [ // 4
+          "name"     => $fields['ten_topping_4'] ?? 'N/A',
+          "toppings" => $toppings_4,
+        ],
+      ];
+
+      // Nhom topping 5
+      if (!empty($fields['topping_5']) && is_array($fields['topping_5'])) {
+        foreach ($fields['topping_5'] as $topping) { 
+          $term = get_term($topping["topping"], 'service-topping');
+          if ($term && !is_wp_error($term)) {
+            $toppings_5[] = [
+              "name"  => $term->name,
+              "price" => $topping["origin"],
+            ];
+          }
+        }
+      }
+      
+      $dataToppings[] = [
+        "toppings_5" => [ // 5
+          "name"     => $fields['ten_topping_5'] ?? 'N/A',
+          "toppings" => $toppings_5,
+        ],
+      ];
+
+      // Encode JSON để dùng trong HTML attribute
+      $dataJson = htmlspecialchars(json_encode($dataToppings, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');  
           ?>
           <li class="modal-service-item">
             <div class="modal-service-image">
