@@ -28,6 +28,13 @@
   $discount = $firstPrice['gia_km'] ?? 0;
   $discountPrice = $price-($price * ($discount / 100));
 
+  $tpc = get_field('sp_tpc', $post->ID);
+  $spxx = get_field('sp_xx', $post->ID);
+  $trong_luong = get_field('sp_tl', $post->ID);
+  $kcsp = get_field('sp_kcsp', $post->ID);
+  $sp_ttsp = get_field('sp_ttsp', $post->ID);
+  $sp_thv = get_field('sp_thv', $post->ID);
+
   $thumb = get_field('anh_dai_dien', $post->ID);
 	$args = array(
 		"post_type" => "san-pham",
@@ -270,12 +277,36 @@ window.addEventListener('scroll', function() {
             <td><?= get_the_title(); ?></td>
           </tr>
           <tr>
-            <td>Đối tượng phù hợp</td>
-            <td><?php echo $dtph; ?></td>
+            <td>Thành phần chính</td>
+            <td><?php echo $tpc; ?></td>
           </tr>
           <tr>
-            <td>Thành phần sản phẩm</td>
-            <td><?php echo $tpsp; ?></td>
+            <td>Thích hợp với</td>
+            <td><?php if($sp_thv){
+              foreach($sp_thv as $item){
+                echo '<div>- '.$item['ten_doi_tuong'].'</div>';
+              }
+            } ?></td>
+          </tr>
+          <tr>
+            <td>Thuộc tính sản phẩm</td>
+            <td><?php if($sp_ttsp){
+              foreach($sp_ttsp as $item){
+                echo '<div>- '.$item['ten_thuoc_tinh'].'</div>';
+              }
+            } ?></td>
+          </tr>
+          <tr>
+            <td>Kết cấu sản phẩm</td>
+            <td><?php echo $kcsp; ?></td>
+          </tr>
+          <tr>
+            <td>Trọng lượng</td>
+            <td><?php echo $trong_luong; ?></td>
+          </tr>
+          <tr>
+            <td>Xuất xứ</td>
+            <td><?php echo $spxx; ?></td>
           </tr>
         </table>
       </div>

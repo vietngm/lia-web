@@ -49,6 +49,7 @@
 	/* Ẩn scrollbar trên mọi trình duyệt */
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE/Edge */
+	padding-bottom: 50px;
 }
 
 .policy-content::-webkit-scrollbar {
@@ -92,5 +93,12 @@
 	}
 	&-content {
 		font-size: 12px;
+	}
+	&-item {
+		border-bottom: 1px solid $color-gray;
+		padding-bottom: 8px;
+		&:last-child {
+			border-bottom: none;
+		}
 	}
 }
