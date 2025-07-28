@@ -141,9 +141,9 @@ input:checked + .time-input-content,
 	text-align: start;
 	overflow-y: auto;
 	height: 90%;
-	// padding-bottom: 100px;
-	// padding: 0px 4px 30px 4px;
-	padding: 0px 0 30px 0;
+	padding-bottom: 100px;
+	padding: 0px 0 100px 0;
+	// padding: 0px 0 30px 0;
 }
 
 .booking-row::-webkit-scrollbar {
@@ -220,6 +220,7 @@ input:checked + .time-input-content,
 		font-weight: normal;
 		margin-bottom: 8px;
 		display: grid;
+		font-weight: bold;
 	}
 }
 
@@ -258,6 +259,7 @@ input:checked + .time-input-content,
 	&-name {
 		font-size: 12px;
 		line-height: normal;
+		font-weight: bold;
 	}
 	&-price {
 		font-size: 14px;

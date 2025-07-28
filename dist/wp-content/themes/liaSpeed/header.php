@@ -65,12 +65,12 @@
           <div class="flex-1"><?= get_field("header_phone", "option") ?></div>
         </a>
         <hr />
-        <a href="https://zalo.me/trangbeauty" target="_blank" class="px-4 py-3 -ml-1 flex items-center gap-4">
+        <a href="https://zalo.me/3066530543915113607" target="_blank" class="px-4 py-3 -ml-1 flex items-center gap-4">
           <img class="w-9 h-9" src="<?= get_theme_file_uri("assets/images/icons/zalo.png") ?>" />
           <div class="flex-1">Nhắn tin qua Zalo</div>
         </a>
         <hr />
-        <a href="https://m.me/trangbeautycenter" target="_blank" class="px-4 py-3 flex items-center gap-4">
+        <a href="https://m.me/liaspeedbeauty" target="_blank" class="px-4 py-3 flex items-center gap-4">
           <div class="w-8 h-8 flex items-center justify-center rounded-full bg-[#2196f3]">
             <img class="w-5 h-5" src="<?= get_theme_file_uri("assets/images/icons/facebook.svg") ?>" />
           </div>

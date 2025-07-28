@@ -110,7 +110,7 @@ function verify_booking_form() {
 		echo json_encode(
 			array(
 				'success'=>false,
-				"message" => "Dịch vụ không đúng"
+				"message" => "Chuyên viên không đảm nhiệm dịch vụ này."
 			)
 		);
 		die();

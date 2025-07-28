@@ -96,6 +96,9 @@
             $defaultToppings_1 = get_field('desire', $service_id);
             $defaultToppings_2 = get_field('material', $service_id);
             $defaultToppings_3 = get_field('bh', $service_id);
+            $defaultToppings_4 = get_field('topping_4', $service_id);
+            $defaultToppings_5 = get_field('topping_5', $service_id);
+
             $dataToppings = [];
             $toppings_1 = [];
             $toppings_2 = [];
@@ -118,7 +121,7 @@
           
       $dataToppings[] = [
         "toppings_1" => [ // 1
-          "name"     => $fields['name_desire'] ?? 'N/A',
+          "name"     => get_field('name_desire', $service_id) ?? 'N/A',
           "toppings" => $toppings_1,
         ],
       ];
@@ -138,7 +141,7 @@
           
       $dataToppings[] = [
         "toppings_2" => [ // 2
-          "name"     => $fields['name_material'] ?? 'N/A',
+          "name"     => get_field('name_material', $service_id) ?? 'N/A',
           "toppings" => $toppings_2,
         ],
       ];
@@ -158,14 +161,14 @@
 
       $dataToppings[] = [
         "toppings_3" => [ // 3
-          "name"     => $fields['name_bh'] ?? 'N/A',
+          "name"     => get_field('name_bh', $service_id) ?? 'N/A',
           "toppings" => $toppings_3,
         ],
       ];
 
       // Nhom topping 4
-      if (!empty($fields['topping_4']) && is_array($fields['topping_4'])) {
-        foreach ($fields['topping_4'] as $topping) { 
+      if (!empty($defaultToppings_4) && is_array($defaultToppings_4)) {
+        foreach ($defaultToppings_4 as $topping) { 
           $term = get_term($topping["topping"], 'service-topping');
           if ($term && !is_wp_error($term)) {
             $toppings_4[] = [
@@ -178,14 +181,14 @@
       
       $dataToppings[] = [
         "toppings_4" => [ // 4
-          "name"     => $fields['ten_topping_4'] ?? 'N/A',
+          "name"     => get_field('ten_topping_4', $service_id) ?? 'N/A',
           "toppings" => $toppings_4,
         ],
       ];
 
       // Nhom topping 5
-      if (!empty($fields['topping_5']) && is_array($fields['topping_5'])) {
-        foreach ($fields['topping_5'] as $topping) { 
+      if (!empty($defaultToppings_5) && is_array($defaultToppings_5)) {
+        foreach ($defaultToppings_5 as $topping) { 
           $term = get_term($topping["topping"], 'service-topping');
           if ($term && !is_wp_error($term)) {
             $toppings_5[] = [
@@ -198,7 +201,7 @@
       
       $dataToppings[] = [
         "toppings_5" => [ // 5
-          "name"     => $fields['ten_topping_5'] ?? 'N/A',
+          "name"     => get_field('ten_topping_5', $service_id) ?? 'N/A',
           "toppings" => $toppings_5,
         ],
       ];
