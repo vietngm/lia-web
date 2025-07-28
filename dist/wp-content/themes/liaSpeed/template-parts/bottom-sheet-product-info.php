@@ -19,6 +19,14 @@ $tpsp = get_field('tp_sp', $post->ID);
       <ul class="product-info-list">
         <li class="product-info-item">
           <div class="product-info-title">
+            Thành phần sản phẩm
+          </div>
+          <div class="product-info-content">
+            <div class="product-info-desc"><?php echo $tpsp;?></div>
+          </div>
+        </li>
+        <li class="product-info-item">
+          <div class="product-info-title">
             Đối tượng phù hợp
           </div>
           <div class="product-info-content">
@@ -33,15 +41,6 @@ $tpsp = get_field('tp_sp', $post->ID);
             <div class="product-info-desc"><?php echo $hdsd;?></div>
           </div>
         </li>
-        <li class="product-info-item">
-          <div class="product-info-title">
-            Thành phần sản phẩm
-          </div>
-          <div class="product-info-content">
-            <div class="product-info-desc"><?php echo $tpsp;?></div>
-          </div>
-        </li>
-
       </ul>
     </div>
   </div>
