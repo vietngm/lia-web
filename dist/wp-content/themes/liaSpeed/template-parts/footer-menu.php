@@ -79,7 +79,7 @@
 
       <div class="accordion-item">
         <a href="<?=get_permalink(get_page_by_path('tin-tuc'))?>" class="accordion-header">
-          <span class="accordion-title">Tin tức</span>
+          <span class="accordion-title">Tin tức & sự kiện</span>
           <div class="arrow-go"></div>
         </a>
       </div>

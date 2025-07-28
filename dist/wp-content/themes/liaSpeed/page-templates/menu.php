@@ -5,115 +5,13 @@
 ?>
 <?php get_header("empty"); ?>
 <?php
-	$fields = get_fields();
+	$fields = get_fields('option');
   $menus = $fields['header'];
-  
-echo 'Co vo day ne...';
-  echo "<pre>";
-
-  print_r($menus);
-  echo "</pre>";
-
-  // 	$footer = $fields['footer'];
-	// $liaVietNam = $footer['lia_viet_nam'];
-	// $trachNhiemLia = $footer['trach_nhiem_lia'];
-	// $thongTinDauTu = $footer['thong_tin_dau_tu'];
+  $contactInfo = $menus['menu_cskh'];
+  $nqInfo = $menus['menu_htnq'];
+  $thongTinDauTu = $menus['menu_nq'];
+  $vechungtoi = $menus['menu_ve_chung_toi'];
 ?>
-
-<style>
-/* .menu {
-  background: #fff;
-}
-
-.submenu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-}
-
-.menu-item.active .submenu {
-  max-height: 500px;
-}
-
-.material-icons {
-  transition: transform 0.3s ease-in-out;
-}
-
-.menu-item.active .material-icons {
-  transform: rotate(180deg);
-}
-
-h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.menu-list {
-  list-style: none;
-}
-
-.menu-list li {
-  border-bottom: 1px solid #eee;
-}
-
-.menu-list li:last-child {
-  border-bottom: none;
-}
-
-.menu-list li a {
-  text-decoration: none;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 12px;
-  color: #333;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.menu-header {
-  text-decoration: none;
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 12px;
-  color: #333;
-  font-size: 14px;
-  cursor: pointer;
-}
-.menu-header i {
-  transition: transform 0.3s ease;
-}
-
-.submenu li {
-  padding: 4px 10px;
-  font-size: 13px;
-}
-.contact {
-  margin-top: 20px;
-  font-size: 13px;
-}
-.contact h4 {
-  font-size: 14px;
-  margin-top: 15px;
-}
-.section-menu {
-  padding: 12px;
-  width: 100%;
-}
-.back-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 24px;
-  color: #333;
-}
-.back-button:hover {
-  color: #007bff;
-} */
-</style>
 
 <head>
   <meta charset="UTF-8">
@@ -139,46 +37,66 @@ h3 {
         </div>
 
         <ul class="submenu">
-          <li><a href="#">Giới thiệu về công ty</a></li>
+          <!-- <li><a href="#">Giới thiệu về công ty</a></li>
           <li><a href="#">Tầm nhìn & sứ mệnh</a></li>
-          <li><a href="#">Lịch sử</a></li>
+          <li><a href="#">Lịch sử</a></li> -->
+          <?php
+					$items = $vechungtoi['items'];
+					foreach($items as $item) {
+						$link = $item['link'];
+						echo '<li class="submenu-item"><a href="'.$link['url'].'" class="submenu-link">'.$link['title'].'</a></li>';
+					}
+					?>
+        </ul>
+      </li>
+
+      <!-- <li class="menu-item">
+        <div class="menu-header">Dịch vụ <span class="material-icons">expand_more</span></div>
+        <ul class="submenu"></ul>
+      </li> -->
+
+      <li class="menu-item">
+        <div class="menu-header">Nhượng quyền <span class="material-icons">expand_more</span></div>
+        <ul class="submenu">
+          <?php
+					$items = $thongTinDauTu['items'];
+					foreach($items as $item) {
+						$link = $item['link'];
+						echo '<li class="submenu-item"><a href="'.$link['url'].'" class="submenu-link">'.$link['title'].'</a></li>';
+					}
+					?>
         </ul>
       </li>
 
       <li class="menu-item">
-        <div class="menu-header">Dịch vụ <span class="material-icons">expand_more</span></div>
-        <ul class="submenu"></ul>
+        <a href="<?=get_permalink(get_page_by_path('tin-tuc'))?>" class="menu-header">Tin tức & sự kiện <span
+            class="material-icons">navigate_next</span></a>
+        <!-- <ul class="submenu"></ul> -->
       </li>
 
       <li class="menu-item">
-        <div class="menu-header">Nhượng quyền <span class="material-icons">expand_more</span></div>
-        <ul class="submenu"></ul>
+        <a href="<?=get_permalink(get_page_by_path('tuyen-dung'))?>" class="menu-header">Thông tin tuyển dụng
+          <span class="material-icons">navigate_next</span>
+        </a>
       </li>
 
-      <li class="menu-item">
-        <div class="menu-header">Tin tức & sự kiện <span class="material-icons">expand_more</span></div>
-        <ul class="submenu"></ul>
-      </li>
-
-      <li class="menu-item">
-        <div class="menu-header">Tuyển dụng <span class="material-icons">expand_more</span></div>
-        <ul class="submenu"></ul>
-      </li>
-
-      <li class="menu-item">
+      <!-- <li class="menu-item">
         <div class="menu-header">Hỗ trợ <span class="material-icons">expand_more</span></div>
         <ul class="submenu"></ul>
-      </li>
+      </li> -->
     </ul>
 
-    <div class="contact">
-      <h4>Chăm sóc khách hàng</h4>
-      <p>Hotline: 0934129060</p>
-      <p>Email: cskh.liavietnam@gmail.com</p>
-
-      <h4>Hợp tác nhượng quyền</h4>
-      <p>Hotline: 0374466666</p>
-      <p>Email: dautu.liavietnam@gmail.com</p>
+    <div class="menu-contact">
+      <div class="menu-contact-item">
+        <h4>Chăm sóc khách hàng</h4>
+        <p>Hotline: <?=$contactInfo['dt_cskh']?></p>
+        <p>Email: <?=$contactInfo['email_cskh']?></p>
+      </div>
+      <div class="menu-contact-item">
+        <h4>Hợp tác nhượng quyền</h4>
+        <p>Hotline: <?=$nqInfo['dt_cskh']?></p>
+        <p>Email: <?=$nqInfo['email_cskh']?></p>
+      </div>
     </div>
   </div>
 
