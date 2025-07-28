@@ -1,4 +1,4 @@
-<?php get_header("empty"); ?>
+<?php get_header(); ?>
 <?php
 	$fields = get_fields();
 	// $price = $fields["price"] ? $fields["price"] : 0;
@@ -19,7 +19,10 @@
   $tpsp = get_field('tp_sp', $post->ID);
   $dtph = get_field('dt_ph', $post->ID);
   $unitPrice = get_field('unit_price', $post->ID);
+  // $ratingCount = get_field('sl_dg', $post->ID);
+  $rating = get_field('danh_gia', $post->ID);
   $ratingCount = get_field('sl_dg', $post->ID);
+  $orderCount = get_field('sl_km', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
   $price = $firstPrice['gia_sp'] ?? 0;
   $discount = $firstPrice['gia_km'] ?? 0;
@@ -50,97 +53,6 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <style>
-.modal-desire,
-.modal-material,
-.modal-bh,
-.modal-topping,
-.modal-pd {
-  display: none;
-  /* Ẩn modal */
-  opacity: 0;
-  /* Mờ hoàn toàn */
-  transform: scale(0.9);
-  /* Thu nhỏ modal một chút */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  /* Hiệu ứng chuyển đổi */
-}
-
-/* Trạng thái hiển thị modal */
-.modal-desire.show,
-.modal-material.show,
-.modal-bh.show,
-.modal-topping.show,
-.modal-pd.show {
-  display: flex;
-  /* Hiển thị modal */
-  opacity: 1;
-  /* Hiện rõ */
-  transform: scale(1);
-  /* Phóng về kích thước ban đầu */
-
-
-}
-
-.swiper-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.rating-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.rating-summary {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.rating-score {
-  font-size: 56px;
-  font-weight: bold;
-  color: #4A4A4A;
-}
-
-.rating-text,
-.rating-count {
-  font-size: 14px;
-  color: #7A7A7A;
-}
-
-.rating-details {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-
-}
-
-.stars {
-  font-size: 6px;
-  color: #7A7A7A;
-}
-
-.progress-bar {
-  width: 150px;
-  height: 2px;
-  background-color: #E5E7EB;
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  background-color: #4A4A4A;
-  border-radius: 4px;
-}
-
-.form-title::before {
-  background: #1a5478;
-  width: 3px;
-}
-
 .overlay {
   position: absolute;
   bottom: 0;
@@ -162,286 +74,8 @@
   height: auto;
   transition: height 0.3s ease-in-out;
 }
-
-body.modal-open {
-  overflow: hidden !important;
-  position: fixed;
-  /* Cố định vị trí */
-  width: 100vw;
-  /* Đảm bảo không bị tràn */
-  height: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.options-container {
-  display: flex;
-  gap: 4px
-}
-
-.option-desire,
-.option-material,
-.option-bh {
-  display: flex;
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  transition: all 0.3s;
-  background: #fff;
-  flex-direction: column;
-}
-
-.option-desire img,
-.option-material img,
-.option-bh img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-.option-desire .text,
-.option-material .text,
-.option-bh .text {
-  margin-left: 10px;
-  flex-grow: 1;
-}
-
-.option-desire .text p,
-.option-material .text p,
-.option-bh .text p {
-  margin: 2px 0;
-  font-size: 14px;
-  color: #333;
-}
-
-.option-desire .price,
-.option-material .price,
-.option-bh .price {
-  color: red;
-  font-weight: bold;
-}
-
-/* Khi được chọn */
-.option-desire.selected,
-.option-material.selected,
-.option-bh.selected {
-  border-color: #8C61A8;
-  /* Viền tím */
-  border-width: 1.5px;
-}
-
-.option-desire.selected::after,
-.option-material.selected::after,
-.option-bh.selected::after {
-  content: "✔";
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  background-color: rgb(255, 255, 255);
-  font-size: 5px;
-  font-weight: bold;
-  padding: 0px;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#selectedInfo,
-#totalPrice {
-  display: none;
-}
-
-.discount-percentages {
-  background: #FFEDED;
-  border-radius: 24px;
-  color: #ef4444;
-  font-size: 11px;
-  padding: 3px 8px;
-}
-
-.flash-sale-btn {
-  position: fixed;
-  bottom: 130px;
-  right: 12px;
-  z-index: 1000;
-  animation: flash 1s infinite alternate, wobble 2s infinite ease-in-out;
-  transform-origin: center bottom;
-}
-
-@keyframes flash {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0.6;
-  }
-}
-
-@keyframes wobble {
-
-  0%,
-  40% {
-    transform: rotate(0deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  60% {
-    transform: rotate(5deg);
-  }
-
-  70% {
-    transform: rotate(-5deg);
-  }
-
-  80% {
-    transform: rotate(5deg);
-  }
-
-  90% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-.gift-service {
-  margin-top: 12px;
-  border: 1px solid #1a547824;
-  border-radius: 8px;
-}
-
-.gift-service-child {
-  padding: 8px;
-
-}
-
-span.text-bold {
-  font-weight: 500;
-}
-
-.gift-child {
-  background: #ef4444;
-  color: #fff;
-  padding: 1px 8px;
-  border-radius: 24px;
-  font-size: 10px;
-  font-weight: 600;
-}
-
-.promotion-service {
-  background: #1a547824;
-  border-radius: 7px 7px 0px 0px;
-  padding: 4px 8px;
-  font-weight: 600;
-  overflow: hidden;
-}
-
-.image_service img,
-.contentBox img {
-  width: 100%;
-}
-
-.swiper-wrapper {
-  height: auto;
-}
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  padding: 8px 16px;
-  z-index: 1000;
-  transform: translateY(-100%);
-  transition: transform 0.4s ease-in-out;
-  display: flex;
-  align-items: center;
-}
-
-header.show {
-  transform: translateY(0);
-  display: flex;
-  align-items: center;
-}
-
-.radio,
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  color: #333;
-}
-
-textarea {
-  width: 100%;
-  height: 80px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  font-size: 14px;
-  resize: none;
-  margin-top: 4px;
-}
-
-.header-review {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  gap: 8px;
-}
-
-/* 
-.reviews-container {
-  margin-top: 16px;
-}
-
-.review-card p {
-  font-size: 12px
-}
-
-.reviews {
-  margin-top: 8px;
-}
-
-.review-card {
-  background: #f2f2f291;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  margin: 1px;
-}
-
-.review-card h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
-}
-
-.review-meta {
-  font-size: 12px;
-  color: #777;
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.stars {
-  color: #f4b400;
-} */
 </style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const price = <?= isset($fields['discountPrice']) && $fields['discountPrice'] > 0 && $fields['discountPrice'] < $fields['price'] 
@@ -515,16 +149,16 @@ window.addEventListener('scroll', function() {
   }
 });
 </script>
-<main>
-  <section class=" section-product-header mb-2">
-    <header id="page-header">
+<main class="is-product-detail">
+  <section class="section-product-header mb-2">
+    <!-- <header id="page-header">
       <div class="history-back cursor-pointer" data-fallback="<?= get_permalink(get_field("home", "option")) ?>">
         <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-left-gray.svg") ?>" alt="" />
       </div>
       <div>
         <h1 style="padding-left:8px" class=" text-center text-16 font-bold"><?= get_the_title() ?></h1>
       </div>
-    </header>
+    </header> -->
     <div class="container">
       <div class="grid grid-cols-2 gap-4 relative">
         <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0  -mx-4">
@@ -536,11 +170,27 @@ window.addEventListener('scroll', function() {
           <?php endforeach; ?>
         </div>
         <div class="lg:col-span-1 col-span-2 flex flex-col">
+          <div class="flex gap-2 flex-wrap breadcrumb">
+            <a class="breadcrumb-home font-semibold" href="/">Trang chủ</a>
+            <span>›</span>
+            <span class="text-primary">Chi tiết sản phẩm</span>
+          </div>
+        </div>
+        <div class="lg:col-span-1 col-span-2 flex flex-col">
           <div class="product-detail-title">
-            <h1 class="text-16 font-semibold"><?= get_the_title(); ?></h1>
-            <div class="product-review">
-              <span class="scale">8.0</span>
-              <span class="total">(<?php echo $ratingCount;?>)</span>
+            <h1><?= get_the_title(); ?></h1>
+          </div>
+
+          <div class="flex justify-between items-center mt-2">
+            <div class="flex items-center gap-1">
+              <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
+                <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
+                <span class="name"><?= $rating; ?></span>
+                <span class="value">(<?php echo $ratingCount;?>)</span>
+              </div>
+              <span class="text-10" style="opacity: 0.5;">|</span>
+              <span class="text-10">Đã bán</span>
+              <span class="text-10"><?= $orderCount; ?></span>
             </div>
           </div>
 
@@ -571,8 +221,42 @@ window.addEventListener('scroll', function() {
       </div>
     </div>
   </section>
-  <div class="block lg:hidden w-full h-[3px] bg-gray-200 mb-2"></div>
   <section>
+    <div class="container">
+      <div class="flex mt-4 policy-title">Cam kết chính sách</div>
+      <ul class="flex gap-2 mt-2 flex-col policy-list">
+        <li class="flex items-center gap-2 justify-between policy-item js-refund-policy">
+          <span>Thanh toán & Hoàn tiền</span>
+          <div class="arrow-go"></div>
+        </li>
+        <li class="flex items-center gap-2 justify-between policy-item js-warranty-policy">
+          <span>Bảo hành & Chăm sóc trọn đời</span>
+          <div class="arrow-go"></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <secrion>
+    <div class="container">
+      <div class="policy-title mt-4">Mô tả chi tiết</div>
+      <div class="max-w-2xl  shadow-lg rounded-lg overflow-hidden mt-2 ">
+        <div id="contentBox" class="relative collapsed">
+          <div class="contentBox inset-0 flex flex-col justify-center items-center bg-opacity-40">
+            <?php if ($fields["description"]) : ?>
+            <?= $fields["description"] ?>
+            <?php endif; ?>
+          </div>
+          <div class="overlay"></div>
+        </div>
+      </div>
+      <div class="text-center p-4 z-10">
+        <button id="toggleButton" class="more-desc-btn hover:underline">
+          Xem thêm ▼
+        </button>
+      </div>
+    </div>
+  </secrion>
+  <!-- <section>
     <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
       <ul class="product-expand">
         <li class="expand-item">
@@ -614,7 +298,7 @@ window.addEventListener('scroll', function() {
       </ul>
       <div class="w-full bg-gray-200" style="margin-top:8px"></div>
     </div>
-  </section>
+  </section> -->
   <section>
     <div class="container">
       <?php if ($the_query_related->have_posts()) : ?>
@@ -632,7 +316,6 @@ window.addEventListener('scroll', function() {
     </div>
   </section>
 </main>
-
 
 <script>
 const swiper = new Swiper('.swiper-container', {
@@ -1014,5 +697,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <?php 
 set_query_var('field', $fields);
 ?>
-
+<div id="bottom-sheet-warranty-policy"
+  class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
+  <?php get_template_part( 'template-parts/bottom-sheet', 'product-warranty-policy' ); ?>
+</div>
+<div id="bottom-sheet-refund-policy"
+  class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
+  <?php get_template_part( 'template-parts/bottom-sheet', 'product-refund-policy' ); ?>
+</div>
 <?php get_footer("empty"); ?>

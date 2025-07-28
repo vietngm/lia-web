@@ -141,8 +141,8 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/HichemTab-tech/OTP-designer-jquery@2.3.1/dist/otpdesigner.min.js"></script>
 
 <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
-<div class="relative m-auto rounded-2 bg-white w-full  background-modal p-4 z-[120] booking-service">
-  <div class=" overflow-hidden w-full h-full">
+<div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
+  <div class="overflow-hidden w-full h-full">
     <!-- <div class="close-modal cursor-pointer">
       <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
     </div> -->

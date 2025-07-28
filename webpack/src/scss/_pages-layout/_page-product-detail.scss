@@ -1,0 +1,42 @@
+@charset "utf-8";
+// --------------------------------------------------
+// ○○○
+// --------------------------------------------------
+.is-product-detail {
+	// .product-detail {
+	// 	margin-bottom: 64px;
+	// }
+	.breadcrumb-home {
+		color: #757575;
+	}
+	.breadcrumb {
+		font-size: 12px;
+	}
+	.product-detail-title {
+		h1 {
+			font-size: 12px;
+			font-weight: bold;
+		}
+	}
+	.policy-title {
+		font-weight: bold;
+		font-size: 12px;
+	}
+	.policy-list {
+		.policy-item {
+			color: green;
+			border-bottom: 1px solid #e0e0e0;
+			padding-bottom: 8px;
+			font-size: 12px;
+			&:hover {
+				opacity: 0.8;
+			}
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+	.more-desc-btn {
+		font-size: 12px;
+	}
+}

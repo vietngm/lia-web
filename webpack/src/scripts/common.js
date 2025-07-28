@@ -9,3 +9,4 @@ import "./contactNow.js";
 import "./bottomSheet.js";
 import "./modalPractitionerService.js";
 import "./productCategory.js";
+import "./modalPolicy.js";

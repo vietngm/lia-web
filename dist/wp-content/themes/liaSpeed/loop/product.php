@@ -32,13 +32,11 @@
       <div class="flex items-center gap-1">
         <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
-          <!-- <span class="name"><?= $fields["rating"] ?></span> -->
-          <!-- <span class="value">(<?= $fields["rating_number"] ?>)</span> -->
           <span class="name"><?= $rating; ?></span>
           <span class="value">(<?php echo $ratingCount;?>)</span>
         </div>
         <span class="text-10" style="opacity: 0.5;">|</span>
-        <span class="text-10">Đặt</span>
+        <span class="text-10">Đã bán</span>
         <span class="text-10"><?= $orderCount; ?></span>
       </div>
     </div>
