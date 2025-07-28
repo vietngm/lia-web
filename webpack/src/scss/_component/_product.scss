@@ -22,6 +22,9 @@
 	}
 	&-item {
 		display: grid;
+		border: 1px solid $color-gray;
+		border-radius: 8px;
+		padding: 12px;
 	}
 	&-title {
 		font-size: 0.8rem;
@@ -87,9 +90,9 @@
 		display: flex;
 		grid-gap: 8px;
 		list-style: none;
-		border-bottom: 3px solid $color-gray;
+		// border-bottom: 3px solid $color-gray;
 		margin-bottom: 12px;
-		padding-bottom: 12px;
+		// padding-bottom: 12px;
 	}
 	&-detail {
 		display: grid;

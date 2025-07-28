@@ -52,7 +52,6 @@ h3 {
   border-bottom: none;
 }
 
-
 .menu-list li a {
   text-decoration: none;
   display: flex;
@@ -120,11 +119,13 @@ h3 {
     </div>
 
     <ul class="menu-list">
+
       <li class="menu-item">
         <div class="menu-header">
           Về chúng tôi
           <span class="material-icons">expand_more</span>
         </div>
+
         <ul class="submenu">
           <li><a href="#">Giới thiệu về công ty</a></li>
           <li><a href="#">Tầm nhìn & sứ mệnh</a></li>
@@ -160,12 +161,12 @@ h3 {
 
     <div class="contact">
       <h4>Chăm sóc khách hàng</h4>
-      <p>Hotline: 0982 994 444</p>
-      <p>Email: Abc@gmail.com</p>
+      <p>Hotline: 0934129060</p>
+      <p>Email: cskh.liavietnam@gmail.com</p>
 
       <h4>Hợp tác nhượng quyền</h4>
-      <p>Hotline: 0982 994 444</p>
-      <p>Email: Abc@gmail.com</p>
+      <p>Hotline: 0374466666</p>
+      <p>Email: dautu.liavietnam@gmail.com</p>
     </div>
   </div>
 
