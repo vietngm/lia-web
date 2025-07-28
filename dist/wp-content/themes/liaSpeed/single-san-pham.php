@@ -258,7 +258,7 @@ window.addEventListener('scroll', function() {
   </secrion>
   <section>
     <div class="container">
-      <div class="policy-title mt-4 mb-2 flex items-center gap-2 justify-between">
+      <div class="policy-title mt-4 mb-2 flex items-center gap-2 justify-between js-product-info">
         Thông tin sản phẩm
         <div class="arrow-go"></div>
       </div>
@@ -728,5 +728,9 @@ set_query_var('field', $fields);
 <div id="bottom-sheet-refund-policy"
   class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
   <?php get_template_part( 'template-parts/bottom-sheet', 'product-refund-policy' ); ?>
+</div>
+<div id="bottom-sheet-product-info"
+  class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
+  <?php get_template_part( 'template-parts/bottom-sheet', 'product-info' ); ?>
 </div>
 <?php get_footer("empty"); ?>

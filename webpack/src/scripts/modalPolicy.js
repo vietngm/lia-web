@@ -22,6 +22,17 @@ jQuery(function ($) {
 		}
 	});
 
+	$(document).on("click", ".js-product-info", function () {
+		const modal = document.getElementById("bottom-sheet-product-info");
+		if (!modal) return;
+
+		if (!modal.classList.contains("show")) {
+			modal.style.display = "flex";
+			setTimeout(() => modal.classList.add("show"), 10);
+			$("html, body").css("overflow", "hidden");
+		}
+	});
+
 	// Đóng modal — tìm modal gần nhất để đóng
 	$(document).on("click", ".close-modal", function () {
 		// Tìm modal chứa nút close, có id bắt đầu bằng "bottom-sheet"
