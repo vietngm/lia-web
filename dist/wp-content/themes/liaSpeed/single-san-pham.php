@@ -239,7 +239,7 @@ window.addEventListener('scroll', function() {
   <secrion>
     <div class="container">
       <div class="policy-title mt-4">Mô tả chi tiết</div>
-      <div class="max-w-2xl  shadow-lg rounded-lg overflow-hidden mt-2 ">
+      <div class="max-w-2xl shadow-lg rounded-lg overflow-hidden mt-2 ">
         <div id="contentBox" class="relative collapsed">
           <div class="contentBox inset-0 flex flex-col justify-center items-center bg-opacity-40">
             <?php if ($fields["description"]) : ?>
@@ -256,6 +256,31 @@ window.addEventListener('scroll', function() {
       </div>
     </div>
   </secrion>
+  <section>
+    <div class="container">
+      <div class="policy-title mt-4 mb-2 flex items-center gap-2 justify-between">
+        Thông tin sản phẩm
+        <div class="arrow-go"></div>
+      </div>
+      <div class="policy-info">
+        <table class="w-full">
+          <tr>
+            <td style="width: 120px;">Tên sản
+              phẩm</td>
+            <td><?= get_the_title(); ?></td>
+          </tr>
+          <tr>
+            <td>Đối tượng phù hợp</td>
+            <td><?php echo $dtph; ?></td>
+          </tr>
+          <tr>
+            <td>Thành phần sản phẩm</td>
+            <td><?php echo $tpsp; ?></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
   <!-- <section>
     <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
       <ul class="product-expand">
@@ -302,8 +327,7 @@ window.addEventListener('scroll', function() {
   <section>
     <div class="container">
       <?php if ($the_query_related->have_posts()) : ?>
-      <h2 class="form-title text-lg font-semibold border-l-4 border-purple-500 pl-2"
-        style="font-size:16px;color:#1A5477">Có thể bạn quan tâm</h2>
+      <h2 class="policy-title mt-4">Có thể bạn quan tâm</h2>
       <ul class="product-list">
         <?php while ( $the_query_related->have_posts() ) : $the_query_related->the_post(); ?>
         <li class="product-item">

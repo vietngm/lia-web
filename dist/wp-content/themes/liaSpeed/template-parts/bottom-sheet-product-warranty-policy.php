@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="policy-content" style="height: 100%; overflow-y: auto;">
+    <div class="policy-content">
       <?php
 $flexible_content = get_field('content', 761);
 
