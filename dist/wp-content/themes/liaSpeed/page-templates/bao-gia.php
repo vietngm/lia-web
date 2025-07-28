@@ -247,7 +247,8 @@ const DIARIES_PRICING = JSON.parse(`<?= json_encode($diaries, JSON_HEX_QUOT) ?>`
               </a>
             </div>
             <div class="col-span-1">
-              <a href="<?= get_permalink(get_field("page_doctor", "option")) ?>" class="consultant-zalo-bottom">
+              <a href="https://liavietnam.vn/danh-sach-chuyen-vien/" class="consultant-zalo-bottom">
+                <!-- <a href="<?//= get_permalink(get_field("page_doctor", "option")) ?>" class="consultant-zalo-bottom"> -->
                 <div class="border-zalo-bottom">
                   <!-- <img class="w-5 h-5" src="<?= get_theme_file_uri("assets/images/icons/zalo-2.png") ?>" /> -->
                   <div style="font-weight:700">Tìm chuyên viên</div>

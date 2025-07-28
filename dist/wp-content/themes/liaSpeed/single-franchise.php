@@ -1413,7 +1413,7 @@ body {
               </div>
               <div class="contact-info">
                 <p class="contact-label">Hotline</p>
-                <p class="contact-value">1800 9292</p>
+                <p class="contact-value">0374466666</p>
               </div>
             </div>
             <div class="contact-item">
@@ -1422,7 +1422,7 @@ body {
               </div>
               <div class="contact-info">
                 <p class="contact-label">Email</p>
-                <p class="contact-value">support@liagroup.vn</p>
+                <p class="contact-value">dautu.liavietnam@gmail.com</p>
               </div>
             </div>
             <div class="contact-item">

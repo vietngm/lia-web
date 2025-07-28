@@ -6,6 +6,18 @@
 <?php get_header("empty"); ?>
 <?php
 	$fields = get_fields();
+  $menus = $fields['header'];
+  
+echo 'Co vo day ne...';
+  echo "<pre>";
+
+  print_r($menus);
+  echo "</pre>";
+
+  // 	$footer = $fields['footer'];
+	// $liaVietNam = $footer['lia_viet_nam'];
+	// $trachNhiemLia = $footer['trach_nhiem_lia'];
+	// $thongTinDauTu = $footer['thong_tin_dau_tu'];
 ?>
 
 <style>

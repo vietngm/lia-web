@@ -106,7 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </a>
       </div>
       <div class="col-span-1">
-        <a href="<?= get_permalink(get_field('page_doctor', 'option')) ?>" class="consultant-zalo-bottom-v1">
+        <!-- <a href="<?//= get_permalink(get_field('page_doctor', 'option')) ?>" class="consultant-zalo-bottom-v1"> -->
+        <a href="https://liavietnam.vn/danh-sach-chuyen-vien/" class="consultant-zalo-bottom-v1">
           <div class="border-zalo-bottom">
             <div style="font-weight:700">Tìm chuyên viên</div>
           </div>
