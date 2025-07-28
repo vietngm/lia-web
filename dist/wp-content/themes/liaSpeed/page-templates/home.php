@@ -55,6 +55,7 @@
     <div class="container">
       <h2 class="section-title">Sản phẩm</h2>
       <ul class="product-category">
+
         <?php
           $taxonomy = 'product-category';
           $terms = get_terms(
@@ -73,10 +74,8 @@
             'parent'        => $term->term_id
           ); 
         ?>
-        <li class="category-item">
-          <a href="<?php echo get_term_link($term->slug,$taxonomy);?>" class="category-link">
-            <span><?php echo $term->name; ?></span>
-          </a>
+        <li class="category-item" data-term-slug="<?php echo esc_attr($term->slug); ?>">
+          <a href="#" class="category-link"><span><?php echo esc_html($term->name); ?></span></a>
         </li>
         <?php } ?>
       </ul>

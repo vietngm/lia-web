@@ -133,13 +133,24 @@
 		align-items: center;
 		text-align: center;
 		border-radius: 24px;
-		border: 1px solid $color-gray;
-		padding: 4px 8px;
+		// border: 1px solid $color-gray;
+		padding: 6px 12px;
 		transition: all 0.4s ease;
+		color: $color-main;
+		background-color: rgba($color-light-blue, 0.4);
 		&:hover {
-			background-color: $color-light-green;
-			color: $color-green;
-			border-color: $color-green;
+			background-color: $color-main;
+			color: $color-white;
+		}
+		&.active {
+			background-color: $color-main;
+			color: $color-white;
+		}
+	}
+	&-link {
+		line-height: normal;
+		span {
+			font-size: 12px;
 		}
 	}
 }

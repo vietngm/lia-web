@@ -8,3 +8,4 @@ import "./owlCarousel.js";
 import "./contactNow.js";
 import "./bottomSheet.js";
 import "./modalPractitionerService.js";
+import "./productCategory.js";
