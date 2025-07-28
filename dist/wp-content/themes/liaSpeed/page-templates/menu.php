@@ -89,12 +89,12 @@
     <div class="menu-contact">
       <div class="menu-contact-item">
         <h4>Chăm sóc khách hàng</h4>
-        <p>Hotline: <?=$contactInfo['dt_cskh']?></p>
+        <p>Hotline: <a href="tel:<?=$contactInfo['dt_cskh']?>"><?=$contactInfo['dt_cskh']?></a></p>
         <p>Email: <?=$contactInfo['email_cskh']?></p>
       </div>
       <div class="menu-contact-item">
         <h4>Hợp tác nhượng quyền</h4>
-        <p>Hotline: <?=$nqInfo['dt_cskh']?></p>
+        <p>Hotline: <a href="tel:<?=$nqInfo['dt_cskh']?>"><?=$nqInfo['dt_cskh']?></a></p>
         <p>Email: <?=$nqInfo['email_cskh']?></p>
       </div>
     </div>
