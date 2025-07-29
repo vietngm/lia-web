@@ -38,9 +38,39 @@
 
   <div class="branch-services">
     <?php
-    foreach ($services as $service) { ?>
-    <div class="flex gap-2 items-center">
-      <?php echo $service->post_title; ?>
+    foreach ($services as $service) { 
+      $service_id = $service->ID;
+      $service_title = $service->post_title;
+      $service_price = get_field('price', $service_id);
+      $service_discountPrice = get_field('discountPrice', $service_id);
+      $service_rating = get_field('rating', $service_id);
+      $service_rating_number = get_field('rating_number', $service_id);
+      $service_customers = get_field('client_number', $service_id);
+      $service_image = get_the_post_thumbnail_url($service_id);
+      $price = $service_price ? $service_price : 0;
+      $discountPrice = $service_discountPrice ? $service_discountPrice : 0;
+      $discountPercentage = ($price > 0 && $discountPrice < $price) 
+        ? round((($price - $discountPrice) / $price) * 100) 
+        : 0;
+    ?>
+    <div class="branch-services-item">
+      <a href="<?= get_permalink($service_id) ?>" class="branch-services-link">
+        <div class="branch-services-image">
+          <img src="<?= $service_image ?>" alt="<?= $service_title ?>">
+        </div>
+        <h3 class="text-12 text-service-title line-clamp-2 mb-0"><?= $service_title; ?></h3>
+        <div class="text-12">
+          <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
+          <div class="flex items-center justify-between">
+            <span class="text-price" style="font-size:14px">
+              <?= number_format($discountPrice, 0, ",", ".") ?><small> <u>đ</u></small>
+            </span>
+          </div>
+          <?php else : ?>
+          <?= number_format($price, 0, ",", ".") ?> <small> <u>đ</u></small>
+          <?php endif; ?>
+        </div>
+      </a>
     </div>
     <?php } ?>
   </div>
