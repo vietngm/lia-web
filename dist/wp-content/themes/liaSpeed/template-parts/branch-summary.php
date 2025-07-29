@@ -7,6 +7,7 @@
     $branch_rating = get_field('rating', $branch_id);
     $doctor_customers = get_field('customers', $branch_id);
     $services = $args['services'];
+    $practitioners_ids = $args['practitioners_ids'];
     $doctor_id = $args['doctor_id'];
     $service_categories = $args['service_categories']; 
     $label = get_field('label', $branch_id);
@@ -14,57 +15,36 @@
     $rating_number = get_field('rating_number', $branch_id);
     $doctor_phone = get_field('phone', $branch_id);
     $open_time = get_field('gio_lam_viec', $branch_id);
-
-    // print_r($service_categories);
-    // print_r($services);
-    // $services = get_field('services', $branch_id);
-
-    // print_r($services);
 ?>
-<a href="<?= get_permalink() ?>" class="flex relative w-full gap-3  mt-4 branch">
-  <div class="image-containers">
-    <img src='<?= esc_url($branch_avatar) ?>' alt="practitioner" class="w-32 h-32"
-      style="width: 120px; height: auto;  object-fit: cover;">
-  </div>
-  <div class="w-full flex flex-col gap-1">
-    <div class="flex gap-1 items-center justify-between">
-      <div class="flex items-center flex-wrap ">
-        <h1 class=" font-bold" style="font-size:14px"><?= esc_html($branch_name); ?></h1>
-      </div>
-      <div class="flex gap-1 items-center text-12 ">
-        <h4 class="rating">
-          <span class="name">
-            <?= esc_html($branch_rating); ?>
-          </span>
-          <span class="value">
-            (<?= esc_html($rating_number); ?>)
-          </span>
-        </h4>
-      </div>
+<div class="branch">
+  <div class="branch-info">
+    <div class="branch-avatar">
+      <img src='<?= esc_url($branch_avatar) ?>' alt="practitioner">
     </div>
-    <div class="flex gap-1 items-center">
-      <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/location.svg") ?>" alt="" />
-      <div class="flex items-center">
-        <h4 class="text-12"><?= esc_html($branch_address); ?></h4>
+    <div class="branch-content">
+      <h1 class="font-bold" style="font-size:14px"><?= esc_html($branch_name); ?></h1>
+      <div class="flex items-center gap-1">
+        <div class="rating text-10" style="font-weight:800;">
+          <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
+          <span class="name"><?= esc_html($branch_rating); ?></span>
+          <span class="value">(<?= esc_html($rating_number); ?>)</span>
+        </div>
+        <span class="separator" style="opacity: 0.5;">|</span>
+        <span class="text-10"><?= count($practitioners_ids); ?></span>
+        <span class="text-10">Chuyên viên</span>
       </div>
-    </div>
-    <div class="flex gap-1 items-center">
-      <img class="w-3 h-3" src="<?= get_theme_file_uri("assets/images/icons/phone-small.svg") ?>" alt="" />
-      <div class="flex items-center">
-        <h4 class="text-12"><?= esc_html($doctor_phone); ?></h4>
-      </div>
-    </div>
-    <div class="flex gap-2 items-center">
-      <button class="bg-blue-500 rounded-4 px-2 py-1 text-12 button-detail" style="font-size: 12px;">Mở cửa</button>
-      <span style="font-weight:bold"><?=$open_time['mo_cua'];?> - <?=$open_time['dong_cua'];?></span>
     </div>
   </div>
-</a>
 
-<?php
-echo count($services);
-foreach ($services as $service) { ?>
-<div class="flex gap-2 items-center">
-  <?php echo $service->post_title; ?>
+  <div class="branch-services">
+    <?php
+    foreach ($services as $service) { ?>
+    <div class="flex gap-2 items-center">
+      <?php echo $service->post_title; ?>
+    </div>
+    <?php } ?>
+  </div>
+  <div class="branch-action">
+    <button class="btn-booking-service">Đặt hẹn</button>
+  </div>
 </div>
-<?php } ?>

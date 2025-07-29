@@ -217,7 +217,7 @@
               <div class="modal-service-title"><?= $service_title ?></div>
               <div class="flex justify-between items-center">
                 <div class="flex items-center gap-1">
-                  <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
+                  <div class="rating text-10" style="font-weight:800;">
                     <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
                     <span class="name"><?= $service_rating ?></span>
                     <span class="value">(<?= $service_rating_number ?>)</span>

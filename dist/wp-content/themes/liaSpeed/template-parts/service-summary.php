@@ -15,7 +15,7 @@
   <div class="flex-1 flex flex-col border-1 border-t-0 border-gray-300 rounded-b-1.5 p-2 service-content">
     <div class="flex justify-between items-center mb-1.5">
       <div class="flex items-center gap-1">
-        <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
+        <div class="rating text-10" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= $fields["rating"] ?></span>
           <span class="value">(<?= $fields["rating_number"] ?>)</span>
