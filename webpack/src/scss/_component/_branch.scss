@@ -91,6 +91,11 @@
 			width: 100%;
 			padding: 4px 0;
 			color: white;
+			border: none;
+			&.disabled {
+				background-color: #ccc;
+				color: #666;
+			}
 		}
 	}
 	&-services {
