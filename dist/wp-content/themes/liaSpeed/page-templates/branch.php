@@ -23,6 +23,9 @@
 			array_push($service_category_ids[$service->ID], $category->term_id);
 		}
 	}
+
+  // print_r($services);
+
 	function get_categories_by_doctor_id($doctor_id) {
 		global $service_doctor_ids;
 		global $service_category_ids;
@@ -138,7 +141,7 @@
 
 <main>
   <section class="section-doctor " style="padding-top:12px">
-    <h2 style="font-weight:700;padding:0px 12px">Danh sách trung tâm</h2>
+    <h2 style="font-weight:700;padding:0px 12px">Danh sách trung tâm 1</h2>
     <div class="mt-1 p-3">
       <div class="search-container">
         <div class="search-box">
@@ -163,24 +166,37 @@
                     'post_type' => 'branch',
                 );
                 $the_query = new WP_Query( $args );
+// echo "<pre>";
+//                 print_r($the_query);
+                // echo "</pre>";
             ?>
       <?php if ( $the_query->have_posts() ) : ?>
       <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
       <?php 
                         $doctor_id = get_the_ID(); 
-                        $service_categories = get_categories_by_doctor_id($doctor_id);
+                        $service_categories = get_categories_by_doctor_id(get_field("chuyen_vien", $doctor_id));
+
+                        print_r(get_field("chuyen_vien", $doctor_id));
+
+                        $chuyen_vien_ids = get_field("chuyen_vien", $doctor_id); // $chuyen_vien_ids là mảng các IDs
+
+// Tạo meta_query
+$meta_query = array('relation' => 'OR');
+
+foreach ($chuyen_vien_ids as $id) {
+    $meta_query[] = array(
+        'key'     => 'doctors',
+        'value'   => '"' . $id . '"', // Phải có dấu " để so khớp với mảng serialized
+        'compare' => 'LIKE', // So sánh LIKE trong mảng
+    );
+}
+
                         $services = get_posts(array(
-                            'post_type' => 'service',
-                            'posts_per_page' => -1,
-                            'post_status' => 'publish',
-                            'meta_query' => array(
-                                array(
-                                    'key' => 'doctors',
-                                    'value' => $doctor_id,
-                                    'compare' => 'LIKE',
-                                ),
-                            ),
-                        ));
+    'post_type' => 'service',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'meta_query' => $meta_query,
+));
                         $_service_category_ids = array_map(function ($value) {
                             return $value->term_id;
                         }, $service_categories);

@@ -6,13 +6,20 @@
     $branch_address = get_field('address', $branch_id);
     $branch_rating = get_field('rating', $branch_id);
     $doctor_customers = get_field('customers', $branch_id);
-    $services = $args['services']; 
+    $services = $args['services'];
+    $doctor_id = $args['doctor_id'];
     $service_categories = $args['service_categories']; 
     $label = get_field('label', $branch_id);
     $video_number = get_field('video_number', $branch_id);
     $rating_number = get_field('rating_number', $branch_id);
     $doctor_phone = get_field('phone', $branch_id);
     $open_time = get_field('gio_lam_viec', $branch_id);
+
+    // print_r($service_categories);
+    // print_r($services);
+    // $services = get_field('services', $branch_id);
+
+    // print_r($services);
 ?>
 <a href="<?= get_permalink() ?>" class="flex relative w-full gap-3  mt-4 branch">
   <div class="image-containers">
@@ -53,3 +60,11 @@
     </div>
   </div>
 </a>
+
+<?php
+echo count($services);
+foreach ($services as $service) { ?>
+<div class="flex gap-2 items-center">
+  <?php echo $service->post_title; ?>
+</div>
+<?php } ?>
