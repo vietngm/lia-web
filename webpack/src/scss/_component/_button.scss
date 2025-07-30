@@ -2,6 +2,24 @@
 // --------------------------------------------------
 // ○○○
 // --------------------------------------------------
+.btn {
+	border: 1px solid $color-main;
+	padding: 4px 12px;
+	text-align: center;
+	font-size: 12px;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	&.disabled {
+		background-color: #ccc;
+		border: 1px solid #ccc;
+		color: gray;
+	}
+	&-default {
+		background-color: white;
+		color: $color-main;
+	}
+}
 .blur-bg {
 	background: rgba(255, 255, 255, 0.6);
 	backdrop-filter: blur(4px);
@@ -41,25 +59,7 @@
 	background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
 }
 
-.button-detail {
-	background-color: white;
-	color: $color-main;
-	// font-weight: 600;
-	padding: 5px 12px;
-	border: 1px solid $color-main;
-}
-
 .button-booking {
 	background-color: $color-main;
 	color: #fff;
-	font-weight: 600;
-	padding: 5px 12px;
-	border: 1px solid $color-main;
-	text-align: center;
-	font-size: 12px;
-	&.disabled {
-		background-color: #ccc;
-		border: 1px solid #ccc;
-		color: gray;
-	}
 }

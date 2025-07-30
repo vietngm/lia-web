@@ -399,11 +399,11 @@ $(document).ready(function () {
 				errorMessages.push("Vui lòng chọn chuyên viên");
 				$errorDoctor.text("Vui lòng chọn chuyên viên");
 			}
-			if (!formState.serviceId) {
-				hasError = true;
-				errorMessages.push("Vui lòng chọn dịch vụ");
-				$errorService.text("Vui lòng chọn dịch vụ");
-			}
+			// if (!formState.serviceId) {
+			// 	hasError = true;
+			// 	errorMessages.push("Vui lòng chọn dịch vụ");
+			// 	$errorService.text("Vui lòng chọn dịch vụ");
+			// }
 			// if (!formState.toppingId) {
 			// 	hasError = true;
 			// 	$errorTopping.text("Vui lòng chọn topping");

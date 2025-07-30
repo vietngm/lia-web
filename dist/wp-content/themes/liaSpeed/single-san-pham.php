@@ -189,13 +189,13 @@ window.addEventListener('scroll', function() {
           </div>
 
           <div class="flex justify-between items-center mt-2">
-            <div class="flex items-center gap-1">
-              <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
+            <div class="rating items-center gap-1">
+              <div class="flex text-10" style="font-weight:800;">
                 <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
                 <span class="name"><?= $rating; ?></span>
                 <span class="value">(<?php echo $ratingCount;?>)</span>
               </div>
-              <span class="text-10" style="opacity: 0.5;">|</span>
+              <span class="separator">|</span>
               <span class="text-10">Đã bán</span>
               <span class="text-10"><?= $orderCount; ?></span>
             </div>

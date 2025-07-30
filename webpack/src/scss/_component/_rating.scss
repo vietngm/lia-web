@@ -15,6 +15,10 @@
 	.value {
 		color: $color-black;
 	}
+	.separator {
+		font-size: 8px;
+		opacity: 0.5;
+	}
 }
 
 .discount-percentage {
@@ -31,4 +35,5 @@
 }
 .text-service-title {
 	font-weight: normal;
+	// font-size: 0.94rem;
 }

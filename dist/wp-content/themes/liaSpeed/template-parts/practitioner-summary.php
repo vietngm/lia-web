@@ -13,6 +13,7 @@
     $video_number = get_field('video_number', $doctor_id);
     $rating_number = get_field('rating_number', $doctor_id);
     $kn = get_field('kn', $doctor_id);
+    $branch_id = $args['branch_id'];
 ?>
 
 <div class="practitioner-info relative w-full gap-2 items-center">
@@ -20,7 +21,7 @@
     <div class="avatar">
       <img src='<?= esc_url($doctor_avatar) ?>' alt="practitioner">
     </div>
-    <div class=" w-full flex flex-col">
+    <div class="w-full flex flex-col">
       <div class="flex gap-1 items-center justify-between">
         <div class="flex items-center flex-wrap ">
           <h1 class="font-bold" style="font-size:14px"><?= esc_html($doctor_name); ?></h1>
@@ -45,27 +46,18 @@
     </div>
   </div>
 
-  <!-- <div class="flex flex-wrap gap-1 mt-2">
-    <?php //if ($services) : foreach ($services as $service) : ?>
-    <div class="text-10 h-[15px] px-2 flex items-center bg-[#ddd] rounded-full"><?//= $service->post_title ?></div>
-    <?php //endforeach; endif; ?>
-  </div> -->
-
   <div class="practitioner-booking items-center">
-    <a href="<?= get_permalink($doctor_id) ?>" class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-detail"
-      style="font-size: 12px;">Xem chi tiết</a>
-
+    <a href="<?= get_permalink($doctor_id) ?>" class="btn btn-default button-detail">Xem chi tiết</a>
     <?php if (count($services) == 0) : ?>
-    <div class="rounded-2 px-2 py-1 text-12 button-booking disabled">Đặt lịch</div>
+    <div class="btn button-booking disabled">Đặt lịch</div>
     <?php else: ?>
-    <a class="rounded-2 px-2 py-1 button-booking js-modal-practitioner-service" data-id="<?= $doctor_id ?>">Đặt lịch</a>
+    <a class="btn button-booking js-modal-practitioner-service" data-id="<?= $doctor_id ?>">Đặt lịch</a>
     <?php endif; ?>
   </div>
 
 </div>
 
-<div id="modal-practitioner-service-<?= $doctor_id ?>"
-  class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
+<div id="modal-practitioner-service-<?= $doctor_id ?>" class="modal-booking fixed hidden z-[120] modal-popup">
   <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
   <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
     <div class="overflow-hidden w-full h-full">
@@ -216,13 +208,13 @@
             <div class="modal-service-content">
               <div class="modal-service-title"><?= $service_title ?></div>
               <div class="flex justify-between items-center">
-                <div class="flex items-center gap-1">
-                  <div class="rating text-10" style="font-weight:800;">
+                <div class="rating items-center">
+                  <div class="flex text-10" style="font-weight:800;">
                     <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
                     <span class="name"><?= $service_rating ?></span>
                     <span class="value">(<?= $service_rating_number ?>)</span>
                   </div>
-                  <span class="text-10" style="opacity: 0.5;">|</span>
+                  <span class="separator">|</span>
                   <span class="text-10">Đặt</span>
                   <span class="text-10"><?= $service_customers ?></span>
                 </div>
@@ -243,7 +235,8 @@
               </div>
             </div>
             <div class="modal-service-booking">
-              <button class="button-booking rounded-2 js-open-bottom-sheet"
+              <button class="btn button-booking js-open-bottom-sheet" data-branch-id="<?= $branch_id ?>"
+                data-doctor-name="<?= $doctor_name ?>" data-doctor-id="<?= $doctor_id ?>"
                 data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= $service_title ?>"
                 data-id="<?= $service_id ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $service_image ?>">Đặt
                 ngay</button>

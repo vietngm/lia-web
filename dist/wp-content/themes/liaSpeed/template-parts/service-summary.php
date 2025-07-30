@@ -14,13 +14,13 @@
   </a>
   <div class="flex-1 flex flex-col border-1 border-t-0 border-gray-300 rounded-b-1.5 p-2 service-content">
     <div class="flex justify-between items-center mb-1.5">
-      <div class="flex items-center gap-1">
-        <div class="rating text-10" style="font-weight:800;">
+      <div class="rating items-center">
+        <div class="flex text-10" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= $fields["rating"] ?></span>
           <span class="value">(<?= $fields["rating_number"] ?>)</span>
         </div>
-        <span class="text-10" style="opacity: 0.5;">|</span>
+        <span class="separator">|</span>
         <span class="text-10">Đặt</span>
         <span class="text-10"><?= $fields["client_number"] ?></span>
       </div>
@@ -160,7 +160,7 @@
       // Encode JSON để dùng trong HTML attribute
       $dataJson = htmlspecialchars(json_encode($dataToppings, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
     ?>
-    <button class="btn-booking-service js-open-bottom-sheet"
+    <button class="btn btn-booking-service js-open-bottom-sheet"
       data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
       data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Đặt lịch</button>
     <?php } ?>

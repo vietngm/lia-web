@@ -1,20 +1,20 @@
 <?php
-    $fields = get_fields();
-    $branch_avatar = bfi_thumb(get_the_post_thumbnail_url(), array("width" => 400, 'crop' => false));
-    $branch_id = get_the_ID();
-    $branch_name = get_the_title();
-    $branch_address = get_field('address', $branch_id);
-    $branch_rating = get_field('rating', $branch_id);
-    $doctor_customers = get_field('customers', $branch_id);
-    $services = $args['services'];
-    $practitioners_ids = $args['practitioners_ids'];
-    $doctor_id = $args['doctor_id'];
-    $service_categories = $args['service_categories']; 
-    $label = get_field('label', $branch_id);
-    $video_number = get_field('video_number', $branch_id);
-    $rating_number = get_field('rating_number', $branch_id);
-    $doctor_phone = get_field('phone', $branch_id);
-    $open_time = get_field('gio_lam_viec', $branch_id);
+  $fields = get_fields();
+  $branch_avatar = bfi_thumb(get_the_post_thumbnail_url(), array("width" => 400, 'crop' => false));
+  $branch_id = get_the_ID();
+  $branch_name = get_the_title();
+  $branch_address = get_field('address', $branch_id);
+  $branch_rating = get_field('rating', $branch_id);
+  $doctor_customers = get_field('customers', $branch_id);
+  $services = $args['services'];
+  $practitioners_ids = $args['practitioners_ids'];
+  $doctor_id = $args['doctor_id'];
+  $service_categories = $args['service_categories']; 
+  $label = get_field('label', $branch_id);
+  $video_number = get_field('video_number', $branch_id);
+  $rating_number = get_field('rating_number', $branch_id);
+  $doctor_phone = get_field('phone', $branch_id);
+  $open_time = get_field('gio_lam_viec', $branch_id);
 ?>
 <div class="branch">
   <div class="branch-info">
@@ -23,13 +23,13 @@
     </div>
     <div class="branch-content">
       <h1 class="font-bold" style="font-size:14px"><?= esc_html($branch_name); ?></h1>
-      <div class="flex items-center gap-1">
-        <div class="rating text-10" style="font-weight:800;">
+      <div class="rating items-center">
+        <div class="flex text-10" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= esc_html($branch_rating); ?></span>
           <span class="value">(<?= esc_html($rating_number); ?>)</span>
         </div>
-        <span class="separator" style="opacity: 0.5;">|</span>
+        <span class="separator">|</span>
         <span class="text-10"><?= count($practitioners_ids); ?></span>
         <span class="text-10">Chuyên viên</span>
       </div>
@@ -75,23 +75,21 @@
     <?php } ?>
   </div>
   <div class="branch-action">
-
     <?php if (count($services) == 0) : ?>
     <div class="btn-booking-service disabled">Đặt lịch</div>
     <?php else: ?>
-    <button class="btn-booking-service js-modal-branch-service" data-id="<?= $branch_id ?>">Đặt hẹn</button>
-    <!-- <a class="btn-booking-service js-modal-practitioner-service" data-id="<?= $branch_id ?>">Đặt lịch</a> -->
+    <button class="btn btn-booking-service js-modal-branch-service" data-id="<?= $branch_id ?>">Đặt hẹn
+      <?= $branch_id ?></button>
     <?php endif; ?>
   </div>
 </div>
 
-<div id="modal-branch-service-<?= $branch_id ?>"
-  class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
+<div id="modal-branch-service-<?= $branch_id ?>" class="modal-booking fixed hidden z-[120]">
   <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
   <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
     <div class="overflow-hidden w-full h-full">
       <div class="flex items-center mb-4">
-        <div class="font-bold">Chọn dịch vụ</div>
+        <div class="font-bold">Chọn dịch vụ <?= $branch_id ?></div>
         <div class="close-modal cursor-pointer">
           <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
         </div>
@@ -237,13 +235,13 @@
             <div class="modal-service-content">
               <div class="modal-service-title"><?= $service_title ?></div>
               <div class="flex justify-between items-center">
-                <div class="flex items-center gap-1">
-                  <div class="rating text-10" style="font-weight:800;">
+                <div class="rating items-center">
+                  <div class="flex text-10 gap-1" style="font-weight:800;">
                     <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
                     <span class="name"><?= $service_rating ?></span>
                     <span class="value">(<?= $service_rating_number ?>)</span>
                   </div>
-                  <span class="text-10" style="opacity: 0.5;">|</span>
+                  <span class="separator" style="opacity: 0.5;">|</span>
                   <span class="text-10">Đặt</span>
                   <span class="text-10"><?= $service_customers ?></span>
                 </div>
@@ -264,9 +262,10 @@
               </div>
             </div>
             <div class="modal-service-booking">
-              <button class="button-booking rounded-2 js-open-bottom-sheet"
-                data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= $service_title ?>"
-                data-id="<?= $service_id ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $service_image ?>">Đặt
+              <button class="btn button-booking js-open-bottom-sheet" data-branch-name="<?= $branch_name ?>"
+                data-branch-id="<?= $branch_id ?>" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+                data-title="<?= $service_title ?>" data-id="<?= $service_id ?>" data-toppings="<?= $dataJson ?>"
+                data-image="<?= $service_image ?>">Đặt
                 ngay</button>
             </div>
           </li>

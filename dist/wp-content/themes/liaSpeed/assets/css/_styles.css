@@ -74,7 +74,7 @@
 	}
 
 	.btn {
-		@apply px-3.5 py-1.5 bg-primary text-white rounded-2 inline-flex cursor-pointer;
+		@apply px-3.5 py-1.5 text-white rounded-2 inline-flex cursor-pointer;
 	}
 	.btn-outline {
 		@apply btn text-text bg-white rounded-8 border-primary border-1 cursor-pointer;
@@ -429,7 +429,11 @@
 
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default,
 .xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current,
-.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div.xdsoft_current {
+.xdsoft_datetimepicker
+	.xdsoft_timepicker
+	.xdsoft_time_box
+	> div
+	> div.xdsoft_current {
 	@apply bg-primary shadow-none text-white;
 }
 

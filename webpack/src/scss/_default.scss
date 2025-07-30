@@ -5,13 +5,6 @@
 * {
 	box-sizing: (border-box);
 }
-html,
-body,
-main,
-a,
-li,
-p,
-span,
 h1,
 h2,
 h3,
@@ -19,6 +12,17 @@ h4,
 h5,
 h6 {
 	// font-size: 1.25em;
+}
+html,
+body,
+main,
+a,
+li,
+p,
+span,
+label {
+	font-weight: 400;
+	// font-size: 0.94rem;
 }
 .text-primary {
 	opacity: 1;

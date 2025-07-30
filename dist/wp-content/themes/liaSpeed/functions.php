@@ -87,8 +87,8 @@ if ( function_exists( 'add_theme_support' ) ) {
 //theme Option:
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
-		'page_title' 	=> 'Cấu hình TBC',
-		'menu_title'	=> 'Cấu hình TBC',
+		'page_title' 	=> 'Cấu hình LiA',
+		'menu_title'	=> 'Cấu hình LiA',
 		'menu_slug' 	=> 'theme-settings',
 		'capability'	=> 'edit_posts',
 		'redirect'	=> false

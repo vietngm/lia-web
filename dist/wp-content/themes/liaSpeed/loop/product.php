@@ -12,10 +12,6 @@
   $discountPrice = $price-($price * ($discount / 100));
 ?>
 <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
-  <!-- <div class="product-review">
-    <span class="scale">8.0</span>
-    <span class="total">(<?php //echo $ratingCount;?>)</span>
-  </div> -->
   <?php if ($thumb) { ?>
   <div class='product-thumb'>
     <img class="img aspect-square lazy" src="<?php echo $thumb['url'] ?>" alt="<?php echo $post->post_title; ?>">
@@ -29,13 +25,13 @@
   <div class="product-detail">
 
     <div class="flex justify-between items-center mb-1.5">
-      <div class="flex items-center gap-1">
-        <div class="rating text-10" style="font-weight:800;margin-bottom: -2px;">
+      <div class="rating items-center gap-1">
+        <div class="flex text-10" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= $rating; ?></span>
           <span class="value">(<?php echo $ratingCount;?>)</span>
         </div>
-        <span class="text-10" style="opacity: 0.5;">|</span>
+        <span class="separator">|</span>
         <span class="text-10">Đã bán</span>
         <span class="text-10"><?= $orderCount; ?></span>
       </div>

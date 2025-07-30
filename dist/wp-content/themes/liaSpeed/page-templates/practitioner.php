@@ -53,42 +53,8 @@
 		return $categories;
 	}
 ?>
-<style>
-.highlight-filter {
-  padding: 12px;
-}
-
-.highlight-filter .item {
-  width: auto;
-  padding: 6px 12px;
-  border-radius: 24px;
-}
-
-.filter-doctor {
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-
-.dropdown-select-ui {
-  border-radius: 24px;
-}
-
-<style>.service-tab {
-  width: auto !important;
-  display: flex !important;
-  align-items: center !important;
-  padding: 6px 16px !important;
-  border-radius: 24px !important;
-}
-
-.service-tab.item-active {
-  background-color: #EDFFE1 !important;
-  color: #71AD67 !important;
-  border-color: #71AD67 !important;
-}
-</style>
 <main>
-  <section class="section-doctor" style="padding-top:0">
+  <section class="section-doctor">
     <!-- <h2 style="font-weight:700;padding:0px 12px">Danh sách chuyên viên</h2> -->
     <div class="highlight-filter">
       <?php foreach ($term_categories as $term_category) :?>
@@ -99,42 +65,59 @@
     </div>
     <div class="container gap-2 flex flex-col">
       <?php
-                $args = array(
-                    'post_status' => 'publish',
-                    'posts_per_page' => -1,
-                    'post_type' => 'practitioner',
-                );
-                $the_query = new WP_Query( $args );
-            ?>
+        $args = array(
+          'post_status' => 'publish',
+          'posts_per_page' => -1,
+          'post_type' => 'practitioner',
+        );
+        $the_query = new WP_Query( $args );
+      ?>
       <?php if ( $the_query->have_posts() ) : ?>
       <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
       <?php 
-                        $doctor_id = get_the_ID(); 
-                        $service_categories = get_categories_by_doctor_id($doctor_id);
-                        $services = get_posts(array(
-                            'post_type' => 'service',
-                            'posts_per_page' => -1,
-                            'post_status' => 'publish',
-                            'meta_query' => array(
-                                array(
-                                    'key' => 'doctors',
-                                    'value' => $doctor_id,
-                                    'compare' => 'LIKE',
-                                ),
-                            ),
-                        ));
-                        $_service_category_ids = array_map(function ($value) {
-                            return $value->term_id;
-                        }, $service_categories);
-                    ?>
-      <div class="docker-item" style="" data-id="<?= implode(",", $_service_category_ids) ?>">
+        $doctor_id = get_the_ID(); 
+        $service_categories = get_categories_by_doctor_id($doctor_id);
+        $services = get_posts(array(
+          'post_type' => 'service',
+          'posts_per_page' => -1,
+          'post_status' => 'publish',
+          'meta_query' => array(
+            array(
+              'key' => 'doctors',
+              'value' => $doctor_id,
+              'compare' => 'LIKE',
+            ),
+          ),
+        ));
+        $branch = get_posts(array(
+          'post_type'      => 'branch',
+          'posts_per_page' => 1,
+          'post_status'    => 'publish',
+          'fields'         => 'ids',
+          'meta_query'     => array(
+            array(
+              'key'     => 'chuyen_vien',
+              'value'   => '"' . $doctor_id . '"',
+              'compare' => 'LIKE',
+            ),
+          ),
+        ));
+
+        $branch_id = !empty($branch) ? $branch[0] : null;
+      
+        $_service_category_ids = array_map(function ($value) {
+            return $value->term_id;
+        }, $service_categories);
+      ?>
+      <div class="docker-item" data-id="<?= implode(",", $_service_category_ids) ?>">
         <?php
-                            get_template_part( 'template-parts/practitioner', 'summary', array(
-                                "services" => $services, 
-                                "doctor_id" => $doctor_id, 
-                                "service_categories" => $service_categories,
-                            ));
-                        ?>
+          get_template_part( 'template-parts/practitioner', 'summary', array(
+            "services" => $services, 
+            "doctor_id" => $doctor_id, 
+            "service_categories" => $service_categories,
+            "branch_id" => $branch_id,
+          ));
+        ?>
         <hr style="border-top:1px solid #f2f2f2;margin-top:12px" />
       </div>
       <?php endwhile; ?>

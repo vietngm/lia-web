@@ -8,6 +8,43 @@ jQuery(function ($) {
 	$(document).on("click", ".js-open-bottom-sheet", function () {
 		let toppingsData = $(this).attr("data-toppings");
 
+		const branchId = $(this).data("branch-id");
+		const doctorId = $(this).data("doctor-id");
+		const branchSelect = $(".js-branch");
+
+		// Nếu có branchId và có select, thì mới chọn chi nhánh
+		if (branchId && branchSelect.length) {
+			const targetOption = branchSelect.find(
+				`option[data-branch-id="${branchId}"]`
+			);
+			if (targetOption.length) {
+				branchSelect.val(targetOption.val()).trigger("change");
+				// setTimeout(function () {
+				// 	if (doctorId) {
+				// 		const doctorSelect = $(".input-doctor select");
+				// 		const doctorOption = doctorSelect.find(
+				// 			`option[value="${doctorId}"]`
+				// 		);
+				// 		if (doctorOption.length) {
+				// 			doctorSelect.val(doctorId);
+				// 		}
+				// 	}
+				// }, 100);
+
+				setTimeout(function () {
+					if (doctorId) {
+						const doctorSelect = $(".input-doctor select");
+						const doctorOption = doctorSelect.find(
+							`option[value="${doctorId}"]`
+						);
+						if (doctorOption.length) {
+							doctorSelect.val(doctorId).trigger("change");
+						}
+					}
+				}, 200);
+			}
+		}
+
 		try {
 			toppingsData = JSON.parse(toppingsData.replace(/&quot;/g, '"'));
 		} catch (e) {
@@ -18,11 +55,18 @@ jQuery(function ($) {
 		basePrice = parseFloat($(this).data("price")) || 0;
 		const title = $(this).data("title");
 		const serviceId = parseInt($(this).data("id"));
+
+		// console.log(serviceId);
+		// console.log("Co vo day nghen.");
+
 		$(this).find('input[name="postId"]').val(serviceId);
 		localStorage.setItem("serviceId", serviceId);
 		$("#serviceName").text(title);
 		$("#servicePrice").text(basePrice.toLocaleString() + " đ");
 		$("#serviceImage").attr("src", $(this).data("image"));
+
+		console.log(serviceId);
+		console.log("Co vo day nghen.");
 
 		const container = $("#topping-container");
 		container.empty();

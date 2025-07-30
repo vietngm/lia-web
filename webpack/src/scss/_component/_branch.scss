@@ -69,9 +69,6 @@
 		display: grid;
 		gap: 4px;
 		align-items: center;
-		.separator {
-			font-size: 8px;
-		}
 	}
 	&-avatar {
 		width: 50px;
@@ -89,13 +86,13 @@
 		.btn-booking-service {
 			background-color: $color-main;
 			width: 100%;
-			padding: 4px 0;
+			// padding: 4px 0;
 			color: white;
-			border: none;
-			&.disabled {
-				background-color: #ccc;
-				color: #666;
-			}
+			// border: none;
+			// &.disabled {
+			// 	background-color: #ccc;
+			// 	color: #666;
+			// }
 		}
 	}
 	&-services {

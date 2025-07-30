@@ -115,15 +115,15 @@ $(document).ready(function() {
     const serviceId = parseInt(storedServiceId);
     const selectedService = services.find(service => service.id === serviceId);
 
-    console.log("Dịch vụ đã chọn:", selectedService);
+    // console.log("Dịch vụ đã chọn:", selectedService);
 
     if (selectedService) {
-      console.log("Dịch vụ đã chọn:", selectedService);
+      // console.log("Dịch vụ đã chọn:", selectedService);
 
       // Lọc danh sách chuyên viên theo doctorIds của dịch vụ
       const doctorIds = Array.isArray(selectedService.doctorIds) ? selectedService.doctorIds : [];
       const filteredDoctors = doctors.filter(doctor => doctorIds.includes(doctor.id));
-      console.log("Danh sách chuyên viên:", filteredDoctors);
+      // console.log("Danh sách chuyên viên:", filteredDoctors);
 
       // Cập nhật danh sách chuyên viên vào dropdown
       const doctorSelect = $(".input-doctor select");
@@ -140,13 +140,9 @@ $(document).ready(function() {
 </script>
 <script src="https://cdn.jsdelivr.net/gh/HichemTab-tech/OTP-designer-jquery@2.3.1/dist/otpdesigner.min.js"></script>
 
-<div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0 "></div>
+<div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
 <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
   <div class="overflow-hidden w-full h-full">
-    <!-- <div class="close-modal cursor-pointer">
-      <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
-    </div> -->
-
     <div class="flex items-center mb-4">
       <div class="booking-service-info">
         <div class="booking-service-image">
@@ -172,40 +168,22 @@ $(document).ready(function() {
           <h2 class="font-semibold mb-2" style="font-size:14px">Thông tin cá nhân</h2>
           <input type="hidden" name="postId" value="<?= get_the_ID() ?>" />
           <div class="input-group">
-            <!-- <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/person-gray.svg") ?>" /> -->
             <input class="input" placeholder="Họ và tên khách hàng" name="fullname" />
             <div class="text-12 italic text-red-500 error-fullname"></div>
           </div>
           <div class="input-group mb-6">
-            <!-- <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/phone-gray.svg") ?>" /> -->
             <input class="input" placeholder="Số điện thoại" name="phone" />
             <div class="text-12 italic text-red-500 error-phone"></div>
           </div>
-          <!-- <div class="input-group input-group-left-icon mb-2 hidden">
-            <img class="icon" src="<?= get_theme_file_uri("assets/images/icons/person-gray.svg") ?>" />
-            <?php
-                //  $placeholder = "Mã giới thiệu";
-                  //$referralRate = get_field("referralRate");
-                  // if ($referralRate) {
-                  //     $placeholder = "Nhập mã cộng tác viên để giảm $referralRate%";
-                  // }
-              ?>
-            <input class="input" placeholder="<?= $placeholder ?>" name="referralCode" />
-          </div> -->
-          <!-- <div class="flex gap-3 items-center cursor-pointer mb-4 checkbox-relatives">
-            <div class="input-checkbox">
-              <input type="checkbox" name="foreigner" />
-              <div class="icon"></div>
-            </div>
-            <div class="text-12">Đặt hẹn cho người thân/ bạn bè/ người nước ngoài</div>
-          </div> -->
+
           <div>
             <div class="font-semibold branch-name mb-2">Trung tâm & Chuyên viên</div>
             <div class="input-select mb-4 input-branch">
               <select placeholder="Chọn trung tâm" name="branch" class="js-branch">
                 <option></option>
                 <?php foreach ($post_branchs as $branch) : ?>
-                <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>"
+                <option value="<?= $branch->post_title ?>" data-branch-id="<?= $branch->ID ?>"
+                  data-address="<?=get_field('address',$branch->ID);?>"
                   data-ids="<?php echo json_encode(get_field('chuyen_vien',$branch->ID));?>">
                   <?= $branch->post_title ?></option>
                 <?php endforeach; ?>
@@ -217,22 +195,16 @@ $(document).ready(function() {
             <select placeholder="Chọn chuyên viên" name="practitioner" id="practitioner">
               <option></option>
               <?php foreach ($doctors as $doctor) : ?>
-              <option value="<?= $doctor["id"] ?>">
+              <option value="<?= $doctor["id"] ?>" data-doctor-id="<?= $doctor["id"] ?>">
                 <?= $doctor["title"] ?>
               </option>
               <?php endforeach; ?>
             </select>
             <div class="text-12 italic text-red-500 error-doctor"></div>
           </div>
-
-          <!-- <hr class="my-4" /> -->
-          <!-- <hr class="my-4" /> -->
-
         </div>
       </div>
 
-      <!-- </div> -->
-      <!-- <div class="lg:col-span-1"> -->
       <div class="toppings-group">
         <div class="topping-header">Topping</div>
         <div id="topping-container" class="topping-container">
@@ -241,7 +213,6 @@ $(document).ready(function() {
       </div>
       <div>
         <div class="lg:col-span-1 col-span-2">
-          <!-- <h2 class="form-title mb-0.5" style="font-size:14px">Lịch hẹn</h2> -->
           <div class="mb-4 font-semibold">Ngày khám mong muốn <span class="text-red-500">*</span></div>
           <div class="booking-date-picker mb-0">
             <div class="item active" data-date="<?= date("Y-m-d"); ?>">
@@ -301,23 +272,7 @@ $(document).ready(function() {
             </div>
           </div>
           <div class="text-12 italic text-red-500 error-time"></div>
-          <!-- <div class="flex gap-3 mt-4">
-            <div class="w-5 h-5 flex items-center justify-center rounded-5 bg-[#bdbdbd]">
-              <img class="w-3.5 h-3.5" src="<?= get_theme_file_uri("assets/images/icons/person-white.svg") ?>" />
-            </div>
-            <div class="flex-1">Đây là khung giờ lý tưởng để đặt hẹn làm đẹp</div>
-          </div> -->
-          <!-- <hr class="my-6" /> -->
-          <!-- <h2 class="form-title mb-2" style="font-size:14px">Ghi chú</h2>
-          <div class="input-group input-note mb-0">
-            <textarea class="input" rows="3" placeholder="Họ và tên khách hàng" name="note"></textarea>
-          </div> -->
-          <!-- <div id="noteTopping" class="input-group input-note-topping mb-0" style="display:none">
-            <textarea class="input" rows="3" name="noteTopping"></textarea>
-          </div>
-          <div id="gift" class="input-group input-note-topping mb-0" style="display:none">
-            <textarea class="input" rows="3" name="gift"></textarea>
-          </div> -->
+
         </div>
       </div>
 
@@ -332,53 +287,7 @@ $(document).ready(function() {
       <div class="h-[80px] flex items-center fixed bottom-0 left-0 right-0 bg-white bottom-action" style="z-index:10">
         <?php get_template_part( 'template-parts/modal', 'booking-confirm' ); ?>
       </div>
-      <!-- <div class="topping-summary mt-4 border-t pt-4 flex justify-between text-lg font-semibold">
-        <span>Tổng cộng:</span>
-        <span id="topping-total">0 đ</span>
-      </div> -->
+
     </section>
   </div>
 </div>
-
-<script>
-// document.addEventListener('DOMContentLoaded', function() {
-//   const modal = document.getElementById('modal-topping');
-//   const confirmButton = document.getElementById('edit-topping');
-//   const overlay = modal.querySelector('.bg-black');
-//   const closeModalButton = modal.querySelector('.close-modal');
-
-//   // Mở modal
-//   confirmButton.addEventListener('click', function() {
-//     modal.style.display = 'flex';
-//     setTimeout(() => {
-//       modal.classList.add('show');
-//     }, 10);
-//     document.body.classList.add('modal-open'); // Thêm class để chặn scroll
-//   });
-
-//   // Đóng modal
-//   const closeModal = () => {
-//     console.log("Đóng modal...");
-//     if (!modal) {
-//       console.error("Modal không tồn tại!");
-//       return;
-//     }
-//     modal.classList.remove('show');
-//     setTimeout(() => {
-//       modal.style.display = 'none';
-//     }, 300);
-//     document.body.classList.remove('modal-open');
-//   };
-
-//   // Đóng khi nhấn nút close
-//   closeModalButton.addEventListener('click', closeModal);
-//   overlay.addEventListener('click', closeModal);
-
-//   // Lắng nghe sự kiện từ modal
-//   window.addEventListener("message", function(event) {
-//     if (event.data.action === "closeModal") {
-//       closeModal();
-//     }
-//   });
-// });
-</script>

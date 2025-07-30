@@ -41,21 +41,6 @@
 	}
 
 	// Doctors
-	// $post_doctors = get_posts(array(
-	// 	"post_type" => "practitioner",
-	// 	"posts_per_page" => -1,
-	// ));
-	// $doctors = [];
-	// foreach ($post_doctors as $post_doctor) {
-	// 	$workingTimes = get_field("working-time", $post_doctor->ID);
-	// 	array_push($doctors, [
-	// 		"id" => $post_doctor->ID,
-	// 		"title" => $post_doctor->post_title,
-	// 		"workingTimes" => $workingTimes,
-	// 	]);
-	// }
-
-	// Doctors
 	$post_doctors = get_posts(array(
 		"post_type" => "practitioner",
 		"posts_per_page" => -1,
@@ -109,7 +94,7 @@
 		]);
 	}
 
-    $image = get_the_post_thumbnail_url(get_the_ID(),'medium');
+  $image = get_the_post_thumbnail_url(get_the_ID(),'medium');
 
 ?>
 
@@ -128,17 +113,17 @@ $(document).ready(function() {
   const services = BOOKING_DATA.services;
   const doctors = BOOKING_DATA.doctors; // Danh sách tất cả chuyên viên
 
-  console.log("Danh sách dịch vụ:", services);
-  console.log("Danh sách doctors:", doctors);
+  // console.log("Danh sách dịch vụ:", services);
+  // console.log("Danh sách doctors:", doctors);
 
   if (storedServiceId) {
     const serviceId = parseInt(storedServiceId);
     const selectedService = services.find(service => service.id === serviceId);
 
-    console.log("Dịch vụ đã chọn:", selectedService);
+    // console.log("Dịch vụ đã chọn:", selectedService);
 
     if (selectedService) {
-      console.log("Dịch vụ đã chọn:", selectedService);
+      // console.log("Dịch vụ đã chọn:", selectedService);
 
       // Lọc danh sách chuyên viên theo doctorIds của dịch vụ
       const doctorIds = Array.isArray(selectedService.doctorIds) ? selectedService.doctorIds : [];
@@ -383,7 +368,8 @@ function updateSelected() {
               <select placeholder="Chọn trung tâm" name="branch" class="js-branch">
                 <option></option>
                 <?php foreach ($post_branchs as $branch) : ?>
-                <option value="<?= $branch->post_title ?>" data-address="<?=get_field('address',$branch->ID);?>"
+                <option value="<?= $branch->post_title ?>" data-branch-id="<?= $branch->ID ?>"
+                  data-address="<?=get_field('address',$branch->ID);?>"
                   data-ids="<?php echo json_encode(get_field('chuyen_vien',$branch->ID));?>">
                   <?= $branch->post_title ?></option>
                 <?php endforeach; ?>
