@@ -1,0 +1,24 @@
+body {
+	overflow-x: hidden;
+}
+.video-container {
+	position: relative; /* container chứa video */
+	width: 100vw;
+	height: 33.33vh;
+	@media (min-width: $screen-md-min) {
+		height: 66.66vh; /* 2/3 chiều cao viewport */
+	}
+	overflow: hidden;
+	margin: 0 auto; /* căn giữa container nếu container nhỏ hơn viewport */
+}
+
+.video-container video {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: auto;
+	height: 100%; /* chiều cao video = chiều cao container */
+	min-width: 100%; /* đảm bảo chiều ngang video ít nhất bằng container */
+	transform: translate(-50%, -50%);
+	object-fit: cover;
+}
