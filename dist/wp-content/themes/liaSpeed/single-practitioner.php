@@ -35,10 +35,10 @@ window.addEventListener('scroll', function() {
 </script>
 
 <header id="page-header">
-  <div class="history-back cursor-pointer" data-fallback="<?= get_permalink(get_field("page_doctor", "option")) ?>">
+  <!-- <div class="history-back cursor-pointer" data-fallback="<?= get_permalink(get_field("page_doctor", "option")) ?>">
     <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-left-gray.svg") ?>" alt="" />
-  </div>
-  <div>
+  </div> -->
+  <div class="mt-2">
     <h1 class="px-[60px] text-center text-16 font-bold"><?= get_the_title() ?></h1>
   </div>
 </header>
@@ -94,14 +94,14 @@ window.addEventListener('scroll', function() {
 </div>
 <main class="container">
   <div class="row-diary">
-    <div class="evaluate-section">
+    <!-- <div class="evaluate-section">
       <div class="background-text">Chuyên viên</div>
       <div>
         <span class="line"></span>
         <span class="main-text">Trải nghiệm</span>
         <span class="line"></span>
       </div>
-    </div>
+    </div> -->
 
     <div class="content-rating mt-4">
       <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
@@ -172,16 +172,16 @@ window.addEventListener('scroll', function() {
     </div>
   </div>
 
-  <div class="row-rating">
+  <div class="row-rating mt-4 mb-4">
     <?php include get_template_directory()."/content/practitioner-branch.php"; ?>
   </div>
 
   <div class="row-service">
     <div class="evaluate-section">
-      <div class="background-text">DOCTOR</div>
+      <!-- <div class="background-text">DOCTOR</div> -->
       <div>
         <span class="line"></span>
-        <span class="main-text">Dịch vụ</span>
+        <span class="main-text ">Dịch vụ</span>
         <span class="line"></span>
       </div>
     </div>
