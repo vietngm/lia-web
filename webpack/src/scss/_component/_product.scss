@@ -104,6 +104,9 @@
 	&-price {
 		color: $color-blue;
 		font-weight: bold;
+		span {
+			font-weight: bold;
+		}
 	}
 	&-detail-title {
 		position: relative;
