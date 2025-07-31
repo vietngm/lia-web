@@ -1,9 +1,9 @@
-<?php get_header("empty"); ?>
-
-<?php 
+<?php
+  get_header("empty");
 	$fields = get_fields();
 	$image = bfi_thumb(get_the_post_thumbnail_url() , array("width"=>400, 'crop'=>false));
 	$service_categories = get_field('service_categories');
+  $doctor_id = get_the_ID();
   $args = array(
     "post_type" => "service",
     "posts_per_page" => -1,
@@ -11,12 +11,26 @@
       'relation' => 'AND',
       array(
         'key' => 'doctors',
-        'value' => '"'.get_the_ID().'"',
+        'value' => $doctor_id,
         'compare' => 'LIKE'
       ),
     ),
   );
   $the_query = new WP_Query( $args );
+  $branch = get_posts(array(
+    'post_type'      => 'branch',
+    'posts_per_page' => 1,
+    'post_status'    => 'publish',
+    'fields'         => 'ids',
+    'meta_query'     => array(
+      array(
+        'key'     => 'chuyen_vien',
+        'value'   => $doctor_id,
+        'compare' => 'LIKE',
+      ),
+    ),
+  ));
+  $branch_id = !empty($branch) ? $branch[0] : null;
 ?>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -198,7 +212,11 @@ window.addEventListener('scroll', function() {
 
         <?php if ($the_query->have_posts()) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
         <div class="col-span-1 product-list-item">
-          <?php get_template_part( 'template-parts/service', 'summary' ); ?>
+          <?php get_template_part( 'template-parts/service', 'summary', array(
+            "doctor_id" => $doctor_id, 
+            "branch_id" => $branch_id,
+          ) );
+          ?>
         </div>
         <?php endwhile; endif; wp_reset_postdata(); ?>
       </div>

@@ -7,6 +7,14 @@
 	$discountPercentage = ($price > 0 && $discountPrice < $price) 
     ? round((($price - $discountPrice) / $price) * 100) 
     : 0;
+  
+  // if(is_singular('practitioner')){
+    $doctor_id = $args["doctor_id"] ?? null;
+    $branch_id = $args["branch_id"] ?? null;
+  //   echo 'doctor_id: '.$doctor_id;
+  //   echo '<br>';
+  //   echo 'branch_id: '.$branch_id;
+  // }
 ?>
 <div class="overflow-hidden h-full flex flex-col rounded-1.5">
   <a href="<?= get_permalink() ?>" class="service-link">
@@ -160,9 +168,10 @@
       // Encode JSON để dùng trong HTML attribute
       $dataJson = htmlspecialchars(json_encode($dataToppings, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');
     ?>
-    <button class="btn btn-booking-service js-open-bottom-sheet"
-      data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
-      data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Đặt lịch</button>
+    <button class="btn btn-booking-service js-open-bottom-sheet" data-doctor-id="<?= $doctor_id ?>"
+      data-branch-id="<?= $branch_id ?>" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+      data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>"
+      data-image="<?= $image ?>">Đặt lịch</button>
     <?php //} ?>
   </div>
 </div>
