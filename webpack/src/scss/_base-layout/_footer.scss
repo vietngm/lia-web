@@ -332,11 +332,21 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #ececec;
 	flex-direction: column;
+	background-color: $color-main;
+	color: white;
 }
 
 .bottom-action {
 	transform: translateY(0);
 	transition: transform 0.4s ease-in-out;
+}
+
+.footer-nav {
+	a {
+		img {
+			height: 24px;
+			width: auto;
+		}
+	}
 }

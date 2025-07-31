@@ -48,7 +48,7 @@
         <?php endif; ?>
       </div>
     </a>
-    <?php if($is_home) {?>
+    <?php //if($is_home) {?>
     <?php
       $dataToppings = [];
       $toppings_1 = [];
@@ -163,6 +163,6 @@
     <button class="btn btn-booking-service js-open-bottom-sheet"
       data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
       data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Đặt lịch</button>
-    <?php } ?>
+    <?php //} ?>
   </div>
 </div>

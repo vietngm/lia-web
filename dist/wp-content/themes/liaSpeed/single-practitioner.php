@@ -4,6 +4,19 @@
 	$fields = get_fields();
 	$image = bfi_thumb(get_the_post_thumbnail_url() , array("width"=>400, 'crop'=>false));
 	$service_categories = get_field('service_categories');
+  $args = array(
+    "post_type" => "service",
+    "posts_per_page" => -1,
+    'meta_query' => array(
+      'relation' => 'AND',
+      array(
+        'key' => 'doctors',
+        'value' => '"'.get_the_ID().'"',
+        'compare' => 'LIKE'
+      ),
+    ),
+  );
+  $the_query = new WP_Query( $args );
 ?>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,20 +47,18 @@ window.addEventListener('scroll', function() {
 });
 </script>
 
-<header id="page-header">
-  <!-- <div class="history-back cursor-pointer" data-fallback="<?= get_permalink(get_field("page_doctor", "option")) ?>">
+<header id="page-header"
+  style="padding: 16px;position: fixed;top: 0;left: 0;right: 0;z-index: 1;background-color: white;">
+  <div class="history-back cursor-pointer flex items-center gap-1"
+    data-fallback="<?= get_permalink(get_field("page_doctor", "option")) ?>">
     <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-left-gray.svg") ?>" alt="" />
-  </div> -->
+    <div>Danh sách chuyên viên</div>
+  </div>
+</header>
+<div class="container" style="margin-top: 50px;">
   <div class="mt-2">
     <h1 class="px-[60px] text-center text-16 font-bold"><?= get_the_title() ?></h1>
   </div>
-</header>
-<div class="history-back cursor-pointer flex items-center gap-1"
-  data-fallback="<?= get_permalink(get_field("page_doctor", "option")) ?>" style="padding:16px">
-  <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-left-gray.svg") ?>" alt="" />
-  <div>Danh sách chuyên viên</div>
-</div>
-<div class="container">
   <div class="relative mx-auto max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
     <div class="relative">
       <div class=" z-10 relative image-container">
@@ -79,12 +90,12 @@ window.addEventListener('scroll', function() {
             <div style="color:#9e9e9e" class="text-16 font-bold  text-center"><?= get_the_title() ?></div>
           </div>
           <div style="position: absolute;bottom:0px;right:0" class="slide-right">
-            <div class="text-12  text-right">Kinh nghiệm: <?= $fields["experience"] ?? 2 ?></div>
-            <div class="text-12  text-right">Đánh giá : <?= $fields["rating_number"] ?></div>
+            <div class="text-12 text-right">Kinh nghiệm: <?= $fields["experience"] ?? 2 ?></div>
+            <div class="text-12 text-right">Đánh giá : <?= $fields["rating_number"] ?></div>
           </div>
           <div style="position: absolute;bottom:173px;" class="slide-left flex flex-col items-center">
-            <div class="text-12  text-right">Chuyên</div>
-            <div class="text-12  text-center">7 dịch vụ</div>
+            <div class="text-12 text-right">Chuyên</div>
+            <div class="text-12 text-center"><?= count($the_query->posts) ?> dịch vụ</div>
           </div>
         </div>
 
@@ -178,30 +189,13 @@ window.addEventListener('scroll', function() {
 
   <div class="row-service">
     <div class="evaluate-section">
-      <!-- <div class="background-text">DOCTOR</div> -->
-      <div>
-        <span class="line"></span>
-        <span class="main-text ">Dịch vụ</span>
-        <span class="line"></span>
+      <div class="practitioner-service-title">
+        <span class="main-text">Dịch vụ của <?= get_the_title() ?></span>
       </div>
     </div>
     <div class="content-service mt-4">
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 ">
-        <?php
-					$args = array(
-						"post_type" => "service",
-						"posts_per_page" => -1,
-						'meta_query' => array(
-							'relation' => 'AND',
-							array(
-								'key' => 'doctors',
-								'value' => '"'.get_the_ID().'"',
-								'compare' => 'LIKE'
-							),
-						),
-					);
-					$the_query = new WP_Query( $args );
-				?>
+
         <?php if ($the_query->have_posts()) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
         <div class="col-span-1 product-list-item">
           <?php get_template_part( 'template-parts/service', 'summary' ); ?>
@@ -236,4 +230,4 @@ window.addEventListener('scroll', function() {
     </div>
   </div>
 </div>
-<?php get_footer("empty"); ?>
+<?php get_footer(); ?>

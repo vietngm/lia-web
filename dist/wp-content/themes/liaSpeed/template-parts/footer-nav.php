@@ -13,7 +13,7 @@
 <div class="h-[80px] lg:hidden"></div>
 <div
   class="h-[80px] border-t-1 border-[#eee] fixed bottom-0 left-0 right-0 z-50 bg-white flex items-center justify-center lg:hidden">
-  <div class="container flex items-center justify-between ">
+  <div class="container flex items-center justify-between footer-nav">
     <a href="<?= $home_url ?>" class="w-[85px] py-2 bg-opacity-30 flex flex-col items-center gap-1 rounded-2">
       <?php if ($is_home) : ?>
       <img src="<?= get_theme_file_uri("assets/images/icons/home-gray.svg") ?>" />
