@@ -1,0 +1,21 @@
+.about-title {
+	color: $color-main;
+	display: grid;
+	align-items: center;
+	text-align: center;
+	// margin: 0 auto;
+}
+.content-editor p {
+	text-align: center;
+}
+.about-icon {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+}
+.about-us-item {
+	text-align: center;
+}
+.about-icon-item {
+	justify-items: center;
+}

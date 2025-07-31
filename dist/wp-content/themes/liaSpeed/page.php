@@ -23,7 +23,7 @@ $video = $fields["vct_video"];
 <?php endif; ?>
 <section class="section section-blog">
   <div class="container pb-4">
-    <div class="flex gap-2 flex-wrap mb-8">
+    <div class="flex gap-2 flex-wrap mb-6">
       <a class="text-primary font-semibold" href="/">Trang chủ</a>
       <span>›</span>
       <a class="" href="<?= the_permalink() ?>"><?= get_the_title(); ?></a>
@@ -31,7 +31,7 @@ $video = $fields["vct_video"];
     <?php foreach ($fields["content"] as $content) : ?>
     <?php if ($content["acf_fc_layout"] == "title-content") : ?>
     <div class="mb-6">
-      <h2 class="section-title-underline mb-8"><?= $content["title"] ?></h2>
+      <h2 class="about-title text-primary mb-2"><?= $content["title"] ?></h2>
       <div class="content-editor large">
         <?= $content["content"] ?>
       </div>
@@ -69,13 +69,13 @@ $video = $fields["vct_video"];
     <div style="height: <?= $content["size"] ?>px"></div>
     <?php elseif ($content["acf_fc_layout"] == "company-value") : ?>
     <div class="mb-6">
-      <h2 class="section-title-underline mb-8"><?= $content["title"] ?></h2>
-      <div class="grid grid-cols-2 gap-6">
+      <h2 class="about-title text-primary mb-4"><?= $content["title"] ?></h2>
+      <div class="grid gap-6">
         <?php foreach($content["items"] as $item) : ?>
-        <div>
-          <div class="flex gap-1 items-start mb-2">
-            <img class="w-7.5 mt-1" src="<?= get_theme_file_uri("assets/images/sample/why-icon.svg") ?>" />
-            <h2 class="text-16 font-semibold text-primary"><?= $item["title"] ?></h2>
+        <div class="grid about-us-item">
+          <div class="grid gap-1 items-start about-icon-item">
+            <img class="about-icon" src="<?= $item["icon"]["url"] ?>" />
+            <h2 class="text-primary"><?= $item["title"] ?></h2>
           </div>
           <div class="content-editor">
             <p class="text-justify">
@@ -86,17 +86,7 @@ $video = $fields["vct_video"];
         <?php endforeach; ?>
       </div>
     </div>
-    <?php elseif ($content["acf_fc_layout"] == "capacity_system") : ?>
-    <div class="mb-6">
-      <h2 class="section-title-underline mb-8"><?= $content["title"] ?></h2>
-      <?php foreach($content["items"] as $item) : ?>
-      <div class="flex items-center text-16 gap-2 pb-2 mb-4 border-b-1 border-[#eee]">
-        <div class="bg-primary rounded-2 px-2 py-1 text-white min-w-[70px] font-medium text-center">
-          <?= $item["short_text"] ?></div>
-        <div><?= $item["description"] ?></div>
-      </div>
-      <?php endforeach; ?>
-    </div>
+
     <?php elseif ($content["acf_fc_layout"] == "policy") : ?>
     <div class="mb-6">
       <div class="collapse-container">
