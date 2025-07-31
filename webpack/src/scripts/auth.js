@@ -59,7 +59,7 @@ jQuery(function ($) {
 
 	async function saveToken(token, refreshToken, username, password) {
 		$.ajax({
-			url: AJAX_URL,
+			url: syncDataVars.ajax_url,
 			type: "POST",
 			data: {
 				action: "auth",

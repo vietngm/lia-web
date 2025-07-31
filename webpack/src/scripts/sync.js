@@ -161,7 +161,7 @@ jQuery(function ($) {
 		var interval = setInterval(doStuff, 5000);
 		function doStuff() {
 			$.ajax({
-				url: AJAX_URL,
+				url: syncDataVars.ajax_url,
 				type: "POST",
 				data: {
 					action: "sync_service_data",
@@ -171,7 +171,7 @@ jQuery(function ($) {
 				},
 				success: function (result) {
 					if (result) {
-						const jsonParse = JSON.parse(result);
+						const jsonParse = result;
 						if (jsonParse.page == data.length - 1) {
 							$.fancybox.open("#modal-success", {
 								modal: true,
@@ -200,7 +200,7 @@ jQuery(function ($) {
 		var interval = setInterval(doStuff, 5000);
 		function doStuff() {
 			$.ajax({
-				url: AJAX_URL,
+				url: syncDataVars.ajax_url,
 				type: "POST",
 				data: {
 					action: "sync_doctor_data",
@@ -210,7 +210,7 @@ jQuery(function ($) {
 				},
 				success: function (result) {
 					if (result) {
-						const jsonParse = JSON.parse(result);
+						const jsonParse = result;
 						if (jsonParse.page == data.length - 1) {
 							$.fancybox.open("#modal-success", {
 								modal: true,

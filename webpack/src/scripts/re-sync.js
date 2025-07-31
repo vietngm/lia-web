@@ -11,7 +11,7 @@ jQuery(function ($) {
 
 	function getData(bookingId) {
 		$.ajax({
-			url: AJAX_URL,
+			url: syncDataVars.ajax_url,
 			type: "GET",
 			data: {
 				action: "sync_booking",

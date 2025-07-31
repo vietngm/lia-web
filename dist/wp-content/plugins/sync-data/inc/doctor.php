@@ -110,13 +110,11 @@ function ajax_sync_doctor_data(){
 		echo 'Error';
 		die();
 	}
-	echo json_encode(
-		array(
-			'success' => true,	
-			"message" => "Đồng bộ dữ liệu thành công.",
-			"page"=>(int)$page,
-		)
-	);
+	wp_send_json([
+		'success' => true,
+		'message' => 'Đồng bộ dữ liệu thành công.',
+		'page'    => (int)$page,
+	]);
 	die();
 }
 
