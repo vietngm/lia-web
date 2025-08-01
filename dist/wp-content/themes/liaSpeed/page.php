@@ -87,6 +87,18 @@ $video = $fields["vct_video"];
       </div>
     </div>
 
+    <?php elseif ($content["acf_fc_layout"] == "capacity_system") : ?>
+    <div class="mb-6">
+      <h2 class="section-title-underline mb-8"><?= $content["title"] ?></h2>
+      <?php foreach($content["items"] as $item) : ?>
+      <div class="flex items-center text-16 gap-2 pb-2 mb-4 border-b-1 border-[#eee]">
+        <div class="bg-primary rounded-2 px-2 py-1 text-white min-w-[70px] font-medium text-center">
+          <?= $item["short_text"] ?></div>
+        <div><?= $item["description"] ?></div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+
     <?php elseif ($content["acf_fc_layout"] == "policy") : ?>
     <div class="mb-6">
       <div class="collapse-container">
