@@ -30,7 +30,7 @@ function sync_data_add_pages() {
 add_action('admin_enqueue_scripts', 'sync_data_enqueue_assets');
 
 function sync_data_enqueue_assets($hook){
-	if ($hook !== 'settings_page_sync-data') return;
+	// if ($hook !== 'settings_page_sync-data') return;
 	wp_register_style('sync-data', SYNC_DATA_URL . 'css/plugin.css', array(), SYNC_DATA_VERSION );
 	wp_enqueue_style('sync-data');	
 
