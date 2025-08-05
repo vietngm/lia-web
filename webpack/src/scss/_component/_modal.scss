@@ -68,6 +68,45 @@
 			background-color: $color-main;
 		}
 	}
+	&-content {
+		&-customized {
+			padding: 16px !important;
+			margin: auto !important;
+			.modal-body {
+				padding: 0;
+				grid-gap: 12px;
+				margin-top: 16px;
+				.form-group {
+					margin-bottom: 0;
+					label {
+						margin-bottom: 0;
+					}
+				}
+			}
+			.modal-header {
+				padding: 0 0;
+				border-bottom: none;
+			}
+			.modal-close {
+				position: relative;
+				// top: 1rem;
+				// right: 1rem;
+				width: 30px;
+				height: 30px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				border-radius: 50%;
+				background: #f5f5f5;
+			}
+			.modal-title {
+				font-size: 18px;
+				font-weight: 700;
+				// margin-bottom: 1rem;
+			}
+		}
+	}
 }
 
 .title_otp_xt {

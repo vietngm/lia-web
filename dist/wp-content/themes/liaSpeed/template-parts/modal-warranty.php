@@ -1,6 +1,6 @@
-<div class="modal-content">
+<div class="modal-content modal-content-customized">
   <div class="modal-header">
-    <h2><?php the_title();?></h2>
+    <h2 class="modal-title"><?php the_title();?></h2>
     <span class="close-modal">&times;</span>
   </div>
   <div class="modal-body">

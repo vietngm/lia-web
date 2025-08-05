@@ -4,17 +4,17 @@
 // --------------------------------------------------
 .package {
 	display: grid;
-	margin-top: -20px;
-	margin-left: -20px;
-	margin-right: -20px;
+	// margin-top: -20px;
+	// margin-left: -16px;
+	// margin-right: -16px;
 	background-color: rgba($color-gray, 0.4);
-	padding: 20px;
+	padding: 16px;
 	grid-gap: 12px;
 	&.home {
-		margin-left: -2rem;
-		margin-right: -2rem;
-		margin-top: 0;
-		padding: 20px 32px;
+		// margin-left: -16px;
+		// margin-right: -16px;
+		// margin-top: 16px;
+		padding: 16px 16px;
 	}
 	&-info {
 		display: grid;

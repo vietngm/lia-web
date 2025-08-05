@@ -137,9 +137,11 @@
   <!-- Registration Modal -->
   <div class="franchise-modal" id="register-modal">
     <?= wp_nonce_field( 'consultation_form' ); ?>
-    <div class="modal-content">
-      <div class="modal-close" id="close-register-modal">✕</div>
-      <h2 class="modal-title">Đăng ký tư vấn</h2>
+    <div class="modal-content modal-content-customized">
+      <div class="modal-header">
+        <h2 class="modal-title">Đăng ký tư vấn</h2>
+        <div class="modal-close" id="close-register-modal">✕</div>
+      </div>
       <!-- <form class="modal-form" id="register-form"> -->
       <div class="modal-body">
         <input type="hidden" name="packageName" value="">

@@ -859,7 +859,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   width: 100%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 /* Deposit Modal Specific Styles */
@@ -954,7 +954,7 @@ body {
 }
 
 .support-section {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 
 .support-section h3 {
@@ -966,7 +966,7 @@ body {
 
 .faq-item {
   border-bottom: 1px solid var(--border-color);
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .faq-question {
@@ -1001,11 +1001,11 @@ body {
   gap: 15px;
 }
 
-.contact-item {
+/* .contact-item {
   display: flex;
   align-items: center;
   gap: 10px;
-}
+} */
 
 .contact-icon {
   width: 40px;
@@ -1222,10 +1222,10 @@ body {
         <div class="metric-item">
           <div class="metric-label">
             <img src="<?php echo get_theme_file_uri('assets/images/icons/location-gray.svg'); ?>" alt="Investment">
-            <span style="margin-right:12px;">Vị trí</span>
-            <span class="location-text"><?php echo $franchise_fields['description']; ?></span>
+            Vị trí
+            <!-- <span class="location-text"><?php echo $franchise_fields['description']; ?></span> -->
           </div>
-
+          <div class="metric-value"><?php echo $franchise_fields['description']; ?></div>
         </div>
       </div>
 
@@ -1299,7 +1299,7 @@ body {
           <div class="help-icon">?</div>
         </div>
         <div class="action-button register-button">Đăng ký tư vấn</div>
-        <div class="action-button deposit-button">Đăng cọc ngay</div>
+        <div class="action-button deposit-button">Đặt cọc ngay</div>
       </div>
   </section>
 </main>
@@ -1311,7 +1311,7 @@ body {
 
 <!-- Modal for Deposit -->
 <div id="deposit-modal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content modal-content-customized">
     <div class="modal-header">
       <h2>Đặt cọc nhượng quyền</h2>
       <span class="close-modal">&times;</span>
@@ -1362,9 +1362,9 @@ body {
 
 <!-- Modal for Support -->
 <div id="support-modal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content modal-content-customized">
     <div class="modal-header">
-      <h2>Hỗ trợ</h2>
+      <h2 class="modal-title">Hỗ trợ</h2>
       <span class="close-modal">&times;</span>
     </div>
     <div class="modal-body">
@@ -1418,7 +1418,7 @@ body {
             </div>
             <div class="contact-item">
               <div class="contact-icon">
-                <img src="<?php echo get_theme_file_uri('assets/images/icons/mail.svg'); ?>" alt="Email">
+                <img src="<?php echo get_theme_file_uri('assets/images/icons/email.svg'); ?>" alt="Email">
               </div>
               <div class="contact-info">
                 <p class="contact-label">Email</p>

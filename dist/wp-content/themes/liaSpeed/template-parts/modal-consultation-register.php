@@ -1,7 +1,7 @@
 <?= wp_nonce_field( 'consultation_form' ); ?>
 <div class="modal-content modal-content-customized">
   <div class="modal-header">
-    <h2>Đăng ký tư vấn</h2>
+    <h2 class="modal-title">Đăng ký tư vấn</h2>
     <span class="close-modal">&times;</span>
   </div>
   <div class="modal-body">
