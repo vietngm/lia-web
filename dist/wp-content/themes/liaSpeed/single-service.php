@@ -130,7 +130,7 @@ window.addEventListener('scroll', function() {
             <span class="text-12"><?= $fields["time"] ?> phút</span>
           </div>
           <div class="mt-2">
-            <p class="text-14"><?= $fields["note"] ?></p>
+            <p><?= $fields["note"] ?></p>
           </div>
           <div class="flex gap-2 items-center mt-2 " style="justify-content: space-between;">
             <div class="text-16 text-red-500 flex items-center gap-2 justify-between w-full">

@@ -161,8 +161,8 @@ add_action('init', 'register_practitioner_post_type');
 /********************************************* Franchise **********************************************/
 function register_franchise_post_type(){
 	$label = array(
-		'name' => 'Mô hình nhượng quyền',
-		'singular_name' => 'Mô hình nhượng quyền',
+		'name' => 'Mô hình',
+		'singular_name' => 'Mô hình',
 		'add_new' => 'Thêm mới'
 	);
 	$args = array(
@@ -187,7 +187,7 @@ function register_franchise_post_type(){
 		'capability_type' => 'post',
 		'show_in_menu' => true,
 		'menu_position' => 20,
-		'menu_icon' => 'dashicons-admin-site',
+		'menu_icon' => 'dashicons-editor-ul',
 		'can_export' => true,
 		'has_archive' => false,
 		'rewrite' => array('slug' => 'mo-hinh-nhuong-quyen', 'with_front' => false)
@@ -489,3 +489,5 @@ include get_template_directory() . "/inc/recruitment.php";
 include get_template_directory() . "/inc/news.php";
 /********************************************* Render List **********************************************/
 include get_template_directory() . "/inc/render-list.php";
+/********************************************* Investment **********************************************/
+include get_template_directory() . "/inc/investment.php";

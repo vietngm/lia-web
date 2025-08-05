@@ -20,7 +20,7 @@
       <?php else : ?>
       <img src="<?= get_theme_file_uri("assets/images/icons/home.svg") ?>" />
       <?php endif; ?>
-      <div class="text-center text-10 font-medium <?= $is_home ? "text-primary" : "" ?>">Trang chủ</div>
+      <div class="text-center footer-nav-text font-medium <?= $is_home ? "text-primary" : "" ?>">Trang chủ</div>
     </a>
     <a href="<?=$branch_url?>" class="w-[85px] py-2 bg-opacity-30 flex flex-col items-center gap-1 rounded-2">
       <?php if ($is_branch) : ?>
@@ -28,7 +28,7 @@
       <?php else : ?>
       <img src="<?= get_theme_file_uri("assets/images/icons/branch.svg") ?>" />
       <?php endif; ?>
-      <div class="text-center text-10 font-medium <?= $is_branch ? "text-primary" : "" ?>">Chi nhánh</div>
+      <div class="text-center footer-nav-text font-medium <?= $is_branch ? "text-primary" : "" ?>">Chi nhánh</div>
     </a>
     <a href="<?=$practitioner_url?>" class="w-[85px] py-2 bg-opacity-30 flex flex-col items-center gap-1 rounded-2">
       <?php if ($is_practitioner) : ?>
@@ -36,7 +36,8 @@
       <?php else : ?>
       <img src="<?= get_theme_file_uri("assets/images/icons/practi.svg") ?>" />
       <?php endif; ?>
-      <div class="text-center text-10 font-medium <?= $is_practitioner ? "text-primary" : "" ?>">Chuyên viên</div>
+      <div class="text-center footer-nav-text font-medium <?= $is_practitioner ? "text-primary" : "" ?>">Chuyên viên
+      </div>
     </a>
   </div>
 </div>

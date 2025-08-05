@@ -96,9 +96,9 @@
 	}
 	&-detail {
 		display: grid;
-		// grid-gap: 8px;
+		grid-gap: 6px;
 		@media (min-width: $screen-md-min) {
-			grid-gap: 8px;
+			// grid-gap: 8px;
 		}
 	}
 	&-price {
@@ -156,7 +156,7 @@
 	&-link {
 		line-height: normal;
 		span {
-			font-size: 12px;
+			// font-size: 12px;
 		}
 	}
 }
@@ -202,7 +202,7 @@
 	border: 1px solid $color-main;
 	text-align: center;
 	color: $color-main;
-	font-size: 12px;
+	// font-size: 12px;
 	cursor: pointer;
 	transition: all 0.4s ease;
 	padding: 1px 0;

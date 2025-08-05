@@ -55,10 +55,11 @@ h3 {
 	text-decoration: none;
 	display: flex;
 	justify-content: space-between;
-	padding: 4px 12px;
+	padding: 6px 12px;
 	color: #333;
 	font-size: 14px;
 	cursor: pointer;
+	align-items: center;
 }
 
 .menu-header {
@@ -69,6 +70,7 @@ h3 {
 	color: #333;
 	font-size: 14px;
 	cursor: pointer;
+	align-items: center;
 }
 .menu-header i {
 	transition: transform 0.3s ease;

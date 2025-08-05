@@ -1,5 +1,4 @@
 <?php
-define( 'WP_CACHE', true );
 /**
  * The base configuration for WordPress
  *
@@ -79,7 +78,7 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
-
+define('DB_CHARSET', 'utf8mb4');
 
 define( 'WP_ENVIRONMENT_TYPE', 'local' );
 /* That's all, stop editing! Happy publishing. */

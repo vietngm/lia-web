@@ -46,11 +46,11 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 52px;
-		font-size: 12px;
+		// font-size: 12px;
 		font-weight: bold;
 	}
 	&-all {
-		font-size: 12px;
+		// font-size: 12px;
 		color: $color-main;
 		font-weight: normal;
 	}
@@ -64,7 +64,7 @@
 		// margin-right: 32px;
 	}
 	&-title {
-		font-size: 0.8rem;
+		// font-size: 0.8rem;
 		display: -webkit-box;
 		-webkit-line-clamp: 1;
 		-webkit-box-orient: vertical;
@@ -145,7 +145,7 @@
 			background-color: rgba($color-light-blue, 0.4);
 			border-radius: 16px;
 			padding: 4px 16px;
-			font-size: 12px;
+			// font-size: 12px;
 			color: $color-main;
 			transition: all 0.4s;
 			&:hover {
@@ -170,7 +170,7 @@
 		display: flex;
 		grid-gap: 8px;
 		align-items: center;
-		font-size: 12px;
+		// font-size: 12px;
 		justify-content: space-between;
 	}
 	&-more {

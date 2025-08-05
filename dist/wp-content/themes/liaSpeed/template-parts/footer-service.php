@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <!-- <a href="<?//= get_permalink(get_field('page_doctor', 'option')) ?>" class="consultant-zalo-bottom-v1"> -->
         <a href="https://liavietnam.vn/danh-sach-chuyen-vien/" class="consultant-zalo-bottom-v1">
           <div class="border-zalo-bottom">
-            <div style="font-weight:700">Tìm chuyên viên</div>
+            <div class="text-find-doctor">Tìm chuyên viên</div>
           </div>
           <div style="font-size:10px">Tư vấn 1-1</div>
         </a>

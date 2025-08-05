@@ -6,11 +6,15 @@
 	&-content {
 		display: grid;
 		align-content: space-between;
+		grid-gap: 6px;
 	}
 	&-link {
 		&:hover {
 			opacity: 0.8;
 		}
+	}
+	&-title {
+		margin-bottom: 0;
 	}
 	&-tab {
 		width: auto !important;
@@ -21,11 +25,16 @@
 		border: none;
 		background-color: rgba($color-light-blue, 0.4);
 		color: $color-main;
-		font-size: 12px;
+		// font-size: 12px;
 		&.item-active {
 			background-color: $color-main !important;
 			color: $color-white !important;
 			// border-color: #71ad67 !important;
 		}
 	}
+}
+
+.text-service-title {
+	font-weight: normal;
+	font-size: 0.94rem;
 }

@@ -6,6 +6,10 @@
 	display: grid;
 	// grid-gap: 16px;
 	// margin-bottom: 64px;
+	margin-top: 16px;
+	@media (min-width: $screen-md-min) {
+		margin-top: 32px;
+	}
 	.mt {
 		margin-top: 16px;
 	}
@@ -190,7 +194,7 @@
 		display: grid;
 	}
 	&-excerpt {
-		font-size: 0.9em;
-		color: #4b4f52;
+		// font-size: 0.9em;
+		// color: #4b4f52;
 	}
 }

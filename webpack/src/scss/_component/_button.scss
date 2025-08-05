@@ -6,7 +6,8 @@
 	border: 1px solid $color-main;
 	padding: 4px 12px;
 	text-align: center;
-	font-size: 12px;
+	// font-size: 12px;
+	font-size: 0.94rem;
 	justify-content: center;
 	display: flex;
 	align-items: center;
@@ -21,7 +22,7 @@
 	}
 	&-lg {
 		padding: 8px 12px;
-		font-size: 14px;
+		// font-size: 14px;
 	}
 }
 .blur-bg {

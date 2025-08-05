@@ -24,9 +24,9 @@
   <?php } ?>
   <div class="product-detail">
 
-    <div class="flex justify-between items-center mb-1.5">
+    <div class="flex justify-between items-center">
       <div class="rating items-center gap-1">
-        <div class="flex text-10" style="font-weight:800;">
+        <div class="flex text-10 rating-icon" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= $rating; ?></span>
           <span class="value">(<?php echo $ratingCount;?>)</span>

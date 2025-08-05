@@ -130,7 +130,7 @@ const BOOKING_DATA = {
   }
 
   .text-14 {
-    font-size: 12px;
+    /* font-size: 12px; */
     font-weight: 300;
   }
 
@@ -388,7 +388,7 @@ const BOOKING_DATA = {
             <div class="col-span-1">
               <a href="<?= get_permalink(get_field("page_doctor", "option")) ?>" class="consultant-zalo-bottom w-full">
                 <div class="border-zalo-bottom">
-                  <div style="font-weight:700">Tìm chuyên viên</div>
+                  <div class="text-find-doctor">Tìm chuyên viên</div>
                 </div>
                 <div style="font-size:10px">Tư vấn ngay</div>
               </a>

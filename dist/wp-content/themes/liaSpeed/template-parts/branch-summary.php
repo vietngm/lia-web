@@ -24,7 +24,7 @@
     <div class="branch-content">
       <h1 class="font-bold" style="font-size:14px"><?= esc_html($branch_name); ?></h1>
       <div class="rating items-center">
-        <div class="flex text-10" style="font-weight:800;">
+        <div class="flex text-10 rating-icon" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= esc_html($branch_rating); ?></span>
           <span class="value">(<?= esc_html($rating_number); ?>)</span>
@@ -235,7 +235,7 @@
               <div class="modal-service-title"><?= $service_title ?></div>
               <div class="flex justify-between items-center">
                 <div class="rating items-center">
-                  <div class="flex text-10 gap-1" style="font-weight:800;">
+                  <div class="flex text-10 gap-1 rating-icon" style="font-weight:800;">
                     <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
                     <span class="name"><?= $service_rating ?></span>
                     <span class="value">(<?= $service_rating_number ?>)</span>

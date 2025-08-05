@@ -77,8 +77,8 @@
 }
 
 .text-14 {
-	font-size: 12px;
-	font-weight: 300;
+	// font-size: 12px;
+	// font-weight: 300;
 }
 
 .bg-round {
@@ -172,7 +172,7 @@ input:checked + .time-input-content,
 }
 
 .title-topping {
-	font-size: 12px;
+	// font-size: 12px;
 	font-weight: 600;
 	color: #1a5478;
 	border-bottom: 1px solid #d3d1d2;
@@ -188,7 +188,7 @@ input:checked + .time-input-content,
 }
 
 .button-select-gift span {
-	font-size: 12px;
+	// font-size: 12px;
 }
 
 .toppings-group {
@@ -298,10 +298,10 @@ input:checked + .time-input-content,
 .modal-service-content {
 	display: grid;
 	grid-template-columns: 1fr;
-	// grid-gap: 4px;
+	grid-gap: 2px;
 }
 .modal-service-title {
-	font-size: 12px;
+	// font-size: 12px;
 	line-height: normal;
 }
 .modal-service-image {
@@ -314,4 +314,9 @@ input:checked + .time-input-content,
 		height: 100%;
 		object-fit: cover;
 	}
+}
+
+.text-find-doctor {
+	font-size: 12px;
+	font-weight: bold;
 }

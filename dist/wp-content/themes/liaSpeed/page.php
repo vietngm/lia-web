@@ -32,12 +32,12 @@ $video = $fields["vct_video"];
     <?php if ($content["acf_fc_layout"] == "title-content") : ?>
     <div class="mb-6">
       <h2 class="about-title text-primary mb-2"><?= $content["title"] ?></h2>
-      <div class="content-editor large">
+      <div class="article-content large">
         <?= $content["content"] ?>
       </div>
     </div>
     <?php elseif ($content["acf_fc_layout"] == "content") : ?>
-    <div class="content-editor large">
+    <div class="article-content large">
       <?= $content["content"] ?>
     </div>
     <?php elseif ($content["acf_fc_layout"] == "video") : ?>
@@ -77,7 +77,7 @@ $video = $fields["vct_video"];
             <img class="about-icon" src="<?= $item["icon"]["url"] ?>" />
             <h2 class="text-primary"><?= $item["title"] ?></h2>
           </div>
-          <div class="content-editor">
+          <div class="article-content">
             <p class="text-justify">
               <?= $item["content"] ?>
             </p>
@@ -114,7 +114,7 @@ $video = $fields["vct_video"];
             </div>
           </div>
           <div class="collapse-body <?= $index ? "hidden" : "" ?>">
-            <div class="content-editor py-2 mb-2 max-h-[500px] overflow-y-auto">
+            <div class="article-content py-2 mb-2 max-h-[500px] overflow-y-auto">
               <?= $item["content"] ?>
             </div>
           </div>

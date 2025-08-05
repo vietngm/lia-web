@@ -19,6 +19,9 @@
 		font-size: 8px;
 		opacity: 0.5;
 	}
+	&-icon {
+		align-items: center;
+	}
 }
 
 .discount-percentage {
@@ -32,8 +35,4 @@
 .text-price {
 	color: $color-main;
 	font-weight: bold;
-}
-.text-service-title {
-	font-weight: normal;
-	// font-size: 0.94rem;
 }

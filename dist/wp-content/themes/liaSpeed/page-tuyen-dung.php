@@ -89,12 +89,9 @@
             <div class="heading-main"><?php echo $gt_tdc; ?></div>
             <div class="heading-sub"><?php echo $gt_tdp; ?></div>
           </div>
-          <?//=$gt_soluoc;?>
+
           <div class="recruitment-about">
-            <p>🎮 “Làm việc như chơi game” tại LiA Speed Beauty!</p>
-            <p>Dù bạn mới bắt đầu hay đã có kinh nghiệm, chỉ cần đăng ký trong 5 phút, bạn đã vào vai “Cộng sự LiA”
-              chinh
-              phục thử thách, tích điểm nhanh, thăng cấp liên tục.</p>
+            <?=$gt_soluoc;?>
           </div>
 
           <a href="#" class="contact-now" title="ỨNG TUYỂN NGAY">
@@ -135,7 +132,7 @@
             <div class="target">
               <div class="target-heading"><?php echo $ql_tdp; ?></div>
               <div class="target-money">
-                <div class="value"><?=$ql_mtn?></div>
+                <div class="value"><?= number_format($ql_mtn, 0, ",", ".") ?></div>
                 <div class="name">/ tháng</div>
               </div>
               <div class="target-month">Sau <?=$ql_month?> tháng</div>

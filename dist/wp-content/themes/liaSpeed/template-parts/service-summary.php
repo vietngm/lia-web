@@ -21,9 +21,9 @@
     <img class="img aspect-square lazy" data-src="<?= $image ?>" />
   </a>
   <div class="flex-1 flex flex-col border-1 border-t-0 border-gray-300 rounded-b-1.5 p-2 service-content">
-    <div class="flex justify-between items-center mb-1.5">
+    <div class="flex justify-between items-center">
       <div class="rating items-center">
-        <div class="flex text-10" style="font-weight:800;">
+        <div class="flex text-10 rating-icon" style="font-weight:800;">
           <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
           <span class="name"><?= $fields["rating"] ?></span>
           <span class="value">(<?= $fields["rating_number"] ?>)</span>
@@ -34,9 +34,8 @@
       </div>
     </div>
     <a href="<?= get_permalink() ?>" class="service-link">
-      <h3 class="text-12 text-service-title line-clamp-2 mb-0"><?= get_the_title() ?></h3>
-      <!-- <div class="line-clamp-2 text-12 text-gray-600"><?= $fields["note"] ?></div> -->
-      <div class="text-12 mt-2">
+      <h3 class="text-service-title line-clamp-2 mb-0"><?= get_the_title() ?></h3>
+      <div class="mt-2">
         <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
         <div class="flex items-center">
           <span class="discount-percentage">
@@ -56,7 +55,7 @@
         <?php endif; ?>
       </div>
     </a>
-    <?php //if($is_home) {?>
+    <?php if(!is_singular('service')) {?>
     <?php
       $dataToppings = [];
       $toppings_1 = [];
@@ -172,6 +171,6 @@
       data-branch-id="<?= $branch_id ?>" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
       data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>"
       data-image="<?= $image ?>">Đặt lịch</button>
-    <?php //} ?>
+    <?php } ?>
   </div>
 </div>

@@ -39,8 +39,8 @@ h2 {
 }
 
 p {
-	font-size: 0.9em;
-	color: #555;
+	// font-size: 0.9em;
+	// color: #555;
 }
 
 .dashed {
@@ -67,7 +67,7 @@ p {
 .view-more {
 	position: relative;
 	color: #8f8f8f;
-	font-size: 12px;
+	// font-size: 12px;
 	cursor: pointer;
 	overflow: hidden;
 	display: inline-block;
@@ -181,17 +181,16 @@ p {
 }
 
 .franchise-title {
-	font-size: 26px;
+	font-size: 18px;
 	font-weight: 900;
 	margin-bottom: 4px;
-	color: #000;
+	color: $color-black;
 }
 
 .franchise-subtitle {
-	font-size: 16px;
-	font-weight: 700;
 	margin-bottom: 6px;
-	color: #333;
+	color: $color-black;
+	font-size: 0.96rem;
 }
 
 .franchise-stats {
@@ -201,7 +200,10 @@ p {
 	gap: 0rem;
 	margin-bottom: 2rem;
 	font-size: 16px;
-	color: #333;
+	color: $color-black;
+	h3 {
+		margin-bottom: 0;
+	}
 }
 
 .stat-dot {
@@ -286,7 +288,7 @@ p {
 
 .franchise-btn.tv {
 	background: transparent;
-	color: #ffff;
+	color: $color-black;
 }
 
 .franchise-btn.details {
@@ -471,7 +473,7 @@ p {
 .slide-content {
 	text-align: center;
 	border: 1px solid #eee;
-	margin: 8px;
+	// margin: 8px;
 	border-radius: 8px;
-	padding: 12px;
+	padding: 16px;
 }

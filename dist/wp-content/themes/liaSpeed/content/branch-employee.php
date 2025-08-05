@@ -48,9 +48,9 @@
         </div>
       </div>
       <div class="practitioner-booking items-center">
-        <a href="<?= get_permalink($doctor_id) ?>" class="bg-blue-500  rounded-2 px-2 py-1 text-12 button-detail"
-          style="font-size: 12px;">Xem chi tiết</a>
-        <a class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-booking" style="font-size: 12px;text-align:center;">Đặt
+        <a href="<?= get_permalink($doctor_id) ?>" class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-detail">Xem
+          chi tiết</a>
+        <a class="bg-blue-500 rounded-2 px-2 py-1 text-12 button-booking">Đặt
           lịch</a>
       </div>
       <hr style="border-top:1px solid #f2f2f2;margin-top:12px" />

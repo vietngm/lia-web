@@ -46,7 +46,7 @@
   </section>
   <section class="section">
     <div class="container">
-      <h2 class="section-title"><?= $fields["service"]["title"] ?></h2>
+      <h2 class="section-title service-title"><?= $fields["service"]["title"] ?></h2>
       <?php get_template_part( 'template-parts/service', 'list', array("max_items" => -1) ); ?>
     </div>
   </section>
@@ -85,8 +85,8 @@
 
   <!-- Add the detailed franchise section that matches the image -->
   <div class="container">
-    <div class="franchise-container mt-8">
-      <h1 class="section-title" style="padding-left: 16px;"><?= $fields["franchise"]["title"] ?></h1>
+    <div class="franchise-container">
+      <h1 class="section-title"><?= $fields["franchise"]["title"] ?></h1>
       <?php get_template_part( 'template-parts/franchise', 'summary', array("franchise" => $fields["franchise"]["highlight_nhuong_quyen"]) ); ?>
     </div>
   </div>
@@ -203,7 +203,7 @@
     </div>
   </div>
 
-  <section class="section">
+  <!-- <section class="section">
     <div class="container">
       <h2 class="section-title mb-4">
         <h1 class="section-title"><?= $fields["feature"]["title"] ?></h1>
@@ -220,8 +220,9 @@
         <?php endforeach; ?>
       </div>
     </div>
-  </section>
-  <section class="section">
+  </section> -->
+
+  <!-- <section class="section">
     <div class="container">
       <h2 class="section-title mb-4">
         <h1 class="section-title"><?= $fields["other"]["title"] ?></h1>
@@ -237,7 +238,7 @@
         <?php endforeach; ?>
       </div>
     </div>
-  </section>
+  </section> -->
 </main>
 
 <script>
