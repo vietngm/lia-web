@@ -12,10 +12,10 @@ function register_investment_post_type(){
 			'title',
 			'revisions',
 			'thumbnail',
-			'editor',
+			// 'editor',
 		),
 		'hierarchical' => true,
-		// 'taxonomies' => array(),	
+		'taxonomies' => array('investment-tag'),	
 		'show_ui' => true,
 		'public' => true,
 		'publicly_queryable' => true,
@@ -38,10 +38,10 @@ add_action('init', 'register_investment_post_type');
 	function register_investment_category_taxonomy() {
 
 	$labels = array(
-		'name' => 'Danh mục',
-		'singular' => 'Danh mục',
-		'menu_name' => 'Danh mục',
-		'add_new_item' => 'Thêm mới danh mục',
+		'name' => 'Tags',
+		'singular' => 'Tag',
+		'menu_name' => 'Tags',
+		'add_new_item' => 'Thêm tag mới',
 		'most_used' => 'Gần đây',
 	);
 
@@ -57,8 +57,8 @@ add_action('init', 'register_investment_post_type');
 		'rewrite'           => array( 'slug' => '', 'with_front' => false ),
 	);
 
-		register_taxonomy('investment-category', 'investment', $args);
+		register_taxonomy('investment-tag', 'dau-tu', $args);
 }
 
-// add_action( 'init', 'register_investment_category_taxonomy', 0 );
+add_action( 'init', 'register_investment_category_taxonomy', 0 );
 ?>
