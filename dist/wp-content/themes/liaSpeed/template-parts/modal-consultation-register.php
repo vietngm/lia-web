@@ -76,7 +76,7 @@
             <div class="package-value package-capital"></div>
           </div>
           <div class="package-item">
-            <div class="package-label">Chính sách thanh toán</div>
+            <div class="package-label">Thanh toán</div>
             <div class="package-value package-policy">N/A</div>
           </div>
         </div>

@@ -18,9 +18,14 @@
 		.modal-body {
 			overflow-y: scroll;
 			height: calc(100vh - 40px - 67px - 150px);
+			scrollbar-width: none; /* Firefox */
+			-ms-overflow-style: none; /* Internet Explorer/Edge */
+			&::-webkit-scrollbar {
+				display: none; /* Chrome, Safari, Opera */
+			}
 		}
 		.modal-footer {
-			padding: 20px;
+			padding: 16px 0 0;
 		}
 		.modal-scroll {
 			display: grid;

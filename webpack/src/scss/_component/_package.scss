@@ -10,6 +10,7 @@
 	background-color: rgba($color-gray, 0.4);
 	padding: 16px;
 	grid-gap: 12px;
+	border-radius: 8px;
 	&.home {
 		// margin-left: -16px;
 		// margin-right: -16px;
@@ -18,11 +19,12 @@
 	}
 	&-info {
 		display: grid;
-		margin-left: -20px;
-		margin-right: -20px;
+		// margin-left: -20px;
+		// margin-right: -20px;
 		background-color: rgba($color-gray, 0.4);
-		padding: 20px;
+		padding: 16px;
 		grid-gap: 12px;
+		border-radius: 8px;
 	}
 	&-title {
 		font-weight: bold;
@@ -30,11 +32,15 @@
 		text-transform: uppercase;
 	}
 	&-list {
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		align-items: center;
+		// justify-content: space-between;
+		grid-gap: 8px;
 	}
 	&-item {
 		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-gap: 8px;
 	}
 	&-label {
 		display: flex;

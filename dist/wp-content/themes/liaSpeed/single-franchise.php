@@ -1261,7 +1261,7 @@ body {
           </div>
 
           <div class="investment-option">
-            <div class="investment-label">Chính sách thanh toán</div>
+            <div class="investment-label">Thanh toán</div>
             <?php include get_template_directory() . "/template-parts/payment-type.php"; ?>
           </div>
         </div>
