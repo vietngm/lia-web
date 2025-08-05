@@ -211,19 +211,6 @@ p {
 	margin: 0 0.5rem;
 }
 
-.franchise-image {
-	position: relative;
-	max-width: 900px;
-	margin: 0 auto 2rem;
-	overflow: hidden;
-}
-
-.franchise-image img {
-	width: 100%;
-	height: auto;
-	display: block;
-}
-
 .navigation-arrows {
 	position: absolute;
 	top: 50%;
@@ -259,6 +246,21 @@ p {
 	height: 20px;
 	stroke: #333;
 	stroke-width: 3px;
+}
+
+.franchise-image {
+	position: relative;
+	max-width: 900px;
+	margin: 0 auto 2rem;
+	overflow: hidden;
+}
+
+.franchise-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+	max-height: 280px;
+	object-fit: contain;
 }
 
 .franchise-cta {
