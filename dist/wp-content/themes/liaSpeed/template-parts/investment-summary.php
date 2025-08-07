@@ -17,7 +17,7 @@
     <img src='<?= esc_url($mohinh_avatar) ?>' alt="Mo hinh dau tu">
   </div>
   <div class="investment-content">
-    <h1 class="font-bold" style="font-size:14px"><?= esc_html($investment_name); ?></h1>
+    <h1 class="font-bold" style="font-size:14px"><?= esc_html($investment_name) ?? 'N/A'; ?></h1>
     <div class="investment-money"><?=number_format($vonkeugoi, 0, ",", ".")?> <small><u>đ</u></small> /
       <?=number_format($vondautu, 0, ",", ".")?> <small><u>đ</u></small></div>
     <div class="progress-wrapper" data-vondautu="<?= $vondautu ?>" data-vonkeugoi="<?= $vonkeugoi ?>">
@@ -27,7 +27,9 @@
     </div>
     <div class="investment-icon">
       <img src="<?= get_theme_file_uri("assets/images/location.png") ?>" alt="Địa chỉ" />
-      <?= esc_html($dia_chi); ?>
+      <div class="investment-icon-text">
+        <?= esc_html($dia_chi) ?? 'N/A'; ?>
+      </div>
     </div>
     <div class="investment-icon">
       <img src="<?= get_theme_file_uri("assets/images/calendar.png") ?>" alt="Thời gian" />
