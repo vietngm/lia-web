@@ -1,0 +1,81 @@
+.investment {
+	&-info {
+		// display: grid;
+		// align-items: center;
+		// gap: 12px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start; /* Hoặc center nếu bạn muốn avatar và content giữa hàng */
+		gap: 12px;
+	}
+	&-list {
+		display: grid;
+		margin-top: 16px;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		@media (min-width: $screen-md-min) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+	&-content {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+	}
+	&-avatar {
+		width: 100%;
+		height: 142px;
+		overflow: hidden;
+		@media (min-width: $screen-md-min) {
+			height: 242px;
+		}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+	&-item {
+		display: grid;
+		height: 100%;
+	}
+	&-icon {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		img {
+			width: 16px;
+			height: 16px;
+			object-fit: contain;
+		}
+	}
+	&-money {
+		font-size: 10px;
+		color: #666;
+	}
+}
+
+.progress-container {
+	background: #f0f0f0;
+	height: 10px;
+	border-radius: 6px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.progress-bar {
+	background: #4caf50;
+	width: 0;
+	height: 100%;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	line-height: 10px;
+	transition: width 0.5s ease-in-out;
+}
+
+.progress-label {
+	// margin-top: 8px;
+	// font-size: 14px;
+}

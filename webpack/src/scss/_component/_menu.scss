@@ -4,15 +4,21 @@
 // --------------------------------------------------
 .menu {
 	background: #fff;
+	&-item {
+		border-bottom: 1px solid #eee;
+	}
 }
 .submenu {
 	max-height: 0;
 	overflow: hidden;
 	transition: max-height 0.3s ease-in-out;
+	&-item {
+		border-top: 1px solid #eee;
+	}
 }
 
 .menu-item.active .submenu {
-	max-height: 500px; /* Đặt giá trị lớn hơn nội dung submenu */
+	max-height: 500px;
 }
 
 .material-icons {
@@ -24,10 +30,7 @@
 }
 
 .menu-item.active {
-	padding-bottom: 12px;
-	// .submenu {
-	// 	padding-bottom: 12px;
-	// }
+	// padding-bottom: 12px;
 }
 
 h3 {
@@ -44,7 +47,7 @@ h3 {
 }
 
 .menu-list li {
-	border-bottom: 1px solid #eee;
+	// border-bottom: 1px solid #eee;
 }
 
 .menu-list li:last-child {

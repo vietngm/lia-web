@@ -3,12 +3,15 @@
 	$home_url = get_home_url();
 	$branch_url = get_permalink($fields['page']['branch']);
 	$practitioner_url = get_permalink($fields['page']['practitioner']);
+	$franchise_url = get_permalink(get_page_by_path('danh-sach-keu-goi'));
 	$menu_url = get_permalink($fields['page']['menu']);
 
 	$is_home = is_home() || is_front_page();
 	$is_branch = $fields['page']['branch'] == get_the_ID();
 	$is_practitioner = $fields['page']['practitioner'] == get_the_ID();
 	$is_menu = $fields['page']['menu'] == get_the_ID();
+	$is_franchise = get_page_by_path('danh-sach-keu-goi')->ID == get_the_ID();
+
 ?>
 <div class="h-[80px] lg:hidden"></div>
 <div
@@ -37,6 +40,15 @@
       <img src="<?= get_theme_file_uri("assets/images/icons/practi.svg") ?>" />
       <?php endif; ?>
       <div class="text-center footer-nav-text font-medium <?= $is_practitioner ? "text-primary" : "" ?>">Chuyên viên
+      </div>
+    </a>
+    <a href="<?=$franchise_url?>" class="w-[85px] py-2 bg-opacity-30 flex flex-col items-center gap-1 rounded-2">
+      <?php if ($is_franchise) : ?>
+      <img src="<?= get_theme_file_uri("assets/images/icons/building-selected.svg") ?>" />
+      <?php else : ?>
+      <img src="<?= get_theme_file_uri("assets/images/icons/building.svg") ?>" />
+      <?php endif; ?>
+      <div class="text-center footer-nav-text font-medium <?= $is_franchise ? "text-primary" : "" ?>">Kêu gọi
       </div>
     </a>
   </div>

@@ -57,7 +57,7 @@
     <div id="chat-modal" data-open="false"
       class="fixed z-[100] left-0 right-0 bottom-0 top-0 flex items-center justify-center transition-all opacity-0 pointer-events-none data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto">
       <div class="absolute left-0 right-0 bottom-0 top-0 bg-black bg-opacity-50" tbc-toggle-target="#chat-modal"></div>
-      <div class="w-full rounded-3 bg-white max-w-[400px] relative">
+      <div class="w-full rounded-3 bg-white max-w-[400px] relative chat-modal">
         <a href="tel:<?= get_field("header_phone", "option") ?>" class="px-4 py-3 flex items-center gap-4">
           <div class="w-7.5 h-7.5 rounded-8 bg-primary flex items-center justify-center cursor-pointer">
             <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/phone-white.svg") ?>" />
