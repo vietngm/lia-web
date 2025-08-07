@@ -1,5 +1,9 @@
 <?php get_header("empty"); ?>
-
+<?php
+	$fields = get_fields('option');
+  $menus = $fields['header'];
+  $contactInfo = $menus['menu_cskh'];
+?>
 <style>
 :root {
   --primary-color: #1A5477;
@@ -781,13 +785,13 @@ body {
 }
 
 .modal-content {
-  background-color: #fff;
+  /* background-color: #fff;
   margin: 15px auto;
   width: 90%;
   max-width: 500px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  animation: modalFadeIn 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
+  /* animation: modalFadeIn 0.3s; */
 }
 
 @keyframes modalFadeIn {
@@ -1332,7 +1336,7 @@ body {
             <span class="summary-value capital-value">50%</span>
           </div>
           <div class="summary-item">
-            <span class="summary-label">Phương thức thanh toán:</span>
+            <span class="summary-label">Phương thức:</span>
             <span class="summary-value policy-value">Thanh toán một lần</span>
           </div>
         </div>
@@ -1350,11 +1354,11 @@ body {
           <div class="bank-details">
             <p>Ngân hàng: <strong>Vietcombank</strong></p>
             <p>Số tài khoản: <strong>1234567890</strong></p>
-            <p>Chủ tài khoản: <strong>CÔNG TY CP LIA GROUP</strong></p>
+            <p>Chủ tài khoản: <strong>Công ty Cổ phần ĐT & PT LIA BEAUTY</strong></p>
             <p>Nội dung: <strong>DC <?php the_title(); ?> [Số điện thoại]</strong></p>
           </div>
         </div>
-        <button class="confirm-deposit">Xác nhận đặt cọc</button>
+        <!-- <button class="confirm-deposit">Xác nhận đặt cọc</button> -->
       </div>
     </div>
   </div>
@@ -1394,11 +1398,11 @@ body {
           </div>
           <div class="faq-item">
             <div class="faq-question">
-              <span>LIA có hỗ trợ vận hành không?</span>
+              <span>LiA có hỗ trợ vận hành không?</span>
               <span class="toggle-icon">+</span>
             </div>
             <div class="faq-answer">
-              <p>Có, LIA sẽ hỗ trợ đào tạo và vận hành trong suốt 6 tháng đầu tiên sau khi khai trương, bao gồm đào tạo
+              <p>Có, LiA sẽ hỗ trợ đào tạo và vận hành trong suốt 6 tháng đầu tiên sau khi khai trương, bao gồm đào tạo
                 nhân viên, quản lý và hỗ trợ kỹ thuật.</p>
             </div>
           </div>
@@ -1413,7 +1417,7 @@ body {
               </div>
               <div class="contact-info">
                 <p class="contact-label">Hotline</p>
-                <p class="contact-value">0374466666</p>
+                <p class="contact-value"><a href="tel:<?=$contactInfo['dt_cskh']?>"><?=$contactInfo['dt_cskh']?></a></p>
               </div>
             </div>
             <div class="contact-item">
@@ -1422,7 +1426,7 @@ body {
               </div>
               <div class="contact-info">
                 <p class="contact-label">Email</p>
-                <p class="contact-value">dautu.liavietnam@gmail.com</p>
+                <p class="contact-value"><?=$contactInfo['email_cskh']?></p>
               </div>
             </div>
             <div class="contact-item">
@@ -1439,7 +1443,7 @@ body {
 
         <div class="support-cta">
           <button class="call-button">Gọi ngay</button>
-          <button class="chat-button">Chat với tư vấn viên</button>
+          <!-- <button class="chat-button">Chat với tư vấn viên</button> -->
         </div>
       </div>
     </div>
@@ -1590,7 +1594,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const warrantyModal = document.getElementById('warranty-modal');
   const refundModal = document.getElementById('refund-modal');
   const registrationForm = document.getElementById('registration-form');
-  const confirmDepositButton = document.querySelector('.confirm-deposit');
+  // const confirmDepositButton = document.querySelector('.confirm-deposit');
 
   // Open registration modal
   registerButton.addEventListener('click', function() {
@@ -1680,11 +1684,11 @@ document.addEventListener("DOMContentLoaded", function() {
   //   });
 
   // Handle deposit confirmation
-  confirmDepositButton.addEventListener('click', function() {
-    alert('Cảm ơn bạn đã đặt cọc. Vui lòng hoàn tất thanh toán và chúng tôi sẽ liên hệ để xác nhận!');
-    depositModal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  });
+  // confirmDepositButton.addEventListener('click', function() {
+  //   alert('Cảm ơn bạn đã đặt cọc. Vui lòng hoàn tất thanh toán và chúng tôi sẽ liên hệ để xác nhận!');
+  //   depositModal.style.display = 'none';
+  //   document.body.style.overflow = 'auto';
+  // });
 
   // Support modal functionality
   const faqQuestions = document.querySelectorAll('.faq-question');

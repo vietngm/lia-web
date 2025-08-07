@@ -48,8 +48,8 @@ add_action('init', 'register_investment_post_type');
 	$args = array(
 		'hierarchical'      => true,
 		'labels'            => $labels,
-		'show_ui'           => true,
-		'show_admin_column' => true,
+		'show_ui'           => false,
+		'show_admin_column' => 	false,
 		'public'			=> false,
 		'rewrite'			=> true,
 		'query_var'         => true,

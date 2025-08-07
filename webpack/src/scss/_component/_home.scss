@@ -356,12 +356,12 @@ p {
 	max-width: 500px;
 	width: 90%;
 	position: relative;
-	transform: translateY(20px);
+	// transform: translateY(20px);
 	transition: transform 0.3s ease;
 }
 
 .franchise-modal.active .modal-content {
-	transform: translateY(0);
+	// transform: translateY(0);
 }
 
 .modal-form {

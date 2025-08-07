@@ -12,7 +12,7 @@
 	}
 	&-registration {
 		.modal-content {
-			max-height: calc(100% - 90px);
+			max-height: calc(100% - 16px);
 			overflow: hidden;
 		}
 		.modal-body {
@@ -76,7 +76,7 @@
 	&-content {
 		&-customized {
 			padding: 16px !important;
-			margin: auto !important;
+			// margin: auto !important;
 			.modal-body {
 				padding: 0;
 				grid-gap: 12px;
