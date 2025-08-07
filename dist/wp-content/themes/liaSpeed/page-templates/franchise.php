@@ -1,12 +1,12 @@
 <?php 
 /**
- * Template name: Danh sách trung tâm
+ * Template name: Mô hình đầu tư
  */
 ?>
 <?php get_header();?>
 <main>
   <section class="section-doctor" style="padding-top:12px">
-    <h2 style="font-weight:700;padding:0px 12px">Danh sách trung tâm</h2>
+    <h2 style="font-weight:700;padding:0px 12px">Mô hình đầu tư</h2>
     <div class="mt-1 p-3">
       <div class="search-container">
         <div class="search-box">
