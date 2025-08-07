@@ -6,13 +6,22 @@
 <?php get_header();?>
 <main>
   <section class="section-investment">
-    <div class="container">
-      <div class="search-container">
-        <div class="search-box">
-          <img class="w-5 h-5" src="<?= get_theme_file_uri("assets/images/icons/search.svg") ?>" alt="" />
-          <input type="text" placeholder="Tìm mô hình">
-        </div>
+    <div class="search-container">
+      <div class="search-box">
+        <img class="w-5 h-5" src="<?= get_theme_file_uri("assets/images/icons/search.svg") ?>" alt="" />
+        <input type="text" placeholder="Tìm mô hình">
       </div>
+    </div>
+    <div class="investment-hot">
+      <div class="investment-hot-item">
+        <h3 class="investment-hot-title">
+          <img src="<?= get_theme_file_uri("assets/images/fire.png") ?>" alt="Hot">
+          <span>Mô hình được săn đón nhất</span>
+        </h3>
+      </div>
+    </div>
+    <div class="container">
+      <div class="investment-title">Mô hình khác</div>
       <div class="investment-list">
         <?php
         $args = array(
@@ -36,16 +45,16 @@
         <div class="investment-item" data-address="<?= esc_attr($dia_chi) ?>"
           data-name="<?= esc_attr($investment_name) ?>">
           <?php
-        get_template_part( 'template-parts/investment', 'summary', array(
-        "investment_id" => $investment_id, 
-        "investment_name" => $investment_name, 
-        "mohinh" => $mohinh,
-        "dia_chi" => $dia_chi,
-        "open_time" => $open_time,
-        "vondautu" => $vondautu,
-        "vonkeugoi" => $vonkeugoi,
-        ));
-        ?>
+          get_template_part( 'template-parts/investment', 'summary', array(
+          "investment_id" => $investment_id, 
+          "investment_name" => $investment_name, 
+          "mohinh" => $mohinh,
+          "dia_chi" => $dia_chi,
+          "open_time" => $open_time,
+          "vondautu" => $vondautu,
+          "vonkeugoi" => $vonkeugoi,
+          ));
+          ?>
         </div>
         <?php endwhile; ?>
         <?php endif; wp_reset_postdata(); ?>

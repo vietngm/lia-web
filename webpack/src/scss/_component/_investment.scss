@@ -8,6 +8,11 @@
 		align-items: flex-start; /* Hoặc center nếu bạn muốn avatar và content giữa hàng */
 		gap: 12px;
 	}
+	&-title {
+		display: flex;
+		font-weight: bold;
+		margin: 16px 0;
+	}
 	&-list {
 		display: grid;
 		margin-top: 16px;
@@ -60,6 +65,32 @@
 	&-money {
 		font-size: 10px;
 		color: #666;
+	}
+	&-hot {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		background-color: #f0e4ae;
+		padding: 12px;
+		margin-top: 16px;
+		&-title {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-weight: bold;
+			font-size: 0.94rem;
+			line-height: normal;
+			img {
+				width: 16px;
+				height: 16px;
+				object-fit: contain;
+			}
+		}
+		&-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
 	}
 }
 
