@@ -13,3 +13,4 @@ import "./productCategory.js";
 import "./modalPolicy.js";
 import "./search.js";
 import "./process.js";
+import "./newsCarousel.js";

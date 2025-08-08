@@ -46,9 +46,10 @@
 		height: 100%;
 	}
 	&-icon {
-		display: flex;
+		display: grid;
 		align-items: center;
 		gap: 4px;
+		grid-template-columns: 16px 1fr;
 		&-text {
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -67,12 +68,15 @@
 		color: #666;
 	}
 	&-hot {
-		display: flex;
+		// display: grid;
 		align-items: center;
 		gap: 8px;
 		background-color: #f0e4ae;
-		padding: 12px;
+		padding: 16px 0 16px 16px;
 		margin-top: 16px;
+		@media (min-width: $screen-md-min) {
+			padding: 16px;
+		}
 		&-title {
 			display: flex;
 			align-items: center;
@@ -86,11 +90,25 @@
 				object-fit: contain;
 			}
 		}
+		&-list {
+			&.owl-drag {
+				.owl-item {
+					&.active {
+						width: 280px !important;
+					}
+				}
+			}
+		}
 		&-item {
 			display: flex;
 			align-items: center;
 			gap: 8px;
 		}
+	}
+	&-carousel-item {
+		background-color: white;
+		border-radius: 16px;
+		padding: 16px;
 	}
 }
 

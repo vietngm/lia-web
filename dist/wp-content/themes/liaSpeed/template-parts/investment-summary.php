@@ -10,6 +10,9 @@
   $vondautu = (int) $args['vondautu'];
   $vonkeugoi = (int) $args['vonkeugoi'];
   $mohinh_avatar = bfi_thumb(get_the_post_thumbnail_url($mohinh_id), array("width" => 400, 'crop' => false));
+  $trangthai = $args['trangthai'];
+  $trangthai_name = get_term($trangthai, 'investment-tag');
+  $trangthai_name = $trangthai_name->name;
 ?>
 
 <div class="investment-info">
@@ -31,9 +34,17 @@
         <?= esc_html($dia_chi) ?? 'N/A'; ?>
       </div>
     </div>
+    <?php if ($trangthai) : ?>
+    <div class="investment-icon">
+      <img src="<?= get_theme_file_uri("assets/images/idea.png") ?>" alt="Trạng thái" />
+      <div class="investment-icon-text">
+        <?= esc_html($trangthai_name) ?? 'N/A'; ?>
+      </div>
+    </div>
+    <?php endif; ?>
     <div class="investment-icon">
       <img src="<?= get_theme_file_uri("assets/images/calendar.png") ?>" alt="Thời gian" />
-      <?= esc_html($open_time); ?>
+      <?= esc_html($open_time) ?? 'N/A'; ?>
     </div>
   </div>
 </div>
