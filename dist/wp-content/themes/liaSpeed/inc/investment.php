@@ -10,8 +10,8 @@ function register_investment_post_type(){
 		'description' => 'Đầu tư',
 		'supports' => array(
 			'title',
-			'revisions',
-			'thumbnail',
+			// 'revisions',
+			// 'thumbnail',
 			// 'editor',
 		),
 		'hierarchical' => true,
