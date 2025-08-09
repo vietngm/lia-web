@@ -15,7 +15,7 @@
   $trangthai_name = $trangthai_name->name;
 ?>
 
-<div class="investment-info">
+<a href="<?= get_permalink($investment_id) ?>" class="investment-info">
   <div class="investment-avatar">
     <img src='<?= esc_url($mohinh_avatar) ?>' alt="Mo hinh dau tu">
   </div>
@@ -47,7 +47,7 @@
       <?= esc_html($open_time) ?? 'N/A'; ?>
     </div>
   </div>
-</div>
+</a>
 
 <div class="investment-services">
   <?php
@@ -67,7 +67,7 @@
         : 0;
     ?>
   <div class="investment-services-item">
-    <a href="<?= get_permalink($service_id) ?>" class="investment-services-link">
+    <a href="<?= get_permalink($investment_id) ?>" class="investment-services-link">
       <div class="investment-services-image">
         <img src="<?= $service_image ?>" alt="<?= $service_title ?>">
       </div>

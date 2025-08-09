@@ -3,7 +3,6 @@
  * Template name: Danh sách kêu gọi
  */
 get_header(); 
-
 function render_investment_item($post) {
   $investment_id = $post->ID;
   $investment_name = get_the_title($investment_id);
@@ -13,7 +12,6 @@ function render_investment_item($post) {
   $vondautu = get_field('dt_vdt', $investment_id);
   $vonkeugoi = get_field('dt_vkg', $investment_id);
   $trangthai = get_field('dt_ttdt', $investment_id);
-
   get_template_part('template-parts/investment', 'summary', compact(
     'investment_id', 'investment_name', 'mohinh', 'dia_chi', 'open_time', 'vondautu', 'vonkeugoi', 'trangthai'
   ));
@@ -75,9 +73,9 @@ function render_investment_item($post) {
         <?php if ($other_posts): ?>
         <?php foreach ($other_posts as $post): ?>
         <?php
-              $dia_chi = get_field('dt_dia_chi', $post->ID);
-              $investment_name = get_the_title($post->ID);
-            ?>
+          $dia_chi = get_field('dt_dia_chi', $post->ID);
+          $investment_name = get_the_title($post->ID);
+        ?>
         <div class="investment-item" data-address="<?= esc_attr($dia_chi) ?>"
           data-name="<?= esc_attr($investment_name) ?>">
           <?php render_investment_item($post); ?>
