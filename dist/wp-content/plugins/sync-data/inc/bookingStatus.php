@@ -11,14 +11,14 @@ function my_manage_booking_columns( $column_name, $post_id){
   $env_post_id= check_pages_existed();
 	$sync = get_field('booking_sync',$env_post_id);
 
-	if ( $column_name == 'booking_status'){
+	if($column_name == 'booking_status'){
     $htmlFaile = ($idSync!="" && $sync==1) ? '<span class="dashicons dashicons-update dashicons-faile js-dashicons-failure red"></span>':'<span class="dashicons dashicons-update dashicons-faile gray"></span>';
     $htmlSuccess = '<span class="dashicons dashicons-yes-alt dashicons-success"></span>';
-    ?>
+  ?>
 <ul class="sync-status">
   <li data-rel="<?php echo $post_id ?>" data-sucess="<?php echo $status ? 1:0; ?>"
     class="sync-status-item status-item-<?=$post_id?>" title="Đồng bộ">
-    <?php  echo $status ? $htmlSuccess:$htmlFaile; ?>
+    <?php echo $status ? $htmlSuccess:$htmlFaile; ?>
   </li>
 </ul>
 <?php
