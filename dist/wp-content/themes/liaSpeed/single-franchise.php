@@ -2,7 +2,7 @@
 <?php
 	$fields = get_fields('option');
   $menus = $fields['header'];
-  $contactInfo = $menus['menu_cskh']; 
+  $contactInfo = $menus['menu_cskh'];
 	$franchise_id = get_the_ID();
 	$franchise_fields = get_fields($franchise_id);
 	$thumbnail_url = get_the_post_thumbnail_url($franchise_id, 'full');
@@ -11,6 +11,7 @@
   $payment_policy = $franchise_fields['payment_policy'];
   $bannerShow =  get_field('banner_show',$franchise_id);
 ?>
+
 <main>
   <section class="section-franchise-detail">
     <div class="franchise-header">
@@ -85,7 +86,6 @@
           <div class="title-box">
             <span>Chi tiết nhượng quyền</span>
           </div>
-          <div class="line"></div>
         </div>
         <div class="investment-options">
           <div class="investment-option">

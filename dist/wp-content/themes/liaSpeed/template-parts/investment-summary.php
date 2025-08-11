@@ -88,23 +88,19 @@
   <?php } ?>
 </div>
 <div class="investment-action">
-  <?php if (count($services) == 0) : ?>
-  <div class="btn btn-booking-service disabled">Đăng ký</div>
-  <?php else: ?>
-  <button class="btn btn-booking-service js-modal-branch-service" data-id="<?= $branch_id ?>">Đăng ký</button>
-  <?php endif; ?>
+  <button class="btn btn-register-investment disabled" data-id="<?= $branch_id ?>">Đăng ký</button>
 </div>
 
-<div id="modal-investment-service-<?= $investment_id ?>" class="modal-booking fixed hidden z-[120]">
+<div id="modal-investment-<?= $investment_id ?>" class="modal-booking fixed hidden z-[120]">
   <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
   <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
     <div class="overflow-hidden w-full h-full">
-      <div class="flex items-center mb-4">
+      <!-- <div class="flex items-center mb-4">
         <div class="font-bold">Chọn dịch vụ</div>
         <div class="close-modal cursor-pointer">
           <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
         </div>
-      </div>
+      </div> -->
       <section class="section section-booking-form booking-form booking-row" style="height: 100%;">
         <ul class="modal-service-list">
           <?php 

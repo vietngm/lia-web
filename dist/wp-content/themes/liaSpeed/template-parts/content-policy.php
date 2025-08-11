@@ -2,7 +2,6 @@
   <div class="title-box">
     <span>Chính sách nhượng quyền</span>
   </div>
-  <div class="line"></div>
 </div>
 <?php
 $policyId = get_page_by_path('chinh-sach-nhuong-quyen');

@@ -3,7 +3,6 @@
   <div class="title-box">
     <span>Quy trình nhượng quyền</span>
   </div>
-  <div class="line"></div>
 </div>
 <?php if($investmentSteps){?>
 <div class="timeline">

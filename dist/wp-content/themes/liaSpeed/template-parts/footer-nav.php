@@ -5,12 +5,13 @@
 	$practitioner_url = get_permalink($fields['page']['practitioner']);
 	$franchise_url = get_permalink($fields['page']['investment']);
 	$menu_url = get_permalink($fields['page']['menu']);
+  $current_id = get_queried_object_id();
 
 	$is_home = is_home() || is_front_page();
 	$is_branch = $fields['page']['branch'] == get_the_ID();
 	$is_practitioner = $fields['page']['practitioner'] == get_the_ID();
 	$is_menu = $fields['page']['menu'] == get_the_ID();
-	$is_franchise = $fields['page']['investment'] == get_the_ID();
+	$is_franchise = $fields['page']['investment'] == $current_id;
 ?>
 <div class="h-[80px] lg:hidden"></div>
 <div

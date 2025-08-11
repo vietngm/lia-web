@@ -1,9 +1,8 @@
-<?php get_header("empty"); ?>
+<?php get_header(); ?>
 <?php
-	$fields = get_fields('option');
+	$fields = get_fields();
   $menus = $fields['header'];
-  $contactInfo = $menus['menu_cskh'];
-  $statuses = get_field('dt_cgddt');
+  $contactInfo = $menus['menu_cskh']; 
 	$franchise_id = get_the_ID();
 	$franchise_fields = get_fields($franchise_id);
 	$thumbnail_url = get_the_post_thumbnail_url($franchise_id, 'full');
@@ -11,36 +10,49 @@
   $investment_capital = $franchise_fields['investment_capital'];
   $payment_policy = $franchise_fields['payment_policy'];
   $bannerShow =  get_field('banner_show',$franchise_id);
+  $mohinh= get_field('dt_mh',$franchise_id);
+  $vitri = get_field('dt_dia_chi',$franchise_id);
 ?>
 <main>
   <section class="section-franchise-detail">
-    <div class="franchise-header">
-      <div class="back-button" onclick="history.back();"
-        data-fallback="<?= get_permalink(get_field("home_page", "option")) ?>">
-        <img src="<?php echo get_theme_file_uri('assets/images/icons/chevron-left-white.svg'); ?>" alt="Back">
-      </div>
-      <div class="right-actions">
-        <div class="right-action-btn vr-btn ">
-          VR
-          <img src="<?php echo get_theme_file_uri('assets/images/icons/vr.svg'); ?>" alt="VR">
+    <div class="container">
+      <div class="franchise-image-container">
+        <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0  -mx-4">
+          <?php foreach ($fields["investment_gallery"] as $item) : ?>
+          <div>
+            <img class="w-full" style="margin-top:0px"
+              src="<?= bfi_thumb($item['url'] , array("width"=>800, 'crop'=>false)) ?>" />
+          </div>
+          <?php endforeach; ?>
         </div>
-        <div class="right-action-btn active ">Ảnh</div>
-
+      </div>
+      <div class="lg:col-span-1 col-span-2 flex flex-col">
+        <div class="flex gap-2 flex-wrap breadcrumb">
+          <a class="breadcrumb-home font-semibold" href="/">Trang chủ</a>
+          <span>›</span>
+          <span class="text-primary">Chi tiết đầu tư</span>
+        </div>
       </div>
     </div>
-    <img src="<?php echo $thumbnail_url; ?>" alt="<?php the_title(); ?>" class="franchise-image">
     <div class="main-content">
       <div class="franchise-title">
         <h1><?php the_title(); ?></h1>
       </div>
-
       <div class="metrics-container">
         <div class="metric-item">
           <div class="metric-label">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/dt.svg'); ?>" alt="Investment">
-            Đầu tư
+            <img src="<?php echo get_theme_file_uri('assets/images/icons/building.svg'); ?>" alt="Investment">
+            Mô hình
           </div>
-          <div class="metric-value"><?php echo $franchise_fields['price']; ?> Triệu</div>
+          <div class="metric-value"><?= $mohinh->post_title; ?></div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-label">
+            <img src="<?php echo get_theme_file_uri('assets/images/icons/user-gray.svg'); ?>" alt="Beds">
+            Sức chứa
+          </div>
+          <div class="metric-value"><?php echo $franchise_fields['phong']; ?> giường</div>
         </div>
 
         <div class="metric-item">
@@ -53,18 +65,10 @@
 
         <div class="metric-item">
           <div class="metric-label">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/user-gray.svg'); ?>" alt="Beds">
-            Công suất
-          </div>
-          <div class="metric-value"><?php echo $franchise_fields['phong']; ?> giường</div>
-        </div>
-        <div class="metric-item">
-          <div class="metric-label">
             <img src="<?php echo get_theme_file_uri('assets/images/icons/location-gray.svg'); ?>" alt="Investment">
             Vị trí
-            <!-- <span class="location-text"><?php echo $franchise_fields['description']; ?></span> -->
           </div>
-          <div class="metric-value"><?php echo $franchise_fields['description']; ?></div>
+          <div class="metric-value"><?php echo $vitri; ?></div>
         </div>
       </div>
 
@@ -81,49 +85,6 @@
       </div>
       <?php } ?>
 
-      <div class="investment-section">
-        <div class="franchise-detail">
-          <div class="title-box">
-            <span>Chi tiết nhượng quyền</span>
-          </div>
-          <div class="line"></div>
-        </div>
-        <div class="investment-options">
-          <div class="investment-option">
-            <div class="investment-label">Gói đầu tư</div>
-            <?php include get_template_directory() . "/template-parts/investment-package.php"; ?>
-          </div>
-
-          <div class="investment-option">
-            <div class="investment-label">Vốn đầu tư</div>
-            <?php include get_template_directory() . "/template-parts/investment-capital.php"; ?>
-          </div>
-
-          <div class="investment-option">
-            <div class="investment-label">Thanh toán</div>
-            <?php include get_template_directory() . "/template-parts/payment-type.php"; ?>
-          </div>
-        </div>
-        <div class="grid-container">
-          <div class="grid-item green">
-            <h3>30 Ngày</h3>
-            <p>Quy trình nhượng quyền</p>
-          </div>
-          <div class="grid-item yellow">
-            <h3>126 Triệu/tháng</h3>
-            <p>Doanh thu dự kiến</p>
-          </div>
-          <div class="grid-item blue">
-            <h3>25.2 Triệu/tháng</h3>
-            <p>Lợi nhuận dự kiến</p>
-          </div>
-          <div class="grid-item red">
-            <h3>14 Tháng</h3>
-            <p>Thời gian hoàn vốn</p>
-          </div>
-        </div>
-
-      </div>
 
       <div class="policy-section">
         <?php include get_template_directory() . "/template-parts/content-policy.php"; ?>
@@ -135,10 +96,14 @@
 
       <div class="footer-actions">
         <div class="help-button">
-          <div class="help-icon">?</div>
+          <a href="tel:0934129060" target="_blank"
+            style="gap:2px;justify-content: center;display:flex;align-items:center;flex-direction: column;">
+            <img class="w-5 h-5" src="<?php echo get_theme_file_uri('assets/images/icons/call-incoming.svg'); ?>">
+            <div style="font-size:12px">Hotline</div>
+          </a>
         </div>
-        <div class="action-button register-button">Đăng ký tư vấn</div>
-        <div class="action-button deposit-button">Đặt cọc ngay</div>
+        <div class="action-button register-button">Kêu gọi</div>
+        <div class="action-button deposit-button">Đăng ký</div>
       </div>
   </section>
 </main>
@@ -590,4 +555,4 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
-<?php get_footer("empty"); ?>
+<?php get_footer(); ?>
