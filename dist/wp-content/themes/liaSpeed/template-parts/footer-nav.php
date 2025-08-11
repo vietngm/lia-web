@@ -3,15 +3,14 @@
 	$home_url = get_home_url();
 	$branch_url = get_permalink($fields['page']['branch']);
 	$practitioner_url = get_permalink($fields['page']['practitioner']);
-	$franchise_url = get_permalink(get_page_by_path('danh-sach-keu-goi'));
+	$franchise_url = get_permalink($fields['page']['investment']);
 	$menu_url = get_permalink($fields['page']['menu']);
 
 	$is_home = is_home() || is_front_page();
 	$is_branch = $fields['page']['branch'] == get_the_ID();
 	$is_practitioner = $fields['page']['practitioner'] == get_the_ID();
 	$is_menu = $fields['page']['menu'] == get_the_ID();
-	$is_franchise = get_page_by_path('danh-sach-keu-goi')->ID == get_the_ID();
-
+	$is_franchise = $fields['page']['investment'] == get_the_ID();
 ?>
 <div class="h-[80px] lg:hidden"></div>
 <div
