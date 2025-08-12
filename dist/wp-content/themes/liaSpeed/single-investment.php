@@ -12,6 +12,10 @@
   $bannerShow =  get_field('banner_show',$franchise_id);
   $mohinh= get_field('dt_mh',$franchise_id);
   $vitri = get_field('dt_dia_chi',$franchise_id);
+
+  $cachinhthucdautuId = get_page_by_path('cac-hinh-thuc-dau-tu');
+  $cachinhthucdautu = get_field('dshtdt',$cachinhthucdautuId->ID);
+  
 ?>
 <main>
   <section class="section-franchise-detail">
@@ -85,13 +89,12 @@
       </div>
       <?php } ?>
 
-
       <div class="policy-section">
         <?php include get_template_directory() . "/template-parts/content-policy.php"; ?>
       </div>
 
       <div class="franchise-process">
-        <?php include get_template_directory() . "/template-parts/franchise-process.php"; ?>
+        <?php //include get_template_directory() . "/template-parts/franchise-process.php"; ?>
       </div>
 
       <div class="footer-actions">
@@ -102,7 +105,8 @@
             <div style="font-size:12px">Hotline</div>
           </a>
         </div>
-        <div class="action-button register-button">Kêu gọi</div>
+        <a class="action-button register-button" href="<?=get_permalink(get_page_by_path('danh-sach-keu-goi'))?>">Kêu
+          gọi</a>
         <div class="action-button deposit-button">Đăng ký</div>
       </div>
   </section>
@@ -356,26 +360,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Update the grid with the matching data
-    if (matchingData) {
-      gridContainer.innerHTML = `
-                <div class="grid-item green">
-                    <h3>${matchingData.process_days}</h3>
-                    <p>Quy trình nhượng quyền</p>
-                </div>
-                <div class="grid-item yellow">
-                    <h3>${matchingData.expected_revenue}</h3>
-                    <p>Doanh thu dự kiến</p>
-                </div>
-                <div class="grid-item blue">
-                    <h3>${matchingData.expected_profit}</h3>
-                    <p>Lợi nhuận dự kiến</p>
-                </div>
-                <div class="grid-item red">
-                    <h3>${matchingData.roi_period}</h3>
-                    <p>Thời gian hoàn vốn</p>
-                </div>
-            `;
-    }
+    // if (matchingData) {
+    //   gridContainer.innerHTML = `
+    //             <div class="grid-item green">
+    //                 <h3>${matchingData.process_days}</h3>
+    //                 <p>Quy trình nhượng quyền</p>
+    //             </div>
+    //             <div class="grid-item yellow">
+    //                 <h3>${matchingData.expected_revenue}</h3>
+    //                 <p>Doanh thu dự kiến</p>
+    //             </div>
+    //             <div class="grid-item blue">
+    //                 <h3>${matchingData.expected_profit}</h3>
+    //                 <p>Lợi nhuận dự kiến</p>
+    //             </div>
+    //             <div class="grid-item red">
+    //                 <h3>${matchingData.roi_period}</h3>
+    //                 <p>Thời gian hoàn vốn</p>
+    //             </div>
+    //         `;
+    // }
   }
 
   // Initialize with default data
@@ -417,20 +421,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Open warranty details modal
   $(document).ready(function() {
-    $('a[href="#warranty-modal"]').click(function(e) {
-      e.preventDefault();
-      warrantyModal.style.display = 'block';
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-    });
+    // $('a[href="#warranty-modal"]').click(function(e) {
+    //   e.preventDefault();
+    //   warrantyModal.style.display = 'block';
+    //   document.body.style.overflow = 'hidden'; // Prevent scrolling
+    // });
   });
 
   // Open refund details modal
   $(document).ready(function() {
-    $('a[href="#refund-modal"]').click(function(e) {
-      e.preventDefault();
-      refundModal.style.display = 'block';
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-    });
+    // $('a[href="#refund-modal"]').click(function(e) {
+    //   e.preventDefault();
+    //   refundModal.style.display = 'block';
+    //   document.body.style.overflow = 'hidden'; // Prevent scrolling
+    // });
   });
 
   // Close modals when clicking close button
