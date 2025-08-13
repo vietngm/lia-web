@@ -60,27 +60,7 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <style>
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 7rem;
-  /* h-28 trong Tailwind là 7rem */
-  background: linear-gradient(to top, white, rgba(255, 255, 255, 0.8), transparent);
-  transition: opacity 0.3s ease-in-out;
-}
 
-.collapsed {
-  height: 300px;
-  overflow: hidden;
-  transition: height 0.3s ease-in-out;
-}
-
-.expanded {
-  height: auto;
-  transition: height 0.3s ease-in-out;
-}
 </style>
 
 <script>
@@ -146,29 +126,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 </script>
-<script>
-window.addEventListener('scroll', function() {
-  const header = document.getElementById('page-header');
-  if (window.scrollY > 100) {
-    header.classList.add('show');
-  } else {
-    header.classList.remove('show');
-  }
-});
-</script>
 <main class="is-product-detail">
   <section class="section-product-header mb-2">
-    <!-- <header id="page-header">
-      <div class="history-back cursor-pointer" data-fallback="<?= get_permalink(get_field("home", "option")) ?>">
-        <img class="w-4 h-4" src="<?= get_theme_file_uri("assets/images/icons/chevron-left-gray.svg") ?>" alt="" />
-      </div>
-      <div>
-        <h1 style="padding-left:8px" class=" text-center text-16 font-bold"><?= get_the_title() ?></h1>
-      </div>
-    </header> -->
     <div class="container">
       <div class="grid grid-cols-2 gap-4 relative">
-        <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0  -mx-4">
+        <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0 -mx-4">
           <?php foreach ($fields["product_gallery"] as $item) : ?>
           <div>
             <img class="w-full" style="margin-top:0px"
@@ -180,6 +142,8 @@ window.addEventListener('scroll', function() {
           <div class="flex gap-2 flex-wrap breadcrumb">
             <a class="breadcrumb-home font-semibold" href="/">Trang chủ</a>
             <span>›</span>
+            <a class="breadcrumb-home font-semibold" href="/san-pham">Sản phẩm</a>
+            <span>›</span>
             <span class="text-primary">Chi tiết sản phẩm</span>
           </div>
         </div>
@@ -189,8 +153,8 @@ window.addEventListener('scroll', function() {
           </div>
 
           <div class="flex justify-between items-center mt-2">
-            <div class="rating items-center gap-1">
-              <div class="flex text-10" style="font-weight:800;">
+            <div class="rating items-center">
+              <div class="flex text-10 rating-icon">
                 <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
                 <span class="name"><?= $rating; ?></span>
                 <span class="value">(<?php echo $ratingCount;?>)</span>
@@ -230,13 +194,13 @@ window.addEventListener('scroll', function() {
   </section>
   <section>
     <div class="container">
-      <div class="flex mt-4 policy-title">Cam kết chính sách</div>
-      <ul class="flex gap-2 mt-2 flex-col policy-list">
-        <li class="flex items-center gap-2 justify-between policy-item js-refund-policy">
+      <div class="policy-title">Cam kết chính sách</div>
+      <ul class="flex flex-col policy-list">
+        <li class="flex items-center justify-between policy-item js-refund-policy">
           <span>Thanh toán & Hoàn tiền</span>
           <div class="arrow-go"></div>
         </li>
-        <li class="flex items-center gap-2 justify-between policy-item js-warranty-policy">
+        <li class="flex items-center justify-between policy-item js-warranty-policy">
           <span>Bảo hành & Chăm sóc trọn đời</span>
           <div class="arrow-go"></div>
         </li>
@@ -245,8 +209,8 @@ window.addEventListener('scroll', function() {
   </section>
   <secrion>
     <div class="container">
-      <div class="policy-title mt-4">Mô tả chi tiết</div>
-      <div class="max-w-2xl shadow-lg rounded-lg overflow-hidden mt-2 ">
+      <div class="policy-title">Mô tả chi tiết</div>
+      <div class="max-w-2xl shadow-lg rounded-lg overflow-hidden mt-2">
         <div id="contentBox" class="relative collapsed">
           <div class="contentBox inset-0 flex flex-col justify-center items-center bg-opacity-40">
             <?php if ($fields["description"]) : ?>
@@ -265,7 +229,7 @@ window.addEventListener('scroll', function() {
   </secrion>
   <section>
     <div class="container">
-      <div class="policy-title mt-4 mb-2 flex items-center gap-2 justify-between js-product-info">
+      <div class="policy-title mb-2 flex items-center justify-between js-product-info">
         Thông tin sản phẩm
         <div class="arrow-go"></div>
       </div>
@@ -312,53 +276,10 @@ window.addEventListener('scroll', function() {
       </div>
     </div>
   </section>
-  <!-- <section>
-    <div class="max-w-md mx-auto bg-white p-4 rounded-lg shadow-lg " style="padding-top:0px;padding-bottom:0px">
-      <ul class="product-expand">
-        <li class="expand-item">
-          <div class="expand-title">
-            <span class="expand-label">Đối tượng phù hợp</span>
-            <div class="arrow-up"></div>
-          </div>
-          <div class="expand-content">
-            <div class="expand-desc"><?php echo $dtph;?></div>
-          </div>
-        </li>
-        <li class="expand-item">
-          <div class="expand-title">
-            <span class="expand-label">Hướng dẫn sử dụng</span>
-            <div class="arrow-up"></div>
-          </div>
-          <div class="expand-content">
-            <div class="expand-desc"><?php echo $hdsd;?></div>
-          </div>
-        </li>
-        <li class="expand-item">
-          <div class="expand-title">
-            <span class="expand-label">Thành phần sản phẩm</span>
-            <div class="arrow-up"></div>
-          </div>
-          <div class="expand-content">
-            <div class="expand-desc"><?php echo $tpsp;?></div>
-          </div>
-        </li>
-        <li class="expand-item">
-          <div class="expand-title">
-            <span class="expand-label">Mô tả chi tiết</span>
-            <div class="arrow-up"></div>
-          </div>
-          <div class="expand-content">
-            <div class="expand-desc"><?php echo $description;?></div>
-          </div>
-        </li>
-      </ul>
-      <div class="w-full bg-gray-200" style="margin-top:8px"></div>
-    </div>
-  </section> -->
   <section>
     <div class="container">
       <?php if ($the_query_related->have_posts()) : ?>
-      <h2 class="policy-title mt-4">Có thể bạn quan tâm</h2>
+      <h2 class="policy-title">Có thể bạn quan tâm</h2>
       <ul class="product-list">
         <?php while ( $the_query_related->have_posts() ) : $the_query_related->the_post(); ?>
         <li class="product-item">

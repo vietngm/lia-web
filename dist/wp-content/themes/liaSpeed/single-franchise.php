@@ -12,7 +12,7 @@
   $bannerShow =  get_field('banner_show',$franchise_id);
 ?>
 
-<main>
+<main class="page-franchise">
   <section class="section-franchise-detail">
     <div class="franchise-header">
       <div class="back-button" onclick="history.back();"

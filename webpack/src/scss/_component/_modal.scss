@@ -368,3 +368,11 @@ input:checked + .time-input-content,
 .chat-modal {
 	margin: 0 16px;
 }
+
+.close-modal {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

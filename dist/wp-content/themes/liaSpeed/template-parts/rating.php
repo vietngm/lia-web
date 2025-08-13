@@ -1,5 +1,5 @@
 <div class="rating items-center">
-  <div class="flex text-10 gap-1" style="font-weight:800;">
+  <div class="flex text-10 rating-icon">
     <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
     <span class="name"><?= esc_html($branch_rating); ?></span>
     <span class="value">(<?= esc_html($rating_number); ?>)</span>

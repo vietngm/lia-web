@@ -1,14 +1,3 @@
-// :root {
-// 	--primary-color: #1a5477;
-// 	--accent-color: #94c347;
-// 	--text-dark: #333;
-// 	--text-medium: #2c2f40;
-// 	--text-light: #888;
-// 	--border-color: #e0e0e0;
-// 	--background-light: #1b54780f;
-// 	--background-mint: rgba(148, 195, 71, 0.1);
-// }
-
 body {
 	font-family: "Montserrat", sans-serif;
 	margin: 0;
@@ -17,6 +6,14 @@ body {
 	color: var(--text-dark);
 }
 
+.page-franchise {
+	.policy-item {
+		margin-top: 16px;
+	}
+	.grid-item h3 {
+		justify-content: center;
+	}
+}
 .franchise-header {
 	position: relative;
 	padding: 10px 15px;
@@ -105,9 +102,8 @@ body {
 }
 
 .franchise-title h1 {
-	font-size: 24px;
 	font-weight: bold;
-	color: var(--primary-color);
+	color: $color-main;
 	margin: 0;
 	text-transform: uppercase;
 }
@@ -151,7 +147,7 @@ body {
 }
 
 .metric-value {
-	font-size: 16px;
+	// font-size: 16px;
 	font-weight: 700;
 	color: var(--text-dark);
 }
@@ -366,33 +362,6 @@ body {
 	margin-bottom: 30px;
 }
 
-.policy-item {
-	display: flex;
-	align-items: center;
-	margin-bottom: 16px;
-	margin-top: 16px;
-}
-
-.policy-check {
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-	color: var(--accent-color);
-}
-
-.policy-title {
-	font-size: 16px;
-	font-weight: 600;
-	flex: 1;
-	color: #058908;
-}
-
-.policy-more {
-	font-size: 14px;
-	color: var(--primary-color);
-	text-decoration: none;
-}
-
 .warranty-timeline {
 	display: flex;
 	justify-content: space-between;
@@ -448,7 +417,7 @@ body {
 }
 
 .refund-policy {
-	margin-top: 30px;
+	// margin-top: 30px;
 }
 
 .refund-timeline {
@@ -781,16 +750,6 @@ body {
 	overflow-y: auto;
 }
 
-.modal-content {
-	/* background-color: #fff;
-  margin: 15px auto;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
-	/* animation: modalFadeIn 0.3s; */
-}
-
 @keyframes modalFadeIn {
 	from {
 		opacity: 0;
@@ -954,10 +913,6 @@ body {
 	gap: 20px;
 }
 
-.support-section {
-	/* margin-bottom: 15px; */
-}
-
 .support-section h3 {
 	font-size: 16px;
 	color: var(--primary-color);
@@ -967,7 +922,6 @@ body {
 
 .faq-item {
 	border-bottom: 1px solid var(--border-color);
-	/* margin-bottom: 10px; */
 }
 
 .faq-question {

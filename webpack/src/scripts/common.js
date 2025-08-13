@@ -14,3 +14,4 @@ import "./modalPolicy.js";
 import "./search.js";
 import "./process.js";
 import "./newsCarousel.js";
+import "./tabs.js";

@@ -1,31 +1,31 @@
 <?php get_header(); ?>
 <?php
-	$fields = get_fields();
+	$fields = get_fields('option');
   $menus = $fields['header'];
   $contactInfo = $menus['menu_cskh']; 
-	$franchise_id = get_the_ID();
-	$franchise_fields = get_fields($franchise_id);
-	$thumbnail_url = get_the_post_thumbnail_url($franchise_id, 'full');
-	$investment_data = $franchise_fields['investment_package'];
-  $investment_capital = $franchise_fields['investment_capital'];
-  $payment_policy = $franchise_fields['payment_policy'];
-  $bannerShow =  get_field('banner_show',$franchise_id);
+	$franchise_id = get_the_ID();	
+  $media_dai_dien = get_field('media_dai_dien',$franchise_id);
+  $thumbnail_url = get_field('anh_dai_dien',$franchise_id);
   $mohinh= get_field('dt_mh',$franchise_id);
   $vitri = get_field('dt_dia_chi',$franchise_id);
-
-  $cachinhthucdautuId = get_page_by_path('cac-hinh-thuc-dau-tu');
-  $cachinhthucdautu = get_field('dshtdt',$cachinhthucdautuId->ID);
-  
+  $cacgiaidoandautu = get_field('dt_cgddt',$franchise_id);
+  $investment_gallery =  get_field('investment_gallery',$franchise_id);
+  $pageInvestmentId = get_page_by_path('cac-hinh-thuc-dau-tu');
+  $cachinhthucdautu = get_field('dshtdt',$pageInvestmentId->ID);
 ?>
-<main>
+<main class="page-investment">
   <section class="section-franchise-detail">
     <div class="container">
       <div class="franchise-image-container">
-        <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0  -mx-4">
-          <?php foreach ($fields["investment_gallery"] as $item) : ?>
+        <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0 -mx-4">
+          <?php if($thumbnail_url){?>
           <div>
-            <img class="w-full" style="margin-top:0px"
-              src="<?= bfi_thumb($item['url'] , array("width"=>800, 'crop'=>false)) ?>" />
+            <img class="w-full" src="<?= bfi_thumb($thumbnail_url['url'] , array("width"=>400, 'crop'=>false)) ?>" />
+          </div>
+          <?php } ?>
+          <?php foreach ($investment_gallery as $item) : ?>
+          <div>
+            <img class="w-full" src="<?= bfi_thumb($item['url'] , array("width"=>400, 'crop'=>false)) ?>" />
           </div>
           <?php endforeach; ?>
         </div>
@@ -33,6 +33,9 @@
       <div class="lg:col-span-1 col-span-2 flex flex-col">
         <div class="flex gap-2 flex-wrap breadcrumb">
           <a class="breadcrumb-home font-semibold" href="/">Trang chủ</a>
+          <span>›</span>
+          <a class="breadcrumb-home font-semibold" href="<?=get_permalink(get_page_by_path('danh-sach-keu-goi'))?>">Kêu
+            gọi</a>
           <span>›</span>
           <span class="text-primary">Chi tiết đầu tư</span>
         </div>
@@ -76,30 +79,31 @@
         </div>
       </div>
 
-      <?php if($bannerShow==1){?>
-      <div class="promo-banner">
-        <img src="<?php echo get_theme_file_uri('assets/images/5diem.png'); ?>" alt="Promo" class="promo-image">
-        <div class="promo-content">
-          <div class="promo-title">5 điểm nhượng quyền đang được góp vốn</div>
-          <a href="#" class="promo-link">
-            <span>Góp vốn ngay</span>
-            <span class="promo-link-arrow">→</span>
-          </a>
-        </div>
+      <div class="franchise-description">
+        <h2 class="tab-heading">Hình thức đầu tư</h2>
+        <?php
+          get_template_part( 'template-parts/investment-method', 'info', array(
+            "cachinhthucdautu" => $cachinhthucdautu,
+          ));
+        ?>
       </div>
-      <?php } ?>
 
       <div class="policy-section">
         <?php include get_template_directory() . "/template-parts/content-policy.php"; ?>
       </div>
 
-      <div class="franchise-process">
-        <?php //include get_template_directory() . "/template-parts/franchise-process.php"; ?>
+      <div class="process">
+        <h2 class="process-heading">Quy trình thực hiện</h2>
+        <?php
+          get_template_part( 'template-parts/investment', 'process', array(
+            "cacgiaidoandautu" => $cacgiaidoandautu,
+          ));
+        ?>
       </div>
 
       <div class="footer-actions">
         <div class="help-button">
-          <a href="tel:0934129060" target="_blank"
+          <a href="tel:<?=$contactInfo['dt_cskh']?>" target="_blank"
             style="gap:2px;justify-content: center;display:flex;align-items:center;flex-direction: column;">
             <img class="w-5 h-5" src="<?php echo get_theme_file_uri('assets/images/icons/call-incoming.svg'); ?>">
             <div style="font-size:12px">Hotline</div>
@@ -115,143 +119,6 @@
 <!-- Modal for Registration -->
 <div id="registration-modal" class="modal modal-registration">
   <?php include get_template_directory() . "/template-parts/modal-consultation-register.php"; ?>
-</div>
-
-<!-- Modal for Deposit -->
-<div id="deposit-modal" class="modal">
-  <div class="modal-content modal-content-customized">
-    <div class="modal-header">
-      <h2>Đặt cọc nhượng quyền</h2>
-      <span class="close-modal">&times;</span>
-    </div>
-    <div class="modal-body">
-      <div class="deposit-info">
-        <div class="franchise-summary">
-          <div class="summary-item">
-            <span class="summary-label">Mô hình:</span>
-            <span class="summary-value"><?php the_title(); ?></span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">Gói đầu tư:</span>
-            <span class="summary-value package-value">Đồng hành</span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">Vốn đầu tư:</span>
-            <span class="summary-value capital-value">50%</span>
-          </div>
-          <div class="summary-item">
-            <span class="summary-label">Phương thức:</span>
-            <span class="summary-value policy-value">Thanh toán một lần</span>
-          </div>
-        </div>
-        <div class="deposit-amount">
-          <h3>Số tiền đặt cọc</h3>
-          <p class="amount">50 Triệu VNĐ</p>
-          <p class="note">* Số tiền đặt cọc sẽ được trừ vào tổng số tiền thanh toán</p>
-        </div>
-        <div class="payment-methods">
-          <h3>Phương thức thanh toán</h3>
-          <div class="payment-option">
-            <input type="radio" id="bank-transfer" name="payment-method" checked>
-            <label for="bank-transfer">Chuyển khoản ngân hàng</label>
-          </div>
-          <div class="bank-details">
-            <p>Ngân hàng: <strong>Vietcombank</strong></p>
-            <p>Số tài khoản: <strong>1234567890</strong></p>
-            <p>Chủ tài khoản: <strong>Công ty Cổ phần ĐT & PT LIA BEAUTY</strong></p>
-            <p>Nội dung: <strong>DC <?php the_title(); ?> [Số điện thoại]</strong></p>
-          </div>
-        </div>
-        <!-- <button class="confirm-deposit">Xác nhận đặt cọc</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal for Support -->
-<div id="support-modal" class="modal">
-  <div class="modal-content modal-content-customized">
-    <div class="modal-header">
-      <h2 class="modal-title">Hỗ trợ</h2>
-      <span class="close-modal">&times;</span>
-    </div>
-    <div class="modal-body">
-      <div class="support-options">
-        <div class="support-section">
-          <h3>Các câu hỏi thường gặp</h3>
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Quy trình thanh toán như thế nào?</span>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Sau khi ký hợp đồng, bạn sẽ thanh toán theo phương thức đã chọn. Đối với thanh toán một lần, bạn cần
-                thanh toán toàn bộ số tiền trong vòng 7 ngày. Đối với trả góp, bạn sẽ thanh toán theo lịch đã thỏa thuận
-                trong hợp đồng.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>Thời gian hoàn vốn được tính như thế nào?</span>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Thời gian hoàn vốn được tính dựa trên tổng số tiền đầu tư và lợi nhuận dự kiến hàng tháng, không bao
-                gồm các chi phí vận hành và thuế.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">
-              <span>LiA có hỗ trợ vận hành không?</span>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Có, LiA sẽ hỗ trợ đào tạo và vận hành trong suốt 6 tháng đầu tiên sau khi khai trương, bao gồm đào tạo
-                nhân viên, quản lý và hỗ trợ kỹ thuật.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="support-section">
-          <h3>Liên hệ hỗ trợ</h3>
-          <div class="contact-methods">
-            <div class="contact-item">
-              <div class="contact-icon">
-                <img src="<?php echo get_theme_file_uri('assets/images/icons/phone.svg'); ?>" alt="Phone">
-              </div>
-              <div class="contact-info">
-                <p class="contact-label">Hotline</p>
-                <p class="contact-value"><a href="tel:<?=$contactInfo['dt_cskh']?>"><?=$contactInfo['dt_cskh']?></a></p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <img src="<?php echo get_theme_file_uri('assets/images/icons/email.svg'); ?>" alt="Email">
-              </div>
-              <div class="contact-info">
-                <p class="contact-label">Email</p>
-                <p class="contact-value"><?=$contactInfo['email_cskh']?></p>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <img src="<?php echo get_theme_file_uri('assets/images/icons/chat.svg'); ?>" alt="Chat">
-              </div>
-              <div class="contact-info">
-                <p class="contact-label">Live Chat</p>
-                <p class="contact-value">Hỗ trợ 24/7</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="support-cta">
-          <button class="call-button">Gọi ngay</button>
-          <!-- <button class="chat-button">Chat với tư vấn viên</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -359,27 +226,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
 
-    // Update the grid with the matching data
-    // if (matchingData) {
-    //   gridContainer.innerHTML = `
-    //             <div class="grid-item green">
-    //                 <h3>${matchingData.process_days}</h3>
-    //                 <p>Quy trình nhượng quyền</p>
-    //             </div>
-    //             <div class="grid-item yellow">
-    //                 <h3>${matchingData.expected_revenue}</h3>
-    //                 <p>Doanh thu dự kiến</p>
-    //             </div>
-    //             <div class="grid-item blue">
-    //                 <h3>${matchingData.expected_profit}</h3>
-    //                 <p>Lợi nhuận dự kiến</p>
-    //             </div>
-    //             <div class="grid-item red">
-    //                 <h3>${matchingData.roi_period}</h3>
-    //                 <p>Thời gian hoàn vốn</p>
-    //             </div>
-    //         `;
-    // }
   }
 
   // Initialize with default data

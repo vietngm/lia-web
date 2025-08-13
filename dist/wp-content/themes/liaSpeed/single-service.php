@@ -321,7 +321,7 @@ window.addEventListener('scroll', function() {
           class="flex flex-shrink-0 gap-3 px-3 py-2 rounded-2">
           <img class="w-10 h-10 rounded-full  border-text" src="<?= get_the_post_thumbnail_url($doctorId) ?>" />
           <div class="flex-1">
-            <span style="font-weight:500 ;font-size:12px"><?= get_the_title($doctorId) ?></span>
+            <span style="font-weight:500;font-size:12px"><?= get_the_title($doctorId) ?></span>
             <div class="flex gap-2 items-center">
               <div class="text-12 flex items-center gap-1">
                 <div class="flex items-center gap-1">
