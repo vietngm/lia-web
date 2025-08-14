@@ -3,6 +3,17 @@
 // ○○○
 // --------------------------------------------------
 .modal {
+	display: none;
+	opacity: 0;
+	// transition: 0.3s ease-in-out;
+	visibility: hidden;
+	// transition:
+	// 	opacity 0.3s ease,
+	// 	visibility 0.3s ease;
+
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
 	&-body {
 		display: grid;
 		grid-gap: 8px;
@@ -94,8 +105,6 @@
 			}
 			.modal-close {
 				position: relative;
-				// top: 1rem;
-				// right: 1rem;
 				width: 30px;
 				height: 30px;
 				display: flex;
@@ -112,17 +121,86 @@
 			}
 		}
 	}
+
+	&-info {
+		transform: translateY(20px);
+		opacity: 0;
+		transition: all 0.3s ease;
+		padding: 0 16px 16px;
+	}
+
+	&-action {
+		padding: 0 16px 16px;
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+	}
+
+	&-bottom-sheet {
+		height: 85%;
+		width: 100%;
+		bottom: 0;
+		z-index: 1;
+		position: absolute;
+		background: #ffff;
+		border-radius: 16px 16px 0px 0px;
+	}
+	&.show {
+		display: flex;
+		opacity: 1;
+		visibility: visible;
+		.modal-info {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+}
+
+.modal-booking {
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	&.show {
+		display: flex;
+		opacity: 1;
+	}
+}
+
+.modal-header {
+	padding: 16px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	// border-bottom: 1px solid var(--border-color);
+	h2 {
+		font-size: 18px;
+		color: var(--primary-color);
+		margin: 0;
+	}
+}
+
+.close-modal {
+	font-size: 24px;
+	font-weight: bold;
+	color: var(--text-light);
+	cursor: pointer;
+}
+
+.modal-body {
+	padding: 20px;
+}
+
+.modal-body {
+	padding: 20px;
 }
 
 .title_otp_xt {
 	font-size: 18px;
 	font-weight: 700;
 	color: #1a5478;
-}
-
-.text-14 {
-	// font-size: 12px;
-	// font-weight: 300;
 }
 
 .bg-round {
@@ -231,10 +309,6 @@ input:checked + .time-input-content,
 	border-radius: 6px;
 }
 
-.button-select-gift span {
-	// font-size: 12px;
-}
-
 .toppings-group {
 	display: grid;
 	grid-gap: 8px;
@@ -309,17 +383,19 @@ input:checked + .time-input-content,
 	}
 }
 
-.modal-booking {
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	.close-modal {
-		position: absolute;
-		right: 16px;
-		top: 12px;
-		z-index: 2;
-	}
+.close-modal {
+	position: absolute;
+	right: 16px;
+	top: 12px;
+	z-index: 2;
+}
+
+.close-modal {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .modal-service-list {
@@ -367,12 +443,4 @@ input:checked + .time-input-content,
 
 .chat-modal {
 	margin: 0 16px;
-}
-
-.close-modal {
-	width: 24px;
-	height: 24px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }

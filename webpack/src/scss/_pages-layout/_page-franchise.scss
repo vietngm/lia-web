@@ -762,31 +762,6 @@ body {
 	}
 }
 
-.modal-header {
-	padding: 15px 20px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-bottom: 1px solid var(--border-color);
-}
-
-.modal-header h2 {
-	font-size: 18px;
-	color: var(--primary-color);
-	margin: 0;
-}
-
-.close-modal {
-	font-size: 24px;
-	font-weight: bold;
-	color: var(--text-light);
-	cursor: pointer;
-}
-
-.modal-body {
-	padding: 20px;
-}
-
 /* Form Styles */
 .form-group {
 	margin-bottom: 15px;

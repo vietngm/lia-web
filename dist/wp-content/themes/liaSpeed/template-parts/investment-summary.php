@@ -88,22 +88,55 @@
   <?php } ?>
 </div>
 <div class="investment-action">
-  <button class="btn btn-register-investment disabled" data-id="<?= $branch_id ?>">Đăng ký</button>
+  <button class="btn btn-register-investment js-investment" data-id="<?= $investment_id ?>">Đăng ký</button>
 </div>
 
-<div id="modal-investment-<?= $investment_id ?>" class="modal-booking fixed hidden z-[120]">
+<div id="modal-investment-<?= $investment_id ?>" class="modal fixed z-[120]">
   <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
-  <div class="relative m-auto rounded-2 bg-white w-full background-modal p-4 z-[120] booking-service">
-    <div class="overflow-hidden w-full h-full">
-      <!-- <div class="flex items-center mb-4">
-        <div class="font-bold">Chọn dịch vụ</div>
-        <div class="close-modal cursor-pointer">
-          <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
+  <div class="rounded-2 modal-bottom-sheet">
+    <div class="flex modal-header">
+      <div class="font-bold">Thông tin mô hình <?= $investment_id ?></div>
+      <div class="close-modal cursor-pointer">
+        <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
+      </div>
+    </div>
+    <div class="modal-info">
+      <div class="metrics-container">
+        <div class="metric-item">
+          <div class="metric-label">
+            <img src="<?php echo get_theme_file_uri('assets/images/icons/building.svg'); ?>" alt="Investment">
+            Mô hình
+          </div>
+          <div class="metric-value"><?= $mohinh->post_title; ?></div>
         </div>
-      </div> -->
-      <section class="section section-booking-form booking-form booking-row" style="height: 100%;">
-        <ul class="modal-service-list">
-          <?php 
+
+        <div class="metric-item">
+          <div class="metric-label">
+            <img src="<?php echo get_theme_file_uri('assets/images/icons/user-gray.svg'); ?>" alt="Beds">
+            Sức chứa
+          </div>
+          <div class="metric-value"><?php echo $franchise_fields['phong']; ?> giường</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-label">
+            <img src="<?php echo get_theme_file_uri('assets/images/icons/vr-gray.svg'); ?>" alt="Area">
+            Diện tích
+          </div>
+          <div class="metric-value"><?php echo $franchise_fields['m2']; ?></div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-label">
+            <img src="<?php echo get_theme_file_uri('assets/images/icons/location-gray.svg'); ?>" alt="Investment">
+            Vị trí
+          </div>
+          <div class="metric-value"><?php echo $vitri; ?></div>
+        </div>
+      </div>
+
+      <ul>
+        <?php 
           foreach($services as $service){
             $service_id = $service->ID;
             $service_title = $service->post_title;
@@ -235,52 +268,52 @@
       // Encode JSON để dùng trong HTML attribute
       $dataJson = htmlspecialchars(json_encode($dataToppings, JSON_UNESCAPED_UNICODE), ENT_QUOTES, 'UTF-8');  
           ?>
-          <li class="modal-service-item">
-            <div class="modal-service-image">
-              <img src="<?= $service_image ?>" alt="<?= $service_title ?>">
-            </div>
-            <div class="modal-service-content">
-              <div class="modal-service-title"><?= $service_title ?></div>
-              <div class="flex justify-between items-center">
-                <div class="rating items-center">
-                  <div class="flex text-10 gap-1 rating-icon" style="font-weight:800;">
-                    <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
-                    <span class="name"><?= $service_rating ?></span>
-                    <span class="value">(<?= $service_rating_number ?>)</span>
-                  </div>
-                  <span class="separator" style="opacity: 0.5;">|</span>
-                  <span class="text-10">Đặt</span>
-                  <span class="text-10"><?= $service_customers ?></span>
+        <li class="modal-service-item">
+          <div class="modal-service-image">
+            <img src="<?= $service_image ?>" alt="<?= $service_title ?>">
+          </div>
+          <div class="modal-service-content">
+            <div class="modal-service-title"><?= $service_title ?></div>
+            <div class="flex justify-between items-center">
+              <div class="rating items-center">
+                <div class="flex text-10 gap-1 rating-icon" style="font-weight:800;">
+                  <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
+                  <span class="name"><?= $service_rating ?></span>
+                  <span class="value">(<?= $service_rating_number ?>)</span>
                 </div>
-              </div>
-              <div class="modal-service-price">
-                <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
-                <div class="flex items-center gap-2 font-semibold">
-                  <span class="text-price ml-2">
-                    <?= number_format($discountPrice, 0, ",", ".") ?> <small><u>đ</u></small>
-                  </span>
-                  <span class="text-gray-400 line-through opacity-70">
-                    <?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
-                  </span>
-                </div>
-                <?php else : ?>
-                <span class="text-price"><?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small></span>
-                <?php endif; ?>
+                <span class="separator" style="opacity: 0.5;">|</span>
+                <span class="text-10">Đặt</span>
+                <span class="text-10"><?= $service_customers ?></span>
               </div>
             </div>
-            <div class="modal-service-booking">
-              <button class="btn button-booking js-open-bottom-sheet" data-branch-name="<?= $branch_name ?>"
-                data-branch-id="<?= $branch_id ?>" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
-                data-title="<?= $service_title ?>" data-id="<?= $service_id ?>" data-toppings="<?= $dataJson ?>"
-                data-image="<?= $service_image ?>">Đặt
-                ngay</button>
+            <div class="modal-service-price">
+              <?php if (!empty($discountPrice) && $discountPrice < $price) : ?>
+              <div class="flex items-center gap-2 font-semibold">
+                <span class="text-price ml-2">
+                  <?= number_format($discountPrice, 0, ",", ".") ?> <small><u>đ</u></small>
+                </span>
+                <span class="text-gray-400 line-through opacity-70">
+                  <?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small>
+                </span>
+              </div>
+              <?php else : ?>
+              <span class="text-price"><?= number_format($price, 0, ",", ".") ?> <small><u>đ</u></small></span>
+              <?php endif; ?>
             </div>
-          </li>
-          <?php
+          </div>
+
+        </li>
+        <?php
   }
   ?>
-        </ul>
-      </section>
+      </ul>
+
+    </div>
+    <div class="modal-action">
+      <button class="btn btn-lg btn-register-investment" data-branch-name="<?= $branch_name ?>"
+        data-branch-id="<?= $branch_id ?>" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+        data-title="<?= $service_title ?>" data-id="<?= $service_id ?>" data-toppings="<?= $dataJson ?>"
+        data-image="<?= $service_image ?>">Gửi yêu cầu</button>
     </div>
   </div>
 

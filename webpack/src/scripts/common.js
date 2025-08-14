@@ -8,6 +8,7 @@ import "./owlCarousel.js";
 import "./contactNow.js";
 import "./bottomSheet.js";
 import "./modalPractitionerService.js";
+import "./modalInvestment.js";
 import "./modalBranchService.js";
 import "./productCategory.js";
 import "./modalPolicy.js";
