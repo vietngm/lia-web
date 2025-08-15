@@ -4,16 +4,28 @@
 // --------------------------------------------------
 .modal {
 	display: none;
-	opacity: 0;
+
 	// transition: 0.3s ease-in-out;
-	visibility: hidden;
+	// visibility: hidden;
 	// transition:
 	// 	opacity 0.3s ease,
 	// 	visibility 0.3s ease;
 
-	transition:
-		opacity 0.3s ease,
-		transform 0.3s ease;
+	// transition: opacity 0.3s ease;
+	&-animate {
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	&.show {
+		display: flex;
+		opacity: 1;
+		// visibility: visible;
+		.modal-info {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
 	&-body {
 		display: grid;
 		grid-gap: 8px;
@@ -144,15 +156,6 @@
 		position: absolute;
 		background: #ffff;
 		border-radius: 16px 16px 0px 0px;
-	}
-	&.show {
-		display: flex;
-		opacity: 1;
-		visibility: visible;
-		.modal-info {
-			transform: translateY(0);
-			opacity: 1;
-		}
 	}
 }
 

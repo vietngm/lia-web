@@ -91,8 +91,7 @@
   <button class="btn btn-register-investment js-investment" data-id="<?= $investment_id ?>">Đăng ký</button>
 </div>
 
-<div id="modal-investment-<?= $investment_id ?>" class="modal fixed z-[120]">
-  <div class="bg-black bg-opacity-50 absolute left-0 right-0 top-0 bottom-0"></div>
+<div id="modal-investment-<?= $investment_id ?>" class="modal modal-animate fixed z-[120]">
   <div class="rounded-2 modal-bottom-sheet">
     <div class="flex modal-header">
       <div class="font-bold">Thông tin mô hình <?= $investment_id ?></div>

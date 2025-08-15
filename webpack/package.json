@@ -4,10 +4,10 @@
 	"description": "",
 	"private": true,
 	"scripts": {
-		"build:dev": "webpack",
-		"build:production": "NODE_ENV=production webpack",
-		"watch": "webpack --watch",
-		"plugin": "NODE_ENV=plugin webpack --watch"
+		"build:dev": "cross-env NODE_ENV=development webpack",
+		"build:production": "cross-env NODE_ENV=production webpack",
+		"watch": "cross-env NODE_ENV=development webpack --watch",
+		"plugin": "cross-env NODE_ENV=plugin webpack --watch"
 	},
 	"keywords": [],
 	"author": "",
@@ -18,7 +18,9 @@
 		"autoprefixer": "^9.7.5",
 		"babel-loader": "^8.0.6",
 		"browser-sync-webpack-plugin": "^2.2.2",
+		"cross-env": "^10.0.0",
 		"css-loader": "^3.4.2",
+		"cssnano": "^7.1.0",
 		"expose-loader": "^0.7.5",
 		"extract-loader": "^5.1.0",
 		"file-loader": "^6.0.0",
