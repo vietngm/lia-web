@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+jQuery(function ($) {
 	$(".js-news-carousel").owlCarousel({
 		center: false,
 		items: 1,

@@ -575,7 +575,7 @@ function updateSelected() {
             <img class="w-10 h-10" src="<?= get_theme_file_uri("assets/images/icons/check-circle.svg") ?>" alt="" />
           </div>
           <div class="text-center text-14" style="position: relative;display: flex;justify-content: center;">
-            <span style="font-weight:700;font-size:20px">THÔNG TIN ĐÃ ĐƯỢC GHI NHẬN</span>
+            <span style="font-weight:700;font-size:18px">THÔNG TIN ĐÃ ĐƯỢC GHI NHẬN</span>
             <div class="border-vertical" style="border: 2px solid #1a5478;
                                         position: absolute;
                                         width: 35%; 

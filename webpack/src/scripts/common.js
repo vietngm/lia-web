@@ -16,3 +16,4 @@ import "./search.js";
 import "./process.js";
 import "./newsCarousel.js";
 import "./tabs.js";
+import "./registerInvestment.js";

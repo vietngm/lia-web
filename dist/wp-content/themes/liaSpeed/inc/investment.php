@@ -61,4 +61,48 @@ add_action('init', 'register_investment_post_type');
 }
 
 add_action( 'init', 'register_investment_category_taxonomy', 0 );
+
+/********************************************* Recruitment **********************************************/
+function ajax_investment_form(){
+	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
+	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
+	$cachinhthucdautu = isset($_POST["cachinhthucdautu"]) ? $_POST["cachinhthucdautu"] : "";
+	$note = isset($_POST["message"]) ? $_POST["message"] : "";
+	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
+
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'investment_form' ) ) {
+		echo json_encode(
+			array(
+				'success'=>false,
+				"message" => "Yêu cầu không hợp lệ."
+			)
+		);
+		die();
+	}
+
+	$existing = get_field('dt_ttkh', $postId);
+
+	if (!is_array($existing)) {
+		$existing = [];
+	}
+
+	$existing[] = [
+		'dt_hoten'   => $fullname,
+		'dt_dtkh'    => $phone,
+		'dt_htdtkh'  => $cachinhthucdautu,
+		'dt_gckh'    => $note,
+	];
+
+	update_field('dt_ttkh', $existing, $postId);
+		echo json_encode(
+			array(
+				'success' => true,	
+				"message" => "Đăng ký đầu tư thành công."
+			)
+		);
+		die();
+	}
+
+add_action( 'wp_ajax_investment_form', 'ajax_investment_form');
+add_action( 'wp_ajax_nopriv_investment_form', 'ajax_investment_form');
 ?>

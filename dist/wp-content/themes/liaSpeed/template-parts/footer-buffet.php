@@ -7,7 +7,6 @@ $buffets = get_posts(array(
     "order" => "ASC",       
 ));
 
-
 $buffet_data = [];
 foreach ($buffets as $buffet) {
     $buffet_data[] = array(
@@ -31,7 +30,7 @@ foreach ($buffets as $buffet) {
 				<img class="w-10 h-10" src="<?= get_theme_file_uri("assets/images/icons/check-circle.svg") ?>" alt="" />
 			</div>
 			<div class="text-center text-14" style="position: relative;display: flex;justify-content: center;">
-				<span style="font-weight:700;font-size:20px">THÔNG TIN ĐÃ ĐƯỢC GHI NHẬN</span>
+				<span style="font-weight:700;font-size:18px">THÔNG TIN ĐÃ ĐƯỢC GHI NHẬN</span>
 				<div class="border-vertical" style="border: 2px solid #1a5478;
 					position: absolute;
 					width: 35%; 
@@ -203,7 +202,6 @@ foreach ($buffets as $buffet) {
 <head>
 	<style>
 
-
 		.input-select .select2-selection{
 			border-radius: 24px !important;
 			z-index: 1000;
@@ -224,7 +222,6 @@ foreach ($buffets as $buffet) {
 		
 		font-size: 13px;
 	}
-
 
 	.buffet-form-container {
     color: white;
@@ -309,7 +306,6 @@ foreach ($buffets as $buffet) {
 		opacity: 1; /* Hiện rõ */
 		transform: scale(1); /* Phóng về kích thước ban đầu */
 
-		
 	}
 	.section-modal{
 		background-image: url('http://phongkham.local/wp-content/themes/trangbeautycenter/assets/images/background-2.png');
@@ -409,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Đóng khi nhấn overlay hoặc nút đóng
     closeModalButton.addEventListener('click', closeModal);
 });
-
 
 document.addEventListener('DOMContentLoaded', function () {
     // Lấy các phần tử
