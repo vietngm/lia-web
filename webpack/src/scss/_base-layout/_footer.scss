@@ -18,11 +18,8 @@
 			object-fit: contain;
 		}
 		@media (min-width: $screen-md-min) {
-			// width: 96px;
+			display: flex;
 		}
-	}
-	.address {
-		// font-size: 12px;
 	}
 }
 .footer-general {
@@ -63,7 +60,6 @@
 		width: 100%;
 		background: none;
 		border: none;
-		// font-size: 12px;
 		cursor: pointer;
 		display: flex;
 		justify-content: space-between;
@@ -71,7 +67,6 @@
 		padding: 8px 0px;
 	}
 	.accordion-title {
-		// font-size: 12px;
 		font-weight: 300;
 	}
 	.menu {
