@@ -1,47 +1,55 @@
 jQuery(function ($) {
 	const $investmentHotList = $(".js-investment-hot-list");
-	let $modalBackup;
 	// MỞ MODAL
 	$(document).on("click", ".js-investment", function () {
-		const modalId = $(this).data("id");
-		const modal = document.getElementById(`modal-investment-${modalId}`);
-		if (!modal) return;
+		const postId = $(this).data("id");
 
-		$modalBackup = $(modal).next();
-		$(modal).appendTo("body");
+		// Lấy modal chính (duy nhất)
+		const $modal = $("#modal-investment");
 
-		if (!modal.classList.contains("show")) {
-			modal.style.display = "flex";
-			setTimeout(() => modal.classList.add("show"), 10);
-			$("html, body").css("overflow", "hidden");
-		}
+		// Gắn postId để dùng khi submit
+		$modal.attr("data-id", postId);
 
+		// --- RESET TRẠNG THÁI ---
+		$modal.find("input[type='text'], textarea").val(""); // clear input
+		$modal.find("input[type='radio']").prop("checked", false); // uncheck radio
+		$modal.find(".error-fullname, .error-phone, .error-investment").text(""); // clear lỗi
+		$modal.removeClass("show").hide(); // đảm bảo trạng thái ban đầu
+
+		// TODO: Nếu cần, có thể nạp dữ liệu động vào modal tại đây
+		$modal.find(".modal-name").text($(this).data("name"));
+		$modal.find(".modal-phong").text($(this).data("phong"));
+		$modal.find(".modal-dientich").text($(this).data("dientich"));
+		$modal.find(".modal-dia_chi").text($(this).data("diachi"));
+
+		// Hiển thị modal
+		$modal.appendTo("body").css("display", "flex");
+		setTimeout(() => $modal.addClass("show"), 10);
+
+		// Ẩn scroll nền
+		$("html, body").css("overflow", "hidden");
+
+		// Dừng autoplay nếu có
 		$investmentHotList.trigger("stop.owl.autoplay");
 	});
 
 	// ĐÓNG MODAL - click nút close
 	$(document).on("click", ".close-modal", function () {
-		const modal = $(this).closest("[id^='modal-investment-']")[0];
-		if (!modal) return;
+		const $modal = $("#modal-investment");
 
-		modal.classList.remove("show");
-		// setTimeout(() => (modal.style.display = "none"), 300);
+		$modal.removeClass("show");
 
 		setTimeout(() => {
-			modal.style.display = "none";
-			if ($modalBackup && $modalBackup.length) {
-				$modalBackup.before(modal);
-			}
+			$modal.hide(); // hoặc: .css("display", "none")
 			$("html, body").css("overflow", "");
-			// $(".js-investment-hot-list").trigger("play.owl.autoplay", [3000]);
+
+			// Khôi phục carousel autoplay
 			$investmentHotList.trigger("play.owl.autoplay", [3000]);
 		}, 300);
-
-		// $("html, body").css("overflow", "");
 	});
 
-	// ĐÓNG MODAL - click nền đen (background)
-	$(document).on("click", "[id^='modal-investment-']", function (e) {
+	// Đóng modal khi click vào nền đen
+	$(document).on("click", "#modal-investment", function (e) {
 		if (e.target === this) {
 			$(this).find(".close-modal").trigger("click");
 		}

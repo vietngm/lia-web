@@ -6,15 +6,24 @@ jQuery(function ($) {
 	$(document).on("click", ".js-register-investment", function (e) {
 		e.preventDefault();
 
+		// const $modal = $("#modal-investment");
+		// const postId = $modal.attr("data-id");
+		// const postId = $(this).data("id");
+
+		const $modal = $("#modal-investment");
+		const postId = $modal.attr("data-id");
+
+		console.log("postId", postId);
+
 		let hasError = false;
 		let errorMessages = [];
 
-		const $modal = $(`#modal-investment-${$(this).data("id")}`);
+		// const $modal = $(`#modal-investment-${$(this).data("id")}`);
 
 		const fullname = $modal.find('[name="fullname"]').val().trim();
 		const phone = $modal.find('[name="phone"]').val().trim();
 		const message = $modal.find('[name="note"]').val().trim();
-		const postId = $(this).data("id");
+		// const postId = $(this).data("id");
 		const cachinhthucdautu = $modal
 			.find('[name="cachinhthucdautu"]:checked')
 			.val();

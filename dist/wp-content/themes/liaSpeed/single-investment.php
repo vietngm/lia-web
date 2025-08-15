@@ -12,7 +12,7 @@
   $investment_gallery =  get_field('investment_gallery',$franchise_id);
   $pageInvestmentId = get_page_by_path('cac-hinh-thuc-dau-tu');
   $cachinhthucdautu = get_field('dshtdt',$pageInvestmentId->ID);
-    $dientich = get_field('dt_dientich',$franchise_id);
+  $dientich = get_field('dt_dientich',$franchise_id);
   $phong = get_field('dt_succhua',$franchise_id);
 ?>
 <main class="page-investment">
@@ -113,95 +113,11 @@
         </div>
         <a class="action-button register-button" href="<?=get_permalink(get_page_by_path('danh-sach-keu-goi'))?>">Kêu
           gọi</a>
-        <div class="action-button deposit-button js-investment" data-id="<?= $franchise_id ?>">Đăng ký</div>
+        <div class="action-button deposit-button js-investment" data-id="<?= $franchise_id ?>"
+          data-name="<?= the_title() ?>" data-phong="<?= $phong ?? 'N/A' ?>" data-dientich="<?= $dientich ?? 'N/A' ?>"
+          data-diachi="<?= $vitri ?? 'N/A' ?>">Đăng ký</div>
       </div>
-      <div id="modal-investment-<?= $franchise_id ?>" class="modal modal-animate fixed z-[120]">
-        <?= wp_nonce_field( 'investment_form' ); ?>
-        <div class="rounded-2 modal-bottom-sheet">
-          <div class="flex modal-header">
-            <div class="font-bold">Thông tin mô hình</div>
-            <div class="close-modal cursor-pointer">
-              <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
-            </div>
-          </div>
-          <div class="modal-info">
-            <div class="metrics-container">
-              <div class="metric-item">
-                <div class="metric-label">
-                  <img src="<?php echo get_theme_file_uri('assets/images/icons/building.svg'); ?>" alt="Investment">
-                  Mô hình
-                </div>
-                <div class="metric-value"><?= the_title(); ?></div>
-              </div>
 
-              <div class="metric-item">
-                <div class="metric-label">
-                  <img src="<?php echo get_theme_file_uri('assets/images/icons/user-gray.svg'); ?>" alt="Beds">
-                  Sức chứa
-                </div>
-                <div class="metric-value"><?= $phong ?? 'N/A'; ?></div>
-              </div>
-
-              <div class="metric-item">
-                <div class="metric-label">
-                  <img src="<?php echo get_theme_file_uri('assets/images/icons/vr-gray.svg'); ?>" alt="Area">
-                  Diện tích
-                </div>
-                <div class="metric-value"><?= $dientich ?? 'N/A'; ?></div>
-              </div>
-
-              <div class="metric-item">
-                <div class="metric-label">
-                  <img src="<?php echo get_theme_file_uri('assets/images/icons/location-gray.svg'); ?>"
-                    alt="Investment">
-                  Vị trí
-                </div>
-                <div class="metric-value"><?=$vitri;?></div>
-              </div>
-            </div>
-
-            <div class="modal-info-content">
-              <div class="font-semibold mb-2 mt-6">Thông tin cá nhân</div>
-              <input type="hidden" name="postId" value="<?= $franchise_id ?>" />
-              <div class="input-group">
-                <input class="input" placeholder="Họ và tên khách hàng" name="fullname" />
-                <div class="has-error error-fullname"></div>
-              </div>
-              <div class="input-group">
-                <input class="input" placeholder="Số điện thoại" name="phone" />
-                <div class="has-error error-phone"></div>
-              </div>
-
-              <div class="input-group">
-                <div class="font-semibold mb-2 mt-6">Hình thức đầu tư</div>
-                <ul class="modal-option-investment-list flex flex-col gap-2">
-                  <?php foreach($cachinhthucdautu as $item): ?>
-                  <li class="modal-option-investment-item">
-                    <label class="flex items-center gap-2">
-                      <input type="radio" name="cachinhthucdautu" class="modal-option-investment"
-                        value="<?= $item['ten_hinh_thuc']; ?>" />
-                      <span><?= $item['ten_hinh_thuc']; ?></span>
-                    </label>
-                  </li>
-                  <?php endforeach; ?>
-                </ul>
-                <div class="has-error error-investment"></div>
-              </div>
-
-              <div class="input-group input-note mb-0 mt-6">
-                <div class="font-semibold mb-2">Ghi chú</div>
-                <textarea class="input" rows="3" placeholder="Ghi chú" name="note"></textarea>
-              </div>
-            </div>
-
-          </div>
-          <div class="modal-action">
-            <button class="btn btn-lg btn-register-investment js-register-investment" data-id="<?= $franchise_id ?>">Gửi
-              yêu cầu</button>
-          </div>
-        </div>
-
-      </div>
   </section>
 </main>
 
