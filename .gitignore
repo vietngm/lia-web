@@ -18,3 +18,4 @@ dist/assets/js/main.js
 webpack/pnpm-lock.yaml
 .vscode/settings.json
 dist/wp-content/plugins/sync-data/css/common.css
+dist/wp-content/.litespeed_conf.dat

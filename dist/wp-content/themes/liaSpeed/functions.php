@@ -13,7 +13,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 /******************************* Add title to wp_head() ******************************/
 if (!function_exists('add_title_to_head')){
 	function add_title_to_head(){
-		echo '<title>' . wp_title( '|', false, 'right' ) . '</title>';
+		echo '<title>' . wp_title( '| LiA Beauty', false, 'right' ) . '</title>';
 	}
 	add_action( 'wp_head', 'add_title_to_head' );
 }
@@ -22,7 +22,7 @@ if (!function_exists('add_title_to_head')){
 
 /*************************************************************************************/
 /******************************* Load script *****************************************/
-$ASSETS_VERSION = "1.0.7";
+$ASSETS_VERSION = "1.0.0";
 function modify_jquery() {
 	global $ASSETS_VERSION;
 	if (!is_admin()) {
@@ -44,7 +44,7 @@ function load_scripts(){
 	wp_enqueue_style( 'toastify', get_theme_file_uri( '/assets/css/toastify.min.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'styles', get_theme_file_uri( '/assets/css/styles.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'custom-style', get_theme_file_uri( '/style.css' ), array(), $ASSETS_VERSION );
-	wp_enqueue_style( 'custom-style', get_theme_file_uri( '/assets/css/custom.css' ), array(), $ASSETS_VERSION );
+	// wp_enqueue_style( 'custom-style', get_theme_file_uri( '/assets/css/custom.css' ), array(), $ASSETS_VERSION );
 	wp_enqueue_style( 'common-style', get_theme_file_uri( '/assets/css/common.css' ), array(), $ASSETS_VERSION );
 
 	wp_enqueue_script( 'lazyload', get_theme_file_uri( '/assets/js/jquery.lazyload.min.js' ), array(), $ASSETS_VERSION, true );
@@ -71,9 +71,6 @@ function load_admin_scripts() {
 
 /*************************************************************************************/
 /******************************* COMMON **********************************************/
-
-
-
 
 //////// Remove admin bar
 
@@ -111,13 +108,12 @@ add_filter('intermediate_image_sizes_advanced', function($sizes) {
     return $sizes;
 });
 
+// $service_summary = file_get_contents(get_template_directory() . '/template-parts/service-summary.php');
 
-$service_summary = file_get_contents(get_template_directory() . '/template-parts/service-summary.php');
-
-// Truyền dữ liệu từ PHP sang JavaScript
-wp_localize_script('my_script', 'serviceData', array(
-  'serviceSummary' => $service_summary // Dữ liệu sẽ được truyền sang JavaScript
-));
+// // Truyền dữ liệu từ PHP sang JavaScript
+// wp_localize_script('my_script', 'serviceData', array(
+//   'serviceSummary' => $service_summary // Dữ liệu sẽ được truyền sang JavaScript
+// ));
 
 /*-----------------------------------------------------------------------*/
 
@@ -129,3 +125,33 @@ function getExcerptLimit($count,$excerpt){
   $excerpt = $excerpt.'...';
   return $excerpt;
 }
+
+function enqueue_investment_script() {
+	// Đưa script JS của bạn vào đây (thay đường dẫn đúng)
+	wp_enqueue_script('investment-script', get_template_directory_uri() . '/assets/js/common.js', ['jquery'], null, true);
+
+	// Dữ liệu bạn muốn truyền từ PHP sang JS
+	$investment_data = [];
+
+	$args = [
+		'post_type'      => 'investment',
+		'posts_per_page' => -1,
+		'post_status'    => 'publish',
+	];
+
+	$posts = get_posts($args);
+	foreach ($posts as $post) {
+		$post_id = $post->ID;
+
+		$investment_data[$post_id] = [
+			'name'     => get_the_title($post_id),
+			'phong'    => get_field('dt_succhua', $post_id),
+			'dientich' => get_field('dt_dientich', $post_id),
+			'diachi'   => get_field('dt_dia_chi', $post_id),
+		];
+	}
+
+	// Truyền sang JS
+	wp_localize_script('investment-script', 'investmentData', $investment_data);
+}
+add_action('wp_enqueue_scripts', 'enqueue_investment_script');
