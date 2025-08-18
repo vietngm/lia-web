@@ -28,11 +28,6 @@ msgctxt "Pattern description"
 msgid "A feature grid of 2 rows and 3 columns with headings and text."
 msgstr "Lưới tính năng gồm 2 hàng và 3 cột với tiêu đề và văn bản."
 
-#: patterns/page-home-portfolio-gallery.php
-msgctxt "Pattern description"
-msgid "A porfolio home page that features a gallery."
-msgstr "Trang chủ danh mục đầu tư có thư viện ảnh."
-
 #: patterns/gallery-project-layout.php
 msgctxt "Pattern description"
 msgid "A gallery section with a project layout with 2 images."
@@ -58,40 +53,10 @@ msgctxt "Pattern description"
 msgid "A title, a paragraph and a CTA button on the left with an image on the right."
 msgstr "Tiêu đề, đoạn văn và nút kêu gọi hành động (CTA) ở bên trái, hình ảnh ở bên phải."
 
-#: patterns/text-project-details.php
-msgctxt "Pattern description"
-msgid "A text only section for project details."
-msgstr "Phần chỉ chứa văn bản dành cho thông tin chi tiết dự án."
-
 #: patterns/text-faq.php:35
 msgctxt "Question in the FAQ pattern"
 msgid "Who is behind Études?"
 msgstr "Ai là người sáng lập Études?"
-
-#: patterns/text-faq.php
-msgctxt "Pattern description"
-msgid "A FAQ section with a large FAQ heading and list of toggle questions and answers."
-msgstr "Phần Câu hỏi thường gặp với tiêu đề lớn và danh sách các câu hỏi và câu trả lời có thể chuyển đổi."
-
-#: patterns/text-centered-statement.php
-msgctxt "Pattern description"
-msgid "A centered text statement with a large paddings."
-msgstr "Câu khẳng định văn bản được căn giữa với phần đệm lớn."
-
-#: patterns/text-centered-statement-small.php
-msgctxt "Pattern description"
-msgid "A centered itallic text statement with compact padding."
-msgstr "Câu khẳng định văn bản in nghiêng được căn giữa với phần đệm nhỏ gọn."
-
-#: patterns/text-alternating-images.php
-msgctxt "Pattern description"
-msgid "A text section, then a two column section with text in one and image in another."
-msgstr "Phần văn bản, tiếp theo là phần hai cột với văn bản ở một cột và hình ảnh ở cột kia."
-
-#: patterns/testimonial-centered.php
-msgctxt "Pattern description"
-msgid "A centered testimonial section with a avatar, name, and job title."
-msgstr "Phần lời chứng thực được căn giữa với avatar, tên và chức danh công việc."
 
 #: patterns/team-4-col.php
 msgctxt "Pattern description"
@@ -1130,6 +1095,7 @@ msgid "Previous: "
 msgstr "Trước đó: "
 
 #: patterns/hidden-post-navigation.php:9 patterns/hidden-post-navigation.php:10
+#: patterns/hidden-posts-heading.php:10
 #: patterns/template-index-portfolio.php:16
 msgid "Posts"
 msgstr "Bài viết"
@@ -1567,6 +1533,12 @@ msgctxt "Question in the FAQ pattern"
 msgid "I'd like to get to meet fellow architects, how can I do that?"
 msgstr "Tôi muốn gặp gỡ các kiến trúc sư đồng nghiệp, tôi có thể làm điều đó như thế nào?"
 
+#: patterns/text-faq.php:27 patterns/text-faq.php:38 patterns/text-faq.php:49
+#: patterns/text-faq.php:60
+msgctxt "Answer in the FAQ pattern"
+msgid "Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future."
+msgstr "Études cung cấp các giải pháp tư vấn, quản lý, thiết kế và nghiên cứu toàn diện. Tầm nhìn của chúng tôi là đi đầu trong đổi mới kiến trúc, thúc đẩy một cộng đồng kiến trúc sư và những người đam mê toàn cầu, đoàn kết bởi niềm đam mê tạo ra không gian. Mỗi nỗ lực kiến trúc là một cơ hội để định hình tương lai."
+
 #: patterns/text-centered-statement.php:21
 msgid "<em>Études</em> is not confined to the past—we are passionate about the cutting edge designs shaping our world today."
 msgstr "<em>Études</em> không bị giới hạn bởi quá khứ—chúng tôi đam mê những thiết kế tiên tiến đang định hình thế giới ngày nay."
@@ -1585,12 +1557,6 @@ msgstr "Câu khẳng định trung tâm, nhỏ"
 msgctxt "Sample list item"
 msgid "Case studies that celebrate architecture."
 msgstr "Các nghiên cứu điển hình tôn vinh kiến trúc."
-
-#: patterns/text-faq.php:27 patterns/text-faq.php:38 patterns/text-faq.php:49
-#: patterns/text-faq.php:60
-msgctxt "Answer in the FAQ pattern"
-msgid "Études offers comprehensive consulting, management, design, and research solutions. Our vision is to be at the forefront of architectural innovation, fostering a global community of architects and enthusiasts united by a passion for creating spaces. Every architectural endeavor is an opportunity to shape the future."
-msgstr "Études cung cấp các giải pháp tư vấn, quản lý, thiết kế và nghiên cứu toàn diện. Tầm nhìn của chúng tôi là đi đầu trong đổi mới kiến trúc, thúc đẩy một cộng đồng kiến trúc sư và những người đam mê toàn cầu, đoàn kết bởi niềm đam mê tạo ra không gian. Mỗi nỗ lực kiến trúc là một cơ hội để định hình tương lai."
 
 #: patterns/text-alternating-images.php:97
 msgctxt "Sample list item"
