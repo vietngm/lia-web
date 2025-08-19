@@ -492,4 +492,4 @@ include get_template_directory() . "/inc/render-list.php";
 /********************************************* Investment **********************************************/
 include get_template_directory() . "/inc/investment.php";
 /********************************************* ORder **********************************************/
-// include get_template_directory() . "/inc/order.php";
+include get_template_directory() . "/inc/order.php";

@@ -27,15 +27,16 @@ function register_order_post_type(){
 		'has_archive' => false,
 		'rewrite' => array('slug' => 'don-hang', 'with_front' => false)
 	);
-	register_post_type('order', $args);
+	register_post_type('don-hang', $args);
 }
 add_action('init', 'register_order_post_type');
 /********************************************* Order **********************************************/
-function ajax_order_form(){
+function ajax_donhang_form(){
 	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
 	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 	$cachinhthucdautu = isset($_POST["cachinhthucdautu"]) ? $_POST["cachinhthucdautu"] : "";
-	$note = isset($_POST["message"]) ? $_POST["message"] : "";
+	$quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : 1;
+	$address = isset($_POST["address"]) ? $_POST["address"] : "";
 	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
 
 		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'order_form' ) ) {
@@ -55,22 +56,22 @@ function ajax_order_form(){
 	}
 
 	$existing[] = [
-		'dt_hoten'   => $fullname,
-		'dt_dtkh'    => $phone,
-		'dt_htdtkh'  => $cachinhthucdautu,
-		'dt_gckh'    => $note,
+		'dh_hoten'   => $fullname,
+		'dh_dtkh'    => $phone,
+		'dh_htdtkh'  => $cachinhthucdautu,
+		'dh_gckh'    => $note,
 	];
 
 	// update_field('dt_ttkh', $existing, $postId);
 	echo json_encode(
 		array(
 			'success' => true,	
-			"message" => "Đăng ký đầu tư thành công."
+			"message" => "Đơn hàng đã được tạo thành công."
 		)
 	);
 	die();
 }
 
-// add_action( 'wp_ajax_order_form', 'ajax_order_form');
-// add_action( 'wp_ajax_nopriv_order_form', 'ajax_order_form');
+add_action( 'wp_ajax_donhang_form', 'ajax_donhang_form');
+add_action( 'wp_ajax_nopriv_donhang_form', 'ajax_donhang_form');
 ?>
