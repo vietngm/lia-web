@@ -12,6 +12,7 @@ function register_order_post_type(){
 			'title',
 		),
 		'hierarchical' => true,
+		'taxonomies' => array('trang-thai'),
 		'show_ui' => true,
 		'public' => true,
 		'publicly_queryable' => true,
@@ -30,6 +31,33 @@ function register_order_post_type(){
 	register_post_type('don-hang', $args);
 }
 add_action('init', 'register_order_post_type');
+/********************************************* News Category **********************************************/
+	function register_order_taxonomy() {
+
+	$labels = array(
+		'name' => 'Trạng thái đơn hàng',
+		'singular' => 'Trạng thái',
+		'menu_name' => 'Trạng thái',
+		'add_new_item' => 'Thêm trạng thái mới',
+		'most_used' => 'Gần đây',
+	);
+
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => false,
+		'show_admin_column' => 	false,
+		'public'			=> false,
+		'rewrite'			=> true,
+		'query_var'         => true,
+		'publicly_queryable' => true,
+		'rewrite'           => array( 'slug' => '', 'with_front' => false ),
+	);
+
+		register_taxonomy('trang-thai', 'don-hang', $args);
+}
+
+add_action( 'init', 'register_order_taxonomy', 0 );
 /********************************************* Order **********************************************/
 function ajax_donhang_form(){
 	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";

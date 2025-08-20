@@ -155,3 +155,8 @@ function enqueue_investment_script() {
 	wp_localize_script('investment-script', 'investmentData', $investment_data);
 }
 add_action('wp_enqueue_scripts', 'enqueue_investment_script');
+
+function hide_litespeed_metabox_css() {
+    echo '<style>#litespeed_meta_boxes {display: none !important;</style>';
+}
+add_action('admin_head', 'hide_litespeed_metabox_css');
