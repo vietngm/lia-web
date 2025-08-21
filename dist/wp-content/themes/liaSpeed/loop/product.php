@@ -61,4 +61,9 @@
     </div>
     <?php } ?>
   </div>
+
+  <button class="btn btn-booking-service disabled" data-doctor-id="<?= $doctor_id ?>" data-branch-id="<?= $branch_id ?>"
+    data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
+    data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Mua ngay</button>
+
 </a>
