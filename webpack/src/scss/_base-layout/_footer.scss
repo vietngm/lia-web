@@ -329,7 +329,6 @@
 }
 
 .footer-cart-buy-now {
-	height: 60px;
 	position: sticky;
 	background-color: white;
 	bottom: 0;
@@ -337,4 +336,5 @@
 	right: 0;
 	padding: 16px;
 	z-index: 1;
+	box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.1);
 }

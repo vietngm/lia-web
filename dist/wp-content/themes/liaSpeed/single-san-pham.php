@@ -670,6 +670,6 @@ set_query_var('field', $fields);
   <?php get_template_part( 'template-parts/bottom-sheet', 'product-info' ); ?>
 </div>
 <div class="footer-cart-buy-now">
-  <button class="btn btn-buy-now">Đặt hàng</button>
+  <button class="btn btn-buy-now disabled">Đặt hàng</button>
 </div>
 <?php get_footer("empty"); ?>
