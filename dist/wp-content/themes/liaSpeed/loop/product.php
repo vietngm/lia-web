@@ -11,59 +11,62 @@
   $discount = $firstPrice['gia_km'] ?? 0;
   $discountPrice = $price-($price * ($discount / 100));
 ?>
-<a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
-  <?php if ($thumb) { ?>
-  <div class='product-thumb'>
+
+<?php if ($thumb) { ?>
+<div class='product-thumb'>
+  <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
     <img class="img aspect-square lazy" src="<?php echo $thumb['url'] ?>" alt="<?php echo $post->post_title; ?>">
-  </div>
-  <?php } else { ?>
-  <div class='product-noimage'>
+  </a>
+</div>
+<?php } else { ?>
+<div class='product-noimage'>
+  <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
     <img class="img aspect-square lazy" src="<?php echo get_theme_file_uri('assets/images/noimg64.png'); ?>" width="64"
       height="64" alt="<?php echo $post->post_title; ?>">
-  </div>
-  <?php } ?>
-  <div class="product-detail">
+  </a>
+</div>
+<?php } ?>
+<div class="product-detail">
 
-    <div class="flex justify-between items-center">
-      <div class="rating items-center gap-1">
-        <div class="flex text-10 rating-icon" style="font-weight:800;">
-          <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
-          <span class="name"><?= $rating; ?></span>
-          <span class="value">(<?php echo $ratingCount;?>)</span>
-        </div>
-        <span class="separator">|</span>
-        <span class="text-10">Đã bán</span>
-        <span class="text-10"><?= $orderCount; ?></span>
+  <div class="flex justify-between items-center">
+    <div class="rating items-center gap-1">
+      <div class="flex text-10 rating-icon" style="font-weight:800;">
+        <img src="<?= get_theme_file_uri("assets/images/icons/star.svg") ?>" />
+        <span class="name"><?= $rating; ?></span>
+        <span class="value">(<?php echo $ratingCount;?>)</span>
       </div>
+      <span class="separator">|</span>
+      <span class="text-10">Đã bán</span>
+      <span class="text-10"><?= $orderCount; ?></span>
     </div>
+  </div>
 
-    <div class="product-title">
-      <p><?php the_title(); ?></p>
+  <div class="product-title">
+    <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
+      <?php the_title(); ?>
+    </a>
+  </div>
+  <?php if($discount==0) {?>
+  <div class="product-price">
+    <span><?= number_format($price, 0, ",", ".") ?></span>
+    <small><u>đ</u></small>
+  </div>
+  <?php } else{ ?>
+  <div class="product-discount">
+    <?php echo '-'.$discount.'%';?>
+  </div>
+  <div class="product-km">
+    <div class="price-discount">
+      <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
+      <small><u>đ</u></small>
     </div>
-    <?php if($discount==0) {?>
-    <div class="product-price">
+    <div class="price-through">
       <span><?= number_format($price, 0, ",", ".") ?></span>
       <small><u>đ</u></small>
     </div>
-    <?php } else{ ?>
-    <div class="product-discount">
-      <?php echo '-'.$discount.'%';?>
-    </div>
-    <div class="product-km">
-      <div class="price-discount">
-        <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
-        <small><u>đ</u></small>
-      </div>
-      <div class="price-through">
-        <span><?= number_format($price, 0, ",", ".") ?></span>
-        <small><u>đ</u></small>
-      </div>
-    </div>
-    <?php } ?>
   </div>
-
-  <button class="btn btn-booking-service disabled" data-doctor-id="<?= $doctor_id ?>" data-branch-id="<?= $branch_id ?>"
-    data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
-    data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Mua ngay</button>
-
-</a>
+  <?php } ?>
+</div>
+<button class="btn btn-booking-service disabled" data-doctor-id="<?= $doctor_id ?>" data-branch-id="<?= $branch_id ?>"
+  data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
+  data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Mua ngay</button>

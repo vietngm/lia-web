@@ -1,20 +1,7 @@
 <?php get_header(); ?>
 <?php
 	$fields = get_fields();
-	// $price = $fields["price"] ? $fields["price"] : 0;
-	// $discountPrice = $fields["discountPrice"] ? $fields["discountPrice"] : 0;
-	// $discountPercentage = ($price > 0 && $discountPrice < $price)
-  //   ? round((($price - $discountPrice) / $price) * 100) 
-  //   : 0;
-
-  // $unitPrice = get_field('unit_price', $post->ID);
-  // $ratingCount = get_field('sl_dg', $post->ID);
-  // $firstPrice = $unitPrice ? $unitPrice[0] : [];
-  // $price = $firstPrice['gia_sp'] ?? 0;
-  // $discount = $firstPrice['gia_km'] ?? 0;
-  // $discountPercentage = $price-($price * ($discount / 100));
-
-  $description = get_field('description', $post->ID);
+	$description = get_field('description', $post->ID);
   $hdsd = get_field('hd_sd', $post->ID);
   $tpsp = get_field('tp_sp', $post->ID);
   $dtph = get_field('dt_ph', $post->ID);
@@ -59,9 +46,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
-<style>
-
-</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -669,8 +653,8 @@ document.addEventListener('DOMContentLoaded', function() {
   updateModalContent();
 });
 </script>
-<?php get_template_part( 'template-parts/footer', "menu"); ?>
-<?php 
+<?php
+get_template_part( 'template-parts/footer', "menu");
 set_query_var('field', $fields);
 ?>
 <div id="bottom-sheet-warranty-policy"
@@ -684,5 +668,8 @@ set_query_var('field', $fields);
 <div id="bottom-sheet-product-info"
   class="modal-booking fixed hidden top-0 left-0 right-0 bottom-0 z-[120] modal-popup">
   <?php get_template_part( 'template-parts/bottom-sheet', 'product-info' ); ?>
+</div>
+<div class="footer-cart-buy-now">
+  <button class="btn btn-buy-now">Đặt hàng</button>
 </div>
 <?php get_footer("empty"); ?>
