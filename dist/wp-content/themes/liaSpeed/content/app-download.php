@@ -30,3 +30,23 @@
     </div>
   </div>
 </div>
+
+<script>
+const downloadButton = document.getElementById("downloadApp");
+if (downloadButton) {
+  downloadButton.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      window.location.href = "https://play.google.com/store/apps/details?id=com.liabeauty.liacustomer";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      window.location.href =
+        "https://apps.apple.com/us/app/lia-k%E1%BA%BFt-n%E1%BB%91i-chia-s%E1%BA%BB/id6737228105";
+    } else {
+      alert("Ứng dụng chỉ hỗ trợ trên iOS và Android!");
+    }
+  });
+}
+</script>

@@ -15,7 +15,7 @@
 <?php if ($thumb) { ?>
 <div class='product-thumb'>
   <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
-    <img class="img aspect-square lazy" src="<?php echo $thumb['url'] ?>" alt="<?php echo $post->post_title; ?>">
+    <img class="img aspect-square lazy" src="<?= $thumb['url'] ?>" alt="<?php echo $post->post_title; ?>">
   </a>
 </div>
 <?php } else { ?>
@@ -40,12 +40,11 @@
       <span class="text-10"><?= $orderCount; ?></span>
     </div>
   </div>
-
-  <div class="product-title">
-    <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
+  <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
+    <span class="product-title">
       <?php the_title(); ?>
-    </a>
-  </div>
+    </span>
+  </a>
   <?php if($discount==0) {?>
   <div class="product-price">
     <span><?= number_format($price, 0, ",", ".") ?></span>
@@ -67,6 +66,5 @@
   </div>
   <?php } ?>
 </div>
-<button class="btn btn-booking-service disabled" data-doctor-id="<?= $doctor_id ?>" data-branch-id="<?= $branch_id ?>"
-  data-price="<?= $discountPrice ? $discountPrice : $price ?>" data-title="<?= get_the_title() ?>"
-  data-id="<?= get_the_ID() ?>" data-toppings="<?= $dataJson ?>" data-image="<?= $image ?>">Mua ngay</button>
+<button class="btn disabled" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+  data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">Mua ngay</button>

@@ -77,7 +77,6 @@
             </li>
             <?php endforeach; ?>
           </ul>
-
           <div class="has-error error-investment"></div>
         </div>
 
@@ -89,11 +88,11 @@
 
     </div>
     <div class="modal-action">
-      <button class="btn btn-lg btn-register-investment js-register-investment">Gửi yêu
-        cầu</button>
+      <button class="btn btn-lg btn-register-investment js-register-investment">Gửi yêu cầu</button>
     </div>
   </div>
 </div>
+<?php require "form-modal/buy-now.php";?>
 <?php wp_footer(); ?>
 </body>
 

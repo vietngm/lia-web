@@ -25,6 +25,7 @@
 		border: 1px solid $color-gray;
 		border-radius: 8px;
 		padding: 12px;
+		gap: 8px;
 	}
 	&-title {
 		font-size: 0.8rem;
@@ -92,6 +93,7 @@
 		list-style: none;
 		// border-bottom: 3px solid $color-gray;
 		margin-bottom: 12px;
+		margin-top: 12px;
 		// padding-bottom: 12px;
 	}
 	&-detail {
@@ -190,23 +192,5 @@
 	&-desc {
 		font-weight: normal;
 		// padding-bottom: 8px;
-	}
-}
-
-.btn-booking-service {
-	margin-top: 16px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 6px;
-	border: 1px solid $color-main;
-	text-align: center;
-	color: $color-main;
-	// font-size: 12px;
-	cursor: pointer;
-	transition: all 0.4s ease;
-	padding: 1px 0;
-	&:hover {
-		opacity: 0.8;
 	}
 }

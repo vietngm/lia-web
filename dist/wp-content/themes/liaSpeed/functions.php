@@ -152,9 +152,9 @@ function enqueue_investment_script() {
 	}
 
 	// Truyền sang JS
-	wp_localize_script('investment-script', 'investmentData', $investment_data);
+	// wp_localize_script('investment-script', 'investmentData', $investment_data);
 }
-add_action('wp_enqueue_scripts', 'enqueue_investment_script');
+// add_action('wp_enqueue_scripts', 'enqueue_investment_script');
 
 function hide_litespeed_metabox_css() {
     echo '<style>#litespeed_meta_boxes {display: none !important;</style>';

@@ -1,7 +1,6 @@
    <?php
    $cacgiaidoandautu = $args['cacgiaidoandautu'];
-   ?>
-   <?php foreach ($cacgiaidoandautu as $index => $item): ?>
+   foreach ($cacgiaidoandautu as $index => $item): ?>
    <ul class="process-content expand-item" id="process-<?php echo $index; ?>">
      <li class="process-item accordion-item">
        <div class="process-item-step"><?= $item['dt_tttd'] ? $item['dt_tttd'] : 'N/A'; ?></div>
