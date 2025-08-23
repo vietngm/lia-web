@@ -66,5 +66,5 @@
   </div>
   <?php } ?>
 </div>
-<button class="btn disabled" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+<button class="btn js-buy-now disabled" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
   data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">Mua ngay</button>

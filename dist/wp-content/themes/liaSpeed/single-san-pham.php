@@ -670,6 +670,9 @@ set_query_var('field', $fields);
   <?php get_template_part( 'template-parts/bottom-sheet', 'product-info' ); ?>
 </div>
 <div class="footer-cart-buy-now">
-  <button class="btn btn-buy-now disabled">Đặt hàng</button>
+  <button class="btn btn-buy-now js-buy-now disabled" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+    data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">Mua
+    ngay</button>
 </div>
+<?php require "form-modal/buy-now.php";?>
 <?php get_footer("empty"); ?>

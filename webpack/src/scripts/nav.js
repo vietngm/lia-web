@@ -18,8 +18,8 @@ jQuery(function ($) {
 		});
 	});
 
-	$(document).on("click", ".close-modal", function () {
-		$(this).closest(".modal").css("display", "none");
-		document.body.style.overflow = "auto"; // Re-enable scrolling
-	});
+	// $(document).on("click", ".close-modal", function () {
+	// 	$(this).closest(".modal").css("display", "none");
+	// 	document.body.style.overflow = "auto"; // Re-enable scrolling
+	// });
 });

@@ -17,3 +17,4 @@ import "./process.js";
 import "./newsCarousel.js";
 import "./tabs.js";
 import "./registerInvestment.js";
+import "./buyNow.js";
