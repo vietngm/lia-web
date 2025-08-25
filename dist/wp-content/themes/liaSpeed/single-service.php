@@ -1,5 +1,5 @@
-<?php get_header("empty"); ?>
 <?php
+  get_header("empty");
 	$fields = get_fields();
 	$price = $fields["price"] ? $fields["price"] : 0;
 	$discountPrice = $fields["discountPrice"] ? $fields["discountPrice"] : 0;

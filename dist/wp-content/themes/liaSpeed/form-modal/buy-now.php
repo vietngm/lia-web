@@ -2,47 +2,24 @@
   <?php
 	// $pageInvestmentId = get_page_by_path('cac-hinh-thuc-dau-tu');
 	// $cachinhthucdautu = get_field('dshtdt',$pageInvestmentId->ID);
+  $deliveryFee = "30000"
 	?>
   <?= wp_nonce_field( 'buy_now_form' ); ?>
   <div class="rounded-2 modal-bottom-sheet">
     <div class="flex modal-header">
-      <div class="font-bold">Thông tin sản phẩm</div>
+      <div class="font-bold">Thanh toán</div>
       <div class="close-modal cursor-pointer">
         <img class="w-6 h-6" src="<?= get_theme_file_uri("assets/images/icons/close-gray.svg") ?>" alt="" />
       </div>
     </div>
     <div class="modal-info">
-      <div class="metrics-container">
-        <div class="metric-item">
-          <!-- <div class="metric-label">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/building.svg'); ?>" alt="Investment">
-            Mô hình
-          </div>
-          <div class="metric-value modal-name"></div> -->
+      <div class="modal-product-container">
+        <div class="modal-product-thumb">
+          <img src="<?= get_theme_file_uri("assets/images/noimg64.png") ?>" alt="" />
         </div>
-
-        <div class="metric-item">
-          <!-- <div class="metric-label">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/user-gray.svg'); ?>" alt="Beds">
-            Sức chứa
-          </div>
-          <div class="metric-value modal-phong"><?= $phong ?? 'N/A'; ?></div> -->
-        </div>
-
-        <div class="metric-item">
-          <!-- <div class="metric-label">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/vr-gray.svg'); ?>" alt="Area">
-            Diện tích
-          </div>
-          <div class="metric-value modal-dientich"><?= $dientich ?? 'N/A'; ?></div> -->
-        </div>
-
-        <div class="metric-item">
-          <!-- <div class="metric-label">
-            <img src="<?php echo get_theme_file_uri('assets/images/icons/location-gray.svg'); ?>" alt="Investment">
-            Vị trí
-          </div>
-          <div class="metric-value modal-dia_chi"><?=$dia_chi;?></div> -->
+        <div class="modal-product-info">
+          <div class="title">N/A</div>
+          <div class="price">0 <small>đ</small></div>
         </div>
       </div>
 
@@ -59,8 +36,53 @@
         </div>
 
         <div class="input-group">
+          <textarea class="input" rows="3" placeholder="Địa chỉ giao hàng" name="address"></textarea>
+          <div class="has-error error-address"></div>
+        </div>
+
+        <div class="input-group">
+          <div class="font-semibold mb-2 mt-6">Phương thức vận chuyển</div>
+          <div class="delivery-method">
+            <ul class="modal-delivery-list">
+              <li class="modal-delivery-item">
+                <div class="delivery-method-subtitle">Tiêu chuẩn</div>
+                <label class="flex items-center justify-between py-2 cursor-pointer">
+                  <div class="flex items-center space-x-2 gap-2">
+                    <span class="text-gray-800">Nhận hàng sau 1 - 3 ngày</span>
+                  </div>
+                  <div>
+                    <?= number_format($deliveryFee, 0, ",", ".") ?> <small>đ</small>
+                    <input type="radio" name="deliveryMethod" data-price="30000" data-name="Tiêu chuẩn"
+                      value="Tiêu chuẩn" class="modal-delivery-method">
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <div class="has-error error-delivery"></div>
+          </div>
+        </div>
+
+        <div class="input-group">
           <div class="font-semibold mb-2 mt-6">Hình thức thanh toán</div>
-          <ul class="modal-option-investment-list flex flex-col gap-2">
+          <ul class="modal-payment-list">
+            <li class="modal-payment-item">
+              <label class="flex items-center justify-between py-2 cursor-pointer">
+                <span>Ví momo</span>
+                <input type="radio" name="paymentMethod" value="Ví momo" />
+              </label>
+            </li>
+            <li class="modal-payment-item">
+              <label class="flex items-center justify-between py-2 cursor-pointer">
+                <span>VNPay</span>
+                <input type="radio" name="paymentMethod" value="VNPay" />
+              </label>
+            </li>
+            <li class="modal-payment-item">
+              <label class="flex items-center justify-between py-2 cursor-pointer">
+                <span>Tiền mặt</span>
+                <input type="radio" name="paymentMethod" value="Tiền mặt" />
+              </label>
+            </li>
             <?php //foreach($cachinhthucdautu as $item): ?>
             <!-- <li class="modal-option-investment-item">
               <label class="flex items-center gap-2">
@@ -71,18 +93,39 @@
             </li> -->
             <?php //endforeach; ?>
           </ul>
-          <div class="has-error error-investment"></div>
+          <div class="has-error error-payment"></div>
+        </div>
+        <div class="input-group">
+          <div class="font-semibold mb-2 mt-6">Chi tiết thanh toán</div>
+          <ul class="modal-invoice">
+            <li class="modal-invoice-item">
+              <span class="name">Tạm tính(1 sản phẩm)</span>
+              <span class="value">0 <small>đ</small></span>
+            </li>
+            <li class="modal-invoice-item">
+              <span class="name">Phí vận chuyển</span>
+              <span class="value"><?= number_format($deliveryFee, 0, ",", ".") ?> <small>đ</small></span>
+            </li>
+          </ul>
+          <div class="modal-invoice-total">
+            <span class="name">Tổng tạm tính</span>
+            <span class="value">0 <small>đ</small></span>
+          </div>
         </div>
 
-        <div class="input-group input-note mb-0 mt-6">
+        <!-- <div class="input-group input-note mb-0 mt-6">
           <div class="font-semibold mb-2">Ghi chú</div>
           <textarea class="input" rows="3" placeholder="Ghi chú" name="note"></textarea>
-        </div>
+        </div> -->
       </div>
 
     </div>
     <div class="modal-action">
-      <button class="btn btn-lg btn-buy-now js-submit-buy-now">Đặt hàng</button>
+      <div class="modal-action-total">
+        <span class="name">Tổng: </span>
+        <span class="value">0 <small>đ</small></span>
+      </div>
+      <button class="btn btn-lg btn-submit-buy-now js-submit-buy-now disabled">Đặt hàng</button>
     </div>
   </div>
 </div>

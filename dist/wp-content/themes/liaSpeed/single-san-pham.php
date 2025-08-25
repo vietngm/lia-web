@@ -319,42 +319,42 @@ toggleButton.addEventListener("click", () => {
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  let basePrice = Number(document.getElementById("priceData").getAttribute("data-price"));
+// document.addEventListener("DOMContentLoaded", function() {
+//   let basePrice = Number(document.getElementById("priceData").getAttribute("data-price"));
 
-  function updateURLPrice(totalPrice) {
-    const url = new URL(window.location);
-    url.searchParams.set('totalPrice', totalPrice);
-    window.history.pushState({}, '', url);
-  }
+//   function updateURLPrice(totalPrice) {
+//     const url = new URL(window.location);
+//     url.searchParams.set('totalPrice', totalPrice);
+//     window.history.pushState({}, '', url);
+//   }
 
-  function getPriceFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('totalPrice') || basePrice;
-  }
+//   function getPriceFromURL() {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     return urlParams.get('totalPrice') || basePrice;
+//   }
 
-  let totalPrice = getPriceFromURL();
-  const totalPriceElement = document.getElementById("totalPrice");
-  totalPriceElement.textContent = `${totalPrice.toLocaleString()} đ`;
+//   let totalPrice = getPriceFromURL();
+//   const totalPriceElement = document.getElementById("totalPrice");
+//   totalPriceElement.textContent = `${totalPrice.toLocaleString()} đ`;
 
-  const modal = document.getElementById("modal-topping");
-  const openModalButton = document.getElementById("openModal");
-  const closeModalButton = document.getElementById("closeModal");
+//   const modal = document.getElementById("modal-topping");
+//   const openModalButton = document.getElementById("openModal");
+//   const closeModalButton = document.getElementById("closeModal");
 
-  openModalButton.addEventListener("click", function() {
-    modal.classList.remove("hidden");
-    modal.style.display = "block";
-    totalPrice = getPriceFromURL();
-    totalPriceElement.textContent = `${totalPrice.toLocaleString()} đ`;
-  });
+//   openModalButton.addEventListener("click", function() {
+//     modal.classList.remove("hidden");
+//     modal.style.display = "block";
+//     totalPrice = getPriceFromURL();
+//     totalPriceElement.textContent = `${totalPrice.toLocaleString()} đ`;
+//   });
 
-  if (closeModalButton) {
-    closeModalButton.addEventListener("click", function() {
-      modal.style.display = "none";
-      modal.classList.add("hidden");
-    });
-  }
-});
+//   if (closeModalButton) {
+//     closeModalButton.addEventListener("click", function() {
+//       modal.style.display = "none";
+//       modal.classList.add("hidden");
+//     });
+//   }
+// });
 </script>
 <script>
 function addClassToMainPage() {
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
   addOptionEvent(".option-material", "selectedMaterial");
   addOptionEvent(".option-bh", "selectedBh");
 
-  updateTotalPrice();
+  // updateTotalPrice();
 });
 
 function addOptionEvent(selector, storageKey) {
@@ -452,206 +452,206 @@ function updateCheckedState(selector, name) {
   });
 }
 
-function updateTotalPrice() {
-  const servicePrice = parseInt(localStorage.getItem("servicePrice")) || 0;
-  const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire")) || {
-    price: 0
-  };
-  const selectedMaterial = JSON.parse(localStorage.getItem("selectedMaterial")) || {
-    price: 0
-  };
-  const selectedBh = JSON.parse(localStorage.getItem("selectedBh")) || {
-    price: 0
-  };
+// function updateTotalPrice() {
+//   const servicePrice = parseInt(localStorage.getItem("servicePrice")) || 0;
+//   const selectedDesire = JSON.parse(localStorage.getItem("selectedDesire")) || {
+//     price: 0
+//   };
+//   const selectedMaterial = JSON.parse(localStorage.getItem("selectedMaterial")) || {
+//     price: 0
+//   };
+//   const selectedBh = JSON.parse(localStorage.getItem("selectedBh")) || {
+//     price: 0
+//   };
 
-  const totalPrice = servicePrice + selectedDesire.price + selectedMaterial.price + selectedBh.price;
-  localStorage.setItem("totalPrice", totalPrice);
+//   const totalPrice = servicePrice + selectedDesire.price + selectedMaterial.price + selectedBh.price;
+//   localStorage.setItem("totalPrice", totalPrice);
 
-  document.getElementById("footer-total-price").textContent =
-    new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
-  document.getElementById("totalPriceDisplay").textContent =
-    new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
-  document.getElementById("totalPriceBooking").textContent =
-    new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
-}
+//   document.getElementById("footer-total-price").textContent =
+//     new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
+//   document.getElementById("totalPriceDisplay").textContent =
+//     new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
+//   document.getElementById("totalPriceBooking").textContent =
+//     new Intl.NumberFormat("vi-VN").format(totalPrice) + " đ";
+// }
 </script>
 <script>
 localStorage.clear();
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-material');
-  const confirmButton = document.getElementById('material');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+  // const modal = document.getElementById('modal-material');
+  // const confirmButton = document.getElementById('material');
+  // const overlay = modal.querySelector('.bg-black');
+  // const closeModalButton = modal.querySelector('.close-modal');
 
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  });
+  // confirmButton.addEventListener('click', function() {
+  //   modal.style.display = 'flex';
+  //   setTimeout(() => {
+  //     modal.classList.add('show');
+  //   }, 10);
+  //   document.documentElement.style.overflow = 'hidden';
+  //   document.body.style.overflow = 'hidden';
+  // });
 
-  const closeModal = () => {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-  };
+  // const closeModal = () => {
+  //   modal.classList.remove('show');
+  //   setTimeout(() => {
+  //     modal.style.display = 'none';
+  //   }, 300);
+  //   document.documentElement.style.overflow = '';
+  //   document.body.style.overflow = '';
+  // };
 
-  closeModalButton.addEventListener('click', closeModal);
+  // closeModalButton.addEventListener('click', closeModal);
 });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-desire');
-  const confirmButton = document.getElementById('desire');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const modal = document.getElementById('modal-desire');
+//   const confirmButton = document.getElementById('desire');
+//   const overlay = modal.querySelector('.bg-black');
+//   const closeModalButton = modal.querySelector('.close-modal');
 
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  });
+//   confirmButton.addEventListener('click', function() {
+//     modal.style.display = 'flex';
+//     setTimeout(() => {
+//       modal.classList.add('show');
+//     }, 10);
+//     document.documentElement.style.overflow = 'hidden';
+//     document.body.style.overflow = 'hidden';
+//   });
 
-  const closeModal = () => {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-  };
+//   const closeModal = () => {
+//     modal.classList.remove('show');
+//     setTimeout(() => {
+//       modal.style.display = 'none';
+//     }, 300);
+//     document.documentElement.style.overflow = '';
+//     document.body.style.overflow = '';
+//   };
 
-  closeModalButton.addEventListener('click', closeModal);
-});
+//   closeModalButton.addEventListener('click', closeModal);
+// });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-bh');
-  const confirmButton = document.getElementById('bh');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const modal = document.getElementById('modal-bh');
+//   const confirmButton = document.getElementById('bh');
+//   const overlay = modal.querySelector('.bg-black');
+//   const closeModalButton = modal.querySelector('.close-modal');
 
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.body.classList.add('modal-open');
-  });
+//   confirmButton.addEventListener('click', function() {
+//     modal.style.display = 'flex';
+//     setTimeout(() => {
+//       modal.classList.add('show');
+//     }, 10);
+//     document.body.classList.add('modal-open');
+//   });
 
-  const closeModal = () => {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.body.classList.remove('modal-open');
-  };
+//   const closeModal = () => {
+//     modal.classList.remove('show');
+//     setTimeout(() => {
+//       modal.style.display = 'none';
+//     }, 300);
+//     document.body.classList.remove('modal-open');
+//   };
 
-  closeModalButton.addEventListener('click', closeModal);
-});
+//   closeModalButton.addEventListener('click', closeModal);
+// });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-topping');
-  const confirmButton = document.getElementById('topping');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const modal = document.getElementById('modal-topping');
+//   const confirmButton = document.getElementById('topping');
+//   const overlay = modal.querySelector('.bg-black');
+//   const closeModalButton = modal.querySelector('.close-modal');
 
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.body.classList.add('modal-open');
-  });
+//   confirmButton.addEventListener('click', function() {
+//     modal.style.display = 'flex';
+//     setTimeout(() => {
+//       modal.classList.add('show');
+//     }, 10);
+//     document.body.classList.add('modal-open');
+//   });
 
-  const closeModal = () => {
-    console.log("Đóng modal...");
-    if (!modal) {
-      console.error("Modal không tồn tại!");
-      return;
-    }
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.body.classList.remove('modal-open');
-  };
+//   const closeModal = () => {
+//     console.log("Đóng modal...");
+//     if (!modal) {
+//       console.error("Modal không tồn tại!");
+//       return;
+//     }
+//     modal.classList.remove('show');
+//     setTimeout(() => {
+//       modal.style.display = 'none';
+//     }, 300);
+//     document.body.classList.remove('modal-open');
+//   };
 
-  closeModalButton.addEventListener('click', closeModal);
-  overlay.addEventListener('click', closeModal);
+//   closeModalButton.addEventListener('click', closeModal);
+//   overlay.addEventListener('click', closeModal);
 
-  window.addEventListener("message", function(event) {
-    if (event.data.action === "closeModal") {
-      closeModal();
-    }
-  });
-});
+//   window.addEventListener("message", function(event) {
+//     if (event.data.action === "closeModal") {
+//       closeModal();
+//     }
+//   });
+// });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-pd');
-  const confirmButton = document.getElementById('detail-pd');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const modal = document.getElementById('modal-pd');
+//   const confirmButton = document.getElementById('detail-pd');
+//   const overlay = modal.querySelector('.bg-black');
+//   const closeModalButton = modal.querySelector('.close-modal');
 
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.body.classList.add('modal-open');
-  });
+//   confirmButton.addEventListener('click', function() {
+//     modal.style.display = 'flex';
+//     setTimeout(() => {
+//       modal.classList.add('show');
+//     }, 10);
+//     document.body.classList.add('modal-open');
+//   });
 
-  const closeModal = () => {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.body.classList.remove('modal-open');
-  };
+//   const closeModal = () => {
+//     modal.classList.remove('show');
+//     setTimeout(() => {
+//       modal.style.display = 'none';
+//     }, 300);
+//     document.body.classList.remove('modal-open');
+//   };
 
-  closeModalButton.addEventListener('click', closeModal);
-});
+//   closeModalButton.addEventListener('click', closeModal);
+// });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('modal-booking');
-  const confirmButton = document.getElementById('booking');
-  const overlay = modal.querySelector('.bg-black');
-  const closeModalButton = modal.querySelector('.close-modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const modal = document.getElementById('modal-booking');
+//   const confirmButton = document.getElementById('booking');
+//   const overlay = modal.querySelector('.bg-black');
+//   const closeModalButton = modal.querySelector('.close-modal');
 
-  confirmButton.addEventListener('click', function() {
-    modal.style.display = 'flex';
-    setTimeout(() => {
-      modal.classList.add('show');
-    }, 10);
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  });
+//   confirmButton.addEventListener('click', function() {
+//     modal.style.display = 'flex';
+//     setTimeout(() => {
+//       modal.classList.add('show');
+//     }, 10);
+//     document.documentElement.style.overflow = 'hidden';
+//     document.body.style.overflow = 'hidden';
+//   });
 
-  const closeModal = () => {
-    modal.classList.remove('show');
-    setTimeout(() => {
-      modal.style.display = 'none';
-    }, 300);
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-  };
+//   const closeModal = () => {
+//     modal.classList.remove('show');
+//     setTimeout(() => {
+//       modal.style.display = 'none';
+//     }, 300);
+//     document.documentElement.style.overflow = '';
+//     document.body.style.overflow = '';
+//   };
 
-  closeModalButton.addEventListener('click', closeModal);
-  updateModalContent();
-});
+//   closeModalButton.addEventListener('click', closeModal);
+//   updateModalContent();
+// });
 </script>
 <?php
 get_template_part( 'template-parts/footer', "menu");
@@ -670,7 +670,7 @@ set_query_var('field', $fields);
   <?php get_template_part( 'template-parts/bottom-sheet', 'product-info' ); ?>
 </div>
 <div class="footer-cart-buy-now">
-  <button class="btn btn-buy-now js-buy-now disabled" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
+  <button class="btn btn-primary btn-footer js-buy-now" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
     data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">Mua
     ngay</button>
 </div>

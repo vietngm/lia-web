@@ -150,11 +150,16 @@
 	}
 
 	&-action {
-		padding: 0 16px 16px;
+		padding: 16px 16px 16px;
 		position: absolute;
 		width: 100%;
 		bottom: 0;
 		background-color: white;
+		display: grid;
+		gap: 8px;
+		.value {
+			color: $color-main;
+		}
 	}
 
 	&-bottom-sheet {
@@ -171,6 +176,57 @@
 		.modal-bottom-sheet {
 			bottom: 0;
 			// overflow: visible;
+		}
+	}
+	&-payment-list,
+	&-delivery-list {
+		display: grid;
+		gap: 8px;
+	}
+	&-payment-item,
+	&-delivery-item {
+		border-radius: 8px;
+		border: 1px solid #d3d1d2;
+		padding: 0 12px;
+		align-items: center;
+	}
+	&-product-thumb {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&-product-container {
+		display: grid;
+		grid-template-columns: 60px auto;
+		gap: 8px;
+	}
+	&-product-info {
+		display: grid;
+		// gap: 8px;
+		.title {
+			display: grid;
+			line-height: normal;
+		}
+		.price {
+			color: $color-main;
+			line-height: normal;
+		}
+	}
+	&-invoice {
+		display: grid;
+		gap: 4px;
+		&-item {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		border-bottom: solid 1px #ededed;
+		padding-bottom: 12px;
+		margin-bottom: 12px;
+		&-total {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
 		}
 	}
 }

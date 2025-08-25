@@ -22,7 +22,19 @@
 	&-lg {
 		padding: 8px 12px;
 	}
+	&-primary {
+		background-color: $color-main;
+		color: white;
+	}
+	&-footer {
+		width: 100%;
+	}
 	&-buy-now {
+		width: 100%;
+		background-color: white;
+		color: $color-main;
+	}
+	&-submit-buy-now {
 		width: 100%;
 		background-color: $color-main;
 		padding: 8px 12px;
