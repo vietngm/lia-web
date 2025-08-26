@@ -142,25 +142,61 @@ add_action( 'wp_ajax_nopriv_donhang_form', 'ajax_donhang_form');
 <?php
 add_action('acf/render_field/name=dh_sp', 'render_oder_list_readonly', 10, 1);
 function render_oder_list_readonly($field) {
-	// echo '<style>#acf-' . esc_attr($field['key']) . ' { display: none !important; }</style>';
+	echo '<style>#acf-' . esc_attr($field['key']) . ' { display: none !important; }</style>';
 	$json = $field['value'];
-	$items = json_decode($json, true);
+	$item = json_decode($json, true);
 
-	if (!empty($items) && is_array($items)) {
+	if (!empty($item) && is_array($item)) {
+		$productName = $item['product_name'] ?? '';
+		$quantity = intval($item['quantity'] ?? 1);
+		$productPrice = floatval($item['product_price'] ?? 0);
+		$deliveryPrice = floatval($item['delivery_price'] ?? 0);
+		$image = is_array($item['image']) ? $item['image']['url'] : $item['image'];
+		$image = esc_url($image ?: get_theme_file_uri('assets/images/noimg64.png'));
+
+		$subtotal = $quantity * $productPrice;
+		$total = $subtotal + $deliveryPrice;
+
 		echo '<div class="note-order">';
-		echo '<table>';
+		echo '<table class="widefat fixed striped">';
+		
+		// Header
+		echo '<thead>';
 		echo '<tr>';
+		echo '<th>Hình</th>';
+		echo '<th>Tên sản phẩm</th>';
+		echo '<th>Số lượng</th>';
+		echo '<th>Đơn giá</th>';
+		echo '<th>Thành tiền</th>';
 		echo '</tr>';
+		echo '</thead>';
+
+		// Body
+		echo '<tbody>';
+		echo '<tr>';
+		echo '<td><img src="' . $image . '" alt="" style="width:64px; height:auto; border-radius:4px;" /></td>';
+		echo '<td>' . esc_html($productName) . '</td>';
+		echo '<td>' . esc_html($quantity) . '</td>';
+		echo '<td>' . number_format($productPrice, 0, ',', '.') . ' VND</td>';
+		echo '<td>' . number_format($subtotal, 0, ',', '.') . ' VND</td>';
+		echo '</tr>';
+		echo '</tbody>';
+
+		// Footer
+		echo '<tfoot>';
+		echo '<tr>';
+		echo '<th colspan="4" style="text-align:right;">Phí vận chuyển:</th>';
+		echo '<th>' . number_format($deliveryPrice, 0, ',', '.') . ' VND</th>';
+		echo '</tr>';
+		echo '<tr>';
+		echo '<th colspan="4" style="text-align:right;">Tổng cộng:</th>';
+		echo '<th>' . number_format($total, 0, ',', '.') . ' VND</th>';
+		echo '</tr>';
+		echo '</tfoot>';
+
 		echo '</table>';
-		echo '<ul class="note-order-list">';
-			echo '<li class="note-order-item">';
-			echo '<div class="note-order-line"><strong>Tên sản phẩm:</strong> ' . esc_html($items['product_name']).'</div>';
-			echo '<div class="note-order-line"><strong>Số lượng:</strong> ' . esc_html($items['quantity']).'</div>';
-			echo '<div class="note-order-line"><strong>Giá:</strong> ' . number_format($items['product_price']) . ' VND</div>';
-			echo '</li>';	
-		echo '</ul>';
 		echo '</div>';
 	} else {
-			echo '<p><em>Không có sản phẩm.</em></p>';
+		echo '<p><em>Không có sản phẩm.</em></p>';
 	}
 }
