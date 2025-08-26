@@ -193,8 +193,88 @@ jQuery(function ($) {
 			payment: payment,
 		};
 
-		console.log("Dữ liệu gửi:", dataSubmit);
-
-		// TODO: AJAX gửi về server tại đây nếu cần
+		submitOrderForm(dataSubmit, $modal);
 	});
+
+	function submitOrderForm(dataInvestment, $modal) {
+		const $modelConsultationSuccess = $(document).find(
+			".modal-consultation-success"
+		);
+		const data = Object.assign(
+			{
+				action: "donhang_form",
+				_wpnonce: $modal ? $modal.find('[name="_wpnonce"]').val() : "",
+			},
+			dataInvestment
+		);
+		const loadingToastify = Toastify({
+			text: "Đang gửi thông tin...",
+			duration: -1,
+			newWindow: true,
+			close: true,
+			gravity: "top",
+			position: "center",
+			stopOnFocus: true,
+			style: {
+				background: "#fff",
+				color: "#333",
+			},
+		});
+		loadingToastify.showToast();
+
+		$.ajax({
+			url: AJAX_URL,
+			type: "POST",
+			dataType: "JSON",
+			data: data,
+			success: function (result) {
+				loadingToastify.hideToast();
+
+				if (result.success) {
+					$(document).find(".close-modal").click();
+					$(document).find(".modal-close").click();
+
+					$modelConsultationSuccess.removeClass("hidden").addClass("flex");
+					// reset();
+					setTimeout(function () {
+						$modelConsultationSuccess.addClass("hidden").removeClass("flex");
+						window.location.href = "/";
+					}, 3000);
+
+					// if (success) success();
+				} else {
+					Toastify({
+						text: result.message || "Đã xảy ra lỗi",
+						duration: 3000,
+						newWindow: true,
+						close: true,
+						gravity: "top",
+						position: "center",
+						stopOnFocus: true,
+						style: {
+							background: "#ef4444",
+						},
+					}).showToast();
+					if (error) error();
+				}
+			},
+			error: function () {
+				loadingToastify.hideToast();
+				submitting = false;
+				Toastify({
+					text: "Đã xảy ra lỗi",
+					duration: 3000,
+					newWindow: true,
+					close: true,
+					gravity: "top",
+					position: "center",
+					stopOnFocus: true,
+					style: {
+						background: "#ef4444",
+					},
+				}).showToast();
+				if (error) error();
+			},
+		});
+	}
 });

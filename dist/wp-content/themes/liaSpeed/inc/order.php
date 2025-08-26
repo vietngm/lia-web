@@ -54,20 +54,30 @@ add_action('init', 'register_order_post_type');
 		'rewrite'           => array( 'slug' => '', 'with_front' => false ),
 	);
 
-		register_taxonomy('trang-thai', 'don-hang', $args);
+	register_taxonomy('trang-thai', 'don-hang', $args);
 }
 
 add_action( 'init', 'register_order_taxonomy', 0 );
 /********************************************* Order **********************************************/
 function ajax_donhang_form(){
-	$fullname = isset($_POST["fullname"]) ? $_POST["fullname"] : "";
-	$phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
-	$cachinhthucdautu = isset($_POST["cachinhthucdautu"]) ? $_POST["cachinhthucdautu"] : "";
-	$quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : 1;
-	$address = isset($_POST["address"]) ? $_POST["address"] : "";
-	$postId = isset($_POST["postId"]) ? $_POST["postId"] : "";
+	$fullname = sanitize_text_field($_POST["fullname"] ?? '');
+	$phone = sanitize_text_field($_POST["phone"] ?? '');
+	$address = sanitize_textarea_field($_POST["address"] ?? '');
+	$payment = sanitize_text_field($_POST["payment"] ?? '');
+	$quantity = intval($_POST["quantity"] ?? 1);
+	$postId = intval($_POST["postId"] ?? 0);
+	$delivery = sanitize_text_field($_POST["delivery"] ?? '');
+	$deliveryPrice = floatval($_POST["deliveryPrice"] ?? 0);
 
-		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'order_form' ) ) {
+	if (!get_post($postId)) {
+		echo json_encode([
+			'success' => false,
+			'message' => 'Sản phẩm không tồn tại.'
+		]);
+		die();
+	}
+
+	if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'buy_now_form' ) ) {
 		echo json_encode(
 			array(
 				'success'=>false,
@@ -77,20 +87,45 @@ function ajax_donhang_form(){
 		die();
 	}
 
-	$existing = get_field('dt_ttkh', $postId);
+	$timestamp = microtime(true);
+	$orderDate = date('YmdHis', (int)$timestamp);
+	$micro = sprintf("%04d", ($timestamp - floor($timestamp)) * 10000);
+	$orderNumber = "#{$orderDate}";
+	$thumb = get_field('anh_dai_dien', $postId);
+	$productName = get_the_title($postId);
+  $unitPrice = get_field('unit_price',$postId);
+  $firstPrice = $unitPrice ? $unitPrice[0] : [];
+  $price = $firstPrice['gia_sp'] ?? 0;
+  $discount = $firstPrice['gia_km'] ?? 0;
+  $discountPrice = $price-($price * ($discount / 100));
+	$finalPrice =  $discountPrice ? $discountPrice : $price;
 
-	if (!is_array($existing)) {
-		$existing = [];
-	}
+	$dh = json_encode([
+		'product_id' => $postId,
+		'product_name' => $productName,
+		'image' => $thumb['url'],
+		'quantity' => $quantity,
+		'product_price' =>$finalPrice,
+		'delivery'=>$delivery,
+		'delivery_price'=>$deliveryPrice,
+		"order_date" => current_time('mysql'),
+	], JSON_UNESCAPED_UNICODE);
 
-	$existing[] = [
-		'dh_hoten'   => $fullname,
-		'dh_dtkh'    => $phone,
-		'dh_htdtkh'  => $cachinhthucdautu,
-		'dh_gckh'    => $note,
-	];
+	$data_id = wp_insert_post( 
+		array(
+			'post_title'	=> "Đơn hàng {$orderNumber} - {$fullname} - {$phone}",
+			"post_type" => "don-hang",
+			"post_status" => "publish",
+			"meta_input" => array(
+				"dh_htkh" => $fullname,
+				"dh_sdtkh" => $phone,
+				"dh_dckh" => $address,
+				"dh_httt"=>$payment,
+				"dh_sp"=>$dh
+			),
+		)
+	);
 
-	// update_field('dt_ttkh', $existing, $postId);
 	echo json_encode(
 		array(
 			'success' => true,	
@@ -103,3 +138,29 @@ function ajax_donhang_form(){
 add_action( 'wp_ajax_donhang_form', 'ajax_donhang_form');
 add_action( 'wp_ajax_nopriv_donhang_form', 'ajax_donhang_form');
 ?>
+
+<?php
+add_action('acf/render_field/name=dh_sp', 'render_oder_list_readonly', 10, 1);
+function render_oder_list_readonly($field) {
+	// echo '<style>#acf-' . esc_attr($field['key']) . ' { display: none !important; }</style>';
+	$json = $field['value'];
+	$items = json_decode($json, true);
+
+	if (!empty($items) && is_array($items)) {
+		echo '<div class="note-order">';
+		echo '<table>';
+		echo '<tr>';
+		echo '</tr>';
+		echo '</table>';
+		echo '<ul class="note-order-list">';
+			echo '<li class="note-order-item">';
+			echo '<div class="note-order-line"><strong>Tên sản phẩm:</strong> ' . esc_html($items['product_name']).'</div>';
+			echo '<div class="note-order-line"><strong>Số lượng:</strong> ' . esc_html($items['quantity']).'</div>';
+			echo '<div class="note-order-line"><strong>Giá:</strong> ' . number_format($items['product_price']) . ' VND</div>';
+			echo '</li>';	
+		echo '</ul>';
+		echo '</div>';
+	} else {
+			echo '<p><em>Không có sản phẩm.</em></p>';
+	}
+}
