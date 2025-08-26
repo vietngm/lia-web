@@ -190,6 +190,16 @@
 		padding: 0 12px;
 		align-items: center;
 	}
+	&-payment-logo {
+		display: grid;
+		grid-template-columns: 20px 1fr;
+		gap: 8px;
+		align-items: center;
+		img {
+			border-radius: 4px;
+			overflow: hidden;
+		}
+	}
 	&-product-thumb {
 		display: flex;
 		align-items: center;

@@ -69,7 +69,10 @@
             <?php foreach($payments as $item): ?>
             <li class="modal-payment-item">
               <label class="flex items-center justify-between py-2 cursor-pointer">
-                <span><?= $item['pttt_tht']; ?></span>
+                <div class="modal-payment-logo">
+                  <img src="<?= $item['pttt_logo']['url']; ?>" alt="<?= $item['pttt_tht']; ?>" />
+                  <span><?= $item['pttt_tht']; ?></span>
+                </div>
                 <input type="radio" name="paymentMethod" value="<?= $item['pttt_tht']; ?>" />
               </label>
             </li>
