@@ -5,15 +5,8 @@ jQuery(function ($) {
 
 	$(document).on("click", ".js-register-investment", function (e) {
 		e.preventDefault();
-
-		// const $modal = $("#modal-investment");
-		// const postId = $modal.attr("data-id");
-		// const postId = $(this).data("id");
-
 		const $modal = $("#modal-investment");
 		const postId = $modal.attr("data-id");
-
-		console.log("postId", postId);
 
 		let hasError = false;
 		let errorMessages = [];
@@ -78,11 +71,7 @@ jQuery(function ($) {
 			postId: postId,
 			cachinhthucdautu: cachinhthucdautu,
 		};
-
-		console.log("Data ready:", dataInvestment);
 		submitInvestmentForm(dataInvestment, $modal);
-
-		// TODO: Gọi AJAX nếu cần
 	});
 
 	function submitInvestmentForm(dataInvestment, $modal) {

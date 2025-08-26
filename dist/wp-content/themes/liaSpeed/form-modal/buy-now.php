@@ -1,8 +1,9 @@
 <div id="modal-buy-now" class="modal modal-animate fixed z-[120]">
   <?php
-	// $pageInvestmentId = get_page_by_path('cac-hinh-thuc-dau-tu');
-	// $cachinhthucdautu = get_field('dshtdt',$pageInvestmentId->ID);
-  $deliveryFee = "30000"
+	$paymentId = get_page_by_path('thong-tin-thanh-toan');
+	$payments = get_field('pttt_cpttt',$paymentId->ID);
+  $deliveryFee = "30000";
+  $deliveryStandand="Tiêu chuẩn";
 	?>
   <?= wp_nonce_field( 'buy_now_form' ); ?>
   <div class="rounded-2 modal-bottom-sheet">
@@ -25,7 +26,7 @@
 
       <div class="modal-info-content">
         <div class="font-semibold mb-2 mt-6">Thông tin cá nhân</div>
-        <input type="hidden" name="postId" value="<?= $investment_id ?>" />
+        <input type="hidden" name="postId" value="" />
         <div class="input-group">
           <input class="input" placeholder="Họ và tên khách hàng" name="fullname" />
           <div class="has-error error-fullname"></div>
@@ -50,10 +51,10 @@
                   <div class="flex items-center space-x-2 gap-2">
                     <span class="text-gray-800">Nhận hàng sau 1 - 3 ngày</span>
                   </div>
-                  <div>
-                    <?= number_format($deliveryFee, 0, ",", ".") ?> <small>đ</small>
-                    <input type="radio" name="deliveryMethod" data-price="30000" data-name="Tiêu chuẩn"
-                      value="Tiêu chuẩn" class="modal-delivery-method">
+                  <div class="flex items-center space-x-2 gap-2">
+                    <span><?= number_format($deliveryFee, 0, ",", ".") ?> <small>đ</small></span>
+                    <input type="radio" name="deliveryMethod" data-price="<?=$deliveryFee;?>"
+                      value="<?=$deliveryStandand?>">
                   </div>
                 </label>
               </li>
@@ -65,33 +66,14 @@
         <div class="input-group">
           <div class="font-semibold mb-2 mt-6">Hình thức thanh toán</div>
           <ul class="modal-payment-list">
+            <?php foreach($payments as $item): ?>
             <li class="modal-payment-item">
               <label class="flex items-center justify-between py-2 cursor-pointer">
-                <span>Ví momo</span>
-                <input type="radio" name="paymentMethod" value="Ví momo" />
+                <span><?= $item['pttt_tht']; ?></span>
+                <input type="radio" name="paymentMethod" value="<?= $item['pttt_tht']; ?>" />
               </label>
             </li>
-            <li class="modal-payment-item">
-              <label class="flex items-center justify-between py-2 cursor-pointer">
-                <span>VNPay</span>
-                <input type="radio" name="paymentMethod" value="VNPay" />
-              </label>
-            </li>
-            <li class="modal-payment-item">
-              <label class="flex items-center justify-between py-2 cursor-pointer">
-                <span>Tiền mặt</span>
-                <input type="radio" name="paymentMethod" value="Tiền mặt" />
-              </label>
-            </li>
-            <?php //foreach($cachinhthucdautu as $item): ?>
-            <!-- <li class="modal-option-investment-item">
-              <label class="flex items-center gap-2">
-                <input type="radio" name="cachinhthucdautu" class="modal-option-investment"
-                  value="<?= $item['ten_hinh_thuc']; ?>" />
-                <span><?= $item['ten_hinh_thuc']; ?></span>
-              </label>
-            </li> -->
-            <?php //endforeach; ?>
+            <?php endforeach; ?>
           </ul>
           <div class="has-error error-payment"></div>
         </div>
@@ -112,11 +94,6 @@
             <span class="value">0 <small>đ</small></span>
           </div>
         </div>
-
-        <!-- <div class="input-group input-note mb-0 mt-6">
-          <div class="font-semibold mb-2">Ghi chú</div>
-          <textarea class="input" rows="3" placeholder="Ghi chú" name="note"></textarea>
-        </div> -->
       </div>
 
     </div>
@@ -125,7 +102,7 @@
         <span class="name">Tổng: </span>
         <span class="value">0 <small>đ</small></span>
       </div>
-      <button class="btn btn-lg btn-submit-buy-now js-submit-buy-now disabled">Đặt hàng</button>
+      <button class="btn btn-lg btn-submit-buy-now js-submit-buy-now">Đặt hàng</button>
     </div>
   </div>
 </div>
