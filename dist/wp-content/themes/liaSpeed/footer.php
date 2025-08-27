@@ -54,7 +54,7 @@
 
       <div class="modal-info-content">
         <div class="font-semibold mb-2 mt-6">Thông tin cá nhân</div>
-        <input type="hidden" name="postId" value="<?= $investment_id ?>" />
+        <input type="hidden" name="postId" value="" />
         <div class="input-group">
           <input class="input" placeholder="Họ và tên khách hàng" name="fullname" />
           <div class="has-error error-fullname"></div>

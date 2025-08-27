@@ -72,7 +72,7 @@ function ajax_sync_product_data(){
 			if (in_array($data['id'], $productPublishIds)) {
 					foreach ($productPublishPosts as $post) {
 						if (($data['id']===$post['product_id'])) {
-							$existedPublicProducts[] = array('product_id'=>$data['id'],'price'=>$data['price'],'post_id'=>$post['post_id']);
+							$existedPublicProducts[] = array('product_id'=>$data['id'],'price'=>$data['price'],'post_id'=>$post['post_id'],'avatar_file'=>$data['avatarFile']);
 						}
 					}
 			}
@@ -81,7 +81,7 @@ function ajax_sync_product_data(){
 			if (in_array($data['id'], $productDraftIds)) {
 					foreach ($productDraftPosts as $post) {
 						if (($data['id']===$post['product_id'])) {
-							$existedDraftProducts[] = array('product_id'=>$data['id'],'price'=>$data['price'],'post_id'=>$post['post_id']);
+							$existedDraftProducts[] = array('product_id'=>$data['id'],'price'=>$data['price'],'post_id'=>$post['post_id'],'avatar_file'=>$data['avatarFile']);
 						}
 					}
 			}
@@ -93,6 +93,7 @@ function ajax_sync_product_data(){
 				update_field('price', $product['price'], $product['post_id']);
 			}
 			update_field('status', $envStatus, $product['post_id']);
+
 		}
 
 		// Cap nhat price voi cac dich vu da ton tai trang thai draft
@@ -126,6 +127,17 @@ function ajax_sync_product_data(){
 				update_field('price', $data['price'], $post_id);
 			}
 			update_field('status', $envStatus, $post_id);
+
+			$image_url = isset($data['avatar_file']['link']) ? $data['avatar_file']['link'] : '';
+
+// 			echo '<pre>';
+// print_r($data['avatar_file']);
+// echo '</pre>';
+
+			if (!empty($image_url)) {
+				download_image_to_custom_field($image_url, $post_id, 'anh_dai_dien');
+			}
+
 		}
 	} catch (PDOException $e) {
 		echo 'Error';
@@ -143,4 +155,48 @@ function ajax_sync_product_data(){
 
 add_action( 'wp_ajax_sync_product_data', 'ajax_sync_product_data');
 add_action( 'wp_ajax_nopriv_sync_product_data', 'ajax_sync_product_data');
+
+function download_image_to_custom_field($image_url, $post_id, $field_name = 'anh_dai_dien') {
+    // Tải file tạm
+    $tmp = download_url($image_url);
+
+    if (is_wp_error($tmp)) {
+			  error_log("❌ Lỗi khi tải ảnh từ URL: $image_url");
+        return false;
+    }
+
+    $file_array = array(
+        'name'     => basename($image_url),
+        'tmp_name' => $tmp
+    );
+
+    // Xử lý file
+    $file = wp_handle_sideload($file_array, array('test_form' => false));
+
+    if (isset($file['error'])) {
+        @unlink($tmp);
+        return false;
+    }
+
+    // Tạo attachment
+    $attachment = array(
+        'post_mime_type' => $file['type'],
+        'post_title'     => sanitize_file_name($file['file']),
+        'post_content'   => '',
+        'post_status'    => 'inherit'
+    );
+
+    $attach_id = wp_insert_attachment($attachment, $file['file'], $post_id);
+
+    // Tạo metadata ảnh
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+    $attach_data = wp_generate_attachment_metadata($attach_id, $file['file']);
+    wp_update_attachment_metadata($attach_id, $attach_data);
+
+    // Gán vào custom field
+    update_field($field_name, $attach_id, $post_id);
+
+    return $attach_id;
+}
+
 ?>
