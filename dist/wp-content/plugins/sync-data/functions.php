@@ -62,6 +62,7 @@ add_action('init','check_pages_existed');
 // Include ajax sync datas
 include('inc/service.php');
 include('inc/doctor.php');
+include('inc/product.php');
 
 add_action('admin_init', 'hide_editor');
 

@@ -2,6 +2,7 @@
 // window.jQuery = $;
 // window.$ = $;
 import "./sync.js";
+import "./sync-product.js";
 import "./re-sync.js";
 import "./auth.js";
 // import "./cron.js";
