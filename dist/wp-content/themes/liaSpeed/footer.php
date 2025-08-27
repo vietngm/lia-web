@@ -40,7 +40,7 @@
             <img src="<?php echo get_theme_file_uri('assets/images/icons/vr-gray.svg'); ?>" alt="Area">
             Diện tích
           </div>
-          <div class="metric-value modal-dientich"><?= $dientich ?? 'N/A'; ?></div>
+          <div class="metric-value modal-dientich"></div>
         </div>
 
         <div class="metric-item">
@@ -48,7 +48,7 @@
             <img src="<?php echo get_theme_file_uri('assets/images/icons/location-gray.svg'); ?>" alt="Investment">
             Vị trí
           </div>
-          <div class="metric-value modal-dia_chi"><?=$dia_chi;?></div>
+          <div class="metric-value modal-dia_chi"></div>
         </div>
       </div>
 

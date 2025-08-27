@@ -128,15 +128,15 @@ function ajax_sync_product_data(){
 			}
 			update_field('status', $envStatus, $post_id);
 
-			$image_url = isset($data['avatar_file']['link']) ? $data['avatar_file']['link'] : '';
+			error_log("🟡 Avatar file: " . print_r($data['avatar_file'], true));
+			error_log("🟢 Dữ liệu product: " . print_r($data, true));
 
-// 			echo '<pre>';
-// print_r($data['avatar_file']);
-// echo '</pre>';
+			$image_url = 'https://lia-dev-space.sgp1.cdn.digitaloceanspaces.com/public-read/SERVICE/ac39f62e-5d14-46d8-aeff-160215bc8a03';
+			error_log("❌ Lỗi khi tải ảnh từ URL 123: $image_url");
 
-			if (!empty($image_url)) {
+			// if (!empty($image_url)) {
 				download_image_to_custom_field($image_url, $post_id, 'anh_dai_dien');
-			}
+			// }
 
 		}
 	} catch (PDOException $e) {
@@ -157,11 +157,11 @@ add_action( 'wp_ajax_sync_product_data', 'ajax_sync_product_data');
 add_action( 'wp_ajax_nopriv_sync_product_data', 'ajax_sync_product_data');
 
 function download_image_to_custom_field($image_url, $post_id, $field_name = 'anh_dai_dien') {
-    // Tải file tạm
-    $tmp = download_url($image_url);
+    error_log("🟡 Bắt đầu tải ảnh: $image_url");
 
+    $tmp = download_url($image_url);
     if (is_wp_error($tmp)) {
-			  error_log("❌ Lỗi khi tải ảnh từ URL: $image_url");
+        error_log("❌ download_url() lỗi: " . $tmp->get_error_message());
         return false;
     }
 
@@ -170,15 +170,16 @@ function download_image_to_custom_field($image_url, $post_id, $field_name = 'anh
         'tmp_name' => $tmp
     );
 
-    // Xử lý file
     $file = wp_handle_sideload($file_array, array('test_form' => false));
 
     if (isset($file['error'])) {
+        error_log("❌ wp_handle_sideload() lỗi: " . $file['error']);
         @unlink($tmp);
         return false;
     }
 
-    // Tạo attachment
+    error_log("✅ File đã xử lý: " . print_r($file, true));
+
     $attachment = array(
         'post_mime_type' => $file['type'],
         'post_title'     => sanitize_file_name($file['file']),
@@ -187,14 +188,17 @@ function download_image_to_custom_field($image_url, $post_id, $field_name = 'anh
     );
 
     $attach_id = wp_insert_attachment($attachment, $file['file'], $post_id);
+    if (is_wp_error($attach_id)) {
+        error_log("❌ wp_insert_attachment() lỗi: " . $attach_id->get_error_message());
+        return false;
+    }
 
-    // Tạo metadata ảnh
     require_once(ABSPATH . 'wp-admin/includes/image.php');
     $attach_data = wp_generate_attachment_metadata($attach_id, $file['file']);
     wp_update_attachment_metadata($attach_id, $attach_data);
 
-    // Gán vào custom field
     update_field($field_name, $attach_id, $post_id);
+    error_log("✅ Ảnh đã được gán vào custom field [$field_name] với ID: $attach_id");
 
     return $attach_id;
 }
