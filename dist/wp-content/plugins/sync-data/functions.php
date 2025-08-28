@@ -66,26 +66,26 @@ include('inc/product.php');
 
 add_action('admin_init', 'hide_editor');
 
-function hide_editor() {    
-	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
-	if (!isset($post_id))
-		return;
-	$hide_page = get_the_title($post_id);
-	if ($hide_page == 'Environments') {
-		remove_post_type_support('page', 'editor');
-	}
-}
-
 // function hide_editor() {    
-// 	$post_id = isset($_GET['post']) ? $_GET['post'] : (isset($_POST['post_ID']) ? $_POST['post_ID'] : null);
-
-// 	if (!$post_id) return;
-
+// 	$post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'];
+// 	if (!isset($post_id))
+// 		return;
 // 	$hide_page = get_the_title($post_id);
 // 	if ($hide_page == 'Environments') {
 // 		remove_post_type_support('page', 'editor');
 // 	}
 // }
+
+function hide_editor() {    
+	$post_id = isset($_GET['post']) ? $_GET['post'] : (isset($_POST['post_ID']) ? $_POST['post_ID'] : null);
+
+	if (!$post_id) return;
+
+	$hide_page = get_the_title($post_id);
+	if ($hide_page == 'Environments') {
+		remove_post_type_support('page', 'editor');
+	}
+}
 
 // Auto refresh token
 include('inc/autoRefresh.php');

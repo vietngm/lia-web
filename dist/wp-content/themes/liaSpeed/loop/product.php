@@ -7,9 +7,9 @@
   $ratingCount = get_field('sl_dg', $post->ID);
   $orderCount = get_field('sl_km', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
-  $price = $firstPrice['gia_sp'] ?? 0;
-  $discount = $firstPrice['gia_km'] ?? 0;
-  $discountPrice = $price-($price * ($discount / 100));
+  $price = floatval($firstPrice['gia_sp'] ?? 0);
+  $discount = floatval($firstPrice['gia_km'] ?? 0);
+  $discountPrice = $price - ($price * ($discount / 100));
 ?>
 
 <?php if ($thumb) { ?>

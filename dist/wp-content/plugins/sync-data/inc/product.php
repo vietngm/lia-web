@@ -24,7 +24,6 @@ function ajax_sync_product_data(){
 			$env_post_id = trim(get_the_ID(),' ');
 		}
 	}
-	$priceSync = get_field('price_sync',$env_post_id);
 	try {
 		// Tim tat ca dich vu dang ton tai o trang thai publish de cap nhat.
 		$queryPublish = array(
@@ -68,39 +67,136 @@ function ajax_sync_product_data(){
 		foreach ($datas as $data) {
 			$mapProducts[] =$data['id'];
 			
-			// Map price voi cac dich vu da ton tai trang thai publish
+			// Map price voi cac san pham da ton tai trang thai publish
 			if (in_array($data['id'], $productPublishIds)) {
 					foreach ($productPublishPosts as $post) {
 						if (($data['id']===$post['product_id'])) {
-							$existedPublicProducts[] = array('product_id'=>$data['id'],'price'=>$data['price'],'post_id'=>$post['post_id'],'avatar_file'=>$data['avatarFile']);
+							$existedPublicProducts[] = array(
+								'product_id'=>$data['id'],
+								'price'=>$data['price'],
+								'post_id'=>$post['post_id'],
+								'description'=>$data['description'],
+								'unit'=>$data['unit'],
+								'weight'=>$data['weight'],
+								'height'=>$data['height'],
+								'code'=>$data['code'],
+								'sold_quantity'=>$data['soldQuantity'],
+								'rating'=>$data['rating'],
+								'review_count'=>$data['reviewCount'],
+							);
 						}
 					}
 			}
 
-			// Map price voi cac dich vu da ton tai trang thai draft
+			// Map price voi cac san pham da ton tai trang thai draft
 			if (in_array($data['id'], $productDraftIds)) {
 					foreach ($productDraftPosts as $post) {
 						if (($data['id']===$post['product_id'])) {
-							$existedDraftProducts[] = array('product_id'=>$data['id'],'price'=>$data['price'],'post_id'=>$post['post_id'],'avatar_file'=>$data['avatarFile']);
+							$existedDraftProducts[] = array(
+								'product_id'=>$data['id'],
+								'price'=>$data['price'],
+								'post_id'=>$post['post_id'],
+								'description'=>$data['description'],
+								'unit'=>$data['unit'],
+								'weight'=>$data['weight'],
+								'height'=>$data['height'],
+								'code'=>$data['code'],
+								'sold_quantity'=>$data['soldQuantity'],
+								'rating'=>$data['rating'],
+								'review_count'=>$data['reviewCount'],
+							);
 						}
 					}
 			}
+
+			// error_log("✅ File đã xử lý: " . print_r($data, true));
 		}
 
 		// Cap nhat price voi cac dich vu da ton tai trang thai publish
 		foreach ($existedPublicProducts as $product) {
-			if($priceSync==1){
-				update_field('price', $product['price'], $product['post_id']);
+			$existing = get_field('unit_price', $product['post_id']);
+			if (!is_array($existing)) {
+				$existing = [];
 			}
+
+			$found = false;
+			foreach ($existing as &$item) {
+				if (isset($item['dvt']) && $item['dvt'] === $product['unit']) {
+					// Đã tồn tại dvt → cập nhật giá
+					$item['gia_sp'] = $product['price'];
+					$item['gia_km'] = 0;
+					$found = true;
+					break;
+				}
+			}
+			unset($item);
+
+			if (!$found) {
+				// Nếu chưa tồn tại, thêm mới
+				$existing[] = [
+					'dvt'     => $product['unit'],
+					'gia_sp'  => $product['price'],
+					'gia_km'  => 0,
+				];
+			}
+
+			// Các field khác
+			$weight = $product['weight'] . 'x' . $product['height'];
+			$currentDescription = get_field('description', $product['post_id']);
+			update_field('unit_price', $existing, $product['post_id']);
+			if (empty($currentDescription)) {
+				update_field('description', $product['description'], $product['post_id']);
+			}
+			update_field('sp_tl', $weight, $product['post_id']);
+			update_field('sku', $product['code'], $product['post_id']);
+			update_field('sl_km', $product['sold_quantity'], $product['post_id']);
+			update_field('sl_dg', $product['rating'], $product['post_id']);
+			update_field('danh_gia', $product['review_count'], $product['post_id']);
 			update_field('status', $envStatus, $product['post_id']);
 
 		}
 
 		// Cap nhat price voi cac dich vu da ton tai trang thai draft
 		foreach ($existedDraftProducts as $product) {
-			if($priceSync==1){
-				update_field('price', $product['price'], $product['post_id']);
+			$existing = get_field('unit_price', $product['post_id']);
+			if (!is_array($existing)) {
+				$existing = [];
 			}
+
+			$found = false;
+			foreach ($existing as &$item) {
+				if (isset($item['dvt']) && $item['dvt'] === $product['unit']) {
+					// Đã tồn tại dvt → cập nhật giá
+					$item['gia_sp'] = $product['price'];
+					$item['gia_km'] = 0;
+					$found = true;
+					break;
+				}
+			}
+			unset($item);
+
+			if (!$found) {
+				// Nếu chưa tồn tại, thêm mới
+				$existing[] = [
+					'dvt'     => $product['unit'],
+					'gia_sp'  => $product['price'],
+					'gia_km'  => 0,
+				];
+			}
+
+			// Các field khác
+			$weight = $product['weight'] . 'x' . $product['height'];
+			$currentDescription = get_field('description', $product['post_id']);
+
+			update_field('unit_price', $existing, $product['post_id']);
+			if (empty($currentDescription)) {
+				update_field('description', $product['description'], $product['post_id']);
+			}
+			update_field('sp_tl', $weight, $product['post_id']);
+			update_field('sku', $product['code'], $product['post_id']);
+			update_field('sl_km', $product['sold_quantity'], $product['post_id']);
+			update_field('sl_dg', $product['rating'], $product['post_id']);
+			update_field('danh_gia', $product['review_count'], $product['post_id']);
 			update_field('status', $envStatus, $product['post_id']);
 		}
 
@@ -122,21 +218,24 @@ function ajax_sync_product_data(){
 					"post_status" => "draft",
 				)
 			);
+			$weight = $data['weight'] . 'x' . $data['height'];
+			$existing = get_field('unit_price', $post_id);
+
+			$existing[] = [
+				'dvt'     => $data['unit'],
+				'gia_sp'  => $data['price'],
+				'gia_km'  => 0,
+			];
+				
 			update_field('id_sync', $data['id'], $post_id);
-			if($priceSync==1){
-				update_field('price', $data['price'], $post_id);
-			}
+			update_field('unit_price', $existing,$post_id);
+			update_field('description', $data['description'], $post_id);
+			update_field('sp_tl', $weight, $post_id);
+			update_field('sku', $data['code'],$post_id);
+			update_field('sl_km', $data['sold_quantity'], $post_id);
+			update_field('sl_dg', $data['rating'],$post_id);
+			update_field('danh_gia', $data['review_count'],$post_id);
 			update_field('status', $envStatus, $post_id);
-
-			error_log("🟡 Avatar file: " . print_r($data['avatar_file'], true));
-			error_log("🟢 Dữ liệu product: " . print_r($data, true));
-
-			$image_url = 'https://lia-dev-space.sgp1.cdn.digitaloceanspaces.com/public-read/SERVICE/ac39f62e-5d14-46d8-aeff-160215bc8a03';
-			error_log("❌ Lỗi khi tải ảnh từ URL 123: $image_url");
-
-			// if (!empty($image_url)) {
-				download_image_to_custom_field($image_url, $post_id, 'anh_dai_dien');
-			// }
 
 		}
 	} catch (PDOException $e) {
@@ -155,52 +254,5 @@ function ajax_sync_product_data(){
 
 add_action( 'wp_ajax_sync_product_data', 'ajax_sync_product_data');
 add_action( 'wp_ajax_nopriv_sync_product_data', 'ajax_sync_product_data');
-
-function download_image_to_custom_field($image_url, $post_id, $field_name = 'anh_dai_dien') {
-    error_log("🟡 Bắt đầu tải ảnh: $image_url");
-
-    $tmp = download_url($image_url);
-    if (is_wp_error($tmp)) {
-        error_log("❌ download_url() lỗi: " . $tmp->get_error_message());
-        return false;
-    }
-
-    $file_array = array(
-        'name'     => basename($image_url),
-        'tmp_name' => $tmp
-    );
-
-    $file = wp_handle_sideload($file_array, array('test_form' => false));
-
-    if (isset($file['error'])) {
-        error_log("❌ wp_handle_sideload() lỗi: " . $file['error']);
-        @unlink($tmp);
-        return false;
-    }
-
-    error_log("✅ File đã xử lý: " . print_r($file, true));
-
-    $attachment = array(
-        'post_mime_type' => $file['type'],
-        'post_title'     => sanitize_file_name($file['file']),
-        'post_content'   => '',
-        'post_status'    => 'inherit'
-    );
-
-    $attach_id = wp_insert_attachment($attachment, $file['file'], $post_id);
-    if (is_wp_error($attach_id)) {
-        error_log("❌ wp_insert_attachment() lỗi: " . $attach_id->get_error_message());
-        return false;
-    }
-
-    require_once(ABSPATH . 'wp-admin/includes/image.php');
-    $attach_data = wp_generate_attachment_metadata($attach_id, $file['file']);
-    wp_update_attachment_metadata($attach_id, $attach_data);
-
-    update_field($field_name, $attach_id, $post_id);
-    error_log("✅ Ảnh đã được gán vào custom field [$field_name] với ID: $attach_id");
-
-    return $attach_id;
-}
 
 ?>

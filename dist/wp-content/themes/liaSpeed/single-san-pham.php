@@ -125,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="lg:col-span-1 col-span-2 flex flex-col">
           <div class="flex gap-2 flex-wrap breadcrumb">
             <a class="breadcrumb-home font-semibold" href="/">Trang chủ</a>
-            <span>›</span>
-            <a class="breadcrumb-home font-semibold" href="/san-pham">Sản phẩm</a>
+            <!-- <span>›</span>
+            <a class="breadcrumb-home font-semibold" href="/san-pham">Sản phẩm</a> -->
             <span>›</span>
             <span class="text-primary">Chi tiết sản phẩm</span>
           </div>
