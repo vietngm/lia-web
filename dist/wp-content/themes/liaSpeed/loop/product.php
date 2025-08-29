@@ -1,5 +1,5 @@
 <?php
-  $thumb = get_field('anh_dai_dien', $post->ID);
+  $productThumb = get_field('anh_dai_dien', $post->ID);
   $description = get_field('description', $post->ID);
   $media = get_field('media_dai_dien', $post->ID);
   $unitPrice = get_field('unit_price', $post->ID);
@@ -7,15 +7,15 @@
   $ratingCount = get_field('sl_dg', $post->ID);
   $orderCount = get_field('sl_km', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
-  $price = floatval($firstPrice['gia_sp'] ?? 0);
-  $discount = floatval($firstPrice['gia_km'] ?? 0);
-  $discountPrice = $price - ($price * ($discount / 100));
+  $productPrice = floatval($firstPrice['gia_sp'] ?? 0);
+  $productDiscount = floatval($firstPrice['gia_km'] ?? 0);
+  $productDiscountPrice = $productPrice - ($productPrice * ($productDiscount / 100));
 ?>
 
-<?php if ($thumb) { ?>
+<?php if ($productThumb) { ?>
 <div class='product-thumb'>
   <a href="<?php echo get_permalink($post->ID); ?>" class='product-link'>
-    <img class="img aspect-square lazy" src="<?= $thumb['url'] ?>" alt="<?php echo $post->post_title; ?>">
+    <img class="img aspect-square lazy" src="<?= $productThumb['url'] ?>" alt="<?php echo $post->post_title; ?>">
   </a>
 </div>
 <?php } else { ?>
@@ -45,26 +45,27 @@
       <?php the_title(); ?>
     </span>
   </a>
-  <?php if($discount==0) {?>
+  <?php if($productDiscount==0) {?>
   <div class="product-price">
-    <span><?= number_format($price, 0, ",", ".") ?></span>
+    <span><?= number_format($productPrice, 0, ",", ".") ?></span>
     <small><u>đ</u></small>
   </div>
   <?php } else{ ?>
   <div class="product-discount">
-    <?php echo '-'.$discount.'%';?>
+    <?php echo '-'.$productDiscount.'%';?>
   </div>
   <div class="product-km">
     <div class="price-discount">
-      <span><?= number_format($discountPrice, 0, ",", ".") ?></span>
+      <span><?= number_format($productDiscountPrice, 0, ",", ".") ?></span>
       <small><u>đ</u></small>
     </div>
     <div class="price-through">
-      <span><?= number_format($price, 0, ",", ".") ?></span>
+      <span><?= number_format($productPrice, 0, ",", ".") ?></span>
       <small><u>đ</u></small>
     </div>
   </div>
   <?php } ?>
 </div>
-<button class="btn btn-buy-now js-buy-now" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
-  data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">Mua ngay</button>
+<button class="btn btn-buy-now js-buy-now"
+  data-price="<?= $productDiscountPrice ? $productDiscountPrice : $productPrice ?>" data-title="<?= get_the_title() ?>"
+  data-id="<?= get_the_ID() ?>" data-image="<?= $productThumb['url'] ?>">Mua ngay</button>

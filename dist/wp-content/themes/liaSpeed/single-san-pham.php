@@ -6,13 +6,12 @@
   $tpsp = get_field('tp_sp', $post->ID);
   $dtph = get_field('dt_ph', $post->ID);
   $unitPrice = get_field('unit_price', $post->ID);
-  // $ratingCount = get_field('sl_dg', $post->ID);
   $rating = get_field('danh_gia', $post->ID);
   $ratingCount = get_field('sl_dg', $post->ID);
   $orderCount = get_field('sl_km', $post->ID);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
-  $price = $firstPrice['gia_sp'] ?? 0;
-  $discount = $firstPrice['gia_km'] ?? 0;
+  $price = floatval($firstPrice['gia_sp'] ?? 0);
+  $discount = floatval($firstPrice['gia_km'] ?? 0);
   $discountPrice = $price-($price * ($discount / 100));
 
   $tpc = get_field('sp_tpc', $post->ID);
@@ -23,6 +22,7 @@
   $sp_thv = get_field('sp_thv', $post->ID);
 
   $thumb = get_field('anh_dai_dien', $post->ID);
+  
 	$args = array(
 		"post_type" => "san-pham",
 		"posts_per_page" => 8,
@@ -42,79 +42,16 @@
 	$the_query_related = new WP_Query( $args );
 ?>
 
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-</head>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const price = <?= isset($fields['discountPrice']) && $fields['discountPrice'] > 0 && $fields['discountPrice'] < $fields['price'] 
-            ? $fields['discountPrice'] 
-            : (isset($fields['price']) ? $fields['price'] : 0); ?>;
-
-  localStorage.setItem('servicePrice', price);
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const serviceName = <?= json_encode(get_the_title()); ?>;
-  localStorage.setItem('serviceName', serviceName);
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const serviceId = <?= json_encode(get_the_ID()); ?>;
-  localStorage.setItem('serviceId', serviceId);
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const selectedGift = <?= json_encode(get_the_ID()); ?>;
-  localStorage.setItem('selectedGift', selectedGift);
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const radioButtons = document.querySelectorAll('input[name="gift"]');
-
-  function saveToLocalStorage(selectedGift) {
-    localStorage.setItem("selectedGift", selectedGift);
-    console.log("Đã lưu:", selectedGift);
-    updateSelected();
-  }
-
-  function updateSelectedGift() {
-    const savedGift = localStorage.getItem("selectedGift");
-    if (savedGift) {
-      document.querySelectorAll('input[name="gift"]').forEach(radio => {
-        if (radio.value === savedGift) {
-          radio.checked = true;
-        }
-      });
-    }
-  }
-
-  // Nếu chỉ có 1 quà, tự động chọn & lưu
-  if (radioButtons.length === 1) {
-    saveToLocalStorage(radioButtons[0].value);
-  }
-
-  // Khi chọn quà, lưu vào localStorage
-  radioButtons.forEach(radio => {
-    radio.addEventListener("change", function() {
-      saveToLocalStorage(this.value);
-    });
-  });
-
-});
-</script>
 <main class="is-product-detail">
   <section class="section-product-header mb-2">
     <div class="container">
       <div class="grid grid-cols-2 gap-4 relative">
         <div class="product-detail-slider mount-slider lg:col-span-1 col-span-2 sm:mt-0 sm:mx-0 -mx-4">
+          <?php if($thumb){?>
+          <div>
+            <img class="w-full" src="<?=$thumb['url'] ?>" />
+          </div>
+          <?php } ?>
           <?php foreach ($fields["product_gallery"] as $item) : ?>
           <div>
             <img class="w-full" style="margin-top:0px"
@@ -125,8 +62,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="lg:col-span-1 col-span-2 flex flex-col">
           <div class="flex gap-2 flex-wrap breadcrumb">
             <a class="breadcrumb-home font-semibold" href="/">Trang chủ</a>
-            <!-- <span>›</span>
-            <a class="breadcrumb-home font-semibold" href="/san-pham">Sản phẩm</a> -->
             <span>›</span>
             <span class="text-primary">Chi tiết sản phẩm</span>
           </div>
@@ -319,111 +254,53 @@ toggleButton.addEventListener("click", () => {
 </script>
 
 <script>
-
 </script>
 <script>
-function addClassToMainPage() {
-  const mainElement = document.getElementById("mainPageDesire");
+// function addClassToMainPage() {
+//   const mainElement = document.getElementById("mainPageDesire");
 
-  if (mainElement) {
-    mainElement.classList.add("updated");
-  }
-}
+//   if (mainElement) {
+//     mainElement.classList.add("updated");
+//   }
+// }
 </script>
-<script>
-document.querySelectorAll('.option-desire').forEach(option => {
-  option.addEventListener('click', function() {
-    const name = this.getAttribute('data-name');
-    const price = this.getAttribute('data-price');
 
-    localStorage.setItem('selectedDesire', JSON.stringify({
-      name,
-      price
-    }));
-    updateUI();
-    updateNoteTopping();
-    document.querySelectorAll('.modal-option').forEach(input => {
-      input.checked = input.getAttribute('data-name') === name;
-    });
-  });
-});
-</script>
-<script>
-document.querySelectorAll('.option-material').forEach(option => {
-  option.addEventListener('click', function() {
-    const name = this.getAttribute('data-name');
-    const price = this.getAttribute('data-price');
-
-    localStorage.setItem('selectedMaterial', JSON.stringify({
-      name,
-      price
-    }));
-    updateUI();
-    updateNoteTopping();
-    document.querySelectorAll('.modal-option-material').forEach(input => {
-      input.checked = input.getAttribute('data-name') === name;
-    });
-  });
-});
-</script>
-<script>
-document.querySelectorAll('.option-bh').forEach(option => {
-  option.addEventListener('click', function() {
-    const name = this.getAttribute('data-name');
-    const price = this.getAttribute('data-price');
-
-    localStorage.setItem('selectedBh', JSON.stringify({
-      name,
-      price
-    }));
-    updateUI();
-    updateNoteTopping();
-    document.querySelectorAll('.modal-option-bh').forEach(input => {
-      input.checked = input.getAttribute('data-name') === name;
-    });
-  });
-});
-</script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  addOptionEvent(".option-desire", "selectedDesire");
-  addOptionEvent(".option-material", "selectedMaterial");
-  addOptionEvent(".option-bh", "selectedBh");
-
+  // addOptionEvent(".option-desire", "selectedDesire");
+  // addOptionEvent(".option-material", "selectedMaterial");
+  // addOptionEvent(".option-bh", "selectedBh");
   // updateTotalPrice();
 });
 
-function addOptionEvent(selector, storageKey) {
-  document.querySelectorAll(selector).forEach(option => {
-    option.addEventListener("click", function() {
-      const name = this.getAttribute("data-name");
-      const price = parseInt(this.getAttribute("data-price")) || 0;
+// function addOptionEvent(selector, storageKey) {
+//   document.querySelectorAll(selector).forEach(option => {
+//     option.addEventListener("click", function() {
+//       const name = this.getAttribute("data-name");
+//       const price = parseInt(this.getAttribute("data-price")) || 0;
 
-      localStorage.setItem(storageKey, JSON.stringify({
-        name,
-        price
-      }));
+//       localStorage.setItem(storageKey, JSON.stringify({
+//         name,
+//         price
+//       }));
 
-      updateCheckedState(selector, name);
+//       updateCheckedState(selector, name);
 
-      updateTotalPrice();
-    });
-  });
-}
+//       updateTotalPrice();
+//     });
+//   });
+// }
 
-function updateCheckedState(selector, name) {
-  document.querySelectorAll(selector).forEach(input => {
-    input.checked = input.getAttribute("data-name") === name;
-  });
-}
+// function updateCheckedState(selector, name) {
+//   document.querySelectorAll(selector).forEach(input => {
+//     input.checked = input.getAttribute("data-name") === name;
+//   });
+// }
 </script>
 <script>
 localStorage.clear();
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-
-});
 </script>
 <?php
 get_template_part( 'template-parts/footer', "menu");
@@ -443,8 +320,9 @@ set_query_var('field', $fields);
 </div>
 <div class="footer-cart-buy-now">
   <button class="btn btn-primary btn-footer js-buy-now" data-price="<?= $discountPrice ? $discountPrice : $price ?>"
-    data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">Mua
-    ngay</button>
+    data-title="<?= get_the_title() ?>" data-id="<?= get_the_ID() ?>" data-image="<?= $thumb['url'] ?>">
+    Mua ngay
+  </button>
 </div>
 <?php require "form-modal/buy-now.php";?>
 <?php get_footer("empty"); ?>
