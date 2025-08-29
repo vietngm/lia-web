@@ -90,13 +90,15 @@ function ajax_donhang_form(){
 	$timestamp = microtime(true);
 	$orderDate = date('YmdHis', (int)$timestamp);
 	$micro = sprintf("%04d", ($timestamp - floor($timestamp)) * 10000);
-	$orderNumber = "#{$orderDate}";
+	$orderNumber = $orderDate;
 	$thumb = get_field('anh_dai_dien', $postId);
 	$productName = get_the_title($postId);
   $unitPrice = get_field('unit_price',$postId);
   $firstPrice = $unitPrice ? $unitPrice[0] : [];
-  $price = $firstPrice['gia_sp'] ?? 0;
-  $discount = $firstPrice['gia_km'] ?? 0;
+
+	$price = floatval($firstPrice['gia_sp'] ?? 0);
+  $discount = floatval($firstPrice['gia_km'] ?? 0);
+
   $discountPrice = $price-($price * ($discount / 100));
 	$finalPrice =  $discountPrice ? $discountPrice : $price;
 
@@ -113,7 +115,7 @@ function ajax_donhang_form(){
 
 	$data_id = wp_insert_post( 
 		array(
-			'post_title'	=> "Đơn hàng {$orderNumber} - {$fullname} - {$phone}",
+			'post_title'	=> "Đơn hàng #{$orderNumber} - {$fullname} - {$phone}",
 			"post_type" => "don-hang",
 			"post_status" => "publish",
 			"meta_input" => array(
@@ -125,6 +127,18 @@ function ajax_donhang_form(){
 			),
 		)
 	);
+
+	$total = ($finalPrice * $quantity) + $deliveryPrice;
+
+	if ($payment === 'VNPay') {
+		$vnpay_url = site_url("/wp-content/themes/liaSpeed/vnpay_php/vnpay_create_payment.php?order_id={$orderNumber}&amount={$total}");
+
+		echo json_encode([
+			'success' => true,
+			'redirect' => $vnpay_url,
+		]);
+		die();
+	}
 
 	echo json_encode(
 		array(

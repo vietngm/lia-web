@@ -234,12 +234,16 @@ jQuery(function ($) {
 					$(document).find(".close-modal").click();
 					$(document).find(".modal-close").click();
 
-					$modelConsultationSuccess.removeClass("hidden").addClass("flex");
-					// reset();
-					setTimeout(function () {
-						$modelConsultationSuccess.addClass("hidden").removeClass("flex");
-						window.location.href = "/";
-					}, 3000);
+					if (result.redirect) {
+						window.location.href = result.redirect;
+					} else {
+						$modelConsultationSuccess.removeClass("hidden").addClass("flex");
+						// reset();
+						setTimeout(function () {
+							$modelConsultationSuccess.addClass("hidden").removeClass("flex");
+							window.location.href = "/";
+						}, 3000);
+					}
 
 					// if (success) success();
 				} else {
